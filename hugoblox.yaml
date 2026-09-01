@@ -1,5 +1,6 @@
 build:
-  hugo_version: '0.162.0'
+  # HugoBlox's current link builder is incompatible with Hugo 0.162.x.
+  hugo_version: '0.161.1'
 deploy:
   # Deployment target: github-pages, netlify, vercel, cloudflare, or none
   host: 'github-pages'
