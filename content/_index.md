@@ -30,6 +30,35 @@ sections:
       avatar:
         size: medium # Options: small (150px), medium (200px, default), large (320px), xl (400px), xxl (500px)
         shape: circle # Options: circle (default), square, rounded
+  - block: video-showcase
+    id: robot-demos
+    content:
+      title: Robots That Listen, Reason, and Act
+      text: |-
+        Selected real-robot trials from **HEAR**, my sound-centric manipulation framework. Turn on sound to see why a robot must remember transient acoustic events while it acts.
+      project_url: https://hear.irmv.top/
+      project_label: Explore the HEAR project
+      videos:
+        - title: Moka Coffee
+          eyebrow: Real robot · VSLA
+          description: The robot uses continuous sound and visual context while completing a multi-stage coffee task.
+          src: https://hear.irmv.top/static/videos/moka_pot_all_web.mp4?v=681a0fb
+          poster: moka.webp
+        - title: Alarm Clock
+          eyebrow: Trigger sound
+          description: A short alarm event changes the manipulation decision even when it falls between action chunks.
+          src: https://hear.irmv.top/static/videos/alarm_all.mp4?v=681a0fb
+          poster: alarm.webp
+        - title: Empty or Occupied?
+          eyebrow: Interactive sound
+          description: The robot shakes a bottle and uses the resulting sound to infer its state before placing it.
+          src: https://hear.irmv.top/static/videos/empty_all.mp4?v=681a0fb
+          poster: empty.webp
+    design:
+      background:
+        color:
+          light: '#eef7f7'
+          dark: '#081b2f'
   - block: markdown
     id: research
     content:
@@ -43,29 +72,65 @@ sections:
         **HEAR** and **Teach and Grow (TGL)** are the clearest expressions of this direction: HEAR introduces continuous sound-aware manipulation, while TGL organizes demonstrations, tools, feedback, and memory into a robot system that can accumulate reusable capability.
     design:
       columns: '1'
-  - block: collection
+  - block: markdown
     id: papers
     content:
-      title: Representative Research
-      text: HEAR and TGL are my current representative works on multisensory embodied models and agent-centered robot learning.
-      filters:
-        folders:
-          - publications
-        featured_only: true
+      title: 'A Research Story: From Reliable Perception to Growing Robots'
+      text: |-
+        My work follows a continuous path: **make perception reliable**, then **learn across modalities and generate better data**, and finally **build robot systems that can use sound, tools, feedback, and memory to acquire reusable capabilities**. The papers below are ordered by that intellectual story rather than publication date. **HEAR** and **Teach and Grow (TGL)** are the current representative outcomes.
     design:
-      view: citation
+      columns: '1'
   - block: collection
-    id: publications
+    id: foundations
     content:
-      title: Publications
-      text: Selected publications spanning embodied intelligence, multimodal learning, and robust visual estimation.
+      title: '01 · Reliable Perception & Geometry'
+      text: Learning how to sample, segment, and reconstruct robustly provides the geometric foundation for later embodied systems.
       filters:
         folders:
           - publications
-        exclude_featured: false
-      count: 8
+        tags:
+          - Computer Vision
+      sort_by: story_order
+      sort_ascending: true
+      count: 4
     design:
-      view: citation
+      view: article-grid
+      columns: 2
+      fill_image: false
+  - block: collection
+    id: multimodal-models
+    content:
+      title: '02 · Multimodal Data & Models'
+      text: The next step is to learn transferable restoration principles and create consistent robot experience across modalities and time.
+      filters:
+        folders:
+          - publications
+        tags:
+          - Multimodal Learning
+      sort_by: story_order
+      sort_ascending: true
+      count: 2
+    design:
+      view: article-grid
+      columns: 2
+      fill_image: false
+  - block: collection
+    id: general-systems
+    content:
+      title: '03 · General Robot Systems'
+      text: HEAR and TGL bring the earlier threads together in multisensory and agent-centered robot systems that perceive causal signals and grow through physical experience.
+      filters:
+        folders:
+          - publications
+        tags:
+          - Robot Manipulation
+      sort_by: story_order
+      sort_ascending: true
+      count: 2
+    design:
+      view: article-grid
+      columns: 2
+      fill_image: false
   - block: cta-card
     id: contact
     content:

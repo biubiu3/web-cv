@@ -40,6 +40,9 @@ links:
   - icon: academicons/google-scholar
     url: https://scholar.google.com/citations?user=Tc2sl7gAAAAJ
     label: Google Scholar
+  - icon: brands/linkedin
+    url: https://www.linkedin.com/in/chang-nie-819a463b6/
+    label: LinkedIn
 
 interests:
   - Physical AI & Embodied Intelligence
@@ -53,14 +56,23 @@ education:
   - degree: Ph.D. Student
     institution: Shanghai Jiao Tong University
     start: 2022-09-01
+    end: 2026-12-31
     summary: |
-      Advised by Prof. Hesheng Wang. Researching Physical AI, embodied
-      intelligence, multimodal learning, and agent-centered robot systems.
-  - degree: M.Eng. in Vehicle Engineering
+      Expected graduation: December 31, 2026. Advised by Prof. Hesheng Wang.
+      Researching Physical AI, embodied intelligence, multimodal learning, and
+      agent-centered robot systems.
+  - degree: M.Eng. · Computer Vision & Autonomous Driving
     institution: Beihang University
     start: 2019-09-01
     end: 2022-06-30
-  - degree: B.Eng. in Vehicle Engineering
+    summary: |
+      Research on deep-learning-based perception for difficult driving
+      conditions, with an emphasis on computer vision and autonomous-driving
+      applications.
+  - degree: B.Eng. · Intelligent Vehicles & Computing
     institution: Wuhan University of Technology
     start: 2015-09-01
     end: 2019-06-30
+    summary: |
+      Built a foundation in computing, visual perception, and intelligent
+      vehicle systems for autonomous-driving research.

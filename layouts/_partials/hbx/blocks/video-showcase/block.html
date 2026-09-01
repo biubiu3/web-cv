@@ -1,0 +1,44 @@
+{{/* Local block: lightweight showcase for official real-robot videos. */}}
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+{{ $content := $block.content | default dict }}
+{{ $title := index $content "title" | default "" }}
+{{ $text := index $content "text" | default "" }}
+{{ $videos := index $content "videos" | default slice }}
+
+<div class="robot-video-showcase px-6">
+  <div class="robot-video-heading">
+    {{ with $title }}<h2>{{ printf "%v" . | emojify | $page.RenderString }}</h2>{{ end }}
+    {{ with $text }}<div class="robot-video-intro">{{ printf "%v" . | $page.RenderString | safeHTML }}</div>{{ end }}
+  </div>
+
+  <div class="robot-video-grid">
+    {{ range $index, $video := $videos }}
+      {{ $poster := resources.Get (printf "media/videos/%s" $video.poster) }}
+      {{ $posterURL := "" }}
+      {{ with $poster }}{{ $posterURL = .RelPermalink }}{{ end }}
+      <article class="robot-video-card">
+        <div class="robot-video-frame">
+          <video
+            {{ if eq $index 0 }}autoplay muted loop preload="metadata"{{ else }}preload="none"{{ end }}
+            playsinline controls
+            {{ with $posterURL }}poster="{{ . }}"{{ end }}
+            aria-label="{{ $video.title }}">
+            <source src="{{ $video.src }}" type="video/mp4">
+          </video>
+          {{ with $video.eyebrow }}<span class="robot-video-eyebrow">{{ . }}</span>{{ end }}
+        </div>
+        <div class="robot-video-copy">
+          <h3>{{ $video.title }}</h3>
+          {{ with $video.description }}<p>{{ . }}</p>{{ end }}
+        </div>
+      </article>
+    {{ end }}
+  </div>
+
+  {{ with index $content "project_url" }}
+    <div class="robot-video-link">
+      <a href="{{ . }}" target="_blank" rel="noopener">{{ index $content "project_label" | default "Explore the HEAR project" }} <span aria-hidden="true">↗</span></a>
+    </div>
+  {{ end }}
+</div>

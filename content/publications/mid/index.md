@@ -14,11 +14,16 @@ peer_reviewed: true
 open_access: true
 abstract: "MID treats a noisy observation as an intermediate state in a nonlinear corruption process and learns to reverse that process using noisy data alone. One network estimates the current corruption stage and another removes the corresponding residual increment; a local first-order approximation supports iterative restoration under nonlinear noise. The formulation is instantiated across vision, biomedical signals, point sets, and biological sequences."
 summary: "A self-supervised iterative framework that learns nonlinear denoising directly from noisy observations across multiple data modalities."
+story_order: 50
 tags:
+  - Multimodal Data & Models
   - Self-Supervised Learning
   - Multimodal Learning
   - Denoising
 featured: false
+image:
+  caption: 'MID overview from [the paper](https://arxiv.org/abs/2511.00997).'
+  alt_text: 'MID estimates corruption severity and iteratively denoises data from multiple modalities.'
 hugoblox:
   ids:
     doi: 10.1109/TNNLS.2026.3683544
@@ -28,4 +33,14 @@ links:
     id: 2511.00997v1
 ---
 
-MID develops a modality-agnostic view of denoising: learn the local direction of a corruption process from noisy inputs, then iteratively move observations toward a cleaner state without paired clean targets.
+## The problem
+
+Paired clean targets are expensive or impossible to collect for many modalities, and real corruption is often nonlinear rather than a single fixed noise level.
+
+## The idea
+
+MID views a noisy sample as an intermediate point on a corruption trajectory. One network estimates the current stage, another predicts the local residual to remove, and repeated updates move the observation toward a cleaner state using noisy data alone.
+
+## Why it matters in this research story
+
+The same iterative principle applies across images, geometric observations, biomedical signals, and biological sequences. MID therefore broadens the focus from a specific vision task to **modality-agnostic learning dynamics**.

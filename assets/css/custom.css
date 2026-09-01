@@ -1,0 +1,209 @@
+:root {
+  --chang-navy: #0b2440;
+  --chang-teal: #0aa6a6;
+  --chang-coral: #ff795e;
+}
+
+html[lang^="zh"] body,
+html[lang^="zh"] .prose {
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "Microsoft YaHei", serif;
+}
+
+html[lang^="zh"] h1,
+html[lang^="zh"] h2,
+html[lang^="zh"] h3,
+html[lang^="zh"] h4,
+html[lang^="zh"] .navbar {
+  font-family: "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", sans-serif;
+}
+
+#site-header.header {
+  background: rgb(247 251 252 / 88%);
+  border-bottom: 1px solid rgb(11 36 64 / 8%);
+  backdrop-filter: blur(18px) saturate(135%);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+}
+
+.dark #site-header.header {
+  background: rgb(9 26 47 / 88%);
+  border-bottom-color: rgb(118 224 224 / 12%);
+}
+
+.navbar-brand img {
+  margin-right: 0.55rem;
+}
+
+.hbb-section:nth-of-type(even) .home-section-bg {
+  background-image: linear-gradient(135deg, rgb(10 166 166 / 3.5%), transparent 44%, rgb(255 121 94 / 3.5%));
+}
+
+.dark .hbb-section:nth-of-type(even) .home-section-bg {
+  background-image: linear-gradient(135deg, rgb(34 211 238 / 4.5%), transparent 44%, rgb(251 146 60 / 4%));
+}
+
+.dark .navbar-brand img {
+  padding: 2px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 94%);
+}
+
+.robot-video-showcase {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+}
+
+.robot-video-heading {
+  max-width: 760px;
+  margin: 0 auto 2.25rem;
+  text-align: center;
+}
+
+.robot-video-heading h2 {
+  margin: 0 0 0.8rem;
+  color: var(--chang-navy);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 760;
+  letter-spacing: -0.035em;
+}
+
+.dark .robot-video-heading h2 {
+  color: #effcfc;
+}
+
+.robot-video-intro {
+  color: #52657a;
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+.dark .robot-video-intro {
+  color: #bfd2da;
+}
+
+.robot-video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.robot-video-card:first-child {
+  grid-column: 1 / -1;
+}
+
+.robot-video-card {
+  overflow: hidden;
+  border: 1px solid rgb(11 36 64 / 9%);
+  border-radius: 1.15rem;
+  background: rgb(255 255 255 / 82%);
+  box-shadow: 0 22px 60px rgb(11 36 64 / 10%);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.robot-video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 70px rgb(11 36 64 / 16%);
+}
+
+.dark .robot-video-card {
+  border-color: rgb(118 224 224 / 12%);
+  background: rgb(12 34 59 / 84%);
+  box-shadow: 0 22px 64px rgb(0 0 0 / 30%);
+}
+
+.robot-video-frame {
+  position: relative;
+  aspect-ratio: 1200 / 332;
+  overflow: hidden;
+  background: #06111f;
+}
+
+.robot-video-frame video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.robot-video-eyebrow {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid rgb(255 255 255 / 24%);
+  border-radius: 999px;
+  background: rgb(5 22 40 / 72%);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 720;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.robot-video-copy {
+  padding: 1.05rem 1.1rem 1.2rem;
+}
+
+.robot-video-copy h3 {
+  margin: 0 0 0.45rem;
+  color: var(--chang-navy);
+  font-size: 1.08rem;
+  font-weight: 760;
+}
+
+.dark .robot-video-copy h3 {
+  color: #f0fbfc;
+}
+
+.robot-video-copy p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.dark .robot-video-copy p {
+  color: #b8cbd4;
+}
+
+.robot-video-link {
+  margin-top: 1.8rem;
+  text-align: center;
+}
+
+.robot-video-link a {
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+  color: #087f82;
+  font-weight: 720;
+  text-decoration: none;
+}
+
+.dark .robot-video-link a {
+  color: #67e8e8;
+}
+
+.article-header-caption {
+  border-radius: 0.7rem;
+  background: rgb(5 22 40 / 76%);
+  backdrop-filter: blur(8px);
+}
+
+@media (max-width: 900px) {
+  .robot-video-grid {
+    grid-template-columns: 1fr;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .robot-video-card:first-child {
+    grid-column: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .robot-video-card {
+    transition: none;
+  }
+}

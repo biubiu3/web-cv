@@ -1,0 +1,62 @@
+schema: hugoblox/author/v1
+slug: me
+is_owner: true
+name:
+  display: 聂畅
+  given: 畅
+  family: 聂
+  alternate: Nie Chang
+role: 上海交通大学博士生 · 物理 AI / 具身智能
+bio: |
+  我是聂畅，上海交通大学自动化与感知学院最后一年的博士生，师从
+  [王贺升教授](https://sais.sjtu.edu.cn/faculty/wanghesheng.html)。我的研究聚焦
+  **物理 AI 与具身智能**，覆盖模型架构、多模态基础模型训练，以及 AI Agent
+  驱动的机器人系统。我希望通过多模态模型与智能体系统改进机器人策略和模型架构，
+  长期目标是构建通用、可适应、能够持续成长的机器人系统。
+
+  我重视高质量的协作环境与具有现实影响力的研究成果。目前我正在寻找全球范围内的
+  研究、工程和博士后机会；如果我们的研究兴趣有所交集，欢迎随时联系我。
+status:
+  icon: "🤖"
+affiliations:
+  - name: 上海交通大学
+    url: https://www.sjtu.edu.cn/
+  - name: IRMV 实验室
+    url: https://irmv.sjtu.edu.cn/
+links:
+  - icon: at-symbol
+    url: mailto:changniep@gmail.com
+    label: 邮箱
+  - icon: academicons/google-scholar
+    url: https://scholar.google.com/citations?user=Tc2sl7gAAAAJ
+    label: Google Scholar
+  - icon: brands/linkedin
+    url: https://www.linkedin.com/in/chang-nie-819a463b6/
+    label: LinkedIn
+interests:
+  - 物理 AI 与具身智能
+  - 智能体机器人学习
+  - 视觉-语言-动作模型
+  - 多模态基础模型
+  - 机器人学习与操作
+  - 鲁棒视觉估计
+education:
+  - degree: 博士研究 · 物理 AI 与具身智能
+    institution: 上海交通大学
+    start: 2022-09-01
+    end: 2026-12-31
+    summary: |
+      预计于 2026 年 12 月 31 日毕业，师从王贺升教授。研究多模态学习、
+      具身智能与以智能体为中心的机器人系统。
+  - degree: 硕士研究 · 计算机视觉与自动驾驶
+    institution: 北京航空航天大学
+    start: 2019-09-01
+    end: 2022-06-30
+    summary: |
+      聚焦复杂驾驶条件下的深度学习感知，以计算机视觉和自动驾驶应用为主线。
+  - degree: 本科研究 · 智能车辆与计算
+    institution: 武汉理工大学
+    start: 2015-09-01
+    end: 2019-06-30
+    summary: |
+      建立计算、视觉感知与智能车辆系统基础，为后续自动驾驶研究做准备。

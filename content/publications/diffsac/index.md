@@ -11,11 +11,16 @@ peer_reviewed: false
 open_access: true
 abstract: "DiffSAC uses a geometry-conditioned diffusion model to learn the distribution of effective minimum sets for consensus-based robust estimation. Rather than ranking individual points once, it iteratively refines per-point confidence toward a small collection of high-quality candidate sets. The framework is evaluated across line and plane fitting, fundamental and essential matrix estimation, and homography estimation."
 summary: "Geometry-conditioned diffusion sampling that proposes a small number of high-quality minimum sets for efficient robust estimation."
+story_order: 40
 tags:
+  - Perception & Geometry
   - Robust Estimation
   - Diffusion Models
   - Computer Vision
 featured: false
+image:
+  caption: 'Diffusion-guided sampling from [the DiffSAC paper](https://arxiv.org/abs/2608.30603).'
+  alt_text: 'DiffSAC iteratively refines point confidence to generate a high-quality minimum set.'
 hugoblox:
   ids:
     arxiv: 2608.30603v1
@@ -24,4 +29,14 @@ links:
     url: https://github.com/IRMVLab/DiffSAC
 ---
 
-DiffSAC revisits sample consensus as a generative sampling problem. Its diffusion process uses geometric conditions to refine which points should form an effective minimum set, reducing the number of poor hypotheses that must be evaluated.
+## The problem
+
+One-shot confidence ranking treats candidate points independently and can spend much of its hypothesis budget on combinations that are individually plausible but jointly poor.
+
+## The idea
+
+DiffSAC treats minimum-set proposal as conditional generation. A diffusion process repeatedly refines point confidence under geometric conditions, producing a compact set of high-quality candidates for consensus-based estimation.
+
+## Why it matters in this research story
+
+DiffSAC revisits the RLSAC question with a modern generative model: not merely which point looks good, but **which set should be generated together**. It closes the perception-and-geometry chapter of this research trajectory.

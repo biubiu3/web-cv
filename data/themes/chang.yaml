@@ -1,0 +1,37 @@
+hugoblox:
+  meta:
+    format: "hugoblox-theme@1"
+    name: "Chang"
+    vendor: "Nie Chang"
+    version: "1.0.0"
+    license: "MIT"
+
+  type: "dual"
+
+  light:
+    colors:
+      primary: "teal"
+      secondary: "orange"
+    surfaces:
+      background: "#f8fafc"
+      foreground: "#10233f"
+      header:
+        background: "#f7fbfc"
+        foreground: "#0b1f38"
+      footer:
+        background: "#eaf3f4"
+        foreground: "#10233f"
+
+  dark:
+    colors:
+      primary: "cyan"
+      secondary: "orange"
+    surfaces:
+      background: "#071426"
+      foreground: "#e7f3f5"
+      header:
+        background: "#091a2f"
+        foreground: "#f1fbfc"
+      footer:
+        background: "#06111f"
+        foreground: "#dbecef"

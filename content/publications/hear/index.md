@@ -15,12 +15,17 @@ peer_reviewed: true
 open_access: true
 abstract: "HEAR formalizes Vision-Sound-Language-Action as a continuous robot-control paradigm in which transient acoustic events remain available across delayed, chunked decision loops. The framework combines causal audio memory, multimodal reasoning, near-future audio prediction, and flow-matching action generation. OpenX-Sound and HEAR-Bench provide pretraining data and sound-causal evaluation tasks for this setting."
 summary: "A sound-centric embodied framework that gives robot policies causal audio memory, multimodal reasoning, future-audio prediction, and smooth action generation."
+story_order: 70
 tags:
+  - General Robot Systems
   - Embodied Intelligence
   - Vision-Sound-Language-Action
   - Multimodal Foundation Models
   - Robot Manipulation
 featured: true
+image:
+  caption: 'HEAR system overview from the [official project page](https://hear.irmv.top/).'
+  alt_text: 'HEAR upgrades vision-language-action policies with continuous sound, causal memory, reasoning, prediction, and action generation.'
 hugoblox:
   ids:
     arxiv: 2603.16086v1
@@ -39,3 +44,7 @@ Modern vision-language-action policies can miss short, task-critical sounds whil
 ## What it contributes
 
 HEAR brings together a streaming **Historizer**, a multisensory **Envisioner**, an audio-dynamics **Advancer**, and a flow-matching **Realizer**. The accompanying OpenX-Sound resource and HEAR-Bench extend the work from model design to training and evaluation for sound-centric robot manipulation.
+
+## Why it matters in this research story
+
+HEAR turns a multimodal model into a complete physical system: it connects continuous sensory memory, reasoning, prediction, action generation, data, benchmarks, and real-robot evaluation. It is one of my two current representative works.
