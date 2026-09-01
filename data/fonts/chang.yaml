@@ -1,0 +1,37 @@
+hugoblox:
+  meta:
+    format: "hugoblox-font@1"
+    name: "Chang"
+    vendor: "Nie Chang"
+    version: "2.0.0"
+    license: "MIT"
+    style: "sans"
+    description: "Locally hosted Space Grotesk headings with bundled Inter and JetBrains Mono"
+
+  families:
+    heading: "Space Grotesk"
+    body: "Inter"
+    code: "JetBrains Mono"
+    nav: "Space Grotesk"
+
+  weights:
+    heading: [600, 700]
+    body: [400, 500, 600]
+    code: [400, 600]
+    nav: [600, 700]
+
+  leading:
+    heading: 1.12
+    body: 1.65
+    code: 1.5
+
+  tracking:
+    heading: "-0.035em"
+    body: "0"
+    caps: "0.05em"
+
+  variable:
+    heading: true
+    body: true
+    code: true
+    nav: true

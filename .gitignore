@@ -45,6 +45,9 @@ node_modules/
 pagefind/
 static/pagefind/
 
+# Local Playwright review screenshots and reports
+artifacts/
+
 # ============================================================================
 # Operating System
 # ============================================================================

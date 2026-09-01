@@ -1,37 +1,37 @@
 hugoblox:
   meta:
     format: "hugoblox-theme@1"
-    name: "Chang"
+    name: "Chang Quantum"
     vendor: "Nie Chang"
-    version: "1.0.0"
+    version: "2.0.0"
     license: "MIT"
 
   type: "dual"
 
   light:
     colors:
-      primary: "teal"
-      secondary: "orange"
+      primary: "cyan"
+      secondary: "indigo"
     surfaces:
-      background: "#f8fafc"
-      foreground: "#10233f"
+      background: "#f3f8fc"
+      foreground: "#0b1f38"
       header:
-        background: "#f7fbfc"
-        foreground: "#0b1f38"
+        background: "#f7fbfe"
+        foreground: "#071a33"
       footer:
-        background: "#eaf3f4"
-        foreground: "#10233f"
+        background: "#e9f2f9"
+        foreground: "#0b1f38"
 
   dark:
     colors:
       primary: "cyan"
-      secondary: "orange"
+      secondary: "violet"
     surfaces:
-      background: "#071426"
-      foreground: "#e7f3f5"
+      background: "#050c18"
+      foreground: "#dceaf7"
       header:
-        background: "#091a2f"
-        foreground: "#f1fbfc"
+        background: "#071324"
+        foreground: "#edf8ff"
       footer:
-        background: "#06111f"
-        foreground: "#dbecef"
+        background: "#030914"
+        foreground: "#d7e7f4"

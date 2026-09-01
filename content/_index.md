@@ -57,8 +57,8 @@ sections:
     design:
       background:
         color:
-          light: '#eef7f7'
-          dark: '#081b2f'
+          light: '#edf7fb'
+          dark: '#061426'
   - block: markdown
     id: research
     content:
