@@ -1,5 +1,6 @@
 ---
 title: Publications
+summary: Publications by Nie Chang in embodied intelligence, multimodal learning, robot perception, and robust estimation.
 cms_exclude: true
 
 # View.

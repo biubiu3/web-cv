@@ -11,6 +11,11 @@ imports:
 
 # Install any Hugo Blox within the `hugo-blox/blox/` folder
 mounts:
+  # Do not publish the starter CV until a current resume is supplied.
+  - source: static
+    target: static
+    files:
+      - '! uploads/resume.pdf'
   - source: hugo-blox/blox/community
     target: layouts/_partials/blox/community/
     files:

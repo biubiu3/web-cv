@@ -4,7 +4,7 @@
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
 # Website name (set in params.yaml under hugoblox.branding.name)
-title: ''
+title: 'Nie Chang'
 # Website URL (GitHub Pages project site)
 baseURL: 'https://biubiu3.github.io/web-cv/'
 
@@ -40,7 +40,15 @@ pagination:
 enableEmoji: true
 enableRobotsTXT: true
 footnotereturnlinkcontents: <sup>^</sup>
-ignoreFiles: [".ipynb_checkpoints$", "\\.Rmd$", "\\.Rmarkdown$", "_cache$"]
+ignoreFiles:
+  - ".ipynb_checkpoints$"
+  - "\\.Rmd$"
+  - "\\.Rmarkdown$"
+  - "_cache$"
+  # Keep the starter examples in Git history, but do not publish them.
+  - "content/(blog|courses|events|projects|slides)/"
+  - "content/publications/(conference-paper|journal-article|preprint)/"
+  - "content/experience\\.md$"
 disableAliases: true
 outputs:
   home: [HTML, RSS, headers, redirects, backlinks]
