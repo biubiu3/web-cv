@@ -31,8 +31,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'The RLSAC reinforcement-learning sampling and consensus pipeline (Figure 2).'
-  alt_text: 'RLSAC method pipeline using observations, sampling history, a policy network, hypothesis evaluation, rewards, and state transitions.'
+  caption: 'Concept cover: an adaptive sampler learns from residuals, rewards, and sampling history across successive geometric hypotheses until strong consensus emerges.'
+  alt_text: 'A graph policy repeatedly samples, solves, scores, and updates its history before identifying a clean geometric consensus among outliers.'
 hugoblox:
   ids:
     arxiv: 2308.05318v1

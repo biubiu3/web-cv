@@ -32,8 +32,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'The complete MRASfM pipeline for multi-camera reconstruction and multi-scene aggregation (Figure 2).'
-  alt_text: 'MRASfM method pipeline using multi-camera priors, semantic triangulation, camera-set bundle adjustment, and coarse-to-fine scene aggregation.'
+  caption: 'Concept cover: rigid camera-set geometry, semantic road filtering, shared-pose bundle adjustment, and cross-session aggregation form one driving-scene reconstruction pipeline.'
+  alt_text: 'A surround-camera vehicle reconstructs and filters a road scene, optimizes shared rig poses, and merges several driving sessions into one coherent model.'
 links:
   - type: preprint
     provider: arxiv

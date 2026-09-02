@@ -33,8 +33,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'MRASfM 多相机重建与多场景聚合的完整方法流程（Figure 2）。'
-  alt_text: 'MRASfM 方法流程结合多相机先验、语义三角化、相机组束调整与粗到细场景聚合。'
+  caption: '概念封面：刚性相机组约束、语义道路过滤、共享位姿束调整与跨次采集聚合共同构成驾驶场景重建流程。'
+  alt_text: '环视相机车辆完成道路场景重建与异常点过滤，优化相机组共享位姿，并将多次采集融合为一致的大场景模型。'
 links:
   - type: preprint
     provider: arxiv

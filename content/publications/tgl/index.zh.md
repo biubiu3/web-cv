@@ -30,8 +30,8 @@ tags:
   - Robot Manipulation
 featured: true
 image:
-  caption: 'Teach-and-Grow 方法流程：教学、智能体执行、物理反馈与持续成长（Figure 2）。'
-  alt_text: 'Teach and Grow 方法架构连接少量教学、智能体技能组合、物理反馈、技能库与经验记忆。'
+  caption: '概念封面：少量示范被归纳为可复用的闭环技能块，经过验证的结果与修复经验支持机器人在新场景中动态组合能力。'
+  alt_text: '多次示范进入具身智能体并形成可复用技能与经验，随后在新任务中组合执行路线并依据物理反馈修正。'
 links:
   - type: preprint
     provider: arxiv

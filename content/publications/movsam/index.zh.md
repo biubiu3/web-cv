@@ -30,8 +30,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'MovSAM 多模态推理、提示生成与运动物体分割的方法流程（Figure 2）。'
-  alt_text: 'MovSAM 方法流程结合多模态思维链推理、视觉语言特征、SAM 与迭代细化。'
+  caption: '概念封面：系统只观察一幅静态图像，依靠场景语义推断运动相关目标，并迭代细化语言引导的分割掩码。'
+  alt_text: '多模态推理在没有时序线索的情况下，从单幅城市图像中生成并修正车辆、骑行者与行人的分割结果。'
 hugoblox:
   ids:
     doi: 10.1109/IROS60139.2025.11246064

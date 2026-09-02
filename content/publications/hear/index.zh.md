@@ -30,8 +30,8 @@ tags:
   - Robot Manipulation
 featured: true
 image:
-  caption: 'HEAR 方法架构：Historizer、Envisioner、Advancer 与 Realizer（Figure 2）。'
-  alt_text: 'HEAR 方法架构连接流式声音记忆、多模态推理、声音预测与流匹配机器人动作生成。'
+  caption: '概念封面：短暂声音跨越较长动作块被保存为因果记忆，并继续参与场景推理、未来声音预测与连续控制。'
+  alt_text: '短促声学事件转化为持续可用的因果记忆，依次经过四个功能阶段进入机器人的下一段连续动作。'
 hugoblox:
   ids:
     arxiv: 2603.16086v1

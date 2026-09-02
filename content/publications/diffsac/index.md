@@ -27,8 +27,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'The complete training and inference pipeline from Figure 2 of [the DiffSAC paper](https://arxiv.org/abs/2608.30603).'
-  alt_text: 'DiffSAC learns a geometry-conditioned diffusion prior, generates minimum sets, and selects the best consensus hypothesis.'
+  caption: 'Concept cover: reverse-diffusion trajectories turn noisy confidence fields into diverse, jointly compatible minimum sets for classical consensus estimation.'
+  alt_text: 'Multiple noisy confidence fields are refined by diffusion into diverse geometric minimum sets before consensus selects the best hypothesis.'
 hugoblox:
   ids:
     arxiv: 2608.30603v1

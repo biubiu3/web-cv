@@ -29,8 +29,8 @@ tags:
   - Robot Manipulation
 featured: true
 image:
-  caption: 'The Teach-and-Grow method workflow: teach, agentic execution, physical feedback, and persistent growth (Figure 2).'
-  alt_text: 'Teach and Grow method architecture linking sparse teaching, agent-composed robot skills, physical feedback, a skill library, and experience memory.'
+  caption: 'Concept cover: sparse demonstrations become reusable closed-loop Skill Blocks, while verified outcomes and repairs support adaptive composition in a new scene.'
+  alt_text: 'Several demonstrations feed an embodied agent that stores reusable robot skills and experience, then composes and revises a route for a new task.'
 links:
   - type: preprint
     provider: arxiv

@@ -29,8 +29,8 @@ tags:
   - Robot Manipulation
 featured: true
 image:
-  caption: 'The HEAR method architecture: Historizer, Envisioner, Advancer, and Realizer (Figure 2).'
-  alt_text: 'HEAR method architecture connecting streaming audio memory, multimodal reasoning, audio prediction, and flow-matching robot action generation.'
+  caption: 'Concept cover: a transient sound survives a long action chunk as causal memory, then informs scene reasoning, future-audio prediction, and smooth robot control.'
+  alt_text: 'A brief acoustic event becomes persistent causal memory and flows through four stages toward the robot\u2019s next continuous action.'
 hugoblox:
   ids:
     arxiv: 2603.16086v1

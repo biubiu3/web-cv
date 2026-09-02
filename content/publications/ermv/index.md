@@ -29,8 +29,8 @@ tags:
   - Multimodal Learning
 featured: false
 image:
-  caption: 'The ERMV method pipeline for state-conditioned, consistent 4D multi-view robot trajectory editing (Figure 2).'
-  alt_text: 'ERMV method architecture combining visual guidance, robot-state injection, sparse spatio-temporal modeling, epipolar attention, and feedback intervention.'
+  caption: 'Concept cover: one guided intervention propagates coherently through camera viewpoints and time, with geometric and state conditions correcting inconsistent frames.'
+  alt_text: 'A single edited robot observation is propagated through a multi-view temporal lattice while epipolar geometry and feedback preserve consistency.'
 hugoblox:
   ids:
     arxiv: 2507.17462v1

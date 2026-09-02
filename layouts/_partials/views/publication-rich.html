@@ -14,7 +14,13 @@
 {{- if $status -}}
   {{- $recordType = cond $isZh "在审稿件" "Manuscript" -}}
 {{- end -}}
-{{- $figureLabel := cond $isZh "方法框架" "Method architecture" -}}
+{{- $figureLabel := cond $isZh "研究概念" "Research concept" -}}
+{{- $figureCaption := $item.Params.image.caption | default "" -}}
+{{- if $isZh -}}
+  {{- $figureCaption = replace $figureCaption "概念封面：" "" -}}
+{{- else -}}
+  {{- $figureCaption = replace $figureCaption "Concept cover: " "" -}}
+{{- end -}}
 {{- $representativeLabel := cond $isZh "代表工作" "Representative work" -}}
 {{- $summary := $item.Params.abstract | default $item.Summary -}}
 
@@ -32,12 +38,12 @@
           height="{{ $displayImage.Height }}"
           loading="{{ if eq $.index 0 }}eager{{ else }}lazy{{ end }}"
           decoding="async"
-          alt="{{ $item.Params.image.alt_text | default (printf "%s method figure" $item.Title) | plainify }}">
+          alt="{{ $item.Params.image.alt_text | default (printf "%s research concept illustration" $item.Title) | plainify }}">
       {{- end -}}
     </a>
     <figcaption>
       <span>{{ $figureLabel }}</span>
-      {{- with $item.Params.image.caption -}}
+      {{- with $figureCaption -}}
         <span aria-hidden="true"> · </span>{{ . | markdownify }}
       {{- end -}}
     </figcaption>

@@ -30,8 +30,8 @@ tags:
   - Multimodal Learning
 featured: false
 image:
-  caption: 'ERMV 面向状态条件、一致 4D 多视角机器人轨迹编辑的方法流程（Figure 2）。'
-  alt_text: 'ERMV 方法架构结合视觉引导、机器人状态注入、稀疏时空建模、极线注意力与反馈干预。'
+  caption: '概念封面：一次视觉干预沿多相机与时间维度一致传播，并由几何、机器人状态和反馈机制修正异常帧。'
+  alt_text: '单帧编辑结果被传播到多视角时序网格中，极线几何与反馈共同维持整段机器人轨迹的一致性。'
 hugoblox:
   ids:
     arxiv: 2507.17462v1

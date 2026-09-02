@@ -32,8 +32,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'RLSAC 强化学习采样与共识估计的方法流程（Figure 2）。'
-  alt_text: 'RLSAC 方法流程结合观测、采样历史、策略网络、假设评估、奖励与状态转移。'
+  caption: '概念封面：自适应采样器在连续几何假设中利用残差、奖励与采样历史更新策略，直至获得稳定共识。'
+  alt_text: '图策略反复执行采样、求解、评分与历史更新，最终从大量外点中识别出清晰的几何共识。'
 hugoblox:
   ids:
     arxiv: 2308.05318v1

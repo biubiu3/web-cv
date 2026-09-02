@@ -27,8 +27,8 @@ tags:
   - Multimodal Learning
 featured: false
 image:
-  caption: 'MID 训练与迭代去噪方法流程（Figure 2）。'
-  alt_text: 'MID 方法流程从含噪多模态观测中学习退化阶段预测与迭代残差去噪。'
+  caption: '概念封面：不同模态的含噪观测共享同一套迭代机制，逐阶段估计当前污染程度并移除下一段残差噪声。'
+  alt_text: '含噪图像、点集、生理信号、MRI 与生物序列经过统一的迭代去噪阶段逐步恢复为清晰结果。'
 hugoblox:
   ids:
     doi: 10.1109/TNNLS.2026.3683544

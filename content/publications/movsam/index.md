@@ -29,8 +29,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'The MovSAM pipeline for multimodal reasoning, prompt generation, and moving-object segmentation (Figure 2).'
-  alt_text: 'MovSAM method pipeline using multimodal chain-of-thought reasoning, vision-language features, SAM, and iterative refinement.'
+  caption: 'Concept cover: semantic reasoning infers motion-relevant objects from one still image and iteratively sharpens language-guided segmentation masks.'
+  alt_text: 'A single urban image is interpreted by multimodal reasoning to produce and refine masks for a car, cyclist, and pedestrian without temporal cues.'
 hugoblox:
   ids:
     doi: 10.1109/IROS60139.2025.11246064

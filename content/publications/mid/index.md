@@ -26,8 +26,8 @@ tags:
   - Denoising
 featured: false
 image:
-  caption: 'The MID training and iterative denoising pipeline (Figure 2).'
-  alt_text: 'MID method pipeline for learning corruption-stage prediction and iterative residual denoising from noisy multimodal observations.'
+  caption: 'Concept cover: heterogeneous noisy observations share one iterative mechanism that estimates the current corruption stage and removes the next residual increment.'
+  alt_text: 'Noisy images, point sets, physiological signals, MRI, and biological sequences pass through shared iterative denoising stages toward clean outputs.'
 hugoblox:
   ids:
     doi: 10.1109/TNNLS.2026.3683544

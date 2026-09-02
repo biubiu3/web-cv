@@ -28,8 +28,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: '完整训练与推理流程来自 [DiffSAC 论文](https://arxiv.org/abs/2608.30603) Figure 2。'
-  alt_text: 'DiffSAC 学习几何条件扩散先验，生成最小集并通过共识评估选出最优假设。'
+  caption: '概念封面：多条反向扩散轨迹将含噪置信场逐步重构为相互兼容且具有多样性的几何最小集。'
+  alt_text: '多个含噪置信场经扩散过程形成不同的几何最小集，最终由经典共识估计选出最佳假设。'
 hugoblox:
   ids:
     arxiv: 2608.30603v1
