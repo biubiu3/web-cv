@@ -270,7 +270,7 @@ async function captureSections(page, suffix) {
     report.interactions.publicationsNavigation = {
       url: page.url(),
       statusTitle: await page.title(),
-      publicationCards: await page.locator('[role="article"]').count(),
+      publicationCards: await page.locator('.publication-rich-item, [role="article"]').count(),
     };
   }
 

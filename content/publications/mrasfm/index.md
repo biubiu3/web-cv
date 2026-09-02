@@ -15,6 +15,9 @@ publication_types: ["paper-conference"]
 publication:
   name: "IEEE International Conference on Robotics and Automation"
   short_name: "ICRA"
+venue_display: "IEEE International Conference on Robotics and Automation (ICRA 2026)"
+display_area: "Robot Perception & Reconstruction"
+publication_order: 30
 peer_reviewed: true
 open_access: true
 abstract: "MRASfM adapts structure-from-motion to multi-camera driving systems by exploiting fixed inter-camera geometry during registration. It removes unreliable road-surface points with a plane model, treats the camera set as a unit during bundle adjustment, and aggregates multiple scenes through coarse-to-fine association and assembly."
@@ -29,8 +32,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'MRASfM concept figure from [the paper](https://arxiv.org/abs/2510.15467).'
-  alt_text: 'MRASfM uses camera-rig priors and semantic information for driving-scene reconstruction and aggregation.'
+  caption: 'The complete MRASfM pipeline for multi-camera reconstruction and multi-scene aggregation (Figure 2).'
+  alt_text: 'MRASfM method pipeline using multi-camera priors, semantic triangulation, camera-set bundle adjustment, and coarse-to-fine scene aggregation.'
 links:
   - type: preprint
     provider: arxiv

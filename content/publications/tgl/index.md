@@ -7,15 +7,20 @@ authors:
 date: "2026-08-17T23:45:21Z"
 publication_types: ["article"]
 publication:
-  name: "arXiv preprint"
-  short_name: "arXiv"
+  name: "Under review at IEEE Transactions on Robotics"
+  short_name: "T-RO (under review)"
+venue_display: "IEEE Transactions on Robotics (T-RO)"
+publication_status: "Under review"
+display_area: "General Robot Learning"
+publication_order: 20
+spotlight: true
 peer_reviewed: false
 open_access: true
 abstract: "Teach-and-Grow Learning (TGL) is an agent-centered architecture for acquiring reusable robot capabilities from a small number of successful demonstrations. A multimodal agent builds closed-loop Skill Blocks, grounds and composes them in new scenes, chooses between learned and geometric tools, observes physical outcomes, and revises its route when execution departs from intent. A Skill Library and structured Experience Memory preserve successful behaviors, failures, and repairs for later reuse."
 summary: "An agent-centered robot-learning architecture that turns sparse teaching into reusable Skill Blocks and persistent experience for future tasks."
 story_order: 80
 tags:
-  - arXiv 2026
+  - T-RO · Under Review
   - General Robot Systems
   - Agentic Robot Learning
   - Embodied Intelligence
@@ -24,8 +29,8 @@ tags:
   - Robot Manipulation
 featured: true
 image:
-  caption: 'End-to-end retraining versus agent-centered growth in [Teach and Grow](https://arxiv.org/abs/2608.17209).'
-  alt_text: 'Teach and Grow contrasts brittle global retraining with few-shot teaching, reusable skills, feedback adaptation, and post-deployment growth.'
+  caption: 'The Teach-and-Grow method workflow: teach, agentic execution, physical feedback, and persistent growth (Figure 2).'
+  alt_text: 'Teach and Grow method architecture linking sparse teaching, agent-composed robot skills, physical feedback, a skill library, and experience memory.'
 links:
   - type: preprint
     provider: arxiv

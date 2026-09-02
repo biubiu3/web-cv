@@ -10,6 +10,9 @@ publication_types: ["article-journal"]
 publication:
   name: "IEEE Transactions on Neural Networks and Learning Systems"
   short_name: "TNNLS"
+venue_display: "IEEE Transactions on Neural Networks and Learning Systems (TNNLS)"
+display_area: "Multimodal Self-Supervised Learning"
+publication_order: 40
 peer_reviewed: true
 open_access: true
 abstract: "MID treats a noisy observation as an intermediate state in a nonlinear corruption process and learns to reverse that process using noisy data alone. One network estimates the current corruption stage and another removes the corresponding residual increment; a local first-order approximation supports iterative restoration under nonlinear noise. The formulation is instantiated across vision, biomedical signals, point sets, and biological sequences."
@@ -23,8 +26,8 @@ tags:
   - Denoising
 featured: false
 image:
-  caption: 'MID overview from [the paper](https://arxiv.org/abs/2511.00997).'
-  alt_text: 'MID estimates corruption severity and iteratively denoises data from multiple modalities.'
+  caption: 'The MID training and iterative denoising pipeline (Figure 2).'
+  alt_text: 'MID method pipeline for learning corruption-stage prediction and iterative residual denoising from noisy multimodal observations.'
 hugoblox:
   ids:
     doi: 10.1109/TNNLS.2026.3683544

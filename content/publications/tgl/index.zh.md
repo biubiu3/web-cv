@@ -7,15 +7,20 @@ authors:
 date: "2026-08-17T23:45:21Z"
 publication_types: ["article"]
 publication:
-  name: "arXiv 预印本"
-  short_name: "arXiv"
+  name: "投稿 IEEE Transactions on Robotics 审稿中"
+  short_name: "T-RO（审稿中）"
+venue_display: "IEEE Transactions on Robotics（IEEE 机器人学汇刊，T-RO）"
+publication_status: "审稿中"
+display_area: "通用机器人学习"
+publication_order: 20
+spotlight: true
 peer_reviewed: false
 open_access: true
 abstract: "Teach-and-Grow Learning（TGL）是一种智能体中心架构，旨在从少量成功示范中获得可复用的机器人能力。多模态智能体构建闭环 Skill Block，在新场景中进行定位和组合，在学习式工具与几何工具之间选择，观察物理结果，并在执行偏离意图时修改路线。Skill Library 与结构化 Experience Memory 持久保存成功行为、失败与修复经验。"
 summary: "将少量教学转化为可复用 Skill Block 与持久经验，使后续任务能够受益的智能体中心机器人学习架构。"
 story_order: 80
 tags:
-  - arXiv 2026
+  - T-RO · 审稿中
   - 通用机器人系统
   - 智能体机器人学习
   - 具身智能
@@ -25,8 +30,8 @@ tags:
   - Robot Manipulation
 featured: true
 image:
-  caption: '[Teach and Grow](https://arxiv.org/abs/2608.17209) 中端到端重训与智能体中心成长的对比。'
-  alt_text: 'Teach and Grow 对比全局重训与少样本教学、技能复用、反馈适应和部署后成长。'
+  caption: 'Teach-and-Grow 方法流程：教学、智能体执行、物理反馈与持续成长（Figure 2）。'
+  alt_text: 'Teach and Grow 方法架构连接少量教学、智能体技能组合、物理反馈、技能库与经验记忆。'
 links:
   - type: preprint
     provider: arxiv

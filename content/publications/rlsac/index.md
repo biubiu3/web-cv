@@ -15,6 +15,9 @@ publication_types: ["paper-conference"]
 publication:
   name: "IEEE/CVF International Conference on Computer Vision"
   short_name: "ICCV"
+venue_display: "IEEE/CVF International Conference on Computer Vision (ICCV 2023)"
+display_area: "Robust Visual Estimation"
+publication_order: 80
 peer_reviewed: true
 open_access: true
 abstract: "RLSAC casts sample-consensus robust estimation as a reinforcement-learning process. A graph neural network combines observations with sampling history to propose the next minimum set, while downstream hypothesis quality supplies an unsupervised reward. The learned state transition makes the sampling policy reusable across robust-estimation problems."
@@ -28,8 +31,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'Core idea from [the RLSAC paper](https://arxiv.org/abs/2308.05318).'
-  alt_text: 'RLSAC remodels sample consensus as a reinforcement-learning process.'
+  caption: 'The RLSAC reinforcement-learning sampling and consensus pipeline (Figure 2).'
+  alt_text: 'RLSAC method pipeline using observations, sampling history, a policy network, hypothesis evaluation, rewards, and state transitions.'
 hugoblox:
   ids:
     arxiv: 2308.05318v1

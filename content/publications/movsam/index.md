@@ -12,6 +12,9 @@ publication_types: ["paper-conference"]
 publication:
   name: "IEEE/RSJ International Conference on Intelligent Robots and Systems"
   short_name: "IROS"
+venue_display: "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2025)"
+display_area: "Robot Perception"
+publication_order: 70
 peer_reviewed: true
 open_access: true
 abstract: "MovSAM performs moving-object segmentation from a single image, where temporal motion cues are unavailable. A multimodal large language model reasons about the scene and produces textual object prompts; these are fused with visual representations from SAM and a vision-language model, then refined through an iterative reasoning loop."
@@ -26,8 +29,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'MovSAM overview from [the paper](https://arxiv.org/abs/2504.06863).'
-  alt_text: 'MovSAM reasons about the likely moving object and iteratively refines its segmentation.'
+  caption: 'The MovSAM pipeline for multimodal reasoning, prompt generation, and moving-object segmentation (Figure 2).'
+  alt_text: 'MovSAM method pipeline using multimodal chain-of-thought reasoning, vision-language features, SAM, and iterative refinement.'
 hugoblox:
   ids:
     doi: 10.1109/IROS60139.2025.11246064

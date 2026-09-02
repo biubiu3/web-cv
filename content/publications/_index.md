@@ -10,7 +10,7 @@ sections:
     content:
       title: Publications
       text: |-
-        Peer-reviewed papers and current preprints, listed from newest to oldest. Each entry includes the complete author list and its verified journal, conference, or preprint venue.
+        Eight works spanning general robot learning, multisensory manipulation, embodied data generation, multimodal denoising, and robust geometric perception. Published papers and manuscripts under review are grouped by year; within each year, representative and robot-centered work appears first. Every record includes the complete author list, full venue name, publication status, method figure, and a concise account of the technical contribution.
     design:
       columns: '1'
       background:
@@ -22,12 +22,12 @@ sections:
       filters:
         folders:
           - publications
-      sort_by: date
-      sort_ascending: false
+      sort_by: publication_order
+      sort_ascending: true
       count: 8
     design:
-      view: citation
+      view: publication-rich
       columns: 1
       show_read_time: false
-      show_date: true
+      show_date: false
 ---

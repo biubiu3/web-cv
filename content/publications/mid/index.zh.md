@@ -8,8 +8,11 @@ authors:
 date: "2026-04-30T00:00:00Z"
 publication_types: ["article-journal"]
 publication:
-  name: "IEEE 神经网络与学习系统汇刊"
+  name: "IEEE Transactions on Neural Networks and Learning Systems"
   short_name: "TNNLS"
+venue_display: "IEEE Transactions on Neural Networks and Learning Systems（IEEE 神经网络与学习系统汇刊，TNNLS）"
+display_area: "多模态自监督学习"
+publication_order: 40
 peer_reviewed: true
 open_access: true
 abstract: "MID 将含噪观测视为非线性退化过程的中间状态，并仅使用含噪数据学习逆转该过程。一个网络估计当前退化阶段，另一个网络移除相应的残差增量；局部一阶近似支持非线性噪声下的迭代恢复。该框架覆盖视觉、生物医学信号、点集与生物序列。"
@@ -24,8 +27,8 @@ tags:
   - Multimodal Learning
 featured: false
 image:
-  caption: 'MID 概览来自 [论文](https://arxiv.org/abs/2511.00997)。'
-  alt_text: 'MID 估计退化阶段，并对多种模态数据进行迭代去噪。'
+  caption: 'MID 训练与迭代去噪方法流程（Figure 2）。'
+  alt_text: 'MID 方法流程从含噪多模态观测中学习退化阶段预测与迭代残差去噪。'
 hugoblox:
   ids:
     doi: 10.1109/TNNLS.2026.3683544

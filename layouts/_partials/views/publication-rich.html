@@ -1,0 +1,90 @@
+{{- $item := .item -}}
+{{- $link := $item.RelPermalink -}}
+{{- $resource := partial "functions/get_featured_image.html" $item -}}
+{{- $year := $item.Date.Format "2006" -}}
+{{- $venue := $item.Params.venue_display | default $item.Params.publication.name -}}
+{{- $status := $item.Params.publication_status | default "" -}}
+{{- $area := $item.Params.display_area | default "" -}}
+{{- $spotlight := $item.Params.spotlight | default false -}}
+{{- $isZh := eq site.Language.Lang "zh" -}}
+{{- $recordType := cond $isZh "期刊论文" "Journal article" -}}
+{{- if in $item.Params.publication_types "paper-conference" -}}
+  {{- $recordType = cond $isZh "会议论文" "Conference paper" -}}
+{{- end -}}
+{{- if $status -}}
+  {{- $recordType = cond $isZh "在审稿件" "Manuscript" -}}
+{{- end -}}
+{{- $figureLabel := cond $isZh "方法框架" "Method architecture" -}}
+{{- $representativeLabel := cond $isZh "代表工作" "Representative work" -}}
+{{- $summary := $item.Params.abstract | default $item.Summary -}}
+
+<article class="publication-rich-item{{ if $spotlight }} is-spotlight{{ end }}" aria-labelledby="publication-title-{{ $item.File.UniqueID }}">
+  <figure class="publication-rich-figure">
+    <a href="{{ $link }}" aria-label="{{ $item.Title | plainify }}">
+      {{- with $resource -}}
+        {{- $displayImage := . -}}
+        {{- if and (reflect.IsImageResourceProcessable .) (ne .MediaType.SubType "gif") -}}
+          {{- $displayImage = .Fit "1200x820 webp" -}}
+        {{- end -}}
+        <img
+          src="{{ $displayImage.RelPermalink }}"
+          width="{{ $displayImage.Width }}"
+          height="{{ $displayImage.Height }}"
+          loading="{{ if eq $.index 0 }}eager{{ else }}lazy{{ end }}"
+          decoding="async"
+          alt="{{ $item.Params.image.alt_text | default (printf "%s method figure" $item.Title) | plainify }}">
+      {{- end -}}
+    </a>
+    <figcaption>
+      <span>{{ $figureLabel }}</span>
+      {{- with $item.Params.image.caption -}}
+        <span aria-hidden="true"> · </span>{{ . | markdownify }}
+      {{- end -}}
+    </figcaption>
+  </figure>
+
+  <div class="publication-rich-copy">
+    <div class="publication-rich-kickers">
+      <span class="publication-rich-year">{{ $year }}</span>
+      <span>{{ $recordType }}</span>
+      {{- with $area }}<span>{{ . }}</span>{{ end -}}
+      {{- if $spotlight }}<span class="publication-rich-representative">{{ $representativeLabel }}</span>{{ end -}}
+    </div>
+
+    <h2 id="publication-title-{{ $item.File.UniqueID }}">
+      <a href="{{ $link }}">{{ $item.Title }}</a>
+    </h2>
+
+    <div class="publication-rich-citation">
+      <div class="publication-rich-authors">
+        {{- range $index, $raw := $item.Params.authors -}}
+          {{- $slug := $raw | urlize -}}
+          {{- $profile := partial "functions/get_author_profile" (dict "slug" $slug "title" $raw) -}}
+          {{- $display := $profile.title | default $raw -}}
+          {{- if gt $index 0 }}, {{ end -}}
+          <span{{ if eq $raw "me" }} class="publication-rich-self"{{ end }}>{{ $display }}</span>
+          {{- if and $item.Params.author_notes (lt $index (len $item.Params.author_notes)) -}}
+            {{- with (index $item.Params.author_notes $index) }}<sup title="{{ . }}">†</sup>{{ end -}}
+          {{- end -}}
+        {{- end -}}
+        {{- with $item.Params.author_notes -}}
+          <div class="publication-rich-author-note">† {{ index . 0 }}</div>
+        {{- end -}}
+      </div>
+      <div class="publication-rich-venue">
+        <span>{{ $venue | markdownify }}</span>
+        {{- with $status }}<span class="publication-rich-status">{{ . }}</span>{{ end -}}
+      </div>
+    </div>
+
+    <p class="publication-rich-summary">{{ $summary | plainify | htmlUnescape | truncate 520 }}</p>
+
+    <div class="publication-rich-links">
+      {{ partial "page_links" (dict "page" $item "is_list" 1) }}
+      <a class="publication-rich-details" href="{{ $link }}">
+        {{ if $isZh }}查看工作详情{{ else }}Research details{{ end }}
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</article>

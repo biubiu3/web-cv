@@ -8,15 +8,19 @@ authors:
 date: "2025-07-23T12:41:11Z"
 publication_types: ["article"]
 publication:
-  name: "arXiv 预印本"
-  short_name: "arXiv"
+  name: "投稿 IEEE Transactions on Circuits and Systems for Video Technology 审稿中"
+  short_name: "TCSVT（审稿中）"
+venue_display: "IEEE Transactions on Circuits and Systems for Video Technology（IEEE 电路与系统视频技术汇刊，TCSVT）"
+publication_status: "审稿中"
+display_area: "具身数据生成"
+publication_order: 60
 peer_reviewed: false
 open_access: true
 abstract: "ERMV 是一个机器人数据增强框架，可从稀疏帧编辑和机器人状态条件出发，编辑完整的多视角机器人轨迹。极线运动感知注意力维持几何与外观一致性，稀疏时空建模高效扩展编辑窗口，多模态反馈则在序列不一致时请求定向干预。"
 summary: "一致、高效地编辑多视角机器人轨迹，为具身策略训练扩充数据。"
 story_order: 60
 tags:
-  - arXiv 2025
+  - TCSVT · 审稿中
   - 多模态数据与模型
   - 具身智能
   - 数据增强
@@ -26,8 +30,8 @@ tags:
   - Multimodal Learning
 featured: false
 image:
-  caption: '4D 编辑挑战来自 [ERMV 论文](https://arxiv.org/abs/2507.17462)。'
-  alt_text: 'ERMV 在保持几何与时间一致性的同时编辑长时多视角机器人序列。'
+  caption: 'ERMV 面向状态条件、一致 4D 多视角机器人轨迹编辑的方法流程（Figure 2）。'
+  alt_text: 'ERMV 方法架构结合视觉引导、机器人状态注入、稀疏时空建模、极线注意力与反馈干预。'
 hugoblox:
   ids:
     arxiv: 2507.17462v1

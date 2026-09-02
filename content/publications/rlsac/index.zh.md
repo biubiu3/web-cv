@@ -13,8 +13,11 @@ author_notes:
 date: "2023-10-01T00:00:00Z"
 publication_types: ["paper-conference"]
 publication:
-  name: "IEEE/CVF 国际计算机视觉大会"
+  name: "IEEE/CVF International Conference on Computer Vision"
   short_name: "ICCV"
+venue_display: "IEEE/CVF International Conference on Computer Vision（IEEE/CVF 国际计算机视觉大会，ICCV 2023）"
+display_area: "鲁棒视觉估计"
+publication_order: 80
 peer_reviewed: true
 open_access: true
 abstract: "RLSAC 将采样一致性鲁棒估计建模为强化学习过程。图神经网络联合编码观测数据与采样历史，提出下一组最小集，并以其下游假设质量作为无监督奖励。学习到的状态转移可以复用于多类鲁棒估计问题。"
@@ -29,8 +32,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: '核心思想来自 [RLSAC 论文](https://arxiv.org/abs/2308.05318)。'
-  alt_text: 'RLSAC 将采样一致性重构为强化学习过程。'
+  caption: 'RLSAC 强化学习采样与共识估计的方法流程（Figure 2）。'
+  alt_text: 'RLSAC 方法流程结合观测、采样历史、策略网络、假设评估、奖励与状态转移。'
 hugoblox:
   ids:
     arxiv: 2308.05318v1

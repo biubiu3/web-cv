@@ -8,15 +8,19 @@ authors:
 date: "2026-08-31T11:15:11Z"
 publication_types: ["article"]
 publication:
-  name: "arXiv preprint"
-  short_name: "arXiv"
+  name: "Under review at the International Journal of Computer Vision"
+  short_name: "IJCV (under review)"
+venue_display: "International Journal of Computer Vision (IJCV)"
+publication_status: "Under review"
+display_area: "Robust Geometric Estimation"
+publication_order: 50
 peer_reviewed: false
 open_access: true
 abstract: "DiffSAC uses a geometry-conditioned diffusion model to learn the distribution of effective minimum sets for consensus-based robust estimation. Rather than ranking individual points once, it iteratively refines per-point confidence toward a small collection of high-quality candidate sets. The framework is evaluated across line and plane fitting, fundamental and essential matrix estimation, and homography estimation."
 summary: "Geometry-conditioned diffusion sampling that proposes a small number of high-quality minimum sets for efficient robust estimation."
 story_order: 40
 tags:
-  - arXiv 2026
+  - IJCV · Under Review
   - Perception & Geometry
   - Robust Estimation
   - Diffusion Models

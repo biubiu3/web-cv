@@ -13,8 +13,11 @@ author_notes:
 date: "2026-06-01T00:00:00Z"
 publication_types: ["paper-conference"]
 publication:
-  name: "IEEE 机器人与自动化国际会议"
+  name: "IEEE International Conference on Robotics and Automation"
   short_name: "ICRA"
+venue_display: "IEEE International Conference on Robotics and Automation（IEEE 机器人与自动化国际会议，ICRA 2026）"
+display_area: "机器人感知与重建"
+publication_order: 30
 peer_reviewed: true
 open_access: true
 abstract: "MRASfM 利用固定的相机间几何关系，将运动恢复结构方法适配到多相机驾驶系统。方法通过平面模型去除不可靠路面点，将整个相机集合视为一个单元进行束调整，并借助粗到细的关联和装配聚合多个场景。"
@@ -30,8 +33,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'MRASfM 概念图来自 [论文](https://arxiv.org/abs/2510.15467)。'
-  alt_text: 'MRASfM 利用相机组先验与语义信息完成驾驶场景重建和聚合。'
+  caption: 'MRASfM 多相机重建与多场景聚合的完整方法流程（Figure 2）。'
+  alt_text: 'MRASfM 方法流程结合多相机先验、语义三角化、相机组束调整与粗到细场景聚合。'
 links:
   - type: preprint
     provider: arxiv

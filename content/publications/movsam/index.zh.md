@@ -10,8 +10,11 @@ authors:
 date: "2025-10-19T00:00:00Z"
 publication_types: ["paper-conference"]
 publication:
-  name: "IEEE/RSJ 智能机器人与系统国际会议"
+  name: "IEEE/RSJ International Conference on Intelligent Robots and Systems"
   short_name: "IROS"
+venue_display: "IEEE/RSJ International Conference on Intelligent Robots and Systems（IEEE/RSJ 智能机器人与系统国际会议，IROS 2025）"
+display_area: "机器人感知"
+publication_order: 70
 peer_reviewed: true
 open_access: true
 abstract: "MovSAM 面向缺少时间运动线索的单图像运动物体分割。多模态大模型对场景进行推理并生成文本物体提示；这些提示与 SAM 和视觉语言模型的视觉表征融合，再通过迭代推理闭环逐步修正结果。"
@@ -27,8 +30,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'MovSAM 概览来自 [论文](https://arxiv.org/abs/2504.06863)。'
-  alt_text: 'MovSAM 推理可能运动的物体，并迭代细化分割结果。'
+  caption: 'MovSAM 多模态推理、提示生成与运动物体分割的方法流程（Figure 2）。'
+  alt_text: 'MovSAM 方法流程结合多模态思维链推理、视觉语言特征、SAM 与迭代细化。'
 hugoblox:
   ids:
     doi: 10.1109/IROS60139.2025.11246064

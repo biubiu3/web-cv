@@ -10,7 +10,7 @@ sections:
     content:
       title: 论文与研究
       text: |-
-        以下按时间从新到旧列出已发表论文与当前预印本；每条记录均完整列出作者，并标明经核实的期刊、会议或预印本平台。
+        八项工作覆盖通用机器人学习、多感官操作、具身数据生成、多模态去噪与鲁棒几何感知。已发表论文和审稿中稿件按年份由新到旧组织；同一年内优先展示代表性工作与机器人相关工作。每条记录均给出完整作者、期刊或会议全名、发表状态、方法图和简要技术总结。
     design:
       columns: '1'
       background:
@@ -22,12 +22,12 @@ sections:
       filters:
         folders:
           - publications
-      sort_by: date
-      sort_ascending: false
+      sort_by: publication_order
+      sort_ascending: true
       count: 8
     design:
-      view: citation
+      view: publication-rich
       columns: 1
       show_read_time: false
-      show_date: true
+      show_date: false
 ---
