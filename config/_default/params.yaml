@@ -21,7 +21,7 @@ hugoblox:
     # Short tagline displayed on your site
     tagline: "Physical AI · Embodied Intelligence · Robot Learning"
     # Site meta description for search engines and social sharing
-    description: "Nie Chang is a final-year Ph.D. student at Shanghai Jiao Tong University researching Physical AI, embodied intelligence, multimodal foundation models, and agentic robot learning."
+    description: "Nie Chang is a final-year Ph.D. researcher at Shanghai Jiao Tong University working on Physical AI, embodied intelligence, agentic robots, LLMs, VLMs, and VLA models."
     # Social accounts (used for meta tags like Twitter Cards)
     social:
       twitter: "" # Twitter/X handle for Twitter Cards (without @)
@@ -145,8 +145,8 @@ hugoblox:
       allow:
         - /
       disallow: []
-      note: "Guidance for AI crawlers - customize to match your public content."
-      contact: ""
+      note: "Public research profile and publication metadata may be indexed and cited. See /web-cv/llms.txt for a concise, machine-readable guide."
+      contact: "changniep@gmail.com"
 
   # ────────────────────────────────────────────────────────────────────────────
   # CONTENT

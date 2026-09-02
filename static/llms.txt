@@ -1,0 +1,40 @@
+# Nie Chang
+
+> Official academic profile of Nie Chang (聂畅), a final-year Ph.D. researcher at Shanghai Jiao Tong University working on Physical AI, embodied intelligence, agentic robot systems, Large Language Models (LLMs), Vision-Language Models (VLMs), and Vision-Language-Action (VLA) models.
+
+This file is a concise guide to the public, human-readable pages on the site. Publication status and venue information reflect the corresponding publication page. The English site is the default; a complete Chinese version is also available.
+
+## Profile
+
+- [English academic profile](https://biubiu3.github.io/web-cv/): Biography, research interests, education, research vision, selected work, robot demonstrations, and contact information.
+- [中文学术主页](https://biubiu3.github.io/web-cv/zh/): Chinese version of the academic profile.
+- [Google Scholar](https://scholar.google.com/citations?user=Tc2sl7gAAAAJ): Author profile and citation record.
+- [IRMV Lab](https://irmv.sjtu.edu.cn/): Research laboratory at Shanghai Jiao Tong University.
+
+## Research Interests
+
+- Physical AI & Embodied Intelligence
+- Agentic Robot System
+- Large Language Model (LLM) & Vision Language Model (VLM)
+- Vision-Language-Action Model (VLA)
+
+## Publications
+
+- [Publications](https://biubiu3.github.io/web-cv/publications/): Eight works with complete author lists, full venue names, publication status, method figures, abstracts, and technical summaries.
+- [Teach and Grow: An Agent-Centered Architecture for General Robot Learning](https://biubiu3.github.io/web-cv/publications/tgl/): Under review at IEEE Transactions on Robotics (T-RO).
+- [DiffSAC: Diffusion-guided Sampling for Consensus-based Robust Estimation](https://biubiu3.github.io/web-cv/publications/diffsac/): Under review at the International Journal of Computer Vision (IJCV).
+- [Towards the Vision-Sound-Language-Action Paradigm: The HEAR Framework for Sound-Centric Manipulation](https://biubiu3.github.io/web-cv/publications/hear/): Published in The International Journal of Robotics Research (IJRR).
+- [MRASfM: Multi-Camera Reconstruction and Aggregation through Structure-from-Motion in Driving Scenes](https://biubiu3.github.io/web-cv/publications/mrasfm/): IEEE International Conference on Robotics and Automation (ICRA 2026); Nie Chang and Lingfeng Xuan contributed equally.
+- [MID: A Self-Supervised Multimodal Iterative Denoising Framework](https://biubiu3.github.io/web-cv/publications/mid/): Published in IEEE Transactions on Neural Networks and Learning Systems (TNNLS).
+- [MovSAM: A Single-image Moving Object Segmentation Framework Based on Deep Thinking](https://biubiu3.github.io/web-cv/publications/movsam/): IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2025).
+- [ERMV: Editing 4D Robotic Multi-view Images to Enhance Embodied Agents](https://biubiu3.github.io/web-cv/publications/ermv/): Under review at IEEE Transactions on Circuits and Systems for Video Technology (TCSVT).
+- [RLSAC: Reinforcement Learning Enhanced Sample Consensus for End-to-End Robust Estimation](https://biubiu3.github.io/web-cv/publications/rlsac/): IEEE/CVF International Conference on Computer Vision (ICCV 2023); Nie Chang and Guangming Wang contributed equally.
+
+## Research Demonstrations
+
+- [HEAR project](https://hear.irmv.top/): Sound-centric real-robot manipulation, project details, and demonstrations.
+
+## Machine-Readable Resources
+
+- [Extended research context](https://biubiu3.github.io/web-cv/llms-full.txt): Detailed profile and publication summaries for retrieval and citation.
+- [XML sitemap](https://biubiu3.github.io/web-cv/sitemap.xml): Canonical inventory of English and Chinese pages.

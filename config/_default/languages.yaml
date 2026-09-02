@@ -9,12 +9,12 @@ zh:
   weight: 2
   title: 聂畅
   params:
-    description: 聂畅的个人学术主页，研究方向包括物理 AI、具身智能、多模态基础模型与智能体机器人学习。
+    description: 聂畅的个人学术主页，研究方向包括物理 AI、具身智能、智能体机器人、LLM、VLM 与 VLA 模型。
     hugoblox:
       identity:
         name: 聂畅
         tagline: 物理 AI · 具身智能 · 机器人学习
-        description: 聂畅的个人学术主页，研究方向包括物理 AI、具身智能、多模态基础模型与智能体机器人学习。
+        description: 聂畅的个人学术主页，研究方向包括物理 AI、具身智能、智能体机器人、LLM、VLM 与 VLA 模型。
   menu:
     main:
       - name: 关于我

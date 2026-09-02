@@ -1,8 +1,11 @@
 ---
 title: Publications
 summary: Publications by Nie Chang in embodied intelligence, multimodal learning, robot perception, and robust estimation.
+lastmod: 2026-09-02
 cms_exclude: true
 type: landing
+seo:
+  title: 'Robotics & Embodied AI Publications | Nie Chang'
 
 sections:
   - block: markdown
@@ -10,7 +13,7 @@ sections:
     content:
       title: Publications
       text: |-
-        Eight works spanning general robot learning, multisensory manipulation, embodied data generation, multimodal denoising, and robust geometric perception. Published papers and manuscripts under review are grouped by year; within each year, representative and robot-centered work appears first. Every record includes the complete author list, full venue name, publication status, method figure, and a concise account of the technical contribution.
+        Eight works spanning general robot learning, multisensory manipulation, Vision-Language-Action models, embodied data generation, multimodal denoising, and robust geometric perception. Published papers and manuscripts under review are grouped by year; within each year, representative and robot-centered work appears first. Every record includes the complete author list, full venue name, publication status, method figure, and a concise account of the technical contribution.
     design:
       columns: '1'
       background:

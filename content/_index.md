@@ -1,9 +1,12 @@
 ---
 # Leave the homepage title empty to use the site title
 title: ''
-summary: ''
+summary: 'Nie Chang is a final-year Ph.D. researcher developing agentic robot systems, LLM/VLM reasoning, and Vision-Language-Action models for Physical AI and embodied intelligence.'
 date: 2022-10-24
+lastmod: 2026-09-02
 type: landing
+seo:
+  title: 'Nie Chang | Physical AI & Embodied Intelligence'
 
 sections:
   - block: resume-biography-3
@@ -65,11 +68,11 @@ sections:
       title: 'Research Vision'
       subtitle: ''
       text: |-
-        My research asks how robots can move beyond fixed, one-shot policies and become systems that **perceive across modalities, reason about physical outcomes, and grow through experience**.
+        My research asks how robots can move beyond fixed, one-shot policies to become systems that **perceive across modalities, reason about physical outcomes, and improve through experience**.
 
-        This agenda connects three threads. First, I study **agent-centered robot learning**, where reusable skills and persistent experience support adaptation without repeatedly rebuilding an entire policy. Second, I develop **multisensory and multimodal models** that combine vision, sound, language, proprioception, and action. Third, I work on **robust perception and data generation**, from learned sample consensus to consistent editing of robotic multi-view sequences.
+        This agenda connects three threads. First, I study **agent-centered robot learning**, where reusable skills and persistent experience support adaptation without repeatedly rebuilding an entire policy. Second, I connect **Large Language Models (LLMs)** and **Vision-Language Models (VLMs)** with **Vision-Language-Action (VLA) models**, extending them with sound, proprioception, and memory so that reasoning remains grounded in physical interaction. Third, I develop **robust perception and embodied data generation**, from learned sample consensus to consistent editing of robotic multi-view trajectories.
 
-        **HEAR** and **Teach and Grow (TGL)** are the clearest expressions of this direction: HEAR introduces continuous sound-aware manipulation, while TGL organizes demonstrations, tools, feedback, and memory into a robot system that can accumulate reusable capability.
+        **HEAR** and **Teach and Grow (TGL)** are the clearest expressions of this direction: HEAR introduces continuous sound-aware manipulation, while TGL organizes demonstrations, tools, physical feedback, and memory into a robot system that accumulates reusable capabilities.
     design:
       columns: '1'
   - block: markdown
@@ -136,7 +139,7 @@ sections:
     content:
       title: Open to Global Opportunities
       text: |-
-        I am seeking research, engineering, and postdoctoral opportunities worldwide. I am especially interested in teams working on Physical AI, embodied intelligence, multimodal foundation models, and general robot systems.
+        I am seeking research, engineering, and postdoctoral opportunities worldwide. I am especially interested in teams working on Physical AI, embodied intelligence, agentic robot systems, LLM/VLM reasoning, and Vision-Language-Action models.
       button:
         text: Contact Me
         url: mailto:changniep@gmail.com

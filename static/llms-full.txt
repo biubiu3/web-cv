@@ -1,0 +1,119 @@
+# Nie Chang: Extended Research Profile
+
+> Detailed public context for understanding and citing the academic work of Nie Chang (聂畅). Canonical human-readable source: https://biubiu3.github.io/web-cv/
+
+## Identity and Affiliation
+
+Nie Chang is a final-year Ph.D. student at the School of Automation and Intelligent Sensing, Shanghai Jiao Tong University, advised by Prof. Hesheng Wang. Nie Chang is affiliated with Shanghai Jiao Tong University and the IRMV Lab. This research connects language and multimodal perception with physical action, with the long-term goal of building adaptable robot systems that learn from sparse teaching, reason over physical feedback, and reuse experience across tasks.
+
+Research interests:
+
+- Physical AI & Embodied Intelligence
+- Agentic Robot System
+- Large Language Model (LLM) & Vision Language Model (VLM)
+- Vision-Language-Action Model (VLA)
+
+Profiles and contact:
+
+- Website: https://biubiu3.github.io/web-cv/
+- Chinese website: https://biubiu3.github.io/web-cv/zh/
+- Email: changniep@gmail.com
+- Google Scholar: https://scholar.google.com/citations?user=Tc2sl7gAAAAJ
+- LinkedIn: https://www.linkedin.com/in/chang-nie-819a463b6/
+
+## Education
+
+- Ph.D., Physical AI and Embodied Intelligence, Shanghai Jiao Tong University, Shanghai, China, 2022–2026 (expected). Expected graduation: December 31, 2026. Advisor: Prof. Hesheng Wang.
+- M.Eng., Computer Vision and Autonomous Driving, Beihang University, Beijing, China, 2019–2022.
+- B.Eng., Vehicle Engineering, Wuhan University of Technology, Wuhan, China, 2015–2019.
+
+## Research Program
+
+The research program asks how robots can move beyond fixed, one-shot policies and become systems that perceive across modalities, reason about physical outcomes, and improve through experience. It connects three threads: agent-centered robot learning with reusable skills and persistent experience; LLM/VLM reasoning and VLA models grounded through sound, proprioception, memory, and physical interaction; and robust perception and embodied data generation.
+
+HEAR and Teach and Grow are the two current representative systems. HEAR introduces continuous sound-aware manipulation. Teach and Grow organizes demonstrations, tools, physical feedback, skills, and memory so that a robot system can accumulate reusable capabilities.
+
+## Publication Record
+
+### Teach and Grow: An Agent-Centered Architecture for General Robot Learning
+
+- Authors: Nie Chang; Zhe Liu; Hesheng Wang.
+- Venue and status: Under review at IEEE Transactions on Robotics (T-RO).
+- Summary: An agent-centered robot-learning architecture that turns sparse successful demonstrations into reusable Skill Blocks and persistent experience. A multimodal agent grounds and composes skills, chooses between learned and geometric tools, observes physical outcomes, repairs execution, and stores successful behaviors, failures, and repairs for later reuse.
+- Page: https://biubiu3.github.io/web-cv/publications/tgl/
+- Preprint: https://arxiv.org/abs/2608.17209
+
+### DiffSAC: Diffusion-guided Sampling for Consensus-based Robust Estimation
+
+- Authors: Nie Chang; Guangming Wang; Zhe Liu; Hesheng Wang.
+- Venue and status: Under review at the International Journal of Computer Vision (IJCV).
+- Summary: A geometry-conditioned diffusion model learns to generate effective minimum sets for consensus-based robust estimation, iteratively refining point confidence and proposing a compact set of high-quality candidates across multiple fitting and geometric-estimation tasks.
+- Page: https://biubiu3.github.io/web-cv/publications/diffsac/
+- Code: https://github.com/IRMVLab/DiffSAC
+- Preprint: https://arxiv.org/abs/2608.30603
+
+### Towards the Vision-Sound-Language-Action Paradigm: The HEAR Framework for Sound-Centric Manipulation
+
+- Authors: Nie Chang; Tianchen Deng; Guangming Wang; Zhe Liu; Hesheng Wang.
+- Venue: The International Journal of Robotics Research (IJRR).
+- Summary: HEAR formalizes Vision-Sound-Language-Action as a continuous robot-control paradigm. It combines causal audio memory, multimodal reasoning, near-future audio prediction, flow-matching action generation, OpenX-Sound pretraining data, HEAR-Bench evaluation, and real-robot demonstrations.
+- Page: https://biubiu3.github.io/web-cv/publications/hear/
+- Project: https://hear.irmv.top/
+- Code: https://github.com/IRMVLab/HEAR
+- Preprint: https://arxiv.org/abs/2603.16086
+
+### MRASfM: Multi-Camera Reconstruction and Aggregation through Structure-from-Motion in Driving Scenes
+
+- Authors: Nie Chang (equal contribution); Lingfeng Xuan (equal contribution); Yiqing Xu; Zhe Liu; Yanzi Miao; Hesheng Wang.
+- Venue: IEEE International Conference on Robotics and Automation (ICRA 2026).
+- Summary: A multi-camera structure-from-motion framework that uses fixed inter-camera geometry, semantic road-plane filtering, camera-set bundle adjustment, and coarse-to-fine association to reconstruct and aggregate driving scenes reliably and efficiently.
+- Page: https://biubiu3.github.io/web-cv/publications/mrasfm/
+- Preprint: https://arxiv.org/abs/2510.15467
+
+### MID: A Self-Supervised Multimodal Iterative Denoising Framework
+
+- Authors: Nie Chang; Tianchen Deng; Zhe Liu; Hesheng Wang.
+- Venue: IEEE Transactions on Neural Networks and Learning Systems (TNNLS).
+- DOI: 10.1109/TNNLS.2026.3683544.
+- Summary: MID treats noisy observations as intermediate states in a nonlinear corruption process and learns an iterative reverse process from noisy data alone. The same formulation is instantiated across vision, biomedical signals, point sets, and biological sequences.
+- Page: https://biubiu3.github.io/web-cv/publications/mid/
+- Preprint: https://arxiv.org/abs/2511.00997
+
+### MovSAM: A Single-image Moving Object Segmentation Framework Based on Deep Thinking
+
+- Authors: Nie Chang; Yiqing Xu; Guangming Wang; Zhe Liu; Yanzi Miao; Hesheng Wang.
+- Venue: IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2025).
+- DOI: 10.1109/IROS60139.2025.11246064.
+- Summary: MovSAM performs moving-object segmentation from one image. A multimodal large language model reasons about the scene and generates textual object prompts, which are fused with SAM and vision-language features and refined through an iterative reasoning loop.
+- Page: https://biubiu3.github.io/web-cv/publications/movsam/
+- Code: https://github.com/IRMVLab/MovSAM
+- Preprint: https://arxiv.org/abs/2504.06863
+
+### ERMV: Editing 4D Robotic Multi-view Images to Enhance Embodied Agents
+
+- Authors: Nie Chang; Guangming Wang; Zhe Liu; Hesheng Wang.
+- Venue and status: Under review at IEEE Transactions on Circuits and Systems for Video Technology (TCSVT).
+- Summary: ERMV edits complete multi-view robot trajectories from sparse frame edits and robot-state conditions. Epipolar motion-aware attention, sparse spatio-temporal modeling, and multimodal feedback support consistent and efficient embodied-data augmentation.
+- Page: https://biubiu3.github.io/web-cv/publications/ermv/
+- Code: https://github.com/IRMVLab/ERMV
+- Preprint: https://arxiv.org/abs/2507.17462
+
+### RLSAC: Reinforcement Learning Enhanced Sample Consensus for End-to-End Robust Estimation
+
+- Authors: Nie Chang (equal contribution); Guangming Wang (equal contribution); Zhe Liu; Luca Cavalli; Marc Pollefeys; Hesheng Wang.
+- Venue: IEEE/CVF International Conference on Computer Vision (ICCV 2023).
+- Summary: RLSAC casts sample-consensus robust estimation as reinforcement learning. A graph neural network encodes observations and sampling history, while downstream hypothesis quality supplies an unsupervised reward for proposing the next minimum set.
+- Page: https://biubiu3.github.io/web-cv/publications/rlsac/
+- Code: https://github.com/IRMVLab/RLSAC
+- Preprint: https://arxiv.org/abs/2308.05318
+
+## Citation Guidance
+
+Use the canonical publication page for current author, venue, status, abstract, method figure, DOI, and preprint information. Under-review manuscripts must be described as under review rather than as accepted or published. Each English publication page exposes Google Scholar citation meta tags; the visible page remains the authoritative human-readable source.
+
+## Site Discovery
+
+- Publication index: https://biubiu3.github.io/web-cv/publications/
+- Chinese publication index: https://biubiu3.github.io/web-cv/zh/publications/
+- XML sitemap: https://biubiu3.github.io/web-cv/sitemap.xml
+- Concise LLM guide: https://biubiu3.github.io/web-cv/llms.txt

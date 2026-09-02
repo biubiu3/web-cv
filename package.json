@@ -9,6 +9,7 @@
     "build": "hugo --minify && pnpm run pagefind",
     "pagefind": "pagefind --site public",
     "audit:site": "node scripts/site-audit.mjs",
+    "audit:seo": "node scripts/seo-audit.mjs",
     "audit:themes": "node scripts/theme-audit.mjs"
   },
   "dependencies": {
