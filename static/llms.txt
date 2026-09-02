@@ -37,7 +37,7 @@ This file is a concise guide to the public, human-readable pages on the site. Pu
 ## Engineering Projects
 
 - [Engineering project index](https://biubiu3.github.io/web-cv/projects/): Applied systems work with explicit project scope, personal ownership, design decisions, and validation evidence.
-- [Multi-Camera SfM for 4D Vision Auto-Annotation](https://biubiu3.github.io/web-cv/projects/sfm/): A production-applied industry–academia project with NETA Auto. Nie Chang owned the SfM scene-reconstruction subsystem, which refined vehicle poses and camera extrinsics and produced sparse-to-dense geometry for downstream road reconstruction. The project later informed the MRASfM research paper.
+- [Multi-Camera SfM for 4D Vision Auto-Annotation](https://biubiu3.github.io/web-cv/projects/sfm/): An industry–academia project with NETA Auto, applied in production and spanning data preparation, semantic perception, localization, reconstruction, auto-annotation, and multi-run local maps. Nie Chang owned the SfM scene-reconstruction subsystem, which refined vehicle poses and camera extrinsics and produced sparse-to-dense geometry for downstream modules. The project later informed the MRASfM research paper.
 
 ## Machine-Readable Resources
 

@@ -14,15 +14,16 @@ tags:
   - Multi-Camera Reconstruction
   - 3D Vision
 image:
-  caption: 'Six-view surround imagery is converted into a geometrically consistent road-scene reconstruction.'
-  alt_text: 'Six surround-camera views beside a reconstructed urban point cloud.'
+  caption: 'The wider system turns synchronized vehicle sensors into semantic perception, reconstruction, automatic annotation, and a multi-run local map. The highlighted SfM core is my responsibility.'
+  alt_text: 'Concept diagram showing surround cameras and vehicle sensors flowing through semantic perception and a highlighted multi-camera SfM reconstruction core toward road-element annotation and a multi-run local map.'
 project:
   collaboration: 'NETA Auto industry–academia collaboration'
   period: '2023–2024'
-  status: 'Production-applied'
+  status: 'Applied in production'
+  wider_system: 'Data preparation, semantic perception, sensor-fusion localization, reconstruction, auto-annotation, and multi-run local maps'
   role: 'SfM scene-reconstruction subsystem'
   outputs: 'Refined vehicle poses and camera extrinsics; sparse and dense ground point clouds'
-  context: 'A large 4D vision auto-annotation program spanning perception, localization, reconstruction, and map-element generation. My ownership was the SfM/static-reconstruction part and its handoff to downstream modules.'
+  context: 'A large 4D vision auto-annotation program spanning data preparation, semantic perception, multi-sensor localization, static and ground reconstruction, automatic annotation, and multi-run local-map generation. My ownership was the SfM/static-reconstruction subsystem and its downstream geometry interface.'
 project_videos:
   - src: 'headcam.mp4'
     poster: 'headcam-poster.jpg'
@@ -48,7 +49,23 @@ This was not a research prototype built around a clean benchmark. It was one sub
 
 The project later provided the engineering foundation for the [MRASfM research paper](../../publications/mrasfm/). The two pages therefore serve different purposes. The paper page explains the formal research method and public experiments; this page records the engineering case—interfaces, failure modes, implementation choices, acceptance evidence, and how the module operated inside a real production workflow.
 
-## What the subsystem had to deliver
+## The complete system around the SfM module
+
+At program level, the input covered driving-camera streams together with IMU, GNSS, chassis-motion information, and camera calibration. The project materials organize the work as a connected production pipeline rather than one isolated model:
+
+- **Data preparation and synchronization** turned raw multi-sensor driving packages into calibrated, time-aligned inputs for the downstream modules.
+- **Semantic perception** produced full-scene and lane-oriented masks. These results supported both automatic labeling and the removal of moving objects, sky, and ego-vehicle pixels before static reconstruction.
+- **Multi-sensor localization** fused vehicle-motion signals into a metrically scaled trajectory that initialized reconstruction and provided a common spatial reference.
+- **Static scene reconstruction** recovered camera/vehicle poses, refined rig extrinsics, and generated sparse-to-dense geometry. **This was the subsystem I was responsible for.**
+- **Ground reconstruction** converted the recovered geometry and dense depth into a cleaner road-surface representation.
+- **Ground-element auto-annotation** extracted structured lane lines, road boundaries, signs, and other static map elements as labeling candidates.
+- **Multi-run local-map construction** aligned repeated traversals, aggregated partial observations, and organized map elements and topology in one shared frame.
+
+{{< project-system-map >}}
+
+This surrounding context matters because the SfM module was neither the first nor the last stage. It consumed masks and localization from upstream teams, then had to deliver geometry that ground reconstruction, annotation, and local-map generation could actually use. The rest of this case therefore narrows from the complete program to the subsystem I personally owned.
+
+## My responsibility: what the SfM subsystem had to deliver
 
 The reconstruction module received synchronized six-view surround images, multi-sensor localization, semantic masks, and initial camera intrinsics/extrinsics. It returned refined vehicle poses, updated inter-camera extrinsics, a sparse scene model, and a dense ground point cloud suitable for downstream road reconstruction.
 

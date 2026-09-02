@@ -70,9 +70,9 @@ sections:
   - block: collection
     id: engineering-projects
     content:
-      title: '从论文走向真实工程'
+      title: '工程项目'
       text: |-
-        除了论文研究，我也参与需要面对真实传感器、系统接口与下游生产约束的工程项目。下面的案例展示了一个多相机场景重建模块，如何从几何方案走向实际应用的 4D 视觉自动化标注流程。
+        除了论文研究，我也参与需要面对真实传感器、系统接口与下游生产约束的工程项目。下面先展示完整的 4D 视觉自动化标注系统，再明确说明我在其中负责的多相机 SfM 场景重建子系统。
       filters:
         folders:
           - projects

@@ -13,7 +13,7 @@
       {{- end -}}
       <img src="{{ $display.RelPermalink }}" width="{{ $display.Width }}" height="{{ $display.Height }}" loading="lazy" decoding="async" alt="{{ $item.Params.image.alt_text | default $item.Title | plainify }}">
     {{- end -}}
-    <span class="project-feature-media-label">{{ if $isZh }}真实道路数据 · 多相机三维重建{{ else }}Real-road data · Multi-camera 3D reconstruction{{ end }}</span>
+    <span class="project-feature-media-label">{{ if $isZh }}4D 视觉自动标注 · SfM 个人负责{{ else }}4D vision auto-annotation · SfM ownership{{ end }}</span>
   </a>
 
   <div class="project-feature-copy">
@@ -25,8 +25,9 @@
     <h2 id="project-title-{{ $item.File.UniqueID }}"><a href="{{ $link }}">{{ $item.Title }}</a></h2>
     <p class="project-feature-summary">{{ $item.Params.summary | default $item.Summary | plainify }}</p>
     <dl class="project-feature-facts">
+      <div><dt>{{ if $isZh }}完整系统{{ else }}Wider system{{ end }}</dt><dd>{{ index $meta "wider_system" }}</dd></div>
       <div><dt>{{ if $isZh }}个人负责{{ else }}My ownership{{ end }}</dt><dd>{{ index $meta "role" }}</dd></div>
-      <div><dt>{{ if $isZh }}系统输出{{ else }}System outputs{{ end }}</dt><dd>{{ index $meta "outputs" }}</dd></div>
+      <div><dt>{{ if $isZh }}模块交付{{ else }}My handoff{{ end }}</dt><dd>{{ index $meta "outputs" }}</dd></div>
     </dl>
     <a class="project-feature-link" href="{{ $link }}">
       {{ if $isZh }}查看完整工程案例{{ else }}Read the engineering case{{ end }} <span aria-hidden="true">→</span>

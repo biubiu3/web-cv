@@ -37,7 +37,8 @@ HEAR and Teach and Grow are the two current representative systems. HEAR introdu
 
 ### Multi-Camera SfM for 4D Vision Auto-Annotation
 
-- Context: A production-applied industry–academia collaboration with NETA Auto covering a larger 4D vision auto-annotation workflow.
+- Context: An industry–academia collaboration with NETA Auto whose 4D vision auto-annotation workflow was applied in production.
+- Wider system: Data preparation and synchronization, semantic perception, multi-sensor localization, static and ground reconstruction, ground-element auto-annotation, and multi-run local-map construction.
 - Personal ownership: Nie Chang was responsible for the SfM/static scene-reconstruction subsystem rather than the full team program.
 - Inputs and outputs: Six-view surround imagery, localization, semantic masks, and initial calibration were converted into refined vehicle poses and camera extrinsics, sparse scene geometry, and dense ground point clouds for downstream reconstruction.
 - Engineering focus: Semantically masked SuperPoint features, overlap- and time-constrained matching, two-view verification, rig-aware registration and bundle adjustment, ACMP depth with COLMAP fusion, spatial filtering, and multi-run aggregation.

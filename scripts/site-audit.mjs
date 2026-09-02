@@ -239,7 +239,7 @@ async function captureSections(page, suffix) {
   for (const { name, target } of [
     { name: 'About', target: 'about' },
     { name: 'Research', target: 'research' },
-    { name: 'Engineering', target: 'engineering-projects' },
+    { name: 'Projects', target: 'engineering-projects' },
     { name: 'Selected Work', target: 'papers' },
     { name: 'Contact', target: 'contact' },
   ]) {
@@ -320,6 +320,8 @@ async function captureSections(page, suffix) {
     report.interactions.engineeringProject = {
       url: page.url(),
       h1: await page.locator('h1').first().textContent(),
+      systemStages: await page.locator('.project-system-map__stage').count(),
+      ownedSystemStages: await page.locator('.project-system-map__stage.is-owned').count(),
       pipelineStages: await page.locator('.project-pipeline__stage').count(),
       comparisons: await page.locator('.project-comparison').count(),
       videos: await page.locator('.project-video-card video').count(),

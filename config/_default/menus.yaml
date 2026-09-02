@@ -13,7 +13,7 @@ main:
   - name: Selected Work
     url: /#papers
     weight: 40
-  - name: Engineering
+  - name: Projects
     url: /#engineering-projects
     weight: 30
   - name: Publications

@@ -1,0 +1,29 @@
+{{- $isZh := eq .Page.Lang "zh" -}}
+<section class="project-system-map" aria-labelledby="project-system-map-title">
+  <header>
+    <span>{{ if $isZh }}完整项目范围{{ else }}Wider program{{ end }}</span>
+    <h3 id="project-system-map-title">{{ if $isZh }}4D 视觉自动化标注系统{{ else }}4D vision auto-annotation system{{ end }}</h3>
+    <p>{{ if $isZh }}从同步车载数据到结构化局部地图；高亮模块为我的个人负责范围。{{ else }}From synchronized vehicle data to a structured local map; the highlighted module marks my ownership.{{ end }}</p>
+  </header>
+  <div class="project-system-map__flow">
+    <div class="project-system-map__group">
+      <span>{{ if $isZh }}上游基础模块{{ else }}Upstream foundations{{ end }}</span>
+      <div class="project-system-map__grid">
+        <div class="project-system-map__stage"><span>01</span><strong>{{ if $isZh }}数据处理与同步{{ else }}Data preparation{{ end }}</strong><small>{{ if $isZh }}相机 · IMU · GNSS · 底盘 · 标定{{ else }}Cameras · IMU · GNSS · chassis · calibration{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>02</span><strong>{{ if $isZh }}语义感知{{ else }}Semantic perception{{ end }}</strong><small>{{ if $isZh }}全场景与车道线掩膜{{ else }}Scene and lane masks{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>03</span><strong>{{ if $isZh }}融合定位{{ else }}Sensor-fusion localization{{ end }}</strong><small>{{ if $isZh }}带尺度车辆轨迹{{ else }}Metric vehicle trajectory{{ end }}</small></div>
+      </div>
+    </div>
+    <i aria-hidden="true">↓</i>
+    <div class="project-system-map__stage is-owned"><span>04 · {{ if $isZh }}我的负责范围{{ else }}My ownership{{ end }}</span><strong>{{ if $isZh }}多相机 SfM 静态重建{{ else }}Multi-camera SfM reconstruction{{ end }}</strong><small>{{ if $isZh }}位姿 · 外参 · 稀疏/稠密几何{{ else }}Poses · extrinsics · sparse/dense geometry{{ end }}</small></div>
+    <i aria-hidden="true">↓</i>
+    <div class="project-system-map__group">
+      <span>{{ if $isZh }}下游工程模块{{ else }}Downstream applications{{ end }}</span>
+      <div class="project-system-map__grid">
+        <div class="project-system-map__stage"><span>05</span><strong>{{ if $isZh }}地面重建{{ else }}Ground reconstruction{{ end }}</strong><small>{{ if $isZh }}稠密道路表面{{ else }}Dense road surface{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>06</span><strong>{{ if $isZh }}自动标注{{ else }}Auto-annotation{{ end }}</strong><small>{{ if $isZh }}车道线 · 标志 · 静态元素{{ else }}Lanes · signs · static elements{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>07</span><strong>{{ if $isZh }}多趟局部地图{{ else }}Multi-run local map{{ end }}</strong><small>{{ if $isZh }}场景聚合与拓扑{{ else }}Aggregation and topology{{ end }}</small></div>
+      </div>
+    </div>
+  </div>
+</section>

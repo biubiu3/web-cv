@@ -78,9 +78,9 @@ sections:
   - block: collection
     id: engineering-projects
     content:
-      title: 'Engineering in the Real World'
+      title: 'Engineering Projects'
       text: |-
-        Beyond research papers, I build systems that must work with real sensors, real interfaces, and downstream production constraints. This selected case shows how a multi-camera reconstruction module moved from geometric design to an applied 4D vision auto-annotation pipeline.
+        Beyond research papers, I build systems that must work with real sensors, real interfaces, and downstream production constraints. This case presents the complete 4D vision auto-annotation program, then makes my ownership of its multi-camera SfM reconstruction subsystem explicit.
       filters:
         folders:
           - projects
