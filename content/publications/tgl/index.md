@@ -6,12 +6,16 @@ authors:
   - Hesheng Wang
 date: "2026-08-17T23:45:21Z"
 publication_types: ["article"]
+publication:
+  name: "arXiv preprint"
+  short_name: "arXiv"
 peer_reviewed: false
 open_access: true
 abstract: "Teach-and-Grow Learning (TGL) is an agent-centered architecture for acquiring reusable robot capabilities from a small number of successful demonstrations. A multimodal agent builds closed-loop Skill Blocks, grounds and composes them in new scenes, chooses between learned and geometric tools, observes physical outcomes, and revises its route when execution departs from intent. A Skill Library and structured Experience Memory preserve successful behaviors, failures, and repairs for later reuse."
 summary: "An agent-centered robot-learning architecture that turns sparse teaching into reusable Skill Blocks and persistent experience for future tasks."
 story_order: 80
 tags:
+  - arXiv 2026
   - General Robot Systems
   - Agentic Robot Learning
   - Embodied Intelligence

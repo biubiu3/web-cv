@@ -16,6 +16,7 @@ abstract: "MID treats a noisy observation as an intermediate state in a nonlinea
 summary: "A self-supervised iterative framework that learns nonlinear denoising directly from noisy observations across multiple data modalities."
 story_order: 50
 tags:
+  - TNNLS 2026
   - Multimodal Data & Models
   - Self-Supervised Learning
   - Multimodal Learning

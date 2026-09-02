@@ -1,13 +1,16 @@
 ---
 title: "MRASfM: Multi-Camera Reconstruction and Aggregation through Structure-from-Motion in Driving Scenes"
 authors:
-  - Lingfeng Xuan
   - me
+  - Lingfeng Xuan
   - Yiqing Xu
   - Zhe Liu
   - Yanzi Miao
   - Hesheng Wang
-date: "2026-01-01T00:00:00Z"
+author_notes:
+  - "Equal contribution"
+  - "Equal contribution"
+date: "2026-06-01T00:00:00Z"
 publication_types: ["paper-conference"]
 publication:
   name: "IEEE International Conference on Robotics and Automation"
@@ -18,6 +21,7 @@ abstract: "MRASfM adapts structure-from-motion to multi-camera driving systems b
 summary: "A multi-camera structure-from-motion framework for reliable and efficient reconstruction and scene aggregation in driving environments."
 story_order: 30
 tags:
+  - ICRA 2026
   - Perception & Geometry
   - Structure from Motion
   - Multi-Camera Reconstruction

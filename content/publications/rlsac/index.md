@@ -21,6 +21,7 @@ abstract: "RLSAC casts sample-consensus robust estimation as a reinforcement-lea
 summary: "Reinforcement-learning-guided sample consensus that uses data features, sampling history, and downstream feedback for robust estimation."
 story_order: 10
 tags:
+  - ICCV 2023
   - Perception & Geometry
   - Robust Estimation
   - Reinforcement Learning

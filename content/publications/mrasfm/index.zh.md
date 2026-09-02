@@ -1,13 +1,16 @@
 ---
 title: "MRASfM：驾驶场景中的多相机运动恢复结构与聚合"
 authors:
-  - Lingfeng Xuan
   - me
+  - Lingfeng Xuan
   - Yiqing Xu
   - Zhe Liu
   - Yanzi Miao
   - Hesheng Wang
-date: "2026-01-01T00:00:00Z"
+author_notes:
+  - "共同一作"
+  - "共同一作"
+date: "2026-06-01T00:00:00Z"
 publication_types: ["paper-conference"]
 publication:
   name: "IEEE 机器人与自动化国际会议"
@@ -18,6 +21,7 @@ abstract: "MRASfM 利用固定的相机间几何关系，将运动恢复结构�
 summary: "面向驾驶环境可靠、高效重建与场景聚合的多相机 SfM 框架。"
 story_order: 30
 tags:
+  - ICRA 2026
   - 感知与几何
   - 运动恢复结构
   - 多相机重建

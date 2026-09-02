@@ -18,6 +18,7 @@ abstract: "MovSAM performs moving-object segmentation from a single image, where
 summary: "Single-image moving-object segmentation through multimodal reasoning, language-guided prompting, and iterative refinement."
 story_order: 20
 tags:
+  - IROS 2025
   - Perception & Geometry
   - Moving Object Segmentation
   - Multimodal Large Language Models

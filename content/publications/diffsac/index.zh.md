@@ -7,12 +7,16 @@ authors:
   - Hesheng Wang
 date: "2026-08-31T11:15:11Z"
 publication_types: ["article"]
+publication:
+  name: "arXiv 预印本"
+  short_name: "arXiv"
 peer_reviewed: false
 open_access: true
 abstract: "DiffSAC 使用几何条件扩散模型学习有效最小集的分布。不同于一次性排序单个点，该方法迭代细化逐点置信度，并生成少量高质量候选集合。框架覆盖直线和平面拟合、基础矩阵与本质矩阵估计，以及单应性估计。"
 summary: "通过几何条件扩散生成少量高质量最小集，以提高鲁棒估计效率。"
 story_order: 40
 tags:
+  - arXiv 2026
   - 感知与几何
   - 鲁棒估计
   - 扩散模型
@@ -20,8 +24,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: '扩散引导采样来自 [DiffSAC 论文](https://arxiv.org/abs/2608.30603)。'
-  alt_text: 'DiffSAC 迭代细化点置信度，生成高质量最小集。'
+  caption: '完整训练与推理流程来自 [DiffSAC 论文](https://arxiv.org/abs/2608.30603) Figure 2。'
+  alt_text: 'DiffSAC 学习几何条件扩散先验，生成最小集并通过共识评估选出最优假设。'
 hugoblox:
   ids:
     arxiv: 2608.30603v1

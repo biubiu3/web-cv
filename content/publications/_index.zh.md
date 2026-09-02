@@ -6,27 +6,28 @@ type: landing
 
 sections:
   - block: markdown
+    id: publication-intro
     content:
-      title: 按研究演进讲述工作
+      title: 论文与研究
       text: |-
-        以下顺序遵循思想演进，而不是简单按年份排列：**可靠感知与几何 → 多模态数据与模型 → 通用机器人系统**。每张卡片会进入官方项目/论文页，或打开本站的图文概览，说明问题、核心方法及其在整体研究路线中的作用。
+        以下按时间从新到旧列出已发表论文与当前预印本；每条记录均完整列出作者，并标明经核实的期刊、会议或预印本平台。
     design:
       columns: '1'
       background:
         gradient_mesh:
           enable: true
   - block: collection
+    id: publication-list
     content:
       filters:
         folders:
           - publications
-      sort_by: story_order
-      sort_ascending: true
+      sort_by: date
+      sort_ascending: false
       count: 8
     design:
-      view: article-grid
-      columns: 2
-      fill_image: false
+      view: citation
+      columns: 1
       show_read_time: false
       show_date: true
 ---

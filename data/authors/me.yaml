@@ -46,15 +46,13 @@ links:
 
 interests:
   - Physical AI & Embodied Intelligence
-  - Agentic Robot Learning
-  - Vision-Language-Action Models
-  - Multimodal Foundation Models
-  - Robot Learning & Manipulation
-  - Robust Visual Estimation
+  - Agentic Robot System
+  - Multimodal Foundation Models & Large Language Model
 
 education:
-  - degree: Ph.D. Student
-    institution: Shanghai Jiao Tong University
+  - degree: Ph.D. · Physical AI & Embodied Intelligence
+    institution: Shanghai Jiao Tong University · Shanghai, China
+    year: 2022–2026 (expected)
     start: 2022-09-01
     end: 2026-12-31
     summary: |
@@ -62,17 +60,19 @@ education:
       Researching Physical AI, embodied intelligence, multimodal learning, and
       agent-centered robot systems.
   - degree: M.Eng. · Computer Vision & Autonomous Driving
-    institution: Beihang University
+    institution: Beihang University · Beijing, China
+    year: 2019–2022
     start: 2019-09-01
     end: 2022-06-30
     summary: |
       Research on deep-learning-based perception for difficult driving
       conditions, with an emphasis on computer vision and autonomous-driving
       applications.
-  - degree: B.Eng. · Intelligent Vehicles & Computing
-    institution: Wuhan University of Technology
+  - degree: B.Eng. · Vehicle Engineering
+    institution: Wuhan University of Technology · Wuhan, China
+    year: 2015–2019
     start: 2015-09-01
     end: 2019-06-30
     summary: |
-      Built a foundation in computing, visual perception, and intelligent
-      vehicle systems for autonomous-driving research.
+      Built a foundation in vehicle engineering, visual perception, and
+      intelligent vehicle systems for autonomous-driving research.

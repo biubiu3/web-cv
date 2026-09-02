@@ -17,6 +17,7 @@ abstract: "HEAR formalizes Vision-Sound-Language-Action as a continuous robot-co
 summary: "A sound-centric embodied framework that gives robot policies causal audio memory, multimodal reasoning, future-audio prediction, and smooth action generation."
 story_order: 70
 tags:
+  - IJRR 2026
   - General Robot Systems
   - Embodied Intelligence
   - Vision-Sound-Language-Action

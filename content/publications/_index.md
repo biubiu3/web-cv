@@ -6,27 +6,28 @@ type: landing
 
 sections:
   - block: markdown
+    id: publication-intro
     content:
-      title: Research, Told as a Progression
+      title: Publications
       text: |-
-        The order below follows the ideas rather than the calendar: **reliable perception and geometry → multimodal data and models → general robot systems**. Every card opens either an official project/paper page or a visual local overview with the problem, central idea, and role in the larger research program.
+        Peer-reviewed papers and current preprints, listed from newest to oldest. Each entry includes the complete author list and its verified journal, conference, or preprint venue.
     design:
       columns: '1'
       background:
         gradient_mesh:
           enable: true
   - block: collection
+    id: publication-list
     content:
       filters:
         folders:
           - publications
-      sort_by: story_order
-      sort_ascending: true
+      sort_by: date
+      sort_ascending: false
       count: 8
     design:
-      view: article-grid
-      columns: 2
-      fill_image: false
+      view: citation
+      columns: 1
       show_read_time: false
       show_date: true
 ---

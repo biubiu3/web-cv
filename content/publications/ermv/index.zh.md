@@ -7,12 +7,16 @@ authors:
   - Hesheng Wang
 date: "2025-07-23T12:41:11Z"
 publication_types: ["article"]
+publication:
+  name: "arXiv 预印本"
+  short_name: "arXiv"
 peer_reviewed: false
 open_access: true
 abstract: "ERMV 是一个机器人数据增强框架，可从稀疏帧编辑和机器人状态条件出发，编辑完整的多视角机器人轨迹。极线运动感知注意力维持几何与外观一致性，稀疏时空建模高效扩展编辑窗口，多模态反馈则在序列不一致时请求定向干预。"
 summary: "一致、高效地编辑多视角机器人轨迹，为具身策略训练扩充数据。"
 story_order: 60
 tags:
+  - arXiv 2025
   - 多模态数据与模型
   - 具身智能
   - 数据增强
