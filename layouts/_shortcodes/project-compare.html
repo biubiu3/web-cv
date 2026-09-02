@@ -1,0 +1,17 @@
+{{- $left := .Page.Resources.GetMatch (.Get "left") -}}
+{{- $right := .Page.Resources.GetMatch (.Get "right") -}}
+<figure class="project-comparison">
+  <div class="project-comparison__grid">
+    {{- with $left -}}
+      {{- $display := . -}}
+      {{- if reflect.IsImageResourceProcessable . }}{{ $display = .Fit "1100x800 webp" }}{{ end -}}
+      <div><span>{{ $.Get "left_label" }}</span><img src="{{ $display.RelPermalink }}" width="{{ $display.Width }}" height="{{ $display.Height }}" loading="lazy" decoding="async" alt="{{ $.Get "left_alt" | plainify }}"></div>
+    {{- end -}}
+    {{- with $right -}}
+      {{- $display := . -}}
+      {{- if reflect.IsImageResourceProcessable . }}{{ $display = .Fit "1100x800 webp" }}{{ end -}}
+      <div><span>{{ $.Get "right_label" }}</span><img src="{{ $display.RelPermalink }}" width="{{ $display.Width }}" height="{{ $display.Height }}" loading="lazy" decoding="async" alt="{{ $.Get "right_alt" | plainify }}"></div>
+    {{- end -}}
+  </div>
+  {{- with .Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end -}}
+</figure>

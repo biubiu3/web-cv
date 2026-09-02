@@ -12,10 +12,13 @@ main:
     weight: 20
   - name: Selected Work
     url: /#papers
+    weight: 40
+  - name: Engineering
+    url: /#engineering-projects
     weight: 30
   - name: Publications
     url: publications/
-    weight: 40
+    weight: 50
   - name: Contact
     url: /#contact
-    weight: 50
+    weight: 60

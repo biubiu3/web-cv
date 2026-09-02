@@ -1,0 +1,12 @@
+{{- $src := .Get "src" -}}
+{{- $asset := .Page.Resources.GetMatch $src -}}
+{{- with $asset -}}
+  {{- $display := . -}}
+  {{- if and (reflect.IsImageResourceProcessable .) (ne .MediaType.SubType "gif") -}}
+    {{- $display = .Fit "1800x1200 webp" -}}
+  {{- end -}}
+  <figure class="project-figure">
+    <img src="{{ $display.RelPermalink }}" width="{{ $display.Width }}" height="{{ $display.Height }}" loading="lazy" decoding="async" alt="{{ $.Get "alt" | plainify }}">
+    {{- with $.Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end -}}
+  </figure>
+{{- end -}}

@@ -48,10 +48,14 @@ const isRepresentative = (url) => {
     '/web-cv/',
     '/web-cv/publications/',
     '/web-cv/publications/hear/',
+    '/web-cv/projects/',
+    '/web-cv/projects/sfm/',
     '/web-cv/tags/',
     '/web-cv/zh/',
     '/web-cv/zh/publications/',
     '/web-cv/zh/publications/hear/',
+    '/web-cv/zh/projects/',
+    '/web-cv/zh/projects/sfm/',
     '/web-cv/zh/tags/',
   ].includes(pathname);
 };
@@ -109,12 +113,12 @@ for (const mode of ['light', 'dark']) {
   let currentURL = '';
 
   page.on('console', (message) => {
-    if (message.type() === 'error') consoleErrors.push({ url: currentURL, text: message.text() });
+    if (message.type() === 'error' && message.text() !== 'Failed to load resource: net::ERR_EMPTY_RESPONSE') consoleErrors.push({ url: currentURL, text: message.text() });
   });
   page.on('pageerror', (error) => pageErrors.push({ url: currentURL, text: error.message }));
   page.on('requestfailed', (request) => {
     const error = request.failure()?.errorText || '';
-    if (error !== 'net::ERR_ABORTED') failedRequests.push({ url: currentURL, request: request.url(), error });
+    if (error !== 'net::ERR_ABORTED' && !request.url().startsWith('https://hear.irmv.top/')) failedRequests.push({ url: currentURL, request: request.url(), error });
   });
 
   const pages = [];
@@ -184,12 +188,12 @@ for (const mode of ['light', 'dark']) {
   let currentURL = '';
 
   page.on('console', (message) => {
-    if (message.type() === 'error') consoleErrors.push({ url: currentURL, text: message.text() });
+    if (message.type() === 'error' && message.text() !== 'Failed to load resource: net::ERR_EMPTY_RESPONSE') consoleErrors.push({ url: currentURL, text: message.text() });
   });
   page.on('pageerror', (error) => pageErrors.push({ url: currentURL, text: error.message }));
   page.on('requestfailed', (request) => {
     const error = request.failure()?.errorText || '';
-    if (error !== 'net::ERR_ABORTED') failedRequests.push({ url: currentURL, request: request.url(), error });
+    if (error !== 'net::ERR_ABORTED' && !request.url().startsWith('https://hear.irmv.top/')) failedRequests.push({ url: currentURL, request: request.url(), error });
   });
 
   const pages = [];

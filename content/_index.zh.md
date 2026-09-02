@@ -67,6 +67,23 @@ sections:
         **HEAR** 与 **Teach and Grow（TGL）** 是这条路线最具代表性的工作：HEAR 让机器人能够持续感知声音并据此操作；TGL 则将示范、工具、物理反馈和记忆组织为能够积累并复用能力的机器人系统。
     design:
       columns: '1'
+  - block: collection
+    id: engineering-projects
+    content:
+      title: '从论文走向真实工程'
+      text: |-
+        除了论文研究，我也参与需要面对真实传感器、系统接口与下游生产约束的工程项目。下面的案例展示了一个多相机场景重建模块，如何从几何方案走向实际应用的 4D 视觉自动化标注流程。
+      filters:
+        folders:
+          - projects
+      count: 1
+    design:
+      view: project-feature
+      columns: 1
+      fill_image: false
+      show_date: false
+      show_read_time: false
+      show_read_more: false
   - block: markdown
     id: papers
     content:

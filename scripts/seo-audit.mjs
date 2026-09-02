@@ -49,6 +49,10 @@ const pageRoutes = [
   'zh/',
   'publications/',
   'zh/publications/',
+  'projects/',
+  'zh/projects/',
+  'projects/sfm/',
+  'zh/projects/sfm/',
   ...Object.keys(publications).map((slug) => `publications/${slug}/`),
 ];
 
@@ -162,6 +166,13 @@ for (const relative of pageRoutes) {
     requireValue(state.citation.abstract[0]?.length >= 120, 'Publication citation abstract is missing or too short', { relative });
     requireValue(state.citation.pdfURL[0]?.startsWith('https://arxiv.org/pdf/'), 'Publication is missing an arXiv citation_pdf_url', { relative });
     requireValue(/\bAbstract\b/.test(state.visibleText), 'Publication abstract is not visibly rendered', { relative });
+  }
+
+  if (/^(zh\/)?projects\/sfm\/$/.test(relative)) {
+    const project = state.jsonLD.find((item) => item['@type'] === 'TechArticle');
+    requireValue(Boolean(project), 'SFM project page is missing TechArticle structured data', { relative });
+    requireValue(state.h1.length === 1, 'SFM project page should have exactly one H1', { relative, h1: state.h1 });
+    requireValue(state.visibleText.includes('MRASfM'), 'SFM project page is missing the related-paper connection', { relative });
   }
 }
 

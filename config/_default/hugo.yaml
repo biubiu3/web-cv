@@ -46,7 +46,8 @@ ignoreFiles:
   - "\\.Rmarkdown$"
   - "_cache$"
   # Keep the starter examples in Git history, but do not publish them.
-  - "content/(blog|courses|events|projects|slides)/"
+  - "content/(blog|courses|events|slides)/"
+  - "content/projects/(pandas|pytorch|scikit)/"
   - "content/publications/(conference-paper|journal-article|preprint)/"
   - "content/experience\\.md$"
 disableAliases: true

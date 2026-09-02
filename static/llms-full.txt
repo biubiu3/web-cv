@@ -33,6 +33,19 @@ The research program asks how robots can move beyond fixed, one-shot policies an
 
 HEAR and Teach and Grow are the two current representative systems. HEAR introduces continuous sound-aware manipulation. Teach and Grow organizes demonstrations, tools, physical feedback, skills, and memory so that a robot system can accumulate reusable capabilities.
 
+## Engineering Project Record
+
+### Multi-Camera SfM for 4D Vision Auto-Annotation
+
+- Context: A production-applied industry–academia collaboration with NETA Auto covering a larger 4D vision auto-annotation workflow.
+- Personal ownership: Nie Chang was responsible for the SfM/static scene-reconstruction subsystem rather than the full team program.
+- Inputs and outputs: Six-view surround imagery, localization, semantic masks, and initial calibration were converted into refined vehicle poses and camera extrinsics, sparse scene geometry, and dense ground point clouds for downstream reconstruction.
+- Engineering focus: Semantically masked SuperPoint features, overlap- and time-constrained matching, two-view verification, rig-aware registration and bundle adjustment, ACMP depth with COLMAP fusion, spatial filtering, and multi-run aggregation.
+- Validation: The project page reports acceptance evidence with explicit caveats, including 4.7695% mean dense-depth error against a lidar reference under an 8% project threshold and mixed trajectory results rather than an across-the-board accuracy claim.
+- Project page: https://biubiu3.github.io/web-cv/projects/sfm/
+- Chinese project page: https://biubiu3.github.io/web-cv/zh/projects/sfm/
+- Related paper: https://biubiu3.github.io/web-cv/publications/mrasfm/
+
 ## Publication Record
 
 ### Teach and Grow: An Agent-Centered Architecture for General Robot Learning

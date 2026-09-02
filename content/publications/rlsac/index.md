@@ -44,14 +44,92 @@ links:
     url: https://github.com/IRMVLab/RLSAC
 ---
 
-## The problem
+## At a glance
 
-Classical sample-consensus methods repeatedly propose minimum sets, but the sampler does not naturally learn from the hypotheses it has already tested.
+| Question | RLSAC's answer |
+|---|---|
+| What should be learned? | A sampling policy, rather than the geometric solver itself |
+| What supervision is required? | No labels for the “correct” minimum set; hypothesis quality supplies the reward |
+| What enters the policy state? | Observation features, the current sampling action, residuals, and the history of tested points |
+| Where is it evaluated? | Synthetic line fitting and real two-view fundamental-matrix estimation |
 
-## The idea
+Robust estimation often has an unusual computational shape: the solver may be well understood, yet its success depends on selecting a tiny all-inlier subset from a heavily contaminated observation set. RANSAC handles this by drawing minimum sets repeatedly, fitting a hypothesis from each set, and retaining the best consensus. Uniform sampling is dependable, but it does not learn from the evidence accumulated during that search. RLSAC asks whether the sequence of trials can itself become an adaptive decision process.
 
-RLSAC remodels consensus sampling as a reinforcement-learning process. A graph neural network encodes both the observations and sampling history; hypothesis quality becomes downstream feedback for proposing the next set.
+![The policy state is updated after every hypothesis evaluation.](state-transition.jpg "From one sample to the next: observation features, the selected set, residuals, and sampling history form a state transition.")
 
-## Why it matters in this research story
+## From repeated trials to a Markov decision process
 
-This work established an early theme that continues through my later research: **an intelligent system should use the outcome of an action to improve its next decision**. Here that loop operates over geometric hypotheses; later it expands to multimodal robot behavior.
+Let $\chi$ be the observations and $\mathcal{M}_j$ a sampled minimum set. A conventional consensus loop constructs hypotheses
+
+$$
+\mathcal{H}=\{S(\mathcal{M}_j)\}_{j=1}^{J},
+\qquad
+h_{\mathrm{best}}=\arg\max_{h\in\mathcal{H}} f(h,\chi),
+$$
+
+where $S$ is a task-specific solver and $f$ evaluates a hypothesis by its consensus. RLSAC leaves both interfaces intact. It replaces only the proposal rule: the next action is drawn from a learned policy,
+
+$$
+a_{t+1}\sim\pi_\phi(a_{t+1}\mid s_t),
+$$
+
+and the reward is the inlier ratio obtained after solving and scoring the proposed set. This is important because the reward evaluates the *joint geometric consequence* of the selected observations. Training therefore does not require a point-by-point inlier annotation or a label identifying one privileged minimum set.
+
+The state contains four complementary signals:
+
+1. **Data features** describe each observation. Their representation is task dependent—for example, point coordinates for line fitting and coordinates, matching scores, and descriptors for correspondence estimation.
+2. **Action features** mark whether a point belongs to the currently sampled set using $+1/-1$ indicators.
+3. **Residual features** record how well every observation agrees with the hypothesis produced by that action.
+4. **Historical features** count how often each point has already been selected, preventing the policy from behaving as if every trial were the first.
+
+Together these signals turn “fit, score, discard” into a state transition. A good hypothesis provides positive evidence about its selected points and nearby structure; a poor one still teaches the sampler which combinations consumed budget without improving consensus.
+
+## Policy and training
+
+The policy uses an EdgeConv/DGCNN-style graph network, so pointwise evidence can interact with local neighborhoods. The network outputs a distribution over observations, from which a non-duplicate minimum set is drawn. The environment then invokes the unchanged geometric solver and updates residual and history features. A discrete Soft Actor-Critic objective trains the policy off-policy, balancing reward and exploration.
+
+Training runs for 100 epochs. An episode stops when the inlier count is unchanged for $\kappa=2$ transitions, when the best inlier ratio has not improved for $\varsigma=3$ transitions, or after $\psi=15$ transitions. At test time, only the maximum iteration budget is used so that early stopping cannot conceal difficult cases. The graph neighborhood size is 15. The reported implementation was trained on an NVIDIA RTX 2080 Ti.
+
+## Experiment 1: line fitting under severe outliers
+
+The controlled line-fitting study uses 100 points in a $10\times10$ region and an inlier threshold of 0.1. Accuracy is measured by mean average accuracy at $0.5^\circ$ and median angular error, with a budget of 150 iterations. The visualization below shows that iterative feedback progressively concentrates samples on the line rather than repeatedly spending hypotheses on outlier combinations.
+
+![RLSAC progressively improves the sampled line hypothesis.](line-refinement.jpg "Line fitting across successive policy transitions.")
+
+| Outlier ratio | Method | mAA $\uparrow$ | Median error $\downarrow$ |
+|---:|---|---:|---:|
+| 50% | RANSAC | 0.796 | $0.071^\circ$ |
+| 50% | RLSAC | **0.858** | **$0.052^\circ$** |
+| 70% | RANSAC | 0.608 | $0.135^\circ$ |
+| 70% | RLSAC | **0.824** | **$0.062^\circ$** |
+
+The gap widens as contamination grows. This is the regime in which learning from previous hypotheses matters most: uniform sampling becomes increasingly likely to revisit unproductive combinations, while RLSAC carries forward residual and history evidence.
+
+## Experiment 2: real correspondence estimation
+
+For fundamental-matrix estimation, the study follows the RANSAC tutorial data protocol: 12 training scenes provide 100,000 image pairs each, and two held-out scenes provide 4,950 pairs each. The top 150 correspondences are represented by 261-dimensional inputs built from coordinates, nearest-neighbor matching information, and local descriptors. An eight-point solver generates each hypothesis and a threshold of 4 pixels defines consensus.
+
+![Correspondence confidence and epipolar geometry are refined through feedback.](fundamental-refinement.jpg "Fundamental-matrix estimation examples across RLSAC transitions.")
+
+At a budget of 1,000 hypotheses, the comparison is:
+
+| Method | Rotation mAA $\uparrow$ | Translation mAA $\uparrow$ | Rotation median $\downarrow$ | Translation median $\downarrow$ |
+|---|---:|---:|---:|---:|
+| RANSAC | 0.644 | 0.488 | $2.307^\circ$ | $5.100^\circ$ |
+| USAC | 0.741 | 0.604 | $1.036^\circ$ | $2.157^\circ$ |
+| MAGSAC++ | 0.753 | 0.614 | **$0.924^\circ$** | $1.895^\circ$ |
+| RLSAC | **0.760** | **0.622** | $0.926^\circ$ | **$1.751^\circ$** |
+
+![Accuracy as the available hypothesis budget changes.](iteration-results.jpg "Performance versus the number of consensus iterations.")
+
+## What the ablations establish
+
+Removing local descriptors lowers rotation/translation mAA from $0.760/0.622$ to $0.702/0.568$, showing that geometry and appearance are complementary. Probabilistic actions during training combined with maximum-probability selection at inference give the strongest result: exploration helps learn the state transitions, while deterministic deployment spends the test budget on the current best choices. Among the evaluated correspondence-set sizes, $N=150$ performs best.
+
+These experiments support a precise claim: **within a fixed consensus pipeline, an adaptive sampler can use downstream geometric feedback and sampling history to allocate its hypothesis budget more effectively.** They do not imply that the learned sampler is a universal replacement for every robust estimator.
+
+## Limitations and perspective
+
+RLSAC introduces a training stage and a learned policy where classical estimators require none. A policy trained for one input representation and solver is not automatically transferable to a different estimation problem. The iterative interaction also adds implementation complexity, even though the solver remains modular.
+
+The broader idea outlives this particular estimator: a system should observe the consequence of a proposal, preserve that evidence in state, and let it change the next proposal. In RLSAC the actions are minimum sets and the feedback is geometric consensus; later work in this research line extends the same closed-loop principle to multimodal prediction and physical robot behavior.

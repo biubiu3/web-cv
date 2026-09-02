@@ -108,7 +108,7 @@ async function inventory(page) {
 }
 
 async function captureSections(page, suffix) {
-  const sectionIds = ['about', 'robot-demos', 'research', 'papers', 'foundations', 'multimodal-models', 'general-systems', 'contact'];
+  const sectionIds = ['about', 'robot-demos', 'research', 'engineering-projects', 'papers', 'foundations', 'multimodal-models', 'general-systems', 'contact'];
   for (const id of sectionIds) {
     const section = page.locator(`#${id}`).first();
     if (!await section.count()) continue;
@@ -239,6 +239,7 @@ async function captureSections(page, suffix) {
   for (const { name, target } of [
     { name: 'About', target: 'about' },
     { name: 'Research', target: 'research' },
+    { name: 'Engineering', target: 'engineering-projects' },
     { name: 'Selected Work', target: 'papers' },
     { name: 'Contact', target: 'contact' },
   ]) {
@@ -309,6 +310,29 @@ async function captureSections(page, suffix) {
     await video.evaluate((element) => element.pause());
   }
 
+  await page.goto(homeURL);
+  await settle(page);
+  const projectLink = page.locator('.project-feature-link').first();
+  if (await projectLink.count()) {
+    await localizeClickTarget(projectLink);
+    await projectLink.click();
+    await settle(page);
+    report.interactions.engineeringProject = {
+      url: page.url(),
+      h1: await page.locator('h1').first().textContent(),
+      pipelineStages: await page.locator('.project-pipeline__stage').count(),
+      comparisons: await page.locator('.project-comparison').count(),
+      videos: await page.locator('.project-video-card video').count(),
+      shareActions: await page.locator('.paper-share__button').count(),
+      techArticleJsonLd: await page.locator('script[type="application/ld+json"]').evaluateAll((scripts) => scripts.some((script) => {
+        try { return JSON.parse(script.textContent)['@type'] === 'TechArticle'; } catch { return false; }
+      })),
+    };
+    await page.screenshot({ path: path.join(outputDir, 'project-sfm-desktop.png'), fullPage: true });
+  }
+
+  await page.goto(homeURL);
+  await settle(page);
   report.interactions.contact = await page.locator('#contact a[href^="mailto:"]').first().evaluate((link) => ({
     href: link.href,
     text: link.textContent?.trim(),
@@ -355,6 +379,19 @@ async function captureSections(page, suffix) {
     await page.screenshot({ path: path.join(outputDir, 'home-dark-mobile.png'), fullPage: true });
     await captureSections(page, 'dark-mobile');
   }
+
+  await page.goto(new URL('projects/sfm/', auditBase).href);
+  await settle(page);
+  report.views.projectMobile = {
+    url: page.url(),
+    title: await page.title(),
+    lang: await page.locator('html').getAttribute('lang'),
+    scrollHeight: await page.evaluate(() => document.documentElement.scrollHeight),
+    bodyScrollWidth: await page.evaluate(() => document.body.scrollWidth),
+    clientWidth: await page.evaluate(() => document.documentElement.clientWidth),
+    videos: await page.locator('.project-video-card video').count(),
+  };
+  await page.screenshot({ path: path.join(outputDir, 'project-sfm-mobile.png'), fullPage: true });
   await context.close();
 }
 

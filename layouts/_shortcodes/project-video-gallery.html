@@ -1,0 +1,23 @@
+{{- $videos := .Page.Params.project_videos | default slice -}}
+{{- $isZh := eq .Page.Lang "zh" -}}
+<div class="project-video-gallery" aria-label="{{ if $isZh }}项目视频{{ else }}Project videos{{ end }}">
+  {{- range $videos -}}
+    {{- $entry := . -}}
+    {{- $video := $.Page.Resources.GetMatch $entry.src -}}
+    {{- $poster := $.Page.Resources.GetMatch $entry.poster -}}
+    {{- $posterURL := "" -}}
+    {{- with $poster -}}
+      {{- $display := . -}}
+      {{- if reflect.IsImageResourceProcessable . }}{{ $display = .Fit "1200x760 webp" }}{{ end -}}
+      {{- $posterURL = $display.RelPermalink -}}
+    {{- end -}}
+    {{- with $video -}}
+      <figure class="project-video-card">
+        <video controls playsinline preload="none" {{ with $posterURL }}poster="{{ . }}"{{ end }} aria-label="{{ $entry.title | default "Project video" }}">
+          <source src="{{ .RelPermalink }}" type="video/mp4">
+        </video>
+        <figcaption><strong>{{ $entry.title }}</strong><span>{{ $entry.description }}</span></figcaption>
+      </figure>
+    {{- end -}}
+  {{- end -}}
+</div>

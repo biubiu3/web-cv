@@ -1,0 +1,35 @@
+{{- $item := .item -}}
+{{- $link := $item.RelPermalink -}}
+{{- $resource := partial "functions/get_featured_image.html" $item -}}
+{{- $meta := $item.Params.project | default dict -}}
+{{- $isZh := eq site.Language.Lang "zh" -}}
+
+<article class="project-feature-card" aria-labelledby="project-title-{{ $item.File.UniqueID }}">
+  <a class="project-feature-media" href="{{ $link }}" aria-label="{{ $item.Title | plainify }}">
+    {{- with $resource -}}
+      {{- $display := . -}}
+      {{- if and (reflect.IsImageResourceProcessable .) (ne .MediaType.SubType "gif") -}}
+        {{- $display = .Fit "1400x900 webp" -}}
+      {{- end -}}
+      <img src="{{ $display.RelPermalink }}" width="{{ $display.Width }}" height="{{ $display.Height }}" loading="lazy" decoding="async" alt="{{ $item.Params.image.alt_text | default $item.Title | plainify }}">
+    {{- end -}}
+    <span class="project-feature-media-label">{{ if $isZh }}真实道路数据 · 多相机三维重建{{ else }}Real-road data · Multi-camera 3D reconstruction{{ end }}</span>
+  </a>
+
+  <div class="project-feature-copy">
+    <div class="project-feature-kickers">
+      <span>{{ index $meta "collaboration" }}</span>
+      <span class="is-status">{{ index $meta "status" }}</span>
+      <span>{{ index $meta "period" }}</span>
+    </div>
+    <h2 id="project-title-{{ $item.File.UniqueID }}"><a href="{{ $link }}">{{ $item.Title }}</a></h2>
+    <p class="project-feature-summary">{{ $item.Params.summary | default $item.Summary | plainify }}</p>
+    <dl class="project-feature-facts">
+      <div><dt>{{ if $isZh }}个人负责{{ else }}My ownership{{ end }}</dt><dd>{{ index $meta "role" }}</dd></div>
+      <div><dt>{{ if $isZh }}系统输出{{ else }}System outputs{{ end }}</dt><dd>{{ index $meta "outputs" }}</dd></div>
+    </dl>
+    <a class="project-feature-link" href="{{ $link }}">
+      {{ if $isZh }}查看完整工程案例{{ else }}Read the engineering case{{ end }} <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</article>

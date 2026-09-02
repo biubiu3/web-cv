@@ -1,0 +1,15 @@
+{{- $meta := .Page.Params.project | default dict -}}
+{{- $isZh := eq .Page.Lang "zh" -}}
+<aside class="project-overview" aria-label="{{ if $isZh }}项目范围{{ else }}Project scope{{ end }}">
+  <div class="project-overview__lead">
+    <span>{{ if $isZh }}工程案例{{ else }}Engineering case study{{ end }}</span>
+    <strong>{{ index $meta "collaboration" }}</strong>
+    <p>{{ index $meta "context" }}</p>
+  </div>
+  <dl>
+    <div><dt>{{ if $isZh }}时间{{ else }}Period{{ end }}</dt><dd>{{ index $meta "period" }}</dd></div>
+    <div><dt>{{ if $isZh }}项目状态{{ else }}Project status{{ end }}</dt><dd>{{ index $meta "status" }}</dd></div>
+    <div><dt>{{ if $isZh }}个人负责{{ else }}My responsibility{{ end }}</dt><dd>{{ index $meta "role" }}</dd></div>
+    <div><dt>{{ if $isZh }}主要交付{{ else }}Primary handoff{{ end }}</dt><dd>{{ index $meta "outputs" }}</dd></div>
+  </dl>
+</aside>

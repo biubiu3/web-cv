@@ -75,6 +75,23 @@ sections:
         **HEAR** and **Teach and Grow (TGL)** are the clearest expressions of this direction: HEAR introduces continuous sound-aware manipulation, while TGL organizes demonstrations, tools, physical feedback, and memory into a robot system that accumulates reusable capabilities.
     design:
       columns: '1'
+  - block: collection
+    id: engineering-projects
+    content:
+      title: 'Engineering in the Real World'
+      text: |-
+        Beyond research papers, I build systems that must work with real sensors, real interfaces, and downstream production constraints. This selected case shows how a multi-camera reconstruction module moved from geometric design to an applied 4D vision auto-annotation pipeline.
+      filters:
+        folders:
+          - projects
+      count: 1
+    design:
+      view: project-feature
+      columns: 1
+      fill_image: false
+      show_date: false
+      show_read_time: false
+      show_read_more: false
   - block: markdown
     id: papers
     content:

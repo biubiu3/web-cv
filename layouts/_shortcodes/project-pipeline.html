@@ -1,0 +1,27 @@
+{{- $isZh := eq .Page.Lang "zh" -}}
+<div class="project-pipeline" role="img" aria-label="{{ if $isZh }}从多传感器输入到重建结果的工程流程{{ else }}Engineering pipeline from multi-sensor inputs to reconstruction outputs{{ end }}">
+  <div class="project-pipeline__stage is-input">
+    <span>01</span><strong>{{ if $isZh }}输入与标定{{ else }}Inputs &amp; calibration{{ end }}</strong>
+    <small>{{ if $isZh }}六路环视图像 · 多传感器定位 · 语义掩膜 · 初始内外参{{ else }}Six-view imagery · multi-sensor pose · semantic masks · initial calibration{{ end }}</small>
+  </div>
+  <i aria-hidden="true">→</i>
+  <div class="project-pipeline__stage">
+    <span>02</span><strong>{{ if $isZh }}受约束的关联{{ else }}Constrained association{{ end }}</strong>
+    <small>{{ if $isZh }}SuperPoint · 时序/视野先验 · 两视几何校验{{ else }}SuperPoint · temporal/overlap priors · two-view geometry{{ end }}</small>
+  </div>
+  <i aria-hidden="true">→</i>
+  <div class="project-pipeline__stage">
+    <span>03</span><strong>{{ if $isZh }}相机组稀疏重建{{ else }}Rig-aware sparse SfM{{ end }}</strong>
+    <small>{{ if $isZh }}初始化 · 相机组注册 · 三角化 · RIG BA · 外点过滤{{ else }}Initialization · rig registration · triangulation · RIG BA · outlier filtering{{ end }}</small>
+  </div>
+  <i aria-hidden="true">→</i>
+  <div class="project-pipeline__stage">
+    <span>04</span><strong>{{ if $isZh }}稠密化与聚合{{ else }}Densification &amp; aggregation{{ end }}</strong>
+    <small>{{ if $isZh }}ACMP 深度 · COLMAP 融合 · 地面过滤 · 多趟对齐{{ else }}ACMP depth · COLMAP fusion · ground filtering · multi-run alignment{{ end }}</small>
+  </div>
+  <i aria-hidden="true">→</i>
+  <div class="project-pipeline__stage is-output">
+    <span>05</span><strong>{{ if $isZh }}工程输出{{ else }}Engineering outputs{{ end }}</strong>
+    <small>{{ if $isZh }}优化位姿与外参 · 稀疏/稠密地面点云 · 下游重建先验{{ else }}Refined poses/extrinsics · sparse/dense ground cloud · downstream priors{{ end }}</small>
+  </div>
+</div>
