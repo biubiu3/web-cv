@@ -6,13 +6,13 @@ const root = fileURLToPath(new URL('..', import.meta.url));
 const outputRoot = join(root, 'artifacts', 'publication-covers');
 const covers = [
   ['hear', 'hear-integrated-text-v6.png'],
-  ['tgl', 'tgl-integrated-text-v1.png'],
-  ['mrasfm', 'mrasfm-integrated-text-v1.png'],
-  ['mid', 'mid-integrated-text-v1.png'],
-  ['diffsac', 'diffsac-integrated-text-v1.png'],
-  ['ermv', 'ermv-integrated-text-v1.png'],
-  ['movsam', 'movsam-integrated-text-v1.png'],
-  ['rlsac', 'rlsac-integrated-text-v1.png'],
+  ['tgl', 'tgl-integrated-text-v2.png'],
+  ['mrasfm', 'mrasfm-integrated-text-v2.png'],
+  ['mid', 'mid-integrated-text-v2.png'],
+  ['diffsac', 'diffsac-integrated-text-v2.png'],
+  ['ermv', 'ermv-integrated-text-v2.png'],
+  ['movsam', 'movsam-integrated-text-v2.png'],
+  ['rlsac', 'rlsac-integrated-text-v2.png'],
 ];
 
 mkdirSync(outputRoot, { recursive: true });

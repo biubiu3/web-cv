@@ -30,7 +30,7 @@ tags:
 featured: false
 image:
   caption: 'Research overview: one guide-frame edit propagates across camera views and time while sparse tokens, motion-aware epipolar attention, and sequence verification preserve consistency.'
-  alt_text: 'White ERMV accordion-storyboard infographic showing one guide-frame edit propagated over head, front, left, and wrist cameras at three times, sparse spatio-temporal tokens, motion-aware epipolar attention, fixed robot actions, and consistent or targeted-correction outcomes.'
+  alt_text: 'White ERMV scientific diagram showing one guide-frame edit propagated through a three-time by four-camera grid, with sparse spatio-temporal tokens, epipolar motion-aware attention, fixed robot actions, sequence verification, and parallel consistent or targeted-mask outcomes.'
 hugoblox:
   ids:
     arxiv: 2507.17462v1

@@ -30,7 +30,7 @@ tags:
 featured: false
 image:
   caption: 'Research overview: one still image drives scene reasoning, language prompting, multimodal feature aggregation, and a bounded five-round mask-refinement loop.'
-  alt_text: 'White MovSAM mixed-media infographic centered on one urban still image, with a cyclist and pedestrian mask, no temporal input, a person-and-bicycle text prompt, SAM2 and BEiT-3 features, aggregation, and a five-round inspect-and-refine loop.'
+  alt_text: 'White MovSAM scientific diagram showing one urban RGB image without temporal input, scene reasoning and a person-and-bicycle prompt, SAM2 and BEiT-3 feature aggregation, cyclist and pedestrian masks, and a bounded five-round inspection and refinement loop.'
 hugoblox:
   ids:
     doi: 10.1109/IROS60139.2025.11246064

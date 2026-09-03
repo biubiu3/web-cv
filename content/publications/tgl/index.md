@@ -30,7 +30,7 @@ tags:
 featured: true
 image:
   caption: 'Research overview: demonstrations become a verified Skill Block; action outcomes feed a Skill Library and Experience Memory for reuse.'
-  alt_text: 'White TGL cut-paper infographic showing three demonstrations of the same bowl-placement skill, a closed-loop Skill Block, physical verification, pass and repair branches, a Skill Library, Experience Memory, and a related new task.'
+  alt_text: 'White TGL scientific diagram showing three demonstrations of the same bowl-placement skill, a reusable Skill Block, physical execution and verification, pass and repair branches, a Skill Library, Experience Memory, and a new task invoking the learned capability.'
 links:
   - type: preprint
     provider: arxiv

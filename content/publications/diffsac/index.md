@@ -28,7 +28,7 @@ tags:
 featured: false
 image:
   caption: 'Research overview: multiple noise seeds follow parallel confidence-refinement paths to diverse minimum sets scored by classical consensus.'
-  alt_text: 'White DiffSAC probabilistic-geometry infographic showing three left-to-right reverse-diffusion confidence paths, jointly compatible line, plane, epipolar, and homography minimum sets, task-specific solvers, a consensus scale, and the best hypothesis.'
+  alt_text: 'White DiffSAC scientific diagram showing three left-to-right reverse-diffusion confidence paths for one line-fitting task, three candidate hypotheses scored by consensus with h2 selected, and a separate strip of task-specific classical solvers.'
 hugoblox:
   ids:
     arxiv: 2608.30603v1

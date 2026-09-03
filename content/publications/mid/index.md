@@ -27,7 +27,7 @@ tags:
 featured: false
 image:
   caption: 'Research overview: stage estimation and local residual prediction drive an iterative self-supervised reverse process shared across five modalities.'
-  alt_text: 'White MID scientific-specimen infographic showing controlled extra corruption, a stage estimator, a local residual predictor, a concentric iterative restoration process, and examples for images, geometry, biosignals, MRI, and proteins.'
+  alt_text: 'White MID scientific diagram showing a noisy sample, controlled extra corruption, stage estimation, local residual prediction, an iterative reverse update, and denoising examples for images, geometry, biosignals, MRI, and proteins.'
 hugoblox:
   ids:
     doi: 10.1109/TNNLS.2026.3683544

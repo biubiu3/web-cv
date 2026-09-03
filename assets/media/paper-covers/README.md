@@ -2,17 +2,19 @@
 
 The cover redesign uses one native image-with-text source for each of the eight main papers. `scripts/build-publication-covers.mjs` copies those generated PNGs directly into their publication directories; it does not add browser, SVG, canvas, or post-rendered typography.
 
-The seven non-HEAR production prompts and targeted corrections are recorded in [`integrated-text-prompts-v1.md`](integrated-text-prompts-v1.md). Their visual languages were deliberately separated:
+The first non-HEAR experiment is archived in [`integrated-text-prompts-v1.md`](integrated-text-prompts-v1.md). It was rejected because varying the illustration medium introduced cut-paper, cartographic, specimen, storyboard, collage, and retro-instrument treatments that did not read as rigorous paper figures.
+
+The deployed replacements are recorded in [`integrated-text-prompts-v2.md`](integrated-text-prompts-v2.md). HEAR is the common visual-system reference: pure white background, consistent vector line work, disciplined sans-serif typography, aligned modules, and functional arrows. Each paper varies only its scientific topology, subject illustrations, and restrained accent colors.
 
 | Paper | Source PNG | Visual language |
 |---|---|---|
-| TGL | `tgl-integrated-text-v1.png` | modular cut-paper growth cycle |
-| MRASfM | `mrasfm-integrated-text-v1.png` | cartographic field survey |
-| MID | `mid-integrated-text-v1.png` | concentric scientific specimen plate |
-| DiffSAC | `diffsac-integrated-text-v1.png` | parallel probabilistic geometry print |
-| ERMV | `ermv-integrated-text-v1.png` | folded multi-view storyboard |
-| MovSAM | `movsam-integrated-text-v1.png` | single-image editorial collage |
-| RLSAC | `rlsac-integrated-text-v1.png` | mechanical experiment dial |
+| TGL | `tgl-integrated-text-v2.png` | verified skill-block execution loop |
+| MRASfM | `mrasfm-integrated-text-v2.png` | rigid-camera reconstruction and session assembly |
+| MID | `mid-integrated-text-v2.png` | iterative self-supervised denoising pipeline |
+| DiffSAC | `diffsac-integrated-text-v2.png` | parallel minimum-set proposal and consensus |
+| ERMV | `ermv-integrated-text-v2.png` | time-by-camera editing and verification grid |
+| MovSAM | `movsam-integrated-text-v2.png` | single-image reasoning and bounded mask refinement |
+| RLSAC | `rlsac-integrated-text-v2.png` | sample-solve-score-state feedback loop |
 
 ## HEAR native image-with-text sample
 

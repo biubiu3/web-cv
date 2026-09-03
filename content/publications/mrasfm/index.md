@@ -33,7 +33,7 @@ tags:
 featured: false
 image:
   caption: 'Research overview: a rigid surround-camera set, road filtering, camera-set BA, and cross-session alignment produce one coherent 3D map.'
-  alt_text: 'White cartographic MRASfM infographic showing a six-camera driving rig, fixed inter-camera geometry, road-plane filtering, camera-set bundle adjustment, two driving sessions, and their assembled 3D street map.'
+  alt_text: 'White MRASfM scientific diagram showing a rigid six-camera vehicle, road-point filtering, camera-set bundle adjustment, two reconstructed driving sessions, coarse-to-fine association, and one coherent 3D street map.'
 links:
   - type: preprint
     provider: arxiv

@@ -32,7 +32,7 @@ tags:
 featured: false
 image:
   caption: 'Research overview: each sampled hypothesis yields residual, reward, and history evidence that updates the next sampling state.'
-  alt_text: 'White RLSAC scientific-instrument infographic showing a clockwise sample, solve, score, and state-update dial around contaminated line data, an inlier-ratio reward gauge, per-point history, the next-sample policy equation, and a fundamental-matrix inset.'
+  alt_text: 'White RLSAC scientific diagram showing the sample, classical solve, consensus score, and state-update loop, with residual and inlier-ratio feedback, per-point sampling history, and separate line-fitting and fundamental-matrix examples.'
 hugoblox:
   ids:
     arxiv: 2308.05318v1
