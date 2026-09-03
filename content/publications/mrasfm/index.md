@@ -32,8 +32,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'Research overview: rigid camera-set optimization and cross-session assembly organize multi-drive reconstruction.'
-  alt_text: 'MRASfM map-archive cover with driving imagery, a camera-set bundle-adjustment diagram, and a coarse-to-fine scene-assembly result.'
+  caption: 'Research overview: a rigid surround-camera set, road filtering, camera-set BA, and cross-session alignment produce one coherent 3D map.'
+  alt_text: 'White cartographic MRASfM infographic showing a six-camera driving rig, fixed inter-camera geometry, road-plane filtering, camera-set bundle adjustment, two driving sessions, and their assembled 3D street map.'
 links:
   - type: preprint
     provider: arxiv

@@ -27,8 +27,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'Research overview: confidence reverse diffusion yields candidate minimum sets before geometric consensus.'
-  alt_text: 'DiffSAC editorial cover with the confidence-diffusion sequence, correspondence results, and the stages noise, refine, solve.'
+  caption: 'Research overview: multiple noise seeds follow parallel confidence-refinement paths to diverse minimum sets scored by classical consensus.'
+  alt_text: 'White DiffSAC probabilistic-geometry infographic showing three left-to-right reverse-diffusion confidence paths, jointly compatible line, plane, epipolar, and homography minimum sets, task-specific solvers, a consensus scale, and the best hypothesis.'
 hugoblox:
   ids:
     arxiv: 2608.30603v1

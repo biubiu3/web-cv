@@ -1,6 +1,18 @@
 # Publication-cover source note
 
-The current cover redesign is being reviewed one paper at a time. `scripts/build-publication-covers.mjs` currently publishes only the HEAR graphical-abstract sample.
+The cover redesign uses one native image-with-text source for each of the eight main papers. `scripts/build-publication-covers.mjs` copies those generated PNGs directly into their publication directories; it does not add browser, SVG, canvas, or post-rendered typography.
+
+The seven non-HEAR production prompts and targeted corrections are recorded in [`integrated-text-prompts-v1.md`](integrated-text-prompts-v1.md). Their visual languages were deliberately separated:
+
+| Paper | Source PNG | Visual language |
+|---|---|---|
+| TGL | `tgl-integrated-text-v1.png` | modular cut-paper growth cycle |
+| MRASfM | `mrasfm-integrated-text-v1.png` | cartographic field survey |
+| MID | `mid-integrated-text-v1.png` | concentric scientific specimen plate |
+| DiffSAC | `diffsac-integrated-text-v1.png` | parallel probabilistic geometry print |
+| ERMV | `ermv-integrated-text-v1.png` | folded multi-view storyboard |
+| MovSAM | `movsam-integrated-text-v1.png` | single-image editorial collage |
+| RLSAC | `rlsac-integrated-text-v1.png` | mechanical experiment dial |
 
 ## HEAR native image-with-text sample
 

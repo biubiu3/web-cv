@@ -29,8 +29,8 @@ tags:
   - Multimodal Learning
 featured: false
 image:
-  caption: 'Research overview: a film strip shows one edit propagated across multiple cameras, frames, and real-robot evaluation.'
-  alt_text: 'ERMV film-strip cover with edited robot scenes across camera views and time, plus an inset from the real-robot evaluation.'
+  caption: 'Research overview: one guide-frame edit propagates across camera views and time while sparse tokens, motion-aware epipolar attention, and sequence verification preserve consistency.'
+  alt_text: 'White ERMV accordion-storyboard infographic showing one guide-frame edit propagated over head, front, left, and wrist cameras at three times, sparse spatio-temporal tokens, motion-aware epipolar attention, fixed robot actions, and consistent or targeted-correction outcomes.'
 hugoblox:
   ids:
     arxiv: 2507.17462v1

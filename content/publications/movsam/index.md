@@ -29,8 +29,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'Research overview: single-image reasoning identifies what could move and refines the segmentation mask without temporal cues.'
-  alt_text: 'MovSAM editorial cover with a language-guided person mask and a four-frame occlusion sequence, emphasizing that inference starts from one still image.'
+  caption: 'Research overview: one still image drives scene reasoning, language prompting, multimodal feature aggregation, and a bounded five-round mask-refinement loop.'
+  alt_text: 'White MovSAM mixed-media infographic centered on one urban still image, with a cyclist and pedestrian mask, no temporal input, a person-and-bicycle text prompt, SAM2 and BEiT-3 features, aggregation, and a five-round inspect-and-refine loop.'
 hugoblox:
   ids:
     doi: 10.1109/IROS60139.2025.11246064

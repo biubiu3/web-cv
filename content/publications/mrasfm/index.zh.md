@@ -33,8 +33,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: '研究概览：刚性相机组优化与跨次场景拼装共同组织多段驾驶数据的重建。'
-  alt_text: 'MRASfM 地图档案式封面，包含驾驶图像、相机组束调整示意图和从粗到细的场景拼装结果。'
+  caption: '研究概览：刚性环视相机组、道路过滤、相机组束调整和跨次对齐共同生成一致三维地图。'
+  alt_text: '白底 MRASfM 制图式信息图：六相机车载平台展示固定相机间几何，并依次进行道路平面过滤、相机组束调整和两段驾驶场景的三维地图拼装。'
 links:
   - type: preprint
     provider: arxiv

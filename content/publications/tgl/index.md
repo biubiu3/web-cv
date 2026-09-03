@@ -29,8 +29,8 @@ tags:
   - Robot Manipulation
 featured: true
 image:
-  caption: 'Research overview: a closed-loop Skill Block and the learning ecosystem connect teaching, verification, storage, and reuse.'
-  alt_text: 'TGL laboratory-manual cover with a Skill Block, before-and-after robot scenes, and the sequence teach, check, store, reuse.'
+  caption: 'Research overview: demonstrations become a verified Skill Block; action outcomes feed a Skill Library and Experience Memory for reuse.'
+  alt_text: 'White TGL cut-paper infographic showing three demonstrations of the same bowl-placement skill, a closed-loop Skill Block, physical verification, pass and repair branches, a Skill Library, Experience Memory, and a related new task.'
 links:
   - type: preprint
     provider: arxiv

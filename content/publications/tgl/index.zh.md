@@ -30,8 +30,8 @@ tags:
   - Robot Manipulation
 featured: true
 image:
-  caption: '研究概览：闭环技能块与学习生态把教学、验证、存储和复用连接成持续增长过程。'
-  alt_text: 'TGL 实验手册式封面，包含技能块、机器人执行前后画面以及“教学、检查、存储、复用”流程。'
+  caption: '研究概览：多次示教形成经过验证的技能块，执行结果进入技能库和经验记忆并服务后续任务。'
+  alt_text: '白底 TGL 剪纸式信息图：同一碗放置技能的三次示教形成闭环技能块，机器人经过物理验证后进入成功复用或修复教学分支，并更新技能库与经验记忆。'
 links:
   - type: preprint
     provider: arxiv

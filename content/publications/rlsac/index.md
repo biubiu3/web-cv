@@ -31,8 +31,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'Research overview: the line-fitting trace and policy-state diagram show how each hypothesis updates the next sample.'
-  alt_text: 'RLSAC editorial cover with a ten-step line-fitting trace, a policy-state inset, and the loop sample, solve, score, update.'
+  caption: 'Research overview: each sampled hypothesis yields residual, reward, and history evidence that updates the next sampling state.'
+  alt_text: 'White RLSAC scientific-instrument infographic showing a clockwise sample, solve, score, and state-update dial around contaminated line data, an inlier-ratio reward gauge, per-point history, the next-sample policy equation, and a fundamental-matrix inset.'
 hugoblox:
   ids:
     arxiv: 2308.05318v1

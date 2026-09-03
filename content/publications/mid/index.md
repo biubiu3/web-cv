@@ -26,8 +26,8 @@ tags:
   - Denoising
 featured: false
 image:
-  caption: 'Research overview: paper figures from five modalities frame the shared estimate-residual-repeat loop.'
-  alt_text: 'Editorial cover labeled MID with paper figures for images, geometry, biosignals, MRI, and protein representations beside the sequence stage, residual, updated sample.'
+  caption: 'Research overview: stage estimation and local residual prediction drive an iterative self-supervised reverse process shared across five modalities.'
+  alt_text: 'White MID scientific-specimen infographic showing controlled extra corruption, a stage estimator, a local residual predictor, a concentric iterative restoration process, and examples for images, geometry, biosignals, MRI, and proteins.'
 hugoblox:
   ids:
     doi: 10.1109/TNNLS.2026.3683544
