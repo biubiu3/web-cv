@@ -3,7 +3,7 @@
 {{- $resource := partial "functions/get_featured_image.html" $item -}}
 {{- $meta := $item.Params.project | default dict -}}
 {{- $isZh := eq site.Language.Lang "zh" -}}
-{{- $defaultLabel := cond $isZh "4D 视觉自动标注 · SfM 个人负责" "4D vision auto-annotation · SfM ownership" -}}
+{{- $defaultLabel := cond $isZh "4D 视觉自动标注 · SfM 重建" "4D vision auto-annotation · SfM reconstruction" -}}
 {{- $cardLabel := index $meta "card_label" | default $defaultLabel -}}
 
 <article class="project-feature-card" aria-labelledby="project-title-{{ $item.File.UniqueID }}">
@@ -28,8 +28,8 @@
     <p class="project-feature-summary">{{ $item.Params.summary | default $item.Summary | plainify }}</p>
     <dl class="project-feature-facts">
       <div><dt>{{ if $isZh }}完整系统{{ else }}Wider system{{ end }}</dt><dd>{{ index $meta "wider_system" }}</dd></div>
-      <div><dt>{{ if $isZh }}个人负责{{ else }}My ownership{{ end }}</dt><dd>{{ index $meta "role" }}</dd></div>
-      <div><dt>{{ if $isZh }}模块交付{{ else }}My handoff{{ end }}</dt><dd>{{ index $meta "outputs" }}</dd></div>
+      <div><dt>{{ if $isZh }}工作模块{{ else }}Role{{ end }}</dt><dd>{{ index $meta "role" }}</dd></div>
+      <div><dt>{{ if $isZh }}模块输出{{ else }}Outputs{{ end }}</dt><dd>{{ index $meta "outputs" }}</dd></div>
     </dl>
     <a class="project-feature-link" href="{{ $link }}">
       {{ if $isZh }}查看完整工程案例{{ else }}Read the engineering case{{ end }} <span aria-hidden="true">→</span>

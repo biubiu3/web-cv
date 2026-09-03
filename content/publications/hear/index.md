@@ -51,7 +51,7 @@ links:
 | Data | OpenX-Sound: about 120,000 sound-augmented pretraining episodes over 100 skills |
 | Evaluation | HEAR-Bench: seven sound-causal tasks in simulation plus four real-robot tasks |
 
-A microwave beep, a spoken interruption, or the first bubble of boiling water may last less than one robot action chunk. A vision-language-action policy that observes once, predicts a long action sequence, and looks again only after executing it can miss the event completely. Adding an audio waveform to the observation vector does not solve this timing mismatch: the sound must remain causally available after the waveform itself has disappeared.
+A microwave beep, a spoken interruption, or the first bubble of boiling water may last less than one robot action chunk. A vision-language-action policy that observes once, predicts a long action sequence, and looks again only after executing it can miss the event completely. The timing mismatch persists when audio is simply appended to the observation vector; the event must remain causally available after the waveform disappears.
 
 HEAR begins from this systems problem and formalizes a Vision–Sound–Language–Action paradigm in continuous physical time.
 
@@ -78,7 +78,7 @@ $$
 G=\Delta+\tau_{\mathrm{sys}}.
 $$
 
-If a sound begins and ends inside that gap and the next causal window no longer covers it, the raw observation at $t_{k+1}$ contains no trace of the event. No larger transformer at that instant can reason from evidence it never receives. A persistent causal memory state $h_k$ is therefore an architectural requirement, not an optional feature.
+If a sound begins and ends inside that gap and the next causal window no longer covers it, the raw observation at $t_{k+1}$ contains no trace of the event. A persistent causal memory state $h_k$ carries the event into the next decision.
 
 HEAR also distinguishes ordinary geometric success from **timed success**. If $t_{\mathrm{snd}}$ is the event time and $t_{\mathrm{goal}}$ the completion time,
 
@@ -106,7 +106,7 @@ The Envisioner performs multimodal reasoning over vision, remembered audio, lang
 
 ### 3. Advancer: predict what should be heard next
 
-The Advancer is a four-layer, width-512, eight-head Transformer trained to predict near-future Mimi audio codes using cross-entropy. It is used during training, not as another runtime sensor. Forecasting future sound forces the shared representation to encode temporal progress: pouring, boiling, alarms, and spoken exchanges have different acoustic futures even when a still frame looks similar.
+The Advancer is a four-layer, width-512, eight-head Transformer trained to predict near-future Mimi audio codes using cross-entropy. It serves as a training objective that encourages the shared representation to encode temporal progress: pouring, boiling, alarms, and spoken exchanges have different acoustic futures even when a still frame looks similar.
 
 ![Future-audio prediction supplies a temporal training signal.](advancer.jpg "The Advancer grounds representation learning in the near-future acoustic dynamics of the task.")
 
@@ -123,11 +123,11 @@ $$
 
 The four modules therefore answer four different questions: what sound must be remembered, what it means now, what temporal process it predicts, and what continuous action should follow.
 
-## OpenX-Sound: pretraining sound, not fabricating evaluation
+## OpenX-Sound: sound-augmented pretraining
 
-OpenX-Sound contains approximately 120,000 episodes spanning 100 skills and embodiments from 7 to 120 kg. The original Open X-Embodiment videos did not provide synchronized task audio, so HEAR synthesizes sound from the original visual sequences for **pretraining only**. Real and simulated benchmark evaluation is kept separate.
+OpenX-Sound contains approximately 120,000 episodes spanning 100 skills and embodiments from 7 to 120 kg. Because the original Open X-Embodiment videos lack synchronized task audio, HEAR synthesizes sound from their visual sequences for pretraining. Benchmark evaluation uses separate real and simulated tasks.
 
-A manual synchronization audit samples 500 episodes, each checked by two annotators; 98.7% are judged synchronized within 100 ms. This is a quality-control result for the constructed resource, not evidence that synthetic audio perfectly matches real microphones.
+A manual synchronization audit samples 500 episodes, each checked by two annotators; 98.7% are judged synchronized within 100 ms. This quality-control measure evaluates temporal alignment in the constructed resource; real microphones still introduce a separate acoustic-domain gap.
 
 ![Platforms and skills represented in sound-centric pretraining.](robot-platforms.jpg "OpenX-Sound broadens acoustic pretraining across robot scales and manipulation skills.")
 
@@ -144,9 +144,9 @@ Event timing is randomized, so a policy cannot succeed reliably by memorizing a 
 
 ![Alarm Clock requires the robot to wait for a transient sound before acting.](alarm-clock.jpg "A sound-causal task fails if the goal is completed before the alarm.")
 
-![Pour Water requires tracking acoustic progress rather than only final geometry.](pour-water.jpg "Process sounds provide evidence about when the manipulation stage should change.")
+![Pour Water requires tracking acoustic progress throughout the manipulation.](pour-water.jpg "Process sounds provide evidence about when the manipulation stage should change.")
 
-## Simulation results: exact per-task denominators
+## Simulation results
 
 Every simulated task is evaluated with 100 trials. Results are success fractions, in the order Alarm Clock, Check Yes, Check Materials, Pour Water, Boil Water, Microwave, and Interrupt:
 
@@ -155,7 +155,7 @@ Every simulated task is evaluated with 100 trials. Results are success fractions
 | Best reported VLA baseline (π0.5-Waveform) | — | — | — | — | — | — | — | 0.61 |
 | HEAR | **0.91** | **0.89** | **0.83** | **0.51** | **0.81** | **0.85** | **0.88** | **0.81** |
 
-The 0.51 Pour Water result is worth retaining beside the average: it prevents the overall score from hiding the hardest simulated task.
+Pour Water reaches 0.51, substantially below the 0.81 average and the other simulated tasks.
 
 ## Real-robot results
 
@@ -170,7 +170,7 @@ Four physical tasks are evaluated with 100 trials each:
 
 ![Bottle shaking produces acoustic evidence about material state.](shake-bottle.jpg "Shake Bottle is a real-robot material-reasoning task.")
 
-HEAR is strong on the shorter causal tasks, but the absolute success rates of 0.18 and 0.15 on Moka Coffee and Answer Phone show that long-horizon real manipulation remains unresolved. The page keeps those values visible rather than presenting only the 0.54 average.
+HEAR is strong on the shorter causal tasks, while success rates of 0.18 on Moka Coffee and 0.15 on Answer Phone show that long-horizon real manipulation remains unresolved. These task-level results give essential context to the 0.54 average.
 
 ## Ablations and timing studies
 
@@ -200,4 +200,4 @@ Reported false-trigger and missed-detection rates for HEAR are 0.02 and 0.04, re
 
 Synthetic sound supports pretraining but leaves a real-to-synthetic acoustic domain gap. Microphone placement, echo, motor noise, language variation, and end-to-end latency remain deployment concerns. The difficult real tasks show that remembering sound is necessary but not sufficient for long-horizon manipulation; robust recovery and broader physical experience are still needed.
 
-HEAR's main contribution is a causal systems formulation. Sound is not appended as one more static modality. Its sampling rate, transient duration, memory horizon, prediction target, and relationship to the action chunk are all modeled explicitly. The experiments show that this organization improves sound-causal behavior, while the per-task results clearly mark where the system still fails.
+HEAR's main contribution is a causal systems formulation of sound-aware manipulation. The model explicitly represents sampling rate, transient duration, memory horizon, prediction target, and the relationship between audio events and action chunks. Experiments show improved sound-causal behavior, alongside clear remaining failures in long-horizon real tasks.

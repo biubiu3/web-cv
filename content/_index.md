@@ -3,7 +3,7 @@
 title: ''
 summary: 'Nie Chang is a final-year Ph.D. researcher developing agentic robot systems, LLM/VLM reasoning, and Vision-Language-Action models for Physical AI and embodied intelligence.'
 date: 2022-10-24
-lastmod: 2026-09-02
+lastmod: 2026-09-03
 type: landing
 seo:
   title: 'Nie Chang | Physical AI & Embodied Intelligence'
@@ -33,35 +33,6 @@ sections:
       avatar:
         size: medium # Options: small (150px), medium (200px, default), large (320px), xl (400px), xxl (500px)
         shape: circle # Options: circle (default), square, rounded
-  - block: video-showcase
-    id: robot-demos
-    content:
-      title: Robots That Listen, Reason, and Act
-      text: |-
-        Selected real-robot trials from **HEAR**, my sound-centric manipulation framework. Turn on sound to see why a robot must remember transient acoustic events while it acts.
-      project_url: https://hear.irmv.top/
-      project_label: Explore the HEAR project
-      videos:
-        - title: Moka Coffee
-          eyebrow: Real robot · VSLA
-          description: The robot uses continuous sound and visual context while completing a multi-stage coffee task.
-          src: https://hear.irmv.top/static/videos/moka_pot_all_web.mp4?v=681a0fb
-          poster: moka.webp
-        - title: Alarm Clock
-          eyebrow: Trigger sound
-          description: A short alarm event changes the manipulation decision even when it falls between action chunks.
-          src: https://hear.irmv.top/static/videos/alarm_all.mp4?v=681a0fb
-          poster: alarm.webp
-        - title: Empty or Occupied?
-          eyebrow: Interactive sound
-          description: The robot shakes a bottle and uses the resulting sound to infer its state before placing it.
-          src: https://hear.irmv.top/static/videos/empty_all.mp4?v=681a0fb
-          poster: empty.webp
-    design:
-      background:
-        color:
-          light: '#edf7fb'
-          dark: '#061426'
   - block: markdown
     id: research
     content:
@@ -80,7 +51,7 @@ sections:
     content:
       title: 'A Research Story: From Reliable Perception to Growing Robots'
       text: |-
-        My work follows a continuous path: **make perception reliable**, then **learn across modalities and generate better data**, and finally **build robot systems that can use sound, tools, feedback, and memory to acquire reusable capabilities**. The papers below are ordered by that intellectual story rather than publication date. **HEAR** and **Teach and Grow (TGL)** are the current representative outcomes.
+        My work follows a continuous path: **make perception reliable**, then **learn across modalities and generate better data**, and finally **build robot systems that can use sound, tools, feedback, and memory to acquire reusable capabilities**. The papers follow this research story, with year and venue shown on every card. **HEAR** and **Teach and Grow (TGL)** are the current representative outcomes.
     design:
       columns: '1'
   - block: collection
@@ -134,12 +105,41 @@ sections:
       view: article-grid
       columns: 2
       fill_image: false
+  - block: video-showcase
+    id: robot-demos
+    content:
+      title: Robots That Listen, Reason, and Act
+      text: |-
+        Selected real-robot trials from **HEAR**, my sound-centric manipulation framework. Turn on sound to see why a robot must remember transient acoustic events while it acts.
+      project_url: https://hear.irmv.top/
+      project_label: Explore the HEAR project
+      videos:
+        - title: Moka Coffee
+          eyebrow: Real robot · VSLA
+          description: The robot uses continuous sound and visual context while completing a multi-stage coffee task.
+          src: https://hear.irmv.top/static/videos/moka_pot_all_web.mp4?v=681a0fb
+          poster: moka.webp
+        - title: Alarm Clock
+          eyebrow: Trigger sound
+          description: A short alarm event changes the manipulation decision even when it falls between action chunks.
+          src: https://hear.irmv.top/static/videos/alarm_all.mp4?v=681a0fb
+          poster: alarm.webp
+        - title: Empty or Occupied?
+          eyebrow: Interactive sound
+          description: The robot shakes a bottle and uses the resulting sound to infer its state before placing it.
+          src: https://hear.irmv.top/static/videos/empty_all.mp4?v=681a0fb
+          poster: empty.webp
+    design:
+      background:
+        color:
+          light: '#edf7fb'
+          dark: '#061426'
   - block: collection
     id: engineering-projects
     content:
       title: 'Engineering Projects'
       text: |-
-        Beyond research papers, I build systems that must work with real sensors, real interfaces, and downstream production constraints. These cases separate the wider industry–academia program from my personal ownership: multi-camera SfM for autonomous-driving data, and LiDAR plus multi-sensor obstacle perception for an intelligent lawn robot.
+        Alongside my research papers, I build systems for real sensors, production interfaces, and field operation. The two selected projects cover multi-camera SfM for autonomous-driving data and LiDAR plus multi-sensor obstacle perception for an intelligent lawn robot.
       filters:
         folders:
           - projects

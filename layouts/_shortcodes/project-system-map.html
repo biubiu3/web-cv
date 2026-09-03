@@ -3,7 +3,7 @@
   <header>
     <span>{{ if $isZh }}完整项目范围{{ else }}Wider program{{ end }}</span>
     <h3 id="project-system-map-title">{{ if $isZh }}4D 视觉自动化标注系统{{ else }}4D vision auto-annotation system{{ end }}</h3>
-    <p>{{ if $isZh }}从同步车载数据到结构化局部地图；高亮模块为我的个人负责范围。{{ else }}From synchronized vehicle data to a structured local map; the highlighted module marks my ownership.{{ end }}</p>
+    <p>{{ if $isZh }}从同步车载数据到结构化局部地图；图中突出显示多相机 SfM 重建核心。{{ else }}From synchronized vehicle data to a structured local map, with the multi-camera SfM reconstruction core highlighted.{{ end }}</p>
   </header>
   <div class="project-system-map__flow">
     <div class="project-system-map__group">
@@ -15,7 +15,7 @@
       </div>
     </div>
     <i aria-hidden="true">↓</i>
-    <div class="project-system-map__stage is-owned"><span>04 · {{ if $isZh }}我的负责范围{{ else }}My ownership{{ end }}</span><strong>{{ if $isZh }}多相机 SfM 静态重建{{ else }}Multi-camera SfM reconstruction{{ end }}</strong><small>{{ if $isZh }}位姿 · 外参 · 稀疏/稠密几何{{ else }}Poses · extrinsics · sparse/dense geometry{{ end }}</small></div>
+    <div class="project-system-map__stage is-owned"><span>04 · {{ if $isZh }}重建核心{{ else }}Reconstruction core{{ end }}</span><strong>{{ if $isZh }}多相机 SfM 静态重建{{ else }}Multi-camera SfM reconstruction{{ end }}</strong><small>{{ if $isZh }}位姿 · 外参 · 稀疏/稠密几何{{ else }}Poses · extrinsics · sparse/dense geometry{{ end }}</small></div>
     <i aria-hidden="true">↓</i>
     <div class="project-system-map__group">
       <span>{{ if $isZh }}下游工程模块{{ else }}Downstream applications{{ end }}</span>

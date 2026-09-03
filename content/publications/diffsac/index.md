@@ -16,7 +16,7 @@ display_area: "Robust Geometric Estimation"
 publication_order: 50
 peer_reviewed: false
 open_access: true
-abstract: "DiffSAC uses a geometry-conditioned diffusion model to learn the distribution of effective minimum sets for consensus-based robust estimation. Rather than ranking individual points once, it iteratively refines per-point confidence toward a small collection of high-quality candidate sets. The framework is evaluated across line and plane fitting, fundamental and essential matrix estimation, and homography estimation."
+abstract: "DiffSAC uses a geometry-conditioned diffusion model to learn the distribution of effective minimum sets for consensus-based robust estimation. Iterative refinement transforms per-point confidence into a small collection of high-quality candidate sets. The framework is evaluated across line and plane fitting, fundamental and essential matrix estimation, and homography estimation."
 summary: "Geometry-conditioned diffusion sampling that proposes a small number of high-quality minimum sets for efficient robust estimation."
 story_order: 40
 tags:
@@ -49,7 +49,7 @@ links:
 
 Sample consensus succeeds only when a proposed minimum set is jointly compatible with the target geometry. A point can look individually reliable yet combine badly with other high-ranked points: two nearly coincident line samples are unstable, repeated correspondences may be degenerate for an eight-point solver, and a single deterministic ranking offers little diversity when the top combination fails.
 
-DiffSAC treats sampling as conditional generation. Rather than predicting one score per point once, it learns a distribution of confidence fields and refines them through a reverse diffusion process. Multiple noise seeds can then produce a compact, diverse collection of candidate sets.
+DiffSAC treats sampling as conditional generation. It learns a distribution of confidence fields and refines them through a reverse diffusion process. Multiple noise seeds can then produce a compact, diverse collection of candidate sets.
 
 ## Consensus estimation stays modular
 
@@ -60,7 +60,7 @@ h_{\mathrm{best}}
 =\arg\max_{j=1,\ldots,J} f\!\left(S(\mathcal{M}_j),\chi\right).
 $$
 
-DiffSAC changes how the $\mathcal{M}_j$ are proposed, not what a line, plane, fundamental matrix, essential matrix, or homography means. This preserves compatibility with established solvers and lets local optimization such as LO-RANSAC be added after sampling.
+DiffSAC changes the proposal mechanism for $\mathcal{M}_j$ while keeping the underlying line, plane, fundamental-matrix, essential-matrix, and homography solvers unchanged. Local optimization such as LO-RANSAC can therefore be added after sampling.
 
 ## Confidence is a property of a set
 
@@ -76,7 +76,7 @@ The denoiser is trained with a mean-squared objective toward $c_0$. It has no po
 
 ![The Transformer denoiser jointly reasons over observations and current confidence.](denoiser-network.jpg "No positional encoding is used, preserving permutation invariance.")
 
-This confidence should not be read as an independent inlier probability. It expresses membership in a *good joint minimum set* under the current generated proposal. Different reverse trajectories can therefore emphasize different mutually compatible subsets.
+The confidence expresses membership in a *good joint minimum set* under the current generated proposal. Different reverse trajectories can therefore emphasize different mutually compatible subsets.
 
 ## Training and inference
 
@@ -84,7 +84,7 @@ Training runs for 100 epochs with Adam at learning rate $10^{-4}$ and cosine sch
 
 At inference, the observations are replicated $\kappa=20$ times. Each copy receives an independent Gaussian $c_T$ and undergoes $T=100$ reverse refinements. The top $\gamma$ observations in each final confidence field form one candidate minimum set, where $\gamma$ is the solver's minimum sample size. The classical solver evaluates all 20 hypotheses and retains the best consensus.
 
-The number 20 is intentionally small relative to thousands of uniform RANSAC draws. The learned generator spends more computation on each proposal in exchange for making each proposal more useful.
+The design uses 20 learned hypotheses, far fewer than the thousands of draws common in uniform RANSAC. Each proposal receives more computation and is correspondingly more informative.
 
 ## Synthetic line and plane fitting
 
@@ -114,7 +114,7 @@ The correspondence study follows the RANSAC tutorial protocol. Twelve scenes pro
 | MAGSAC++ | 0.723 | 0.585 | $1.476^\circ$ | $2.632^\circ$ | 53 Hz |
 | DiffSAC | **0.783** | **0.641** | **$0.886^\circ$** | **$1.819^\circ$** | 30 Hz GPU |
 
-DiffSAC trades throughput for accuracy relative to MAGSAC++ in this configuration. It is not “free acceleration”; the advantage is that a small set of learned hypotheses can be more accurate at usable interactive rates.
+DiffSAC trades throughput for accuracy relative to MAGSAC++ in this configuration. A small set of learned hypotheses achieves higher accuracy at usable interactive rates.
 
 ## Essential matrix, registration, and homography
 
@@ -125,9 +125,9 @@ Essential-matrix estimation uses a five-point solver and 1-pixel threshold:
 | MAGSAC++ | 0.778 | 0.553 | $1.195^\circ$ | $2.284^\circ$ | — |
 | DiffSAC | **0.798** | **0.651** | **$0.863^\circ$** | **$1.779^\circ$** | 48 Hz GPU / 22 Hz CPU |
 
-For ModelNet40 registration at 60% outliers, rotation/translation mAA are 0.547/0.453 for DiffSAC and 0.524/0.438 for MAGSAC++. Homography estimation is evaluated on KITTI with a DLT solver and threshold 0.1; the paper reports the complete curve rather than one isolated operating point.
+For ModelNet40 registration at 60% outliers, rotation/translation mAA are 0.547/0.453 for DiffSAC and 0.524/0.438 for MAGSAC++. Homography estimation is evaluated on KITTI with a DLT solver and threshold 0.1, with the complete curve reported across operating points.
 
-Together the five problem classes test minimum-set sizes, feature types, and solvers that differ substantially. They support the modular-sampling claim, while each task still uses its own trained model and representation.
+Together the five problem classes test substantially different minimum-set sizes, feature types, and solvers. The results demonstrate modular sampling across tasks, with a separately trained model and representation for each task.
 
 ## Ablations: what actually provides the gain?
 
@@ -141,6 +141,6 @@ The reported 2,000-iteration pipeline takes about 33 ms and roughly 2 GB of GPU 
 
 ## Limits and relation to RLSAC
 
-Each task requires suitable training data and a task-specific model; a line sampler is not automatically a fundamental-matrix sampler. Iterative generation adds GPU and latency costs, and classical estimators remain attractive when training distribution, hardware, or memory is unavailable. Performance can also depend on how training targets define an effective set.
+Each task requires suitable training data and a task-specific model; line and fundamental-matrix estimation use separately trained samplers. Iterative generation adds GPU and latency costs, and classical estimators remain attractive when training data, hardware, or memory are limited. Performance can also depend on how training targets define an effective set.
 
 RLSAC learned sequential proposals from the reward of previous geometric hypotheses. DiffSAC revisits the same core question from a generative direction: which observations should be selected *together*? The transition from reinforcement learning to conditional diffusion reflects a broader research progression, while the invariant principle remains the same—sampling should exploit structure and feedback instead of spending every hypothesis uniformly.

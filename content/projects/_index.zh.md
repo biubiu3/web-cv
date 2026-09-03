@@ -1,6 +1,6 @@
 ---
 title: '工程项目'
-summary: '论文之外的实际系统工作，明确区分项目整体成果、个人负责范围、技术决策与应用验证证据。'
+summary: '通过产学研合作开发，并在生产流程或实地运行中完成验证的机器人与三维视觉系统。'
 date: 2024-06-20
 lastmod: 2026-09-03
 type: landing
@@ -9,7 +9,7 @@ sections:
   - block: collection
     content:
       title: 代表性工程项目
-      text: 每个案例都会区分团队项目与我个人负责的子系统，并完整说明方案、系统集成与验证结果。
+      text: 两个实际应用项目，覆盖自动驾驶多相机重建与智能割草机器人的多传感器环境感知。
       filters:
         folders:
           - projects

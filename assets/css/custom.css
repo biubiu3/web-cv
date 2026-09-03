@@ -2063,6 +2063,12 @@ section[id] {
   background: #06182b;
 }
 
+.project-figure--diagram img {
+  max-height: none;
+  padding: clamp(0.4rem, 1vw, 0.9rem);
+  background: linear-gradient(145deg, #f8fcff, #eef5ff);
+}
+
 .project-figure figcaption,
 .project-comparison > figcaption {
   margin: 0;
@@ -2117,6 +2123,21 @@ section[id] {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
+}
+
+.project-video-gallery.is-single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 960px) {
+  .project-figure--diagram,
+  .project-video-gallery.is-single {
+    position: relative;
+    left: 50%;
+    width: min(60rem, calc(100vw - 4rem));
+    max-width: none;
+    transform: translateX(-50%);
+  }
 }
 
 .project-video-card {

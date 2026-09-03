@@ -59,13 +59,13 @@ $$
 T=\Phi(I).
 $$
 
-The implementation uses Llama-3.2-11B-Vision to inspect the full scene, reason step by step about which entities are plausibly moving, and convert that conclusion into text. This prompt is not the final mask. It is an explicit semantic prior passed to the visual segmentation stack, keeping the roles of reasoning and pixel prediction separate.
+The implementation uses Llama-3.2-11B-Vision to inspect the full scene, reason step by step about which entities are plausibly moving, and convert that conclusion into text. The resulting prompt acts as a semantic prior for the visual segmentation stack, separating scene reasoning from pixel prediction.
 
 SAM2 supplies image and mask representations, while BEiT-3 provides aligned vision-language features. A feature aggregation module—five convolutional layers followed by a fully connected layer—compresses global context into a 512-dimensional vector and fuses it with the prompt-conditioned representation. The SAM image encoder is frozen; the vision-language model, aggregator, and the remaining SAM components are optimized for the task. The reported system initializes from SAM ViT-Huge and BEiT-3 Large.
 
 ## Deep thinking as a bounded correction loop
 
-A one-pass language answer may mention the wrong object or omit an ambiguous one. MovSAM therefore places the current segmentation back into the multimodal context and asks the model to reconsider. Each round can revise the prompt and update the mask; the loop ends when the answer stabilizes or reaches five rounds. This is “deep thinking” in a concrete system sense: a bounded observe–reason–segment–inspect cycle, not an unconstrained claim that language alone recovers motion physics.
+A one-pass language answer may mention the wrong object or omit an ambiguous one. MovSAM therefore places the current segmentation back into the multimodal context and asks the model to reconsider. Each round can revise the prompt and update the mask; the loop ends when the answer stabilizes or reaches five rounds. The resulting “deep thinking” process is a bounded observe–reason–segment–inspect cycle.
 
 ![Single-image segmentation in real scenes with missing temporal evidence.](real-world.jpg "MovSAM uses scene semantics and appearance to infer likely moving objects from one image.")
 
@@ -93,7 +93,7 @@ $$
 
 and boundary quality is the F-measure $\mathcal{F}=2PR/(P+R)$. Their mean, $\mathcal{J}\&\mathcal{F}$, summarizes mask accuracy and boundary fidelity.
 
-Training uses manually filtered samples from DAVIS 2016, FBMS, and SegTrackV2 for 100 epochs on four RTX 8000 GPUs. The filtering step matters: a single frame has no direct motion measurement, so training labels must not reward semantically plausible but actually static objects.
+Training uses manually filtered samples from DAVIS 2016, FBMS, and SegTrackV2 for 100 epochs on four RTX 8000 GPUs. Filtering reduces label ambiguity between objects that appear likely to move and objects that were physically static.
 
 ## Benchmark results
 
@@ -110,7 +110,7 @@ The DAVIS comparison is particularly instructive: although several alternatives 
 
 ![Examples with occlusion and challenging boundaries.](occlusion-sequence.jpg "Qualitative DAVIS sequences illustrate boundary recovery and partial occlusion cases.")
 
-The reported inference time is approximately 0.3 seconds per image. This makes the system far slower than a lightweight feed-forward segmenter, but the latency is compatible with recovery or fallback perception rather than high-rate tracking.
+The reported inference time is approximately 0.3 seconds per image. This latency suits recovery or fallback perception, while high-rate tracking calls for a lighter feed-forward model.
 
 ## What each component contributes
 
@@ -124,8 +124,8 @@ Feature aggregation contributes the larger gain, while iterative reasoning suppl
 
 ![Language-guided component and adaptation ablations.](language-ablation.jpg "Ablations isolate feature fusion, reasoning refinement, and task-specific adaptation.")
 
-## What the result does—and does not—mean
+## Interpretation and limitations
 
-MovSAM is designed for cases in which temporal measurements are absent: dropped frames, an isolated observation, or a semantic safety check. It infers likely motion from object identity, pose, interaction, and scene context. That inference is useful, but it is not the same as measuring velocity. An idling vehicle or a person frozen mid-action remains fundamentally ambiguous in one image.
+MovSAM is designed for cases in which temporal measurements are absent: dropped frames, an isolated observation, or a semantic safety check. It infers likely motion from object identity, pose, interaction, and scene context. Velocity remains unobserved, so an idling vehicle or a person frozen mid-action is fundamentally ambiguous in one image.
 
-The main limitations follow from that ambiguity. Performance depends on the multimodal model's reasoning quality; the iterative loop adds latency and can inherit language-model biases; unusual objects or contexts may induce confident semantic mistakes. In a full robot system, MovSAM is best understood as a robust semantic fallback that complements temporal geometry—not as evidence that time is unnecessary for motion perception.
+The main limitations follow from that ambiguity. Performance depends on the multimodal model's reasoning quality; the iterative loop adds latency and can inherit language-model biases; unusual objects or contexts may induce confident semantic mistakes. In a full robot system, MovSAM serves as a semantic fallback alongside temporal geometry.

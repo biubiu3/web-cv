@@ -48,7 +48,7 @@ links:
 
 | Question | RLSAC's answer |
 |---|---|
-| What should be learned? | A sampling policy, rather than the geometric solver itself |
+| What should be learned? | The sampling policy; the geometric solver remains fixed |
 | What supervision is required? | No labels for the “correct” minimum set; hypothesis quality supplies the reward |
 | What enters the policy state? | Observation features, the current sampling action, residuals, and the history of tested points |
 | Where is it evaluated? | Synthetic line fitting and real two-view fundamental-matrix estimation |
@@ -73,7 +73,7 @@ $$
 a_{t+1}\sim\pi_\phi(a_{t+1}\mid s_t),
 $$
 
-and the reward is the inlier ratio obtained after solving and scoring the proposed set. This is important because the reward evaluates the *joint geometric consequence* of the selected observations. Training therefore does not require a point-by-point inlier annotation or a label identifying one privileged minimum set.
+and the reward is the inlier ratio obtained after solving and scoring the proposed set. This reward evaluates the *joint geometric consequence* of the selected observations, allowing training directly from downstream consensus without pointwise inlier annotations.
 
 The state contains four complementary signals:
 
@@ -88,11 +88,11 @@ Together these signals turn “fit, score, discard” into a state transition. A
 
 The policy uses an EdgeConv/DGCNN-style graph network, so pointwise evidence can interact with local neighborhoods. The network outputs a distribution over observations, from which a non-duplicate minimum set is drawn. The environment then invokes the unchanged geometric solver and updates residual and history features. A discrete Soft Actor-Critic objective trains the policy off-policy, balancing reward and exploration.
 
-Training runs for 100 epochs. An episode stops when the inlier count is unchanged for $\kappa=2$ transitions, when the best inlier ratio has not improved for $\varsigma=3$ transitions, or after $\psi=15$ transitions. At test time, only the maximum iteration budget is used so that early stopping cannot conceal difficult cases. The graph neighborhood size is 15. The reported implementation was trained on an NVIDIA RTX 2080 Ti.
+Training runs for 100 epochs. An episode stops when the inlier count is unchanged for $\kappa=2$ transitions, when the best inlier ratio has not improved for $\varsigma=3$ transitions, or after $\psi=15$ transitions. Test-time evaluation uses the full maximum iteration budget for every sample. The graph neighborhood size is 15. The reported implementation was trained on an NVIDIA RTX 2080 Ti.
 
 ## Experiment 1: line fitting under severe outliers
 
-The controlled line-fitting study uses 100 points in a $10\times10$ region and an inlier threshold of 0.1. Accuracy is measured by mean average accuracy at $0.5^\circ$ and median angular error, with a budget of 150 iterations. The visualization below shows that iterative feedback progressively concentrates samples on the line rather than repeatedly spending hypotheses on outlier combinations.
+The controlled line-fitting study uses 100 points in a $10\times10$ region and an inlier threshold of 0.1. Accuracy is measured by mean average accuracy at $0.5^\circ$ and median angular error, with a budget of 150 iterations. The visualization below shows iterative feedback progressively concentrating samples on the true line and reducing proposals dominated by outliers.
 
 ![RLSAC progressively improves the sampled line hypothesis.](line-refinement.jpg "Line fitting across successive policy transitions.")
 
@@ -126,10 +126,10 @@ At a budget of 1,000 hypotheses, the comparison is:
 
 Removing local descriptors lowers rotation/translation mAA from $0.760/0.622$ to $0.702/0.568$, showing that geometry and appearance are complementary. Probabilistic actions during training combined with maximum-probability selection at inference give the strongest result: exploration helps learn the state transitions, while deterministic deployment spends the test budget on the current best choices. Among the evaluated correspondence-set sizes, $N=150$ performs best.
 
-These experiments support a precise claim: **within a fixed consensus pipeline, an adaptive sampler can use downstream geometric feedback and sampling history to allocate its hypothesis budget more effectively.** They do not imply that the learned sampler is a universal replacement for every robust estimator.
+Across these experiments, **an adaptive sampler uses downstream geometric feedback and sampling history to allocate the hypothesis budget more effectively within a fixed consensus pipeline.** Each estimation problem still requires its own input representation, solver, and training setup.
 
 ## Limitations and perspective
 
-RLSAC introduces a training stage and a learned policy where classical estimators require none. A policy trained for one input representation and solver is not automatically transferable to a different estimation problem. The iterative interaction also adds implementation complexity, even though the solver remains modular.
+RLSAC adds a policy-training stage and iterative interaction. Transfer to a new estimation problem requires a compatible input representation, solver, and training data, while the geometric solver itself remains modular.
 
 The broader idea outlives this particular estimator: a system should observe the consequence of a proposal, preserve that evidence in state, and let it change the next proposal. In RLSAC the actions are minimum sets and the feedback is geometric consensus; later work in this research line extends the same closed-loop principle to multimodal prediction and physical robot behavior.

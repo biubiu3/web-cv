@@ -1,8 +1,8 @@
 ---
 title: "From Surround Cameras to Production Geometry: Multi-Camera SfM for 4D Auto-Annotation"
 date: "2024-06-20T00:00:00Z"
-lastmod: "2026-09-02T00:00:00Z"
-summary: "An applied industry–academia project with NETA Auto in which I owned the SfM scene-reconstruction subsystem: turning synchronized surround-camera data into refined poses, calibration, and sparse-to-dense geometry for a 4D vision auto-annotation pipeline."
+lastmod: "2026-09-03T00:00:00Z"
+summary: "An applied industry–academia project with NETA Auto where I developed the SfM scene-reconstruction subsystem, turning synchronized surround-camera data into refined poses, calibration, and sparse-to-dense geometry for a 4D vision auto-annotation pipeline."
 featured: true
 reading_time: false
 share: true
@@ -14,7 +14,7 @@ tags:
   - Multi-Camera Reconstruction
   - 3D Vision
 image:
-  caption: 'The wider system turns synchronized vehicle sensors into semantic perception, reconstruction, automatic annotation, and a multi-run local map. The highlighted SfM core is my responsibility.'
+  caption: 'The wider system turns synchronized vehicle sensors into semantic perception, reconstruction, automatic annotation, and a multi-run local map, with the SfM reconstruction core highlighted.'
   alt_text: 'Concept diagram showing surround cameras and vehicle sensors flowing through semantic perception and a highlighted multi-camera SfM reconstruction core toward road-element annotation and a multi-run local map.'
 project:
   collaboration: 'NETA Auto industry–academia collaboration'
@@ -23,7 +23,7 @@ project:
   wider_system: 'Data preparation, semantic perception, sensor-fusion localization, reconstruction, auto-annotation, and multi-run local maps'
   role: 'SfM scene-reconstruction subsystem'
   outputs: 'Refined vehicle poses and camera extrinsics; sparse and dense ground point clouds'
-  context: 'A large 4D vision auto-annotation program spanning data preparation, semantic perception, multi-sensor localization, static and ground reconstruction, automatic annotation, and multi-run local-map generation. My ownership was the SfM/static-reconstruction subsystem and its downstream geometry interface.'
+  context: 'A large 4D vision auto-annotation program spanning data preparation, semantic perception, multi-sensor localization, static and ground reconstruction, automatic annotation, and multi-run local-map generation. I developed the SfM/static-reconstruction subsystem and its downstream geometry interface.'
 project_videos:
   - src: 'headcam.mp4'
     poster: 'headcam-poster.jpg'
@@ -45,37 +45,37 @@ project_videos:
 
 {{< project-overview >}}
 
-This was not a research prototype built around a clean benchmark. It was one subsystem inside a larger, applied **4D vision auto-annotation project with NETA Auto**. The complete program connected semantic perception, vehicle localization, static reconstruction, road-surface reconstruction, and map-element generation. My responsibility was deliberately narrower and technically deep: I owned the **Structure-from-Motion (SfM) scene-reconstruction subsystem** and the geometry it delivered downstream.
+Developed with NETA Auto, this applied **4D vision auto-annotation program** connected semantic perception, vehicle localization, static reconstruction, road-surface reconstruction, and map-element generation. I was responsible for the **Structure-from-Motion (SfM) scene-reconstruction subsystem** and the geometry it delivered downstream.
 
-The project later provided the engineering foundation for the [MRASfM research paper](../../publications/mrasfm/). The two pages therefore serve different purposes. The paper page explains the formal research method and public experiments; this page records the engineering case—interfaces, failure modes, implementation choices, acceptance evidence, and how the module operated inside a real production workflow.
+The engineering work later informed the [MRASfM research paper](../../publications/mrasfm/). The production subsystem spans interfaces, implementation choices, validation, and downstream delivery.
 
 ## The complete system around the SfM module
 
-At program level, the input covered driving-camera streams together with IMU, GNSS, chassis-motion information, and camera calibration. The project materials organize the work as a connected production pipeline rather than one isolated model:
+At program level, the input covered driving-camera streams together with IMU, GNSS, chassis-motion information, and camera calibration. The production workflow linked the following stages:
 
 - **Data preparation and synchronization** turned raw multi-sensor driving packages into calibrated, time-aligned inputs for the downstream modules.
 - **Semantic perception** produced full-scene and lane-oriented masks. These results supported both automatic labeling and the removal of moving objects, sky, and ego-vehicle pixels before static reconstruction.
 - **Multi-sensor localization** fused vehicle-motion signals into a metrically scaled trajectory that initialized reconstruction and provided a common spatial reference.
-- **Static scene reconstruction** recovered camera/vehicle poses, refined rig extrinsics, and generated sparse-to-dense geometry. **This was the subsystem I was responsible for.**
+- **Static scene reconstruction** recovered camera/vehicle poses, refined rig extrinsics, and generated sparse-to-dense geometry.
 - **Ground reconstruction** converted the recovered geometry and dense depth into a cleaner road-surface representation.
 - **Ground-element auto-annotation** extracted structured lane lines, road boundaries, signs, and other static map elements as labeling candidates.
 - **Multi-run local-map construction** aligned repeated traversals, aggregated partial observations, and organized map elements and topology in one shared frame.
 
 {{< project-system-map >}}
 
-This surrounding context matters because the SfM module was neither the first nor the last stage. It consumed masks and localization from upstream teams, then had to deliver geometry that ground reconstruction, annotation, and local-map generation could actually use. The rest of this case therefore narrows from the complete program to the subsystem I personally owned.
+Within this pipeline, the SfM module consumed semantic masks and localization, then delivered geometry to ground reconstruction, annotation, and local-map generation.
 
-## My responsibility: what the SfM subsystem had to deliver
+## SfM subsystem interface
 
 The reconstruction module received synchronized six-view surround images, multi-sensor localization, semantic masks, and initial camera intrinsics/extrinsics. It returned refined vehicle poses, updated inter-camera extrinsics, a sparse scene model, and a dense ground point cloud suitable for downstream road reconstruction.
 
 That interface imposed several practical requirements at once:
 
-- **metric scale had to survive reconstruction**, because downstream geometry could not use an arbitrary-scale model;
-- **all cameras at a timestamp had to remain physically consistent**, even when an individual view lacked reliable matches;
-- **moving traffic, sky, and the ego vehicle could not become static structure**;
-- **road geometry had to be dense and clean enough for later surface reconstruction**; and
-- **multiple traversals of the same intersection had to be assembled into one coordinate frame**.
+- **maintain metric scale** for downstream geometric processing;
+- **preserve physical consistency across synchronized cameras**, including views with weak matches;
+- **exclude moving traffic, sky, and the ego vehicle** from static structure;
+- **produce dense, clean road geometry** for surface reconstruction; and
+- **assemble repeated traversals of an intersection** in one coordinate frame.
 
 {{< project-pipeline >}}
 
@@ -89,11 +89,11 @@ The front end extracted SuperPoint features, but feature appearance alone was no
 
 This mattered in road scenes because different camera directions often contain repeated vehicles, lane markings, and building facades. An unconstrained matcher can confidently connect the wrong objects. The rig provides a strong prior for where a true correspondence is even possible.
 
-### Register the synchronized rig, not six unrelated cameras
+### Rig-level camera registration
 
 Initialization selected a well-supported image pair, then expanded the starting reconstruction to **15 timestamps × 6 cameras = 90 images** before the first triangulation and rig bundle adjustment. The larger initial baseline supplied more viewing angles and more observations per 3D point than a two-image start.
 
-For later timestamps, candidate views were ranked by a minimum-uncertainty criterion combining 2D–3D connectivity with feature distribution. Well-conditioned cameras were registered robustly using P3P inside locally optimized RANSAC and EPnP for refinement. When another camera at the same timestamp had too few correspondences, its pose was inferred from the shared vehicle pose and the calibrated rig geometry rather than being allowed to fail independently.
+For later timestamps, candidate views were ranked by a minimum-uncertainty criterion combining 2D–3D connectivity with feature distribution. Well-conditioned cameras were registered robustly using P3P inside locally optimized RANSAC and EPnP for refinement. A view with too few correspondences inherited its pose from the shared vehicle pose and calibrated rig geometry.
 
 If $T^{w}_{r_t}$ is the vehicle/rig pose at time $t$ and $T^{r}_{c_k}$ is camera $k$'s fixed transform inside the rig, then the camera pose is composed as
 
@@ -101,7 +101,7 @@ $$
 T^{w}_{c_{t,k}} = T^{w}_{r_t}T^{r}_{c_k}.
 $$
 
-This factorization also shaped optimization. Instead of giving every synchronized image a free pose, rig bundle adjustment optimized time-varying rig poses, the inter-camera geometry, and 3D points through a robust reprojection objective:
+This factorization also shaped optimization. Rig bundle adjustment jointly optimized the time-varying rig poses, inter-camera geometry, and 3D points through a robust reprojection objective:
 
 $$
 \min_{\{T^{w}_{r_t}\},\{T^{r}_{c_k}\},\{X_j\}}
@@ -109,7 +109,7 @@ $$
 \rho\!\left(\left\|\pi\!\left(K_k,T^{w}_{r_t}T^{r}_{c_k},X_j\right)-x_{t,k,j}\right\|_2^2\right).
 $$
 
-Triangulation required adequate parallax and positive depth. Points with large reprojection error, invalid cheirality, or implausible distance were removed before the next reconstruction cycle. The result was not merely a prettier cloud: it preserved the physical relationship among the vehicle, its cameras, and the recovered scene.
+Triangulation required adequate parallax and positive depth. Points with large reprojection error, invalid cheirality, or implausible distance were removed before the next reconstruction cycle. The recovered geometry preserved the physical relationship among the vehicle, its cameras, and the scene.
 
 ## Why localization priors changed the reconstruction
 
@@ -121,7 +121,7 @@ Without a pose prior, the early system produced streaking, duplicated surfaces, 
 
 Semantic and radius-based filtering then removed dynamic-object structure and isolated spatial noise while preserving useful static objects.
 
-{{< project-compare left="pointcloud-before-filtering.png" right="pointcloud-after-filtering.png" left_label="Before filtering" right_label="After filtering" left_alt="Sparse reconstruction with spatial noise and streaking." right_alt="Cleaned static reconstruction after semantic and radius filtering." caption="Filtering is part of the reconstruction contract: downstream road modeling needs stable static geometry, not every triangulated point." >}}
+{{< project-compare left="pointcloud-before-filtering.png" right="pointcloud-after-filtering.png" left_label="Before filtering" right_label="After filtering" left_alt="Sparse reconstruction with spatial noise and streaking." right_alt="Cleaned static reconstruction after semantic and radius filtering." caption="Semantic and radius filtering provide stable static geometry for downstream road modeling." >}}
 
 ## Dense ground reconstruction under a runtime budget
 
@@ -133,7 +133,7 @@ Sparse SfM established poses and reliable anchors, but the road-surface module n
 4. convert the depth output back to COLMAP's format and fuse it into a dense point cloud;
 5. apply semantic ground masks, neighborhood filtering, and per-grid RANSAC plane filtering.
 
-The acceptance record reports that prior-guided source-view selection reduced this stage from roughly **30 minutes to under 1 minute**, while replacing the original dense fusion path reduced fusion from roughly **40 minutes to 1.5 minutes** in that prototype environment. These are pipeline-specific engineering measurements, not hardware-independent speed claims.
+In the prototype environment, prior-guided source-view selection reduced this stage from roughly **30 minutes to under 1 minute**, while the revised dense fusion path reduced fusion from roughly **40 minutes to 1.5 minutes**. These timings describe that pipeline and hardware configuration.
 
 {{< project-compare left="dense-colmap.png" right="dense-acmp.png" left_label="COLMAP dense result" right_label="ACMP + COLMAP fusion" left_alt="Dense point cloud from the original COLMAP route with missing weak-texture regions." right_alt="Denser road reconstruction from ACMP depth and COLMAP fusion." caption="The hybrid path recovers more weak-texture road structure while keeping a practical fusion stage." >}}
 
@@ -147,7 +147,7 @@ At the multi-run level, pairwise connection scores formed a graph. Disconnected 
 
 {{< project-compare left="multirun-before.png" right="multirun-after.png" left_label="Independent runs" right_label="After aggregation" left_alt="Multiple independently reconstructed runs are visibly misaligned at an intersection." right_alt="The same runs aligned into a shared intersection coordinate frame." caption="Cross-run association and transform refinement turn several partial traversals into one consistent scene." >}}
 
-## Validation: what the evidence actually supports
+## Validation
 
 The project used lidar-SLAM geometry as an external reference and checked several distinct aspects of the output.
 
@@ -170,7 +170,7 @@ The acceptance table compared the rig mapper with the incoming dead-reckoning/lo
 | C | Rig mapper | **98.6%** | 1.84 | **0.579** |
 | C | Input DR | 98.5% | **1.68** | 1.53 |
 
-The honest reading is mixed: rig-aware SfM improved trajectory-length agreement and angular RMSE on all three sequences, while translation RMSE improved on one of three. The project also reported centimeter-level differences in selected physical-distance spot checks over roughly ten-meter horizontal spans; that is a limited check, not a blanket centimeter-accuracy claim for every scene.
+Rig-aware SfM improved trajectory-length agreement and angular RMSE on all three sequences; translation RMSE improved on sequence A and remained higher on B and C. Selected physical-distance checks over roughly ten-meter horizontal spans showed centimeter-level differences.
 
 ### Calibration consistency
 
@@ -180,14 +180,12 @@ When the refined inter-camera extrinsics were projected into bird's-eye view, la
 
 ## Watch the reconstruction outputs
 
-The clips below connect the sensor stream to the intermediate and final geometry. They are loaded only when requested so the page remains usable on slower connections.
+The clips below connect the sensor stream to the intermediate and final geometry.
 
 {{< project-video-gallery >}}
 
-## What made this an engineering project
+## Engineering contribution
 
-The central challenge was not inventing one isolated algorithm. It was deciding where to trust upstream priors, where to re-estimate them, how to preserve rigid hardware constraints, and what representation downstream teams could actually consume. A robust subsystem needed explicit fallbacks for weak views, bounded matching rather than uncontrolled pair growth, geometric and semantic rejection, runtime-aware dense reconstruction, and validation at every interface.
+The system value came from combining upstream priors, selective re-estimation, rigid hardware constraints, and representations that downstream teams could consume. The implementation added fallback registration for weak views, bounded candidate matching, geometric and semantic filtering, runtime-aware dense reconstruction, and observable checks at each interface.
 
-That experience subsequently informed the research abstraction in MRASfM. The [paper page](../../publications/mrasfm/) focuses on the general multi-camera reconstruction and aggregation method; this engineering page focuses on ownership, integration, delivery constraints, and the evidence used to decide that the subsystem was useful in practice.
-
-> **Disclosure scope.** This public case study retains only the material needed to explain the technical work. Commercial terms, personnel details, internal paths, and nonessential delivery information are intentionally omitted.
+That experience subsequently informed the research abstraction in MRASfM, where the multi-camera reconstruction and aggregation method is studied as a general technical problem.

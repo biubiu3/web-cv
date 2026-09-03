@@ -48,7 +48,7 @@ links:
 
 Many denoisers quietly assume that clean targets exist. In scientific and embodied data, that assumption can be the hardest part of the problem: a second MRI acquisition is not perfectly aligned, a clean biosignal may be unavailable, and a geometric correspondence set has no single continuous “clean image” counterpart. Real noise can also be nonlinear and heterogeneous, so asking one network to jump directly from an unknown corruption level to a clean output is brittle.
 
-MID reframes restoration as navigation along a learned corruption trajectory. It does not require a clean endpoint during training; it learns local reversal steps from noisy observations that can be corrupted further in controlled ways.
+MID reframes restoration as navigation along a learned corruption trajectory. Training learns local reversal steps from noisy observations that can be corrupted further in controlled ways, without requiring a clean endpoint.
 
 ## A noisy observation is an intermediate state
 
@@ -89,7 +89,7 @@ The model receives supervision because the additional corruption process is know
 
 Images and MRI use convolutional networks. Point sets, line segments, one-dimensional signals, and amino-acid representations use Transformer variants, allowing interactions without forcing every modality into an image grid. Across the reported implementations, training uses AdamW with learning rate $10^{-4}$, weight decay 0.01, batch size 8, 150 epochs, and an RTX 8000 GPU.
 
-The point is not that one fixed network processes everything. The common object is the *learning dynamics*: estimate location on a corruption path, take a local reverse step, inspect the new state, and repeat.
+The shared component across modalities is the *learning dynamics*: estimate location on a corruption path, take a local reverse step, inspect the new state, and repeat. Each modality uses a suitable network architecture.
 
 ## Case study 1: natural-image denoising
 
@@ -97,7 +97,7 @@ The image model is trained on resized $256\times256$ ILSVRC 2012 images and eval
 
 ![Natural-image restoration under different noise processes.](image-denoising.jpg "MID iteratively removes Gaussian and Poisson corruption without paired clean training targets.")
 
-The paper reports consistent improvement over the compared self-supervised and supervised alternatives in its tables. Because performance depends on the dataset/noise configuration, this page does not collapse the several rows into one invented headline number.
+The paper reports consistent improvement over the compared self-supervised and supervised alternatives. Performance varies with each dataset and noise configuration, so the results are presented per setting.
 
 ## Case study 2: robust geometric estimation
 
@@ -107,7 +107,7 @@ For two-view correspondence denoising, 12 RANSAC-tutorial scenes each contribute
 
 ![Iterative denoising separates geometrically coherent correspondences from outliers.](correspondence-denoising.jpg "Robust-estimation examples for correspondence and structured point-set noise.")
 
-Here denoising does not mean smoothing coordinates indiscriminately. It means recovering a structured signal—such as mutually consistent matches—from a contaminated set.
+For geometric data, denoising recovers structured signals such as mutually consistent matches from a contaminated set.
 
 ## Case study 3: physiological signals
 
@@ -123,7 +123,7 @@ Experiments use Stanford HARDI ($106\times81\times76\times150$, $b=2000$) and Sh
 
 ![Diffusion MRI denoising and structural detail.](mri-results.jpg "MRI examples compare signal recovery without paired clean acquisitions.")
 
-The paper reports significantly stronger relative SNR/CNR proxy measures ($p<0.05$). These are no-reference proxies rather than accuracy against a known clean anatomy; that distinction is important when interpreting biomedical results.
+The paper reports significantly stronger relative SNR/CNR proxy measures ($p<0.05$). These no-reference measures quantify signal quality without comparison to a known clean anatomy.
 
 ## Case study 5: protein representations
 
@@ -143,4 +143,4 @@ A one-shot variant tries to remove the full estimated corruption in a single pas
 
 MID still requires a designed additional-noise process whose variations are informative about the real corruption. If the observed signal has already lost its defining structure, no self-supervised procedure can reconstruct evidence that is absent. Iterative inference costs more than a single forward pass, and different modalities still require suitable architectures, corruption operators, and evaluation protocols.
 
-The defensible conclusion is therefore not “one universal denoiser solves every modality.” It is that a common self-supervised *iterative formulation* can be instantiated across very different data structures, and that local stage-aware reversal is more flexible than assuming one fixed global corruption map.
+A common self-supervised *iterative formulation* can be instantiated across very different data structures. Local, stage-aware reversal provides more flexibility than a fixed global corruption map, while each modality retains its own architecture and corruption operator.

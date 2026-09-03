@@ -39,22 +39,22 @@ HEAR and Teach and Grow are the two current representative systems. HEAR introdu
 
 - Context: An industry–academia collaboration with NETA Auto whose 4D vision auto-annotation workflow was applied in production.
 - Wider system: Data preparation and synchronization, semantic perception, multi-sensor localization, static and ground reconstruction, ground-element auto-annotation, and multi-run local-map construction.
-- Personal ownership: Nie Chang was responsible for the SfM/static scene-reconstruction subsystem rather than the full team program.
+- Role: Nie Chang was responsible for the SfM/static scene-reconstruction subsystem and its downstream geometry interface.
 - Inputs and outputs: Six-view surround imagery, localization, semantic masks, and initial calibration were converted into refined vehicle poses and camera extrinsics, sparse scene geometry, and dense ground point clouds for downstream reconstruction.
 - Engineering focus: Semantically masked SuperPoint features, overlap- and time-constrained matching, two-view verification, rig-aware registration and bundle adjustment, ACMP depth with COLMAP fusion, spatial filtering, and multi-run aggregation.
-- Validation: The project page reports acceptance evidence with explicit caveats, including 4.7695% mean dense-depth error against a lidar reference under an 8% project threshold and mixed trajectory results rather than an across-the-board accuracy claim.
+- Validation: Mean dense-depth error was 4.7695% against a lidar reference under an 8% project threshold. Rig-aware SfM improved trajectory-length agreement and angular RMSE on all three reported sequences; translation RMSE improved on one.
 - Project page: https://biubiu3.github.io/web-cv/projects/sfm/
 - Chinese project page: https://biubiu3.github.io/web-cv/zh/projects/sfm/
 - Related paper: https://biubiu3.github.io/web-cv/publications/mrasfm/
 
 ### Autonomous Lawn Robot: LiDAR Obstacle Perception and Multi-Sensor Fusion
 
-- Context: A large applied industry–academia project with Positec that designed an autonomous mower as a complete mobile robot for unstructured lawns rather than relying on one boundary or positioning sensor.
+- Context: A large applied industry–academia project with Positec that designed an autonomous mower as a complete mobile robot for unstructured lawns.
 - Wider system: Multi-camera and RGB-D sensing, LiDAR, RTK/GNSS, IMU, wheel odometry, onboard GPU compute, multi-sensor localization, perception, planning, and control.
-- Personal ownership: Nie Chang was responsible for terrain-aware LiDAR obstacle detection and the multi-sensor obstacle-fusion layer, not the complete team platform or commercial product.
+- Role: Nie Chang was responsible for terrain-aware LiDAR obstacle detection and the multi-sensor obstacle-fusion layer.
 - Point-cloud design: Structured grid/range projection, local terrain reasoning for grass and slopes, efficient clustering, odometry-linked temporal reuse, obstacle tracking, and planning-facing publication.
-- Fusion design: Point-cloud geometry was projected into semantic masks and visual detections while preserving geometry-only, class-aware, and vision-estimated obstacle types instead of hiding sensor disagreement.
-- Evidence boundary: The public page includes original engineering flowcharts, a fused-perception field image, and a 41-second synchronized LiDAR/camera playback. It does not claim universal recall, safety certification, or a direct lineage to a later commercial mower model.
+- Fusion design: Point-cloud geometry was projected into semantic masks and visual detections, producing geometry-only, class-aware, and vision-estimated obstacle types.
+- Project media: English engineering flowcharts, a fused-perception field image, and a 41-second synchronized LiDAR/camera playback.
 - Project page: https://biubiu3.github.io/web-cv/projects/mower/
 - Chinese project page: https://biubiu3.github.io/web-cv/zh/projects/mower/
 
@@ -134,7 +134,7 @@ HEAR and Teach and Grow are the two current representative systems. HEAR introdu
 
 ## Citation Guidance
 
-Use the canonical publication page for current author, venue, status, abstract, method figure, DOI, and preprint information. Under-review manuscripts must be described as under review rather than as accepted or published. Each English publication page exposes Google Scholar citation meta tags; the visible page remains the authoritative human-readable source.
+Each publication page provides the current author list, venue, review status, abstract, method figure, DOI, and preprint information. English publication pages also expose Google Scholar citation metadata.
 
 ## Site Discovery
 

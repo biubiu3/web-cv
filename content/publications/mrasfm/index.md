@@ -71,7 +71,7 @@ This is especially useful when one camera looks at a textureless road or experie
 
 ## Semantic-aided triangulation
 
-Road surfaces occupy a large image area but often contain repetitive texture, cast shadows, and reflections. Matches on those regions can create plausible yet geometrically destructive 3D points. MRASfM fits a road-plane model with LO-RANSAC and combines it with semantic road labels to remove inconsistent triangulations. The goal is not to erase the road; it is to prevent low-confidence road appearance from dominating structure.
+Road surfaces occupy a large image area but often contain repetitive texture, cast shadows, and reflections. Matches on those regions can create plausible yet geometrically destructive 3D points. MRASfM fits a road-plane model with LO-RANSAC and combines it with semantic road labels to remove inconsistent triangulations, reducing the influence of low-confidence road appearance on the recovered structure.
 
 ![Semantic labels and a robust road-plane model reject unstable structure.](road-filtering.jpg "Road-surface filtering removes shadow and low-texture outliers before optimization.")
 
@@ -108,7 +108,7 @@ The full study evaluates all 11 KITTI odometry sequences. Selected rows illustra
 | 08 | MCSfM | $0.4^\circ$ | 1.2 m | 276 min |
 | 08 | MRASfM | **$0.3^\circ$** | **0.5 m** | **188 min** |
 
-The selected sequence 00 row is deliberately not simplified into “wins every metric”: MCSfM has the lower rotation error there, while MRASfM improves translation and runtime. The broader benefit is consistent structured optimization, not a claim that every scalar must be best on every route.
+On sequence 00, MCSfM has lower rotation error, while MRASfM improves translation and runtime. Across the evaluation, MRASfM's main benefit is the consistency and efficiency of structured rig optimization.
 
 ### nuScenes comparison
 
@@ -129,6 +129,6 @@ CSBA is responsible for the largest change: removing it creates many redundant v
 
 ## Assumptions and limits
 
-MRASfM benefits from a calibrated, mechanically stable rig; if the camera relationships drift, the structural prior can become wrong rather than helpful. Multi-session association uses GNSS for initialization, so operation without any global positioning cue requires another coarse retrieval mechanism. Like other SfM systems, it also assumes sufficient static visual structure and can struggle with dynamic traffic, severe illumination change, or long textureless segments.
+MRASfM relies on a calibrated, mechanically stable rig; drift in camera relationships weakens the structural prior. Multi-session association uses GNSS for initialization, and deployments without global positioning need another coarse retrieval mechanism. Like other SfM systems, it also assumes sufficient static visual structure and can struggle with dynamic traffic, severe illumination change, or long textureless segments.
 
 Within those assumptions, the work demonstrates a general systems lesson: geometry should reflect the hardware that produced the measurements. Modeling the camera set as a physical unit reduces needless freedom, lets strong views support weak ones, and makes large multi-camera reconstructions more tractable.

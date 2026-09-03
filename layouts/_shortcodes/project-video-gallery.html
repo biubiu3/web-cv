@@ -1,6 +1,6 @@
 {{- $videos := .Page.Params.project_videos | default slice -}}
 {{- $isZh := eq .Page.Lang "zh" -}}
-<div class="project-video-gallery" aria-label="{{ if $isZh }}项目视频{{ else }}Project videos{{ end }}">
+<div class="project-video-gallery{{ if eq (len $videos) 1 }} is-single{{ end }}" aria-label="{{ if $isZh }}项目视频{{ else }}Project videos{{ end }}">
   {{- range $videos -}}
     {{- $entry := . -}}
     {{- $video := $.Page.Resources.GetMatch $entry.src -}}

@@ -48,7 +48,7 @@ links:
 | Evaluation | RoboTwin simulation and dual-Panda real-robot policy training |
 | Status | Preprint; under review at TCSVT |
 
-Embodied learning needs variation: a policy should see different objects, textures, clutter, and camera configurations before deployment. Ordinary image editing can create an attractive new frame, but a robot demonstration is not a photo album. Every view and time step must describe the same intervention, and the edited scene must remain compatible with camera motion and robot state. A red mug that appears in one camera but becomes blue in another is not just a visual artifact—it creates contradictory supervision for the downstream policy.
+Embodied learning needs variation across objects, textures, clutter, and camera configurations. A useful edited demonstration must describe the same intervention from every view and time step while remaining compatible with camera motion and robot state. Inconsistent object appearance across cameras creates contradictory supervision for the downstream policy.
 
 ERMV addresses this data problem by propagating one guided intervention through a complete four-dimensional sequence: time × multiple camera views.
 
@@ -66,7 +66,7 @@ $$
 p\!\left(X'\mid X,C_{\mathrm{guide}},C_{\mathrm{state}},C_{\mathrm{history}}\right).
 $$
 
-The action sequence stays fixed; the visual world is edited coherently around it. A user first edits one frame that provides the global appearance change. A CLIP visual embedding turns that frame into $C_{\mathrm{guide}}$. The state condition includes camera pose, joint configuration $q$, camera-pose changes, and joint changes $\Delta q$, so the generator knows not only what the edit should look like but how the sensor and robot are moving.
+The action sequence stays fixed while the visual world is edited coherently around it. A user first edits one frame that provides the global appearance change. A CLIP visual embedding turns that frame into $C_{\mathrm{guide}}$. Camera pose, joint configuration $q$, camera-pose changes, and joint changes $\Delta q$ condition the generator on both the target appearance and the motion of the sensor and robot.
 
 The backbone is a latent diffusion model initialized from Stable Diffusion 2.1. With latent $z_t$, diffusion time $t$, and conditions $C$, the denoising objective is
 
@@ -82,7 +82,7 @@ This standard objective becomes robot-specific through how the conditions and at
 
 A dense video-volume attention layer grows rapidly with the number of frames and views. ERMV instead forms a sliding window of $L\times N$ tokens—$L$ time steps across $N$ cameras—and selects only $K\ll L\times N$ positions. Crucially, every sampled token keeps its original temporal and camera index. The model can therefore connect a past wrist view to a future external view without pretending they occupy adjacent positions.
 
-Past and future are generated together rather than in isolated clips. In the reported setting, the condition includes four historical views over eight past frames and predicts six views over the next eight frames.
+Past and future are generated jointly in one window. In the reported setting, the condition includes four historical views over eight past frames and predicts six views over the next eight frames.
 
 ![Sparse tokens retain their original time and camera coordinates.](sparse-spatiotemporal.jpg "Sparse spatio-temporal sampling extends the editing window while preserving positional identity.")
 
@@ -90,19 +90,19 @@ This design reduces memory by roughly 50% at the same window size in the reporte
 
 ## Epipolar motion-aware attention
 
-Rigid multi-view geometry constrains where a scene point may appear in another camera, but a robot scene is not static: the arm, gripper, and manipulated object move. ERMV first predicts an offset for feature location $p_i$ from positional encoding and robot state,
+Rigid multi-view geometry constrains where a scene point may appear in another camera, while the arm, gripper, and manipulated object introduce articulated motion. ERMV first predicts an offset for feature location $p_i$ from positional encoding and robot state,
 
 $$
 \Delta p_i=f_{\mathrm{blur}}\!\left(\phi(p_i),C_{\mathrm{state}}\right),
 $$
 
-then shifts the epipolar search according to that motion estimate before computing cross-view attention. The result is not a hard correspondence; it is a geometry-shaped attention neighborhood that remains flexible enough for articulated motion.
+then shifts the epipolar search according to that motion estimate before computing cross-view attention. This geometry-shaped attention neighborhood remains flexible enough for articulated motion.
 
 ![Robot state shifts cross-view attention along motion-aware epipolar neighborhoods.](epipolar-attention.jpg "Epipolar motion-aware attention combines calibrated geometry with learned dynamic offsets.")
 
 ## Feedback that asks only for the missing correction
 
-Long generated sequences can contain a locally inconsistent object even when most frames are correct. ERMV uses Qwen2.5-VL to compare original and generated sequences. When it finds a mismatch, it identifies the affected region and requests a targeted expert mask rather than discarding the whole sequence or silently accepting the error. This keeps the human intervention explicit and localized.
+Long generated sequences can contain a locally inconsistent object even when most frames are correct. ERMV uses Qwen2.5-VL to compare original and generated sequences, identify the affected region, and request a targeted expert mask. Human intervention remains localized to the detected inconsistency.
 
 ![The verifier localizes an inconsistent region before expert intervention.](feedback-intervention.jpg "Multimodal feedback turns a sequence-level inconsistency into a targeted correction request.")
 
@@ -126,7 +126,7 @@ Visual fidelity is only an intermediate measure, so the paper also trains robot 
 | Unseen clutter | RDT | 0.19 | **0.37** | — |
 | Unseen clutter | Diffusion Policy | 0.15 | **0.32** | — |
 
-Each policy result in the clutter study is evaluated with 100 trials per task. The zero values for Step1X are preserved here because negative downstream evidence is part of the comparison: visually edited data are useful only if they remain coherent enough to train behavior.
+Each policy result in the clutter study is evaluated with 100 trials per task. Step1X records zero success in this setting, showing how cross-view and temporal inconsistency can prevent visually edited data from training useful behavior.
 
 ## Real robot study
 
@@ -134,10 +134,10 @@ The physical setup uses ACT with a dual-Panda platform and two tasks. Across 100
 
 ![Real-robot editing examples and policy evaluation.](real-robot-results.jpg "ERMV augments dual-Panda demonstrations and evaluates the resulting ACT policy.")
 
-These numbers support the paper's central empirical claim: coherent trajectory editing can improve downstream policy robustness more than isolated frame quality would reveal.
+Together, the results show that coherent trajectory editing improves downstream policy robustness in ways that isolated frame-quality measures do not fully capture.
 
 ## Scope and limitations
 
-ERMV edits appearance around an existing action/state trajectory; it does not synthesize a new physically valid action sequence for an arbitrary changed task. The current representation does not explicitly model depth or a full 3D Gaussian scene, so difficult geometry and occlusion can still break consistency. The feedback loop may require manual masks, and its reliability depends on the multimodal verifier. Computation also remains heavier than simple image augmentation.
+ERMV edits appearance around an existing action/state trajectory. Changes that require a new action sequence fall outside its current formulation. The representation lacks explicit depth or a full 3D Gaussian scene, so difficult geometry and occlusion can still break consistency. The feedback loop may require manual masks, and its reliability depends on the multimodal verifier. Computation also remains heavier than simple image augmentation.
 
-The paper discusses the framework as a possible ingredient for world modeling and sim-to-real data generation. Those are forward-looking capabilities, not yet blanket claims that every generated trajectory is physically executable. The demonstrated result is narrower and more useful: under the reported simulated and real setups, state-conditioned multi-view editing produces training data whose consistency can be measured through both pixels and robot success.
+The framework also opens directions in world modeling and sim-to-real data generation. In the reported simulated and real setups, state-conditioned multi-view editing produces training data whose consistency is measured through both pixel quality and robot success.

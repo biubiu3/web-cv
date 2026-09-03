@@ -1,6 +1,6 @@
 ---
 title: 'Engineering Projects'
-summary: 'Applied systems work beyond publications, with clear project scope, personal ownership, technical decisions, and evidence from real deployments.'
+summary: 'Applied robotics and 3D-vision systems developed through industry–academia collaboration and validated in production or field operation.'
 date: 2024-06-20
 lastmod: 2026-09-03
 type: landing
@@ -10,7 +10,7 @@ sections:
   - block: collection
     content:
       title: Selected Engineering Projects
-      text: Each case separates the wider team outcome from the subsystem I personally owned, then explains the design, integration, and validation evidence.
+      text: Two applied systems projects spanning multi-camera reconstruction for autonomous driving and multi-sensor perception for an intelligent lawn robot.
       filters:
         folders:
           - projects

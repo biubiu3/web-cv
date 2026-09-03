@@ -333,6 +333,55 @@ async function captureSections(page, suffix) {
     await page.screenshot({ path: path.join(outputDir, 'project-sfm-desktop.png'), fullPage: true });
   }
 
+  await page.goto(new URL('projects/mower/', auditBase).href);
+  await settle(page);
+  const mowerDiagrams = page.locator('.project-figure--diagram img[src$="-en.svg"]');
+  for (let index = 0; index < await mowerDiagrams.count(); index += 1) {
+    const diagram = mowerDiagrams.nth(index);
+    await diagram.scrollIntoViewIfNeeded();
+    await diagram.evaluate((image) => image.complete && image.naturalWidth > 0
+      ? true
+      : new Promise((resolve) => {
+          image.addEventListener('load', () => resolve(true), { once: true });
+          image.addEventListener('error', () => resolve(false), { once: true });
+        }));
+  }
+  const mowerVideoBox = await page.locator('.project-video-card video').first().boundingBox();
+  const mowerGalleryBox = await page.locator('.project-video-gallery').first().boundingBox();
+  report.interactions.mowerProject = {
+    url: page.url(),
+    h1: await page.locator('h1').first().textContent(),
+    featuredImage: await page.locator('.featured-image').first().getAttribute('src'),
+    englishDiagrams: await mowerDiagrams.count(),
+    diagramSizes: await mowerDiagrams.evaluateAll((images) => images.map((image) => ({
+      width: image.clientWidth,
+      height: image.clientHeight,
+      naturalWidth: image.naturalWidth,
+      naturalHeight: image.naturalHeight,
+    }))),
+    videos: await page.locator('.project-video-card video').count(),
+    singleVideoLayout: await page.locator('.project-video-gallery.is-single').count(),
+    videoWidth: mowerVideoBox?.width,
+    galleryWidth: mowerGalleryBox?.width,
+  };
+  await page.locator('.article-header').first().screenshot({ path: path.join(outputDir, 'project-mower-cover.png') });
+  await page.locator('.project-figure--diagram').nth(0).screenshot({ path: path.join(outputDir, 'project-mower-pointcloud-diagram.png') });
+  await page.locator('.project-figure--diagram').nth(1).screenshot({ path: path.join(outputDir, 'project-mower-fusion-diagram.png') });
+  await page.locator('.project-video-gallery').screenshot({ path: path.join(outputDir, 'project-mower-video.png') });
+  await page.screenshot({ path: path.join(outputDir, 'project-mower-desktop.png'), fullPage: true });
+
+  await page.goto(new URL('zh/projects/mower/', auditBase).href);
+  await settle(page);
+  report.interactions.mowerProjectZh = {
+    url: page.url(),
+    lang: await page.locator('html').getAttribute('lang'),
+    englishDiagrams: await page.locator('.project-figure--diagram img[src$="-en.svg"]').count(),
+    englishSystemMap: await page.locator('.mower-system-map').getByText('Onboard sensing and compute', { exact: true }).count(),
+    videos: await page.locator('.project-video-card video').count(),
+    singleVideoLayout: await page.locator('.project-video-gallery.is-single').count(),
+  };
+  await page.screenshot({ path: path.join(outputDir, 'project-mower-zh-desktop.png'), fullPage: true });
+
   await page.goto(homeURL);
   await settle(page);
   report.interactions.contact = await page.locator('#contact a[href^="mailto:"]').first().evaluate((link) => ({
@@ -394,6 +443,24 @@ async function captureSections(page, suffix) {
     videos: await page.locator('.project-video-card video').count(),
   };
   await page.screenshot({ path: path.join(outputDir, 'project-sfm-mobile.png'), fullPage: true });
+
+  await page.goto(new URL('projects/mower/', auditBase).href);
+  await settle(page);
+  const mowerMobileVideoBox = await page.locator('.project-video-card video').first().boundingBox();
+  const mowerMobileGalleryBox = await page.locator('.project-video-gallery').first().boundingBox();
+  report.views.mowerProjectMobile = {
+    url: page.url(),
+    title: await page.title(),
+    lang: await page.locator('html').getAttribute('lang'),
+    scrollHeight: await page.evaluate(() => document.documentElement.scrollHeight),
+    bodyScrollWidth: await page.evaluate(() => document.body.scrollWidth),
+    clientWidth: await page.evaluate(() => document.documentElement.clientWidth),
+    englishDiagrams: await page.locator('.project-figure--diagram img[src$="-en.svg"]').count(),
+    videos: await page.locator('.project-video-card video').count(),
+    videoWidth: mowerMobileVideoBox?.width,
+    galleryWidth: mowerMobileGalleryBox?.width,
+  };
+  await page.screenshot({ path: path.join(outputDir, 'project-mower-mobile.png'), fullPage: true });
   await context.close();
 }
 
