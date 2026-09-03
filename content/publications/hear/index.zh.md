@@ -30,8 +30,8 @@ tags:
   - Robot Manipulation
 featured: true
 image:
-  caption: '研究概览：短促声音通过 Historizer、Envisioner、Advancer 与 Realizer 跨越盲执行区间，并改变机器人的下一步动作。'
-  alt_text: '机器人操作序列的科学编辑插画，包含瞬时波形、持续因果记忆以及带英文标注的 HEAR 四阶段。'
+  caption: '图形摘要：HEAR 跨越盲执行区间保留瞬时声音，并将其用于多模态推理和平滑动作生成。'
+  alt_text: '白底 HEAR 图形摘要，展示盲执行区间、四类 VSLA 输入、Historizer 因果记忆、Envisioner 多模态推理、仅训练期使用的 Advancer 预测、Realizer 动作生成与机器人执行。'
 hugoblox:
   ids:
     arxiv: 2603.16086v1
