@@ -15,7 +15,7 @@ function dataUri(absolutePath, mime) {
 
 const font = dataUri(join(root, 'assets', 'dist', 'font', 'SpaceGrotesk.var.ttf'), 'font/ttf');
 const base = dataUri(
-  join(root, 'assets', 'media', 'paper-covers', 'hear-concept-reconstruction-base-v4.png'),
+  join(root, 'assets', 'media', 'paper-covers', 'hear-concrete-compact-base-v5.png'),
   'image/png',
 );
 
@@ -58,35 +58,37 @@ const html = `<!doctype html>
       .identity {
         position: absolute;
         z-index: 2;
-        left: 38px;
-        top: 28px;
+        left: 32px;
+        top: 20px;
         line-height: 1;
       }
       .identity strong {
         display: block;
         color: #1e3a5f;
-        font-size: 34px;
+        font-size: 33px;
         font-weight: 820;
         letter-spacing: .09em;
       }
       .identity span {
         display: block;
-        margin-top: 8px;
+        margin-top: 7px;
         color: #506176;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 680;
-        letter-spacing: .055em;
+        letter-spacing: .065em;
       }
       .premise {
         position: absolute;
         z-index: 2;
-        left: 38px;
-        top: 98px;
-        width: 620px;
+        left: 300px;
+        top: 27px;
+        width: 1000px;
+        text-align: center;
         color: #334155;
-        font-size: 22px;
+        background: rgb(255 255 255 / 94%);
+        font-size: 21px;
         font-weight: 680;
-        line-height: 1.28;
+        line-height: 1.2;
       }
       .premise span {
         color: #2563b8;
@@ -95,42 +97,53 @@ const html = `<!doctype html>
       .label {
         position: absolute;
         z-index: 2;
-        padding: 4px 9px 6px;
-        background: rgb(255 255 255 / 94%);
+        padding: 3px 8px 5px;
+        background: rgb(255 255 255 / 96%);
         line-height: 1;
       }
       .label strong {
         display: block;
-        font-size: 22px;
+        font-size: 24px;
         font-weight: 820;
         letter-spacing: .065em;
       }
       .label span {
         display: block;
-        margin-top: 6px;
+        margin-top: 5px;
         color: #4b5b6e;
         font-size: 16px;
         font-weight: 630;
         letter-spacing: .002em;
         white-space: nowrap;
       }
-      .event { left: 287px; top: 284px; }
+      .event { left: 303px; top: 330px; }
       .event strong { color: #dc3159; }
-      .historizer { left: 500px; top: 326px; }
+      .historizer {
+        left: 430px;
+        top: 387px;
+        width: 430px;
+        text-align: center;
+      }
       .historizer strong { color: #2563b8; }
       .envisioner {
-        left: 758px;
-        top: 35px;
-        width: 540px;
+        left: 790px;
+        top: 335px;
+        width: 340px;
         text-align: center;
       }
       .envisioner strong { color: #098f83; }
-      .realizer { left: 1108px; top: 275px; }
+      .envisioner span { font-size: 14px; }
+      .realizer {
+        left: 1135px;
+        top: 363px;
+        width: 300px;
+        text-align: center;
+      }
       .realizer strong { color: #d92752; }
       .advancer {
-        left: 902px;
-        top: 560px;
-        width: 508px;
+        left: 720px;
+        top: 650px;
+        width: 590px;
         text-align: center;
       }
       .advancer strong {
@@ -139,17 +152,17 @@ const html = `<!doctype html>
       .bei {
         position: absolute;
         z-index: 2;
-        left: 474px;
-        top: 514px;
-        width: 486px;
-        padding-top: 9px;
+        left: 430px;
+        top: 579px;
+        width: 430px;
+        padding-top: 7px;
         border-top: 2px dashed #a8b3c2;
         text-align: center;
         color: #64748b;
       }
       .bei strong {
         display: block;
-        font-size: 17px;
+        font-size: 18px;
         font-weight: 800;
         letter-spacing: .08em;
       }
@@ -159,16 +172,23 @@ const html = `<!doctype html>
         font-size: 15px;
         font-weight: 620;
       }
+      .sound-types {
+        left: 36px;
+        top: 650px;
+        width: 590px;
+        text-align: center;
+      }
+      .sound-types strong { color: #415a78; }
       .outcome {
         position: absolute;
         z-index: 2;
-        left: 1371px;
-        top: 252px;
-        width: 205px;
+        left: 1437px;
+        top: 385px;
+        width: 166px;
         text-align: center;
         color: #26364a;
         background: rgb(255 255 255 / 94%);
-        font-size: 18px;
+        font-size: 19px;
         font-weight: 810;
         letter-spacing: .06em;
       }
@@ -180,28 +200,27 @@ const html = `<!doctype html>
 
       <div class="identity">
         <strong>HEAR</strong>
-        <span>SOUND-CENTRIC MANIPULATION UNDER DELAYED DECISIONS</span>
+        <span>VISION · SOUND · LANGUAGE · ACTION</span>
       </div>
       <div class="premise">
-        A transient sound can end before the policy listens again.<br>
-        <span>Causal memory lets it change the next action.</span>
+        A brief sound can disappear before the next policy query. <span>HEAR preserves it until the action can change.</span>
       </div>
 
       <div class="label event">
         <strong>EVENT DURING EXECUTION</strong>
-        <span>the acoustic cue is brief</span>
+        <span>a cue arrives mid-action</span>
       </div>
       <div class="label historizer">
         <strong>HISTORIZER</strong>
-        <span>carry evidence after the waveform ends</span>
+        <span>raw sound ends; event evidence persists</span>
       </div>
       <div class="label envisioner">
         <strong>ENVISIONER</strong>
-        <span>remembered sound + vision + instruction + robot state</span>
+        <span>interpret sound, vision, instruction, and state</span>
       </div>
       <div class="label realizer">
         <strong>REALIZER</strong>
-        <span>turn the decision into a smooth action chunk</span>
+        <span>generate a smooth action chunk</span>
       </div>
       <div class="label advancer">
         <strong>ADVANCER · TRAINING ONLY</strong>
@@ -209,9 +228,13 @@ const html = `<!doctype html>
       </div>
       <div class="bei">
         <strong>BLIND EXECUTION INTERVAL</strong>
-        <span>raw sound is gone; remembered evidence remains</span>
+        <span>memory survives the sensing-to-action gap</span>
       </div>
-      <div class="outcome">NEXT ROBOT ACTION</div>
+      <div class="label sound-types">
+        <strong>SOUND-CENTRIC EVENTS</strong>
+        <span>speech · trigger · process · contact</span>
+      </div>
+      <div class="outcome">CHANGED ACTION</div>
     </main>
   </body>
 </html>`;
@@ -229,10 +252,10 @@ await page.evaluate(() => document.fonts.ready);
 await page.waitForFunction(() => [...document.images].every((image) => image.complete));
 await page.screenshot({ path: coverPath, type: 'png', animations: 'disabled' });
 await page.screenshot({
-  path: join(outputRoot, 'hear-concept-reconstruction-sample.png'),
+  path: join(outputRoot, 'hear-concrete-compact-sample.png'),
   type: 'png',
   animations: 'disabled',
 });
 
 await browser.close();
-console.log(`Rendered HEAR concept-reconstruction sample to ${coverPath}`);
+console.log(`Rendered HEAR concrete compact sample to ${coverPath}`);

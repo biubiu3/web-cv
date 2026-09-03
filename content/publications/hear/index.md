@@ -30,7 +30,7 @@ tags:
 featured: true
 image:
   caption: 'HEAR preserves a brief sound across delayed decisions so it can change the robot''s next smooth action.'
-  alt_text: 'Original white HEAR graphical abstract showing a sound event during robot execution, a blue causal-memory thread bridging the blind execution interval, multimodal signals weaving into reasoning, a coral trajectory to the next robot action, and an amber training-only future-audio loop.'
+  alt_text: 'Compact white HEAR graphical abstract showing a robot interaction producing a brief sound, four causal-memory packets spanning the blind execution interval, vision, speech, and state entering a concrete task interpretation, intermediate robot poses along a changed action chunk, four sound-event examples, and training-only future-audio prediction.'
 hugoblox:
   ids:
     arxiv: 2603.16086v1

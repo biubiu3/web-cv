@@ -2,9 +2,9 @@
 
 The current cover redesign is being reviewed one paper at a time. `scripts/build-publication-covers.mjs` currently renders only the HEAR graphical-abstract sample. Its exact English labels are browser-rendered rather than generated pixels.
 
-## HEAR concept reconstruction sample
+## HEAR compact concept reconstruction sample
 
-`hear-concept-reconstruction-base-v4.png` was created with the built-in image-generation tool after reading the scientific meaning expressed by the paper's Figure 1 caption, Figure 2 caption, motivation, and architectural-overview prose in `/DataBig/hear_ijrr/HEAR_IJRR.tex`. The paper figures themselves were deliberately not supplied as visual references: this version reconstructs the causal story instead of copying their panel or block-diagram organization. The generated layer contains no typography; `scripts/build-publication-covers.mjs` overlays all exact English terminology and explanation deterministically.
+`hear-concrete-compact-base-v5.png` was created with the built-in image-generation tool after reading the scientific meaning expressed by the paper's Figure 1 caption, Figure 2 caption, motivation, and architectural-overview prose in `/DataBig/hear_ijrr/HEAR_IJRR.tex`. The paper figures themselves were deliberately not supplied as visual references: this version reconstructs the causal story instead of copying their panel or block-diagram organization. The generated layer contains no typography; `scripts/build-publication-covers.mjs` overlays all exact English terminology and explanation deterministically.
 
 Initial generation prompt:
 
@@ -29,6 +29,25 @@ Targeted refinement prompt:
 > Invariants: keep the left physical robot scene, the single coral sound event, the fact that the coral waveform ends, the blue persistent memory thread spanning time, the right coral smooth-action trajectory and later robot pose, the amber dotted training-only future-waveform loop, the pure white background, the wide asymmetrical composition, and all existing causal directions. Do not add any modules or claims.
 > Text constraints: no words, letters, numbers, equations, pseudo-text, logos, or watermarks.
 > Avoid: architecture boxes, stacked cards, circular input bubbles, speech bubbles, logo-like central symbols, neural-network dashboards, 3D, gradients, glow, neon, photorealism, advertising polish, decorative particles.
+
+Compact and concrete refinement prompt:
+
+> Use case: scientific-educational
+> Asset type: targeted refinement of the supplied 16:9 HEAR graphical-abstract base
+> Input image: edit target. Preserve its original causal story, white background, flat line-art language, and blue/teal/coral/amber semantics.
+> Primary request: Make the composition substantially denser and more concrete without turning it into a block diagram. Enlarge the meaningful visual content so it occupies roughly 85 percent of the canvas height and most of the width. Bring the two robot task scenes closer to the central reasoning area, reduce the long empty stretches of signal line, and move the amber training branch upward into the lower-middle region. Leave only a compact header-safe band at the top and small label-safe gaps around the causal stages; do not leave a large empty top half or empty lower-left quadrant.
+> Concrete scientific detail:
+> 1. At the left, make the short acoustic event visibly originate from a recognizable tabletop interaction while the robot is already moving. Keep the same robot, container, object, and sound pulse; add only a small physical event cue such as lid contact or a compact timer/speaker device, not a fantasy energy effect.
+> 2. Replace the mostly empty blue wavy span with a compact sequence of four small causal audio-memory packets. The first packet contains the captured coral event waveform; later packets retain a small blue event trace after the raw coral waveform has ended. They should read as persistent evidence carried across delayed decisions, not as four neural-network boxes.
+> 3. At the center, keep four modalities converging, but make their meaning more tangible: a camera view of the current tabletop scene, a spoken instruction icon, a robot joint-state/pose icon, and the remembered event packet converge into one compact task-state interpretation. Show a small, recognizable robot-plus-object task-state motif at the convergence point rather than an abstract logo.
+> 4. At the right, keep a smooth coral action trajectory but add two or three restrained intermediate gripper or robot-arm pose outlines along it, so it clearly represents a continuous action chunk leading to the changed final action.
+> 5. Make the amber training-only branch concrete and compact: the interpreted task state leads to a short sequence of predicted future audio packets or waveform frames, with a return-loop learning arrow. Keep this branch visually separate from deployment.
+> 6. Use the remaining lower-left space for four very small, evenly spaced sound-source examples from sound-centric manipulation: spoken instruction, a short trigger beep, a continuous bubbling/process sound, and contact/tap feedback. Connect them subtly to the main sound-event idea. These are scientific examples, not decorative icons.
+> Style/medium: crisp mature 2D scientific editorial line illustration with uniform thin strokes, restrained fills, consistent icon scale, and journal-graphical-abstract density. More detailed and authored, but still clean and scan-friendly.
+> Composition/framing: compact asymmetric left-to-right causal narrative; visually balanced; no large voids; no separate title panel; no row of architecture boxes; no copying or rearranging an existing paper figure.
+> Invariants: the original sound ends before the later decision; memory persists after the raw sound disappears; remembered sound, vision, instruction, and state meet at reasoning; smooth action is downstream; future-audio prediction is training-only. Preserve the pure white background and exact color roles.
+> Text constraints: no words, letters, numbers, equations, pseudo-text, logos, or watermarks. Leave clean local space for deterministic English labels added later.
+> Avoid: generic AI brain or neural-network symbol, large empty whitespace, stretched decorative curves, circular bubbles, glossy cards, presentation-slide layout, dense architecture diagram, 3D, gradients, glow, neon, sci-fi dashboard, advertising polish, photorealism, fuzzy edges, decorative particles.
 
 ## Earlier paper-texture source
 
