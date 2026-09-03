@@ -29,8 +29,8 @@ tags:
   - Robot Manipulation
 featured: true
 image:
-  caption: 'Research overview: robot frames and audio traces show transient sounds being retained for the next action.'
-  alt_text: 'HEAR acoustic-record cover with robot-camera frames, waveform traces, and the event sequence hiss, gurgle, act.'
+  caption: 'Research overview: a brief sound crosses the blind execution interval through the Historizer, Envisioner, Advancer, and Realizer before changing the next action.'
+  alt_text: 'Scientific editorial illustration of a robot manipulation sequence with a transient waveform, persistent causal memory, and four labeled HEAR stages.'
 hugoblox:
   ids:
     arxiv: 2603.16086v1

@@ -30,8 +30,8 @@ tags:
   - Robot Manipulation
 featured: true
 image:
-  caption: '研究概览：机器人相机帧与音频轨迹展示短暂声音如何被保留并影响下一步动作。'
-  alt_text: 'HEAR 声学记录式封面，包含机器人相机画面、波形轨迹以及“嘶声、汩汩声、动作”的事件顺序。'
+  caption: '研究概览：短促声音通过 Historizer、Envisioner、Advancer 与 Realizer 跨越盲执行区间，并改变机器人的下一步动作。'
+  alt_text: '机器人操作序列的科学编辑插画，包含瞬时波形、持续因果记忆以及带英文标注的 HEAR 四阶段。'
 hugoblox:
   ids:
     arxiv: 2603.16086v1
