@@ -1033,26 +1033,18 @@ section[id] {
 }
 
 .article-header-caption {
-  border-radius: 0.7rem;
-  background: rgb(3 15 31 / 80%);
-  backdrop-filter: blur(8px);
+  position: static;
+  display: block;
+  margin-top: 0.45rem;
+  padding: 0.15rem 0.1rem 0;
+  border-radius: 0;
+  background: transparent;
+  color: #64748b;
+  backdrop-filter: none;
 }
 
-@media (max-width: 640px) {
-  .article-header-caption {
-    position: static;
-    display: block;
-    margin-top: 0.45rem;
-    padding: 0.15rem 0.1rem 0;
-    border-radius: 0;
-    background: transparent;
-    color: #64748b;
-    backdrop-filter: none;
-  }
-
-  .dark .article-header-caption {
-    color: #94a3b8;
-  }
+.dark .article-header-caption {
+  color: #94a3b8;
 }
 
 /* Publication tag rows must wrap on narrow screens rather than widening the page. */

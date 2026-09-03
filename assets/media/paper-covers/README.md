@@ -1,10 +1,61 @@
 # Publication-cover source note
 
-The current cover redesign is being reviewed one paper at a time. `scripts/build-publication-covers.mjs` currently renders only the HEAR graphical-abstract sample. Its exact English labels are browser-rendered rather than generated pixels.
+The current cover redesign is being reviewed one paper at a time. `scripts/build-publication-covers.mjs` currently publishes only the HEAR graphical-abstract sample.
 
-## HEAR compact concept reconstruction sample
+## HEAR native image-with-text sample
 
-`hear-concrete-compact-base-v5.png` was created with the built-in image-generation tool after reading the scientific meaning expressed by the paper's Figure 1 caption, Figure 2 caption, motivation, and architectural-overview prose in `/DataBig/hear_ijrr/HEAR_IJRR.tex`. The paper figures themselves were deliberately not supplied as visual references: this version reconstructs the causal story instead of copying their panel or block-diagram organization. The generated layer contains no typography; `scripts/build-publication-covers.mjs` overlays all exact English terminology and explanation deterministically.
+`hear-integrated-text-v6.png` was created in one pass with the built-in image-generation tool. The illustrations, arrows, module labels, captions, punctuation, and typography are native parts of the same raster composition. No browser, SVG, or canvas text is overlaid afterward. The image was redrawn from the semantic story established in the earlier HEAR sample rather than copied from the paper figures.
+
+Final generation prompt:
+
+> Use case: scientific-educational
+> Asset type: 16:9 academic website graphical abstract for a robotics research paper.
+> Input image 1: edit target and semantic reference only. Completely redraw the full figure as one coherent native composition. Do not retain the old text placement or simulate a second text layer.
+>
+> Primary request:
+> Create a clean, compact, white-background 2D scientific graphical abstract explaining HEAR. Generate the illustrations, arrows, module labels, captions, punctuation, and typography together in a single image. Every label must be naturally built into the layout with reserved space; no text may overlap, cover, touch, or sit on top of a robot, waveform, box, arrow, path, or icon.
+>
+> Scientific story, left to right:
+> 1. A robot is already manipulating a container when a short acoustic event occurs mid-action.
+> 2. Four chronological sound-memory cards show the raw sound fading while causal evidence persists across a blind execution interval.
+> 3. A compact task-state interpretation combines a camera/view, spoken instruction, sound memory, and robot state.
+> 4. Three intermediate robot poses follow one smooth curved trajectory toward a visibly changed final action.
+> 5. A lower compact strip shows four concrete sound-centric event examples and a training-only future-audio prediction branch.
+>
+> Required text, render verbatim with correct spelling and no extra words:
+> "HEAR"
+> "VISION · SOUND · LANGUAGE · ACTION"
+> "BRIEF SOUND. PERSISTENT EVIDENCE. TIMELY ACTION."
+> "EVENT DURING EXECUTION"
+> "A cue arrives mid-action"
+> "HISTORIZER"
+> "Preserve causal sound evidence"
+> "BLIND EXECUTION INTERVAL"
+> "ENVISIONER"
+> "Fuse sound, vision, instruction, and state"
+> "REALIZER"
+> "Generate a smooth action chunk"
+> "CHANGED ACTION"
+> "SOUND-CENTRIC EVENTS"
+> "Speech · trigger · process · contact"
+> "ADVANCER — TRAINING ONLY"
+> "Predict future audio to learn temporal progress"
+>
+> Typography:
+> Use a sober editorial sans-serif, like a high-quality journal infographic. HEAR is the largest label. Module names are medium uppercase. Explanations are smaller but clearly readable. Use dark navy text, with coral for EVENT DURING EXECUTION and REALIZER, teal for ENVISIONER, blue for HISTORIZER, and amber for ADVANCER. Keep all text horizontal. Each label sits in a quiet dedicated area immediately adjacent to the element it explains. Maintain generous internal padding around text, but do not leave large unused canvas regions.
+>
+> Style:
+> Crisp refined hand-drawn technical line art, consistent 2D perspective, slightly human editorial character, restrained navy/blue/teal/coral/amber palette, off-white or pure white background. Dense but calm, visually specific, publication-quality, not a slide cover.
+>
+> Composition:
+> Landscape 16:9. Fill about 88% of the canvas. Strong continuous left-to-right reading order. Align the bottom examples and training branch into one compact baseline. Use arrows only when they clarify causality. Keep all content safely inside the frame.
+>
+> Constraints:
+> All text must be generated as an intrinsic part of this one raster image. No later overlay is intended. Preserve scientific meaning but redesign the layout. Do not copy paper figures. No gradients, no glow, no 3D render, no photorealism, no futuristic HUD, no advertising style, no PPT-cover feel, no watermark, no logos other than the word HEAR, no decorative filler, no overlapping text, no illegible microtext, no misspellings.
+
+## Previous HEAR compact concept reconstruction sample
+
+`hear-concrete-compact-base-v5.png` was created with the built-in image-generation tool after reading the scientific meaning expressed by the paper's Figure 1 caption, Figure 2 caption, motivation, and architectural-overview prose in `/DataBig/hear_ijrr/HEAR_IJRR.tex`. The paper figures themselves were deliberately not supplied as visual references: this version reconstructs the causal story instead of copying their panel or block-diagram organization. This archived base contains no typography; the previously deployed v5 cover used a browser-rendered text layer that has now been retired.
 
 Initial generation prompt:
 
