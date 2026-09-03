@@ -2129,7 +2129,7 @@ section[id] {
   grid-template-columns: minmax(0, 1fr);
 }
 
-@media (min-width: 960px) {
+@media (min-width: 960px) and (max-width: 1279px) {
   .project-figure--diagram,
   .project-video-gallery.is-single {
     position: relative;
@@ -2137,6 +2137,17 @@ section[id] {
     width: min(60rem, calc(100vw - 4rem));
     max-width: none;
     transform: translateX(-50%);
+  }
+}
+
+@media (min-width: 1280px) {
+  .project-figure--diagram,
+  .project-video-gallery.is-single {
+    position: relative;
+    left: 50%;
+    width: min(55rem, calc(100vw - 22rem));
+    max-width: none;
+    transform: translateX(calc(-50% - 4rem));
   }
 }
 

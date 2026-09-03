@@ -368,6 +368,8 @@ async function captureSections(page, suffix) {
   await page.locator('.project-figure--diagram').nth(0).screenshot({ path: path.join(outputDir, 'project-mower-pointcloud-diagram.png') });
   await page.locator('.project-figure--diagram').nth(1).screenshot({ path: path.join(outputDir, 'project-mower-fusion-diagram.png') });
   await page.locator('.project-video-gallery').screenshot({ path: path.join(outputDir, 'project-mower-video.png') });
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.waitForTimeout(250);
   await page.screenshot({ path: path.join(outputDir, 'project-mower-desktop.png'), fullPage: true });
 
   await page.goto(new URL('zh/projects/mower/', auditBase).href);
