@@ -31,8 +31,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'Concept cover: an adaptive sampler learns from residuals, rewards, and sampling history across successive geometric hypotheses until strong consensus emerges.'
-  alt_text: 'A graph policy repeatedly samples, solves, scores, and updates its history before identifying a clean geometric consensus among outliers.'
+  caption: 'Research overview: the line-fitting trace and policy-state diagram show how each hypothesis updates the next sample.'
+  alt_text: 'RLSAC editorial cover with a ten-step line-fitting trace, a policy-state inset, and the loop sample, solve, score, update.'
 hugoblox:
   ids:
     arxiv: 2308.05318v1

@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "hugo server --disableFastRender",
     "build": "hugo --minify && pnpm run pagefind",
+    "covers:build": "node scripts/build-publication-covers.mjs",
     "pagefind": "pagefind --site public",
     "audit:site": "node scripts/site-audit.mjs",
     "audit:seo": "node scripts/seo-audit.mjs",

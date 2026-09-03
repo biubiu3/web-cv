@@ -26,8 +26,8 @@ tags:
   - Denoising
 featured: false
 image:
-  caption: 'Concept cover: heterogeneous noisy observations share one iterative mechanism that estimates the current corruption stage and removes the next residual increment.'
-  alt_text: 'Noisy images, point sets, physiological signals, MRI, and biological sequences pass through shared iterative denoising stages toward clean outputs.'
+  caption: 'Research overview: paper figures from five modalities frame the shared estimate-residual-repeat loop.'
+  alt_text: 'Editorial cover labeled MID with paper figures for images, geometry, biosignals, MRI, and protein representations beside the sequence stage, residual, updated sample.'
 hugoblox:
   ids:
     doi: 10.1109/TNNLS.2026.3683544

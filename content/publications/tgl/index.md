@@ -29,8 +29,8 @@ tags:
   - Robot Manipulation
 featured: true
 image:
-  caption: 'Concept cover: sparse demonstrations become reusable closed-loop Skill Blocks, while verified outcomes and repairs support adaptive composition in a new scene.'
-  alt_text: 'Several demonstrations feed an embodied agent that stores reusable robot skills and experience, then composes and revises a route for a new task.'
+  caption: 'Research overview: a closed-loop Skill Block and the learning ecosystem connect teaching, verification, storage, and reuse.'
+  alt_text: 'TGL laboratory-manual cover with a Skill Block, before-and-after robot scenes, and the sequence teach, check, store, reuse.'
 links:
   - type: preprint
     provider: arxiv

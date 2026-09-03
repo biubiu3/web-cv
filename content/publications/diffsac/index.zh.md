@@ -28,8 +28,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: '概念封面：多条反向扩散轨迹将含噪置信场逐步重构为相互兼容且具有多样性的几何最小集。'
-  alt_text: '多个含噪置信场经扩散过程形成不同的几何最小集，最终由经典共识估计选出最佳假设。'
+  caption: '研究概览：置信度反向扩散先生成候选最小集，再进入几何共识估计。'
+  alt_text: 'DiffSAC 编辑式封面，包含置信度扩散序列、对应点结果以及“噪声、细化、求解”三个阶段。'
 hugoblox:
   ids:
     arxiv: 2608.30603v1

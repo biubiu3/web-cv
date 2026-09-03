@@ -33,8 +33,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: '概念封面：刚性相机组约束、语义道路过滤、共享位姿束调整与跨次采集聚合共同构成驾驶场景重建流程。'
-  alt_text: '环视相机车辆完成道路场景重建与异常点过滤，优化相机组共享位姿，并将多次采集融合为一致的大场景模型。'
+  caption: '研究概览：刚性相机组优化与跨次场景拼装共同组织多段驾驶数据的重建。'
+  alt_text: 'MRASfM 地图档案式封面，包含驾驶图像、相机组束调整示意图和从粗到细的场景拼装结果。'
 links:
   - type: preprint
     provider: arxiv

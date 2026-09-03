@@ -30,8 +30,8 @@ tags:
   - Robot Manipulation
 featured: true
 image:
-  caption: '概念封面：少量示范被归纳为可复用的闭环技能块，经过验证的结果与修复经验支持机器人在新场景中动态组合能力。'
-  alt_text: '多次示范进入具身智能体并形成可复用技能与经验，随后在新任务中组合执行路线并依据物理反馈修正。'
+  caption: '研究概览：闭环技能块与学习生态把教学、验证、存储和复用连接成持续增长过程。'
+  alt_text: 'TGL 实验手册式封面，包含技能块、机器人执行前后画面以及“教学、检查、存储、复用”流程。'
 links:
   - type: preprint
     provider: arxiv

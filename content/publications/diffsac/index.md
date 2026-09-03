@@ -27,8 +27,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'Concept cover: reverse-diffusion trajectories turn noisy confidence fields into diverse, jointly compatible minimum sets for classical consensus estimation.'
-  alt_text: 'Multiple noisy confidence fields are refined by diffusion into diverse geometric minimum sets before consensus selects the best hypothesis.'
+  caption: 'Research overview: confidence reverse diffusion yields candidate minimum sets before geometric consensus.'
+  alt_text: 'DiffSAC editorial cover with the confidence-diffusion sequence, correspondence results, and the stages noise, refine, solve.'
 hugoblox:
   ids:
     arxiv: 2608.30603v1

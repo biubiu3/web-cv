@@ -29,8 +29,8 @@ tags:
   - Multimodal Learning
 featured: false
 image:
-  caption: 'Concept cover: one guided intervention propagates coherently through camera viewpoints and time, with geometric and state conditions correcting inconsistent frames.'
-  alt_text: 'A single edited robot observation is propagated through a multi-view temporal lattice while epipolar geometry and feedback preserve consistency.'
+  caption: 'Research overview: a film strip shows one edit propagated across multiple cameras, frames, and real-robot evaluation.'
+  alt_text: 'ERMV film-strip cover with edited robot scenes across camera views and time, plus an inset from the real-robot evaluation.'
 hugoblox:
   ids:
     arxiv: 2507.17462v1

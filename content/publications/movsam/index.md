@@ -29,8 +29,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'Concept cover: semantic reasoning infers motion-relevant objects from one still image and iteratively sharpens language-guided segmentation masks.'
-  alt_text: 'A single urban image is interpreted by multimodal reasoning to produce and refine masks for a car, cyclist, and pedestrian without temporal cues.'
+  caption: 'Research overview: single-image reasoning identifies what could move and refines the segmentation mask without temporal cues.'
+  alt_text: 'MovSAM editorial cover with a language-guided person mask and a four-frame occlusion sequence, emphasizing that inference starts from one still image.'
 hugoblox:
   ids:
     doi: 10.1109/IROS60139.2025.11246064

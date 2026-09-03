@@ -1,0 +1,7 @@
+# Publication-cover source note
+
+The eight publication covers are assembled by `scripts/build-publication-covers.mjs` from the figures already used on each publication page. Titles, labels, and explanatory copy are browser-rendered text rather than generated pixels.
+
+Only `notebook-paper-generated.png`, used as the restrained MID background, was generated with the built-in image-generation tool. Final prompt:
+
+> Use case: scientific-educational. Asset type: subtle background texture for one academic publication cover. Primary request: a flat, high-resolution scan of warm off-white scientific notebook paper, quietly tactile and materially believable. Scene/backdrop: edge-to-edge paper surface only. Style/medium: archival paper scan, natural fibers, extremely faint graphite handling marks and a barely visible pale blue measurement grid; understated, imperfect, editorial, not polished. Composition/framing: uniform landscape texture with no focal object and no lighting gradient. Color palette: warm ivory, pale mineral blue, soft graphite gray. Materials/textures: fine paper fibers, restrained printing registration variation, tiny natural speckles. Constraints: no text, no symbols, no diagrams, no objects, no borders, no logos, no watermark; flat even lighting; usable behind dark typography. Avoid: futuristic aesthetics, neon, glossy 3D, holograms, advertising polish, gradients, dramatic shadows, obvious AI patterns.

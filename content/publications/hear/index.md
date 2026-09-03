@@ -29,8 +29,8 @@ tags:
   - Robot Manipulation
 featured: true
 image:
-  caption: 'Concept cover: a transient sound survives a long action chunk as causal memory, then informs scene reasoning, future-audio prediction, and smooth robot control.'
-  alt_text: 'A brief acoustic event becomes persistent causal memory and flows through four stages toward the robot\u2019s next continuous action.'
+  caption: 'Research overview: robot frames and audio traces show transient sounds being retained for the next action.'
+  alt_text: 'HEAR acoustic-record cover with robot-camera frames, waveform traces, and the event sequence hiss, gurgle, act.'
 hugoblox:
   ids:
     arxiv: 2603.16086v1

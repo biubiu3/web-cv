@@ -32,8 +32,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'Concept cover: rigid camera-set geometry, semantic road filtering, shared-pose bundle adjustment, and cross-session aggregation form one driving-scene reconstruction pipeline.'
-  alt_text: 'A surround-camera vehicle reconstructs and filters a road scene, optimizes shared rig poses, and merges several driving sessions into one coherent model.'
+  caption: 'Research overview: rigid camera-set optimization and cross-session assembly organize multi-drive reconstruction.'
+  alt_text: 'MRASfM map-archive cover with driving imagery, a camera-set bundle-adjustment diagram, and a coarse-to-fine scene-assembly result.'
 links:
   - type: preprint
     provider: arxiv

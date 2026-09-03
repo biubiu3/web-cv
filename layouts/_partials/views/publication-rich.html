@@ -14,12 +14,12 @@
 {{- if $status -}}
   {{- $recordType = cond $isZh "在审稿件" "Manuscript" -}}
 {{- end -}}
-{{- $figureLabel := cond $isZh "研究概念" "Research concept" -}}
+{{- $figureLabel := cond $isZh "研究概览" "Research overview" -}}
 {{- $figureCaption := $item.Params.image.caption | default "" -}}
 {{- if $isZh -}}
-  {{- $figureCaption = replace $figureCaption "概念封面：" "" -}}
+  {{- $figureCaption = replace $figureCaption "研究概览：" "" -}}
 {{- else -}}
-  {{- $figureCaption = replace $figureCaption "Concept cover: " "" -}}
+  {{- $figureCaption = replace $figureCaption "Research overview: " "" -}}
 {{- end -}}
 {{- $representativeLabel := cond $isZh "代表工作" "Representative work" -}}
 {{- $summary := $item.Params.abstract | default $item.Summary -}}
