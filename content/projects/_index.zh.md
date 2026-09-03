@@ -2,7 +2,7 @@
 title: '工程项目'
 summary: '论文之外的实际系统工作，明确区分项目整体成果、个人负责范围、技术决策与应用验证证据。'
 date: 2024-06-20
-lastmod: 2026-09-02
+lastmod: 2026-09-03
 type: landing
 
 sections:

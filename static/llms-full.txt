@@ -47,6 +47,17 @@ HEAR and Teach and Grow are the two current representative systems. HEAR introdu
 - Chinese project page: https://biubiu3.github.io/web-cv/zh/projects/sfm/
 - Related paper: https://biubiu3.github.io/web-cv/publications/mrasfm/
 
+### Autonomous Lawn Robot: LiDAR Obstacle Perception and Multi-Sensor Fusion
+
+- Context: A large applied industry–academia project with Positec that designed an autonomous mower as a complete mobile robot for unstructured lawns rather than relying on one boundary or positioning sensor.
+- Wider system: Multi-camera and RGB-D sensing, LiDAR, RTK/GNSS, IMU, wheel odometry, onboard GPU compute, multi-sensor localization, perception, planning, and control.
+- Personal ownership: Nie Chang was responsible for terrain-aware LiDAR obstacle detection and the multi-sensor obstacle-fusion layer, not the complete team platform or commercial product.
+- Point-cloud design: Structured grid/range projection, local terrain reasoning for grass and slopes, efficient clustering, odometry-linked temporal reuse, obstacle tracking, and planning-facing publication.
+- Fusion design: Point-cloud geometry was projected into semantic masks and visual detections while preserving geometry-only, class-aware, and vision-estimated obstacle types instead of hiding sensor disagreement.
+- Evidence boundary: The public page includes original engineering flowcharts, a fused-perception field image, and a 41-second synchronized LiDAR/camera playback. It does not claim universal recall, safety certification, or a direct lineage to a later commercial mower model.
+- Project page: https://biubiu3.github.io/web-cv/projects/mower/
+- Chinese project page: https://biubiu3.github.io/web-cv/zh/projects/mower/
+
 ## Publication Record
 
 ### Teach and Grow: An Agent-Centered Architecture for General Robot Learning

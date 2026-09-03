@@ -1916,6 +1916,20 @@ section[id] {
   gap: 0.7rem;
 }
 
+.mower-system-map__core {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.mower-system-map .project-system-map__stage,
+.mower-fusion-map .project-system-map__stage {
+  min-height: 6.6rem;
+}
+
+.mower-system-map .project-system-map__stage.is-owned,
+.mower-fusion-map .project-system-map__stage.is-owned {
+  min-height: 0;
+}
+
 .project-system-map__stage {
   display: flex;
   min-width: 0;
@@ -2287,6 +2301,10 @@ section[id] {
   }
 
   .project-system-map__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .mower-system-map__core {
     grid-template-columns: minmax(0, 1fr);
   }
 

@@ -2,7 +2,7 @@
 title: 'Engineering Projects'
 summary: 'Applied systems work beyond publications, with clear project scope, personal ownership, technical decisions, and evidence from real deployments.'
 date: 2024-06-20
-lastmod: 2026-09-02
+lastmod: 2026-09-03
 type: landing
 
 # Page sections

@@ -3,6 +3,8 @@
 {{- $resource := partial "functions/get_featured_image.html" $item -}}
 {{- $meta := $item.Params.project | default dict -}}
 {{- $isZh := eq site.Language.Lang "zh" -}}
+{{- $defaultLabel := cond $isZh "4D 视觉自动标注 · SfM 个人负责" "4D vision auto-annotation · SfM ownership" -}}
+{{- $cardLabel := index $meta "card_label" | default $defaultLabel -}}
 
 <article class="project-feature-card" aria-labelledby="project-title-{{ $item.File.UniqueID }}">
   <a class="project-feature-media" href="{{ $link }}" aria-label="{{ $item.Title | plainify }}">
@@ -13,7 +15,7 @@
       {{- end -}}
       <img src="{{ $display.RelPermalink }}" width="{{ $display.Width }}" height="{{ $display.Height }}" loading="lazy" decoding="async" alt="{{ $item.Params.image.alt_text | default $item.Title | plainify }}">
     {{- end -}}
-    <span class="project-feature-media-label">{{ if $isZh }}4D 视觉自动标注 · SfM 个人负责{{ else }}4D vision auto-annotation · SfM ownership{{ end }}</span>
+    <span class="project-feature-media-label">{{ $cardLabel }}</span>
   </a>
 
   <div class="project-feature-copy">

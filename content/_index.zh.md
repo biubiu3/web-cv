@@ -67,23 +67,6 @@ sections:
         **HEAR** 与 **Teach and Grow（TGL）** 是这条路线最具代表性的工作：HEAR 让机器人能够持续感知声音并据此操作；TGL 则将示范、工具、物理反馈和记忆组织为能够积累并复用能力的机器人系统。
     design:
       columns: '1'
-  - block: collection
-    id: engineering-projects
-    content:
-      title: '工程项目'
-      text: |-
-        除了论文研究，我也参与需要面对真实传感器、系统接口与下游生产约束的工程项目。下面先展示完整的 4D 视觉自动化标注系统，再明确说明我在其中负责的多相机 SfM 场景重建子系统。
-      filters:
-        folders:
-          - projects
-      count: 1
-    design:
-      view: project-feature
-      columns: 1
-      fill_image: false
-      show_date: false
-      show_read_time: false
-      show_read_more: false
   - block: markdown
     id: papers
     content:
@@ -143,6 +126,23 @@ sections:
       view: article-grid
       columns: 2
       fill_image: false
+  - block: collection
+    id: engineering-projects
+    content:
+      title: '工程项目'
+      text: |-
+        除了论文研究，我也参与需要面对真实传感器、系统接口与下游生产约束的工程项目。下面的案例会区分大型产学研项目与个人负责范围：一个是面向自动驾驶数据的多相机 SfM，另一个是智能割草机器人的点云与多传感器融合障碍感知。
+      filters:
+        folders:
+          - projects
+      count: 2
+    design:
+      view: project-feature
+      columns: 1
+      fill_image: false
+      show_date: false
+      show_read_time: false
+      show_read_more: false
   - block: cta-card
     id: contact
     content:

@@ -38,6 +38,7 @@ This file is a concise guide to the public, human-readable pages on the site. Pu
 
 - [Engineering project index](https://biubiu3.github.io/web-cv/projects/): Applied systems work with explicit project scope, personal ownership, design decisions, and validation evidence.
 - [Multi-Camera SfM for 4D Vision Auto-Annotation](https://biubiu3.github.io/web-cv/projects/sfm/): An industry–academia project with NETA Auto, applied in production and spanning data preparation, semantic perception, localization, reconstruction, auto-annotation, and multi-run local maps. Nie Chang owned the SfM scene-reconstruction subsystem, which refined vehicle poses and camera extrinsics and produced sparse-to-dense geometry for downstream modules. The project later informed the MRASfM research paper.
+- [Autonomous Lawn Robot: LiDAR Obstacle Perception and Multi-Sensor Fusion](https://biubiu3.github.io/web-cv/projects/mower/): A field-tested industry–academia project with Positec that treated autonomous mowing as a complete mobile-robot problem. Nie Chang owned terrain-aware LiDAR obstacle detection and the fusion of point-cloud geometry, semantic segmentation, and visual object detections into planning-facing obstacle hypotheses.
 
 ## Machine-Readable Resources
 

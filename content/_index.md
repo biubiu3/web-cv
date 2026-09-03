@@ -75,23 +75,6 @@ sections:
         **HEAR** and **Teach and Grow (TGL)** are the clearest expressions of this direction: HEAR introduces continuous sound-aware manipulation, while TGL organizes demonstrations, tools, physical feedback, and memory into a robot system that accumulates reusable capabilities.
     design:
       columns: '1'
-  - block: collection
-    id: engineering-projects
-    content:
-      title: 'Engineering Projects'
-      text: |-
-        Beyond research papers, I build systems that must work with real sensors, real interfaces, and downstream production constraints. This case presents the complete 4D vision auto-annotation program, then makes my ownership of its multi-camera SfM reconstruction subsystem explicit.
-      filters:
-        folders:
-          - projects
-      count: 1
-    design:
-      view: project-feature
-      columns: 1
-      fill_image: false
-      show_date: false
-      show_read_time: false
-      show_read_more: false
   - block: markdown
     id: papers
     content:
@@ -151,6 +134,23 @@ sections:
       view: article-grid
       columns: 2
       fill_image: false
+  - block: collection
+    id: engineering-projects
+    content:
+      title: 'Engineering Projects'
+      text: |-
+        Beyond research papers, I build systems that must work with real sensors, real interfaces, and downstream production constraints. These cases separate the wider industry–academia program from my personal ownership: multi-camera SfM for autonomous-driving data, and LiDAR plus multi-sensor obstacle perception for an intelligent lawn robot.
+      filters:
+        folders:
+          - projects
+      count: 2
+    design:
+      view: project-feature
+      columns: 1
+      fill_image: false
+      show_date: false
+      show_read_time: false
+      show_read_more: false
   - block: cta-card
     id: contact
     content:

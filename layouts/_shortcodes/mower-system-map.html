@@ -1,0 +1,37 @@
+{{- $isZh := eq .Page.Lang "zh" -}}
+<section class="project-system-map mower-system-map" aria-labelledby="mower-system-map-title">
+  <header>
+    <span>{{ if $isZh }}系统全景{{ else }}System view{{ end }}</span>
+    <h3 id="mower-system-map-title">{{ if $isZh }}面向非结构化草坪的完整自主移动机器人{{ else }}A complete autonomous mobile robot for unstructured lawns{{ end }}</h3>
+    <p>{{ if $isZh }}定位、感知、规划与控制共享一套车载多传感器平台；高亮部分是我的负责范围。{{ else }}Localization, perception, planning, and control share one onboard sensor platform; the highlighted layer is my responsibility.{{ end }}</p>
+  </header>
+  <div class="project-system-map__flow">
+    <div class="project-system-map__group">
+      <span>{{ if $isZh }}车载传感器与计算{{ else }}Onboard sensing and compute{{ end }}</span>
+      <div class="project-system-map__grid">
+        <div class="project-system-map__stage"><span>01 · {{ if $isZh }}视觉{{ else }}Vision{{ end }}</span><strong>{{ if $isZh }}多相机与 RGB-D{{ else }}Multi-camera and RGB-D{{ end }}</strong><small>{{ if $isZh }}草地、物体、语义与外观{{ else }}Lawn, objects, semantics, and appearance{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>02 · {{ if $isZh }}三维{{ else }}Geometry{{ end }}</span><strong>{{ if $isZh }}激光雷达{{ else }}LiDAR{{ end }}</strong><small>{{ if $isZh }}距离、地形与障碍物点云{{ else }}Range, terrain, and obstacle point clouds{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>03 · {{ if $isZh }}运动与位置{{ else }}Motion and position{{ end }}</span><strong>RTK/GNSS · IMU · {{ if $isZh }}轮速计{{ else }}wheel odometry{{ end }}</strong><small>{{ if $isZh }}全局约束与局部连续运动{{ else }}Global constraints and continuous local motion{{ end }}</small></div>
+      </div>
+    </div>
+    <i aria-hidden="true">↓</i>
+    <div class="project-system-map__group">
+      <span>{{ if $isZh }}自主系统核心{{ else }}Autonomy core{{ end }}</span>
+      <div class="project-system-map__grid mower-system-map__core">
+        <div class="project-system-map__stage"><span>04</span><strong>{{ if $isZh }}多传感器融合定位{{ else }}Multi-sensor localization{{ end }}</strong><small>{{ if $isZh }}视觉、激光、惯性、轮速与卫星定位{{ else }}Vision, LiDAR, inertial, wheel, and satellite cues{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>05</span><strong>{{ if $isZh }}视觉目标与语义感知{{ else }}Visual objects and semantics{{ end }}</strong><small>{{ if $isZh }}识别可割区域、目标类别与场景语义{{ else }}Mowable area, object categories, and scene semantics{{ end }}</small></div>
+      </div>
+    </div>
+    <i aria-hidden="true">↓</i>
+    <div class="project-system-map__stage is-owned"><span>06 · {{ if $isZh }}我的负责范围{{ else }}My ownership{{ end }}</span><strong>{{ if $isZh }}点云障碍物检测 + 多传感器融合障碍物检测{{ else }}LiDAR obstacle detection + multi-sensor obstacle fusion{{ end }}</strong><small>{{ if $isZh }}从起伏草地中分离障碍物，并把三维几何、语义分割与视觉检测统一为可供规划使用的障碍物表达{{ else }}Separate obstacles from uneven grass, then unify 3D geometry, semantic segmentation, and visual detections into planning-ready obstacle hypotheses{{ end }}</small></div>
+    <i aria-hidden="true">↓</i>
+    <div class="project-system-map__group">
+      <span>{{ if $isZh }}机器人行为{{ else }}Robot behavior{{ end }}</span>
+      <div class="project-system-map__grid">
+        <div class="project-system-map__stage"><span>07</span><strong>{{ if $isZh }}局部环境模型{{ else }}Local environment model{{ end }}</strong><small>{{ if $isZh }}可通行草地与动态/静态障碍物{{ else }}Traversable lawn and dynamic/static obstacles{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>08</span><strong>{{ if $isZh }}路径与作业规划{{ else }}Path and coverage planning{{ end }}</strong><small>{{ if $isZh }}安全绕障、覆盖割草与回充{{ else }}Safe avoidance, coverage mowing, and return-to-charge{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>09</span><strong>{{ if $isZh }}底盘与割草控制{{ else }}Chassis and mowing control{{ end }}</strong><small>{{ if $isZh }}把感知结果转化为实时运动决策{{ else }}Turn perception into real-time motion decisions{{ end }}</small></div>
+      </div>
+    </div>
+  </div>
+</section>

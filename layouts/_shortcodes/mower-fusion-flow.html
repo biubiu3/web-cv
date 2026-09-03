@@ -1,0 +1,29 @@
+{{- $isZh := eq .Page.Lang "zh" -}}
+<section class="project-system-map mower-fusion-map" aria-labelledby="mower-fusion-map-title">
+  <header>
+    <span>{{ if $isZh }}跨模态融合{{ else }}Cross-modal fusion{{ end }}</span>
+    <h3 id="mower-fusion-map-title">{{ if $isZh }}几何告诉机器人“在哪里”，视觉补充“是什么”{{ else }}Geometry says where; vision helps decide what{{ end }}</h3>
+    <p>{{ if $isZh }}融合不是简单投票，而是在统一坐标系中利用各传感器互补的可观测性。{{ else }}Fusion is not a majority vote; it uses complementary observability in one coordinate system.{{ end }}</p>
+  </header>
+  <div class="project-system-map__flow">
+    <div class="project-system-map__group">
+      <span>{{ if $isZh }}输入{{ else }}Inputs{{ end }}</span>
+      <div class="project-system-map__grid">
+        <div class="project-system-map__stage"><span>3D</span><strong>{{ if $isZh }}点云障碍物{{ else }}Point-cloud obstacles{{ end }}</strong><small>{{ if $isZh }}距离、尺寸与地形关系{{ else }}Range, extent, and terrain relation{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>PIXEL</span><strong>{{ if $isZh }}语义分割{{ else }}Semantic segmentation{{ end }}</strong><small>{{ if $isZh }}草地与非草地区域{{ else }}Lawn and non-lawn regions{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>OBJECT</span><strong>{{ if $isZh }}目标检测{{ else }}Object detection{{ end }}</strong><small>{{ if $isZh }}人、动物与场景目标类别{{ else }}People, animals, and scene-object classes{{ end }}</small></div>
+      </div>
+    </div>
+    <i aria-hidden="true">↓</i>
+    <div class="project-system-map__stage is-owned"><span>{{ if $isZh }}投影、关联与冲突处理{{ else }}Projection, association, and conflict handling{{ end }}</span><strong>{{ if $isZh }}在图像、点云和机器人坐标系之间建立对应关系{{ else }}Build correspondences across image, point-cloud, and robot frames{{ end }}</strong><small>{{ if $isZh }}保留视觉漏检的三维障碍物；为有几何支持的检测赋予距离与类别；对只有视觉证据的目标输出带不确定性的估计{{ else }}Retain 3D obstacles missed by vision; attach range and class where geometry supports a detection; preserve vision-only objects as explicitly estimated hypotheses{{ end }}</small></div>
+    <i aria-hidden="true">↓</i>
+    <div class="project-system-map__group">
+      <span>{{ if $isZh }}面向规划的输出{{ else }}Planning-facing outputs{{ end }}</span>
+      <div class="project-system-map__grid">
+        <div class="project-system-map__stage"><span>A</span><strong>{{ if $isZh }}纯点云障碍物{{ else }}Geometry-only obstacle{{ end }}</strong><small>{{ if $isZh }}几何成立，类别未知{{ else }}Geometrically supported, class unknown{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>B</span><strong>{{ if $isZh }}带类别障碍物{{ else }}Class-aware obstacle{{ end }}</strong><small>{{ if $isZh }}三维位置与视觉语义一致{{ else }}3D location agrees with visual semantics{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>C</span><strong>{{ if $isZh }}视觉估计障碍物{{ else }}Vision-estimated obstacle{{ end }}</strong><small>{{ if $isZh }}检测成立，但三维观测不足{{ else }}Detected visually with limited 3D support{{ end }}</small></div>
+      </div>
+    </div>
+  </div>
+</section>
