@@ -30,8 +30,8 @@ tags:
   - Robot Manipulation
 featured: true
 image:
-  caption: '图形摘要：HEAR 跨越盲执行区间保留瞬时声音，并将其用于多模态推理和平滑动作生成。'
-  alt_text: '白底 HEAR 图形摘要，展示盲执行区间、四类 VSLA 输入、Historizer 因果记忆、Envisioner 多模态推理、仅训练期使用的 Advancer 预测、Realizer 动作生成与机器人执行。'
+  caption: 'HEAR 跨越延迟决策保留短促声音，使它能够改变机器人的下一段平滑动作。'
+  alt_text: '原创白底 HEAR 图形摘要：执行中的声音事件转化为跨越盲执行区间的蓝色因果记忆线，多模态信号在中央汇合，珊瑚色轨迹通向下一步机器人动作，下方是仅训练期使用的未来声音预测环。'
 hugoblox:
   ids:
     arxiv: 2603.16086v1

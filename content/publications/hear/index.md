@@ -29,8 +29,8 @@ tags:
   - Robot Manipulation
 featured: true
 image:
-  caption: 'Graphical abstract: HEAR carries a transient sound across the blind execution interval into multimodal reasoning and smooth action generation.'
-  alt_text: 'Clean white HEAR graphical abstract showing the blind execution interval, four VSLA inputs, Historizer causal memory, Envisioner multimodal reasoning, training-only Advancer prediction, Realizer action generation, and robot execution.'
+  caption: 'HEAR preserves a brief sound across delayed decisions so it can change the robot''s next smooth action.'
+  alt_text: 'Original white HEAR graphical abstract showing a sound event during robot execution, a blue causal-memory thread bridging the blind execution interval, multimodal signals weaving into reasoning, a coral trajectory to the next robot action, and an amber training-only future-audio loop.'
 hugoblox:
   ids:
     arxiv: 2603.16086v1

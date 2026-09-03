@@ -15,7 +15,7 @@ function dataUri(absolutePath, mime) {
 
 const font = dataUri(join(root, 'assets', 'dist', 'font', 'SpaceGrotesk.var.ttf'), 'font/ttf');
 const base = dataUri(
-  join(root, 'assets', 'media', 'paper-covers', 'hear-graphical-abstract-base-v2.png'),
+  join(root, 'assets', 'media', 'paper-covers', 'hear-concept-reconstruction-base-v4.png'),
   'image/png',
 );
 
@@ -58,120 +58,119 @@ const html = `<!doctype html>
       .identity {
         position: absolute;
         z-index: 2;
-        left: 34px;
-        top: 17px;
-        background: rgb(255 255 255 / 96%);
+        left: 38px;
+        top: 28px;
         line-height: 1;
       }
       .identity strong {
         display: block;
         color: #1e3a5f;
-        font-size: 28px;
+        font-size: 34px;
         font-weight: 820;
         letter-spacing: .09em;
       }
       .identity span {
         display: block;
-        margin-top: 6px;
+        margin-top: 8px;
         color: #506176;
-        font-size: 15px;
-        font-weight: 620;
-        letter-spacing: .035em;
+        font-size: 16px;
+        font-weight: 680;
+        letter-spacing: .055em;
+      }
+      .premise {
+        position: absolute;
+        z-index: 2;
+        left: 38px;
+        top: 98px;
+        width: 620px;
+        color: #334155;
+        font-size: 22px;
+        font-weight: 680;
+        line-height: 1.28;
+      }
+      .premise span {
+        color: #2563b8;
+        font-weight: 760;
+      }
+      .label {
+        position: absolute;
+        z-index: 2;
+        padding: 4px 9px 6px;
+        background: rgb(255 255 255 / 94%);
+        line-height: 1;
+      }
+      .label strong {
+        display: block;
+        font-size: 22px;
+        font-weight: 820;
+        letter-spacing: .065em;
+      }
+      .label span {
+        display: block;
+        margin-top: 6px;
+        color: #4b5b6e;
+        font-size: 16px;
+        font-weight: 630;
+        letter-spacing: .002em;
+        white-space: nowrap;
+      }
+      .event { left: 287px; top: 284px; }
+      .event strong { color: #dc3159; }
+      .historizer { left: 500px; top: 326px; }
+      .historizer strong { color: #2563b8; }
+      .envisioner {
+        left: 758px;
+        top: 35px;
+        width: 540px;
+        text-align: center;
+      }
+      .envisioner strong { color: #098f83; }
+      .realizer { left: 1108px; top: 275px; }
+      .realizer strong { color: #d92752; }
+      .advancer {
+        left: 902px;
+        top: 560px;
+        width: 508px;
+        text-align: center;
+      }
+      .advancer strong {
+        color: #ad6900;
       }
       .bei {
         position: absolute;
         z-index: 2;
-        left: 330px;
-        top: 16px;
-        width: 575px;
+        left: 474px;
+        top: 514px;
+        width: 486px;
+        padding-top: 9px;
+        border-top: 2px dashed #a8b3c2;
         text-align: center;
-        color: #647185;
-        background: rgb(255 255 255 / 94%);
-        font-size: 18px;
-        font-weight: 760;
+        color: #64748b;
+      }
+      .bei strong {
+        display: block;
+        font-size: 17px;
+        font-weight: 800;
         letter-spacing: .08em;
       }
-      .timeline-note {
-        position: absolute;
-        z-index: 2;
-        padding: 2px 7px;
-        background: rgb(255 255 255 / 94%);
+      .bei span {
+        display: block;
+        margin-top: 4px;
         font-size: 15px;
-        font-weight: 720;
-        letter-spacing: .035em;
-        white-space: nowrap;
+        font-weight: 620;
       }
-      .cue { left: 500px; top: 166px; color: #dc3159; }
-      .decision { left: 1020px; top: 105px; color: #26364a; }
-      .input-label {
+      .outcome {
         position: absolute;
         z-index: 2;
-        left: 35px;
-        min-width: 150px;
-        padding: 1px 7px;
-        background: rgb(255 255 255 / 96%);
-        color: #44546a;
-        font-size: 17px;
-        font-weight: 760;
-        letter-spacing: .045em;
-        line-height: 1;
-      }
-      .streaming { top: 244px; }
-      .vision { top: 357px; }
-      .instruction { top: 469px; }
-      .state { top: 581px; }
-      .module {
-        position: absolute;
-        z-index: 2;
-        padding: 1px 11px 4px;
+        left: 1371px;
+        top: 252px;
+        width: 205px;
         text-align: center;
-        background: rgb(255 255 255 / 97%);
-        line-height: 1;
-      }
-      .module strong {
-        display: block;
-        font-size: 27px;
-        font-weight: 820;
-        letter-spacing: .055em;
-      }
-      .module span {
-        display: block;
-        margin-top: 5px;
-        color: #4b5b6e;
-        font-size: 17px;
-        font-weight: 610;
-        letter-spacing: .005em;
-        white-space: nowrap;
-      }
-      .historizer { left: 320px; top: 247px; width: 328px; }
-      .historizer strong { color: #2563b8; }
-      .envisioner { left: 685px; top: 242px; width: 365px; }
-      .envisioner strong { color: #098f83; }
-      .realizer { left: 1082px; top: 249px; width: 276px; }
-      .realizer strong { color: #d92752; }
-      .advancer {
-        left: 694px;
-        top: 646px;
-        width: 472px;
-      }
-      .advancer strong {
-        color: #ad6900;
-        font-size: 23px;
-      }
-      .advancer span { font-size: 16px; }
-      .execution {
-        position: absolute;
-        z-index: 2;
-        left: 1388px;
-        top: 332px;
-        width: 195px;
-        padding: 2px 6px;
-        text-align: center;
-        background: rgb(255 255 255 / 96%);
         color: #26364a;
-        font-size: 20px;
+        background: rgb(255 255 255 / 94%);
+        font-size: 18px;
         font-weight: 810;
-        letter-spacing: .05em;
+        letter-spacing: .06em;
       }
     </style>
   </head>
@@ -181,34 +180,38 @@ const html = `<!doctype html>
 
       <div class="identity">
         <strong>HEAR</strong>
-        <span>VISION · SOUND · LANGUAGE · ACTION</span>
+        <span>SOUND-CENTRIC MANIPULATION UNDER DELAYED DECISIONS</span>
       </div>
-      <div class="bei">BLIND EXECUTION INTERVAL</div>
-      <div class="timeline-note cue">KEY SOUND OCCURS AND ENDS</div>
-      <div class="timeline-note decision">CAUSAL MEMORY AT NEXT DECISION</div>
+      <div class="premise">
+        A transient sound can end before the policy listens again.<br>
+        <span>Causal memory lets it change the next action.</span>
+      </div>
 
-      <div class="input-label streaming">STREAMING AUDIO</div>
-      <div class="input-label vision">MULTI-VIEW RGB</div>
-      <div class="input-label instruction">INSTRUCTION</div>
-      <div class="input-label state">ROBOT STATE</div>
-
-      <div class="module historizer">
+      <div class="label event">
+        <strong>EVENT DURING EXECUTION</strong>
+        <span>the acoustic cue is brief</span>
+      </div>
+      <div class="label historizer">
         <strong>HISTORIZER</strong>
-        <span>persistent causal audio memory</span>
+        <span>carry evidence after the waveform ends</span>
       </div>
-      <div class="module envisioner">
+      <div class="label envisioner">
         <strong>ENVISIONER</strong>
-        <span>multimodal reasoning + control feature</span>
+        <span>remembered sound + vision + instruction + robot state</span>
       </div>
-      <div class="module realizer">
+      <div class="label realizer">
         <strong>REALIZER</strong>
-        <span>flow-matched action chunk</span>
+        <span>turn the decision into a smooth action chunk</span>
       </div>
-      <div class="module advancer">
+      <div class="label advancer">
         <strong>ADVANCER · TRAINING ONLY</strong>
-        <span>predict near-future audio for temporal grounding</span>
+        <span>predict future audio to learn temporal progress</span>
       </div>
-      <div class="execution">ROBOT EXECUTION</div>
+      <div class="bei">
+        <strong>BLIND EXECUTION INTERVAL</strong>
+        <span>raw sound is gone; remembered evidence remains</span>
+      </div>
+      <div class="outcome">NEXT ROBOT ACTION</div>
     </main>
   </body>
 </html>`;
@@ -226,10 +229,10 @@ await page.evaluate(() => document.fonts.ready);
 await page.waitForFunction(() => [...document.images].every((image) => image.complete));
 await page.screenshot({ path: coverPath, type: 'png', animations: 'disabled' });
 await page.screenshot({
-  path: join(outputRoot, 'hear-graphical-abstract-sample.png'),
+  path: join(outputRoot, 'hear-concept-reconstruction-sample.png'),
   type: 'png',
   animations: 'disabled',
 });
 
 await browser.close();
-console.log(`Rendered HEAR graphical-abstract sample to ${coverPath}`);
+console.log(`Rendered HEAR concept-reconstruction sample to ${coverPath}`);
