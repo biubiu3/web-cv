@@ -25,13 +25,13 @@ zh:
         weight: 20
       - name: 代表工作
         url: ./#papers
-        weight: 40
+        weight: 30
       - name: 工程项目
         url: ./#engineering-projects
-        weight: 30
+        weight: 50
       - name: 论文
         url: publications/
-        weight: 50
+        weight: 40
       - name: 联系我
         url: ./#contact
         weight: 60
