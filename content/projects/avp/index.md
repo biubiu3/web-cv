@@ -15,9 +15,9 @@ tags:
   - Localization and Mapping
   - Planning and Control
 image:
-  filename: 'garage-mapping-poster.jpg'
-  caption: 'Garage exploration and system integration: surround semantics, camera observations, tracked features, and the growing parking-slot map update in one live interface.'
-  alt_text: 'Automated-valet-parking vehicle test interface with bird-eye semantic perception and camera observations on the left, and a parking-space map with the vehicle trajectory on the right.'
+  filename: 'featured.png'
+  caption: 'Complete AVP system: surround and ultrasonic sensing feed BEV semantic mapping, hierarchical driving and parking planning, and closed-loop vehicle execution.'
+  alt_text: 'Technical overview of an automated valet parking system, showing four surround camera views and ultrasonic sensing, a central bird-eye semantic parking map, and global driving, local avoidance, parking, and vehicle-control stages.'
 project:
   collaboration: 'Voyager Intelligent Systems industry–academia collaboration'
   period: '2022 project phase'
