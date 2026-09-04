@@ -12,6 +12,7 @@ publication:
   short_name: "TCSVT (under review)"
 venue_display: "IEEE Transactions on Circuits and Systems for Video Technology (TCSVT)"
 publication_status: "Under review"
+publication_status_key: "under_review"
 display_area: "Embodied Data Generation"
 publication_order: 60
 peer_reviewed: false
@@ -19,6 +20,13 @@ open_access: true
 abstract: "ERMV is a data-augmentation framework for editing complete multi-view robot trajectories from sparse frame edits and robot-state conditions. Epipolar motion-aware attention supports geometric and appearance consistency, sparse spatio-temporal modeling expands the editing window efficiently, and multimodal feedback checks sequence inconsistencies before requesting targeted intervention."
 summary: "Consistent and efficient editing of multi-view robot trajectories for augmenting embodied policy training data."
 story_order: 60
+topic_keywords:
+  - Embodied AI Data
+  - Robot Data Augmentation
+  - Generative Video Editing
+  - Multi-View Consistency
+  - 4D Scene Editing
+  - VLA Training Data
 tags:
   - TCSVT · Under Review
   - Multimodal Data & Models

@@ -150,6 +150,10 @@ async function captureSections(page, suffix) {
       expanded: await newsDetails.evaluate((details) => details.open),
       expandedVisibleItems: await page.locator('#news .news-timeline__item:visible').count(),
       collapseLabelVisible: await page.locator('#news .news-timeline__hide').isVisible(),
+      paperOrder: await page.locator('#news .news-timeline__item a[href*="/publications/"]').evaluateAll((links) => links.map((link) => ({
+        text: link.textContent?.trim(),
+        slug: new URL(link.href).pathname.split('/').filter(Boolean).at(-1),
+      }))),
     });
     await page.locator('#news').screenshot({ path: path.join(outputDir, 'news-expanded-desktop.png') });
     await newsDetails.locator('summary').click();
@@ -293,7 +297,12 @@ async function captureSections(page, suffix) {
       url: page.url(),
       statusTitle: await page.title(),
       publicationCards: await page.locator('.publication-rich-item, [role="article"]').count(),
+      venues: await page.locator('.publication-rich-venue-name').count(),
+      statuses: await page.locator('.publication-rich-status').evaluateAll((items) => items.map((item) => item.textContent?.trim())),
+      topicGroups: await page.locator('.publication-rich-topics').count(),
+      topicChips: await page.locator('.publication-rich-topic').count(),
     };
+    await page.screenshot({ path: path.join(outputDir, 'publications-desktop.png'), fullPage: true });
   }
 
   await page.goto(homeURL);
@@ -406,7 +415,7 @@ async function captureSections(page, suffix) {
   await page.screenshot({ path: path.join(outputDir, 'project-mower-zh-desktop.png'), fullPage: true });
 
   report.views.publicationLayouts = [];
-  for (const slug of ['diffsac', 'tgl', 'mrasfm', 'mid', 'hear', 'movsam', 'ermv', 'rlsac']) {
+  for (const slug of ['diffsac', 'tgl', 'mrasfm', 'vcgs-slam', 'mid', 'hear', 'movsam', 'ermv', 'rlsac']) {
     await page.goto(new URL(`publications/${slug}/`, auditBase).href);
     await settle(page);
     const firstFigure = page.locator('main > .prose > figure').first();
@@ -435,6 +444,18 @@ async function captureSections(page, suffix) {
       await page.evaluate(() => window.scrollTo(0, 0));
       await page.waitForTimeout(200);
       await page.screenshot({ path: path.join(outputDir, 'publication-hear-desktop.png'), fullPage: true });
+    }
+    if (slug === 'vcgs-slam') {
+      report.interactions.vcgsSlamPublication = {
+        url: page.url(),
+        h1: await page.locator('h1').first().textContent(),
+        status: await page.locator('.article-header').getByText('Accepted', { exact: true }).count(),
+        figures: await page.locator('main > .prose > figure').count(),
+        horizontalOverflow: await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth),
+      };
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await page.waitForTimeout(200);
+      await page.screenshot({ path: path.join(outputDir, 'publication-vcgs-slam-desktop.png'), fullPage: true });
     }
   }
 
@@ -513,6 +534,28 @@ async function captureSections(page, suffix) {
   };
   await page.screenshot({ path: path.join(outputDir, 'project-sfm-mobile.png'), fullPage: true });
 
+  await page.goto(new URL('publications/', auditBase).href);
+  await settle(page);
+  report.views.publicationsMobile = {
+    url: page.url(),
+    publicationCards: await page.locator('.publication-rich-item').count(),
+    venues: await page.locator('.publication-rich-venue-name').count(),
+    topicGroups: await page.locator('.publication-rich-topics').count(),
+    bodyScrollWidth: await page.evaluate(() => document.body.scrollWidth),
+    clientWidth: await page.evaluate(() => document.documentElement.clientWidth),
+  };
+  await page.screenshot({ path: path.join(outputDir, 'publications-mobile.png'), fullPage: true });
+
+  await page.goto(new URL('publications/vcgs-slam/', auditBase).href);
+  await settle(page);
+  report.views.vcgsSlamMobile = {
+    url: page.url(),
+    figures: await page.locator('main > .prose > figure').count(),
+    bodyScrollWidth: await page.evaluate(() => document.body.scrollWidth),
+    clientWidth: await page.evaluate(() => document.documentElement.clientWidth),
+  };
+  await page.screenshot({ path: path.join(outputDir, 'publication-vcgs-slam-mobile.png'), fullPage: true });
+
   await page.goto(new URL('projects/mower/', auditBase).href);
   await settle(page);
   const mowerMobileVideoBox = await page.locator('.project-video-card video').first().boundingBox();
@@ -535,6 +578,10 @@ async function captureSections(page, suffix) {
     galleryWidth: mowerMobileGalleryBox?.width,
   };
   await page.screenshot({ path: path.join(outputDir, 'project-mower-mobile.png'), fullPage: true });
+  const mowerMobileFigures = page.locator('.project-figure--diagram');
+  for (let index = 0; index < await mowerMobileFigures.count(); index += 1) {
+    await mowerMobileFigures.nth(index).screenshot({ path: path.join(outputDir, `project-mower-diagram-${index + 1}-mobile.png`) });
+  }
   await context.close();
 }
 

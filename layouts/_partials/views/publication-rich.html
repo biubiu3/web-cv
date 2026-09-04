@@ -4,6 +4,8 @@
 {{- $year := $item.Date.Format "2006" -}}
 {{- $venue := $item.Params.venue_display | default $item.Params.publication.name -}}
 {{- $status := $item.Params.publication_status | default "" -}}
+{{- $statusKey := $item.Params.publication_status_key | default ($status | urlize) -}}
+{{- $topics := $item.Params.topic_keywords | default (slice) -}}
 {{- $area := $item.Params.display_area | default "" -}}
 {{- $spotlight := $item.Params.spotlight | default false -}}
 {{- $isZh := eq site.Language.Lang "zh" -}}
@@ -11,7 +13,7 @@
 {{- if in $item.Params.publication_types "paper-conference" -}}
   {{- $recordType = cond $isZh "会议论文" "Conference paper" -}}
 {{- end -}}
-{{- if $status -}}
+{{- if eq $statusKey "under_review" -}}
   {{- $recordType = cond $isZh "在审稿件" "Manuscript" -}}
 {{- end -}}
 {{- $figureLabel := cond $isZh "研究概览" "Research overview" -}}
@@ -78,12 +80,20 @@
         {{- end -}}
       </div>
       <div class="publication-rich-venue">
-        <span>{{ $venue | markdownify }}</span>
-        {{- with $status }}<span class="publication-rich-status">{{ . }}</span>{{ end -}}
+        <span class="publication-rich-venue-label">{{ if $isZh }}发表{{ else }}Venue{{ end }}</span>
+        <strong class="publication-rich-venue-name">{{ $venue | markdownify }}</strong>
+        {{- with $status }}<span class="publication-rich-status is-{{ $statusKey | urlize }}">{{ . }}</span>{{ end -}}
       </div>
     </div>
 
     <p class="publication-rich-summary">{{ $summary | plainify | htmlUnescape | truncate 520 }}</p>
+
+    {{- with $topics }}
+      <div class="publication-rich-topics" aria-label="{{ if $isZh }}主题关键词{{ else }}Topic keywords{{ end }}">
+        <span class="publication-rich-topics-label">{{ if $isZh }}关键词{{ else }}Topics{{ end }}</span>
+        {{- range first 6 . }}<span class="publication-rich-topic">{{ . }}</span>{{ end -}}
+      </div>
+    {{- end }}
 
     <div class="publication-rich-links">
       {{ partial "page_links" (dict "page" $item "is_list" 1) }}

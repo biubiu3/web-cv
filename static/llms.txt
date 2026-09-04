@@ -20,14 +20,15 @@ This file is a concise guide to the public, human-readable pages on the site. Pu
 
 ## Publications
 
-- [Publications](https://biubiu3.github.io/web-cv/publications/): Eight works with complete author lists, full venue names, publication status, method figures, abstracts, and technical summaries.
-- [Teach and Grow: An Agent-Centered Architecture for General Robot Learning](https://biubiu3.github.io/web-cv/publications/tgl/): Under review at IEEE Transactions on Robotics (T-RO).
-- [DiffSAC: Diffusion-guided Sampling for Consensus-based Robust Estimation](https://biubiu3.github.io/web-cv/publications/diffsac/): Under review at the International Journal of Computer Vision (IJCV).
+- [Publications](https://biubiu3.github.io/web-cv/publications/): Nine works with complete author lists, emphasized venue and publication status, method figures, reader-oriented topic keywords, abstracts, and technical summaries.
 - [Towards the Vision-Sound-Language-Action Paradigm: The HEAR Framework for Sound-Centric Manipulation](https://biubiu3.github.io/web-cv/publications/hear/): Published in The International Journal of Robotics Research (IJRR).
-- [MRASfM: Multi-Camera Reconstruction and Aggregation through Structure-from-Motion in Driving Scenes](https://biubiu3.github.io/web-cv/publications/mrasfm/): IEEE International Conference on Robotics and Automation (ICRA 2026); Nie Chang and Lingfeng Xuan contributed equally.
-- [MID: A Self-Supervised Multimodal Iterative Denoising Framework](https://biubiu3.github.io/web-cv/publications/mid/): Published in IEEE Transactions on Neural Networks and Learning Systems (TNNLS).
-- [MovSAM: A Single-image Moving Object Segmentation Framework Based on Deep Thinking](https://biubiu3.github.io/web-cv/publications/movsam/): IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2025).
+- [Teach and Grow: An Agent-Centered Architecture for General Robot Learning](https://biubiu3.github.io/web-cv/publications/tgl/): Under review at IEEE Transactions on Robotics (T-RO).
 - [ERMV: Editing 4D Robotic Multi-view Images to Enhance Embodied Agents](https://biubiu3.github.io/web-cv/publications/ermv/): Under review at IEEE Transactions on Circuits and Systems for Video Technology (TCSVT).
+- [MID: A Self-Supervised Multimodal Iterative Denoising Framework](https://biubiu3.github.io/web-cv/publications/mid/): Published in IEEE Transactions on Neural Networks and Learning Systems (TNNLS).
+- [MRASfM: Multi-Camera Reconstruction and Aggregation through Structure-from-Motion in Driving Scenes](https://biubiu3.github.io/web-cv/publications/mrasfm/): IEEE International Conference on Robotics and Automation (ICRA 2026); Nie Chang and Lingfeng Xuan contributed equally.
+- [Voxelized 3D Gaussian Representation for Dense Visual SLAM on Embedded Vision System](https://biubiu3.github.io/web-cv/publications/vcgs-slam/): Accepted by the International Journal of Computer Vision (IJCV) in 2026.
+- [MovSAM: A Single-image Moving Object Segmentation Framework Based on Deep Thinking](https://biubiu3.github.io/web-cv/publications/movsam/): IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2025).
+- [DiffSAC: Diffusion-guided Sampling for Consensus-based Robust Estimation](https://biubiu3.github.io/web-cv/publications/diffsac/): Under review at the International Journal of Computer Vision (IJCV).
 - [RLSAC: Reinforcement Learning Enhanced Sample Consensus for End-to-End Robust Estimation](https://biubiu3.github.io/web-cv/publications/rlsac/): IEEE/CVF International Conference on Computer Vision (ICCV 2023); Nie Chang and Guangming Wang contributed equally.
 
 ## Research Demonstrations

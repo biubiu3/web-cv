@@ -16,6 +16,8 @@ publication:
   name: "IEEE International Conference on Robotics and Automation"
   short_name: "ICRA"
 venue_display: "IEEE International Conference on Robotics and Automation (ICRA 2026)"
+publication_status: "Published"
+publication_status_key: "published"
 display_area: "Robot Perception & Reconstruction"
 publication_order: 30
 peer_reviewed: true
@@ -23,6 +25,13 @@ open_access: true
 abstract: "MRASfM adapts structure-from-motion to multi-camera driving systems by exploiting fixed inter-camera geometry during registration. It removes unreliable road-surface points with a plane model, treats the camera set as a unit during bundle adjustment, and aggregates multiple scenes through coarse-to-fine association and assembly."
 summary: "A multi-camera structure-from-motion framework for reliable and efficient reconstruction and scene aggregation in driving environments."
 story_order: 30
+topic_keywords:
+  - Autonomous Driving
+  - Multi-Camera 3D Reconstruction
+  - Structure from Motion
+  - Bundle Adjustment
+  - 4D Auto-Annotation
+  - HD Mapping
 tags:
   - ICRA 2026
   - Perception & Geometry

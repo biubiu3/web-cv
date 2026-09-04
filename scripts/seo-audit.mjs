@@ -38,6 +38,7 @@ const publications = {
   mrasfm: ['Nie Chang', 'Lingfeng Xuan', 'Yiqing Xu', 'Zhe Liu', 'Yanzi Miao', 'Hesheng Wang'],
   mid: ['Nie Chang', 'Tianchen Deng', 'Zhe Liu', 'Hesheng Wang'],
   movsam: ['Nie Chang', 'Yiqing Xu', 'Guangming Wang', 'Zhe Liu', 'Yanzi Miao', 'Hesheng Wang'],
+  'vcgs-slam': ['Tianchen Deng', 'Nie Chang', 'Shuhong Liu', 'Wenhua Wu', 'Jianfei Yang', 'Shenghai Yuan', 'Jiuming Liu', 'Zhe Liu', 'Danwei Wang', 'Hesheng Wang'],
   ermv: ['Nie Chang', 'Guangming Wang', 'Zhe Liu', 'Hesheng Wang'],
   rlsac: ['Nie Chang', 'Guangming Wang', 'Zhe Liu', 'Luca Cavalli', 'Marc Pollefeys', 'Hesheng Wang'],
 };

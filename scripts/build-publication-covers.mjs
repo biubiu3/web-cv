@@ -8,6 +8,7 @@ const covers = [
   ['hear', 'hear-integrated-text-v6.png'],
   ['tgl', 'tgl-integrated-text-v2.png'],
   ['mrasfm', 'mrasfm-integrated-text-v2.png'],
+  ['vcgs-slam', 'vcgs-slam-integrated-text-v1.png'],
   ['mid', 'mid-integrated-text-v2.png'],
   ['diffsac', 'diffsac-integrated-text-v2.png'],
   ['ermv', 'ermv-integrated-text-v2.png'],

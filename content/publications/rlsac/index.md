@@ -16,6 +16,8 @@ publication:
   name: "IEEE/CVF International Conference on Computer Vision"
   short_name: "ICCV"
 venue_display: "IEEE/CVF International Conference on Computer Vision (ICCV 2023)"
+publication_status: "Published"
+publication_status_key: "published"
 display_area: "Robust Visual Estimation"
 publication_order: 80
 peer_reviewed: true
@@ -23,6 +25,13 @@ open_access: true
 abstract: "RLSAC casts sample-consensus robust estimation as a reinforcement-learning process. A graph neural network combines observations with sampling history to propose the next minimum set, while downstream hypothesis quality supplies an unsupervised reward. The learned state transition makes the sampling policy reusable across robust-estimation problems."
 summary: "Reinforcement-learning-guided sample consensus that uses data features, sampling history, and downstream feedback for robust estimation."
 story_order: 10
+topic_keywords:
+  - Reinforcement Learning
+  - Robust Estimation
+  - RANSAC
+  - Graph Neural Networks
+  - Geometric Vision
+  - End-to-End Consensus
 tags:
   - ICCV 2023
   - Perception & Geometry

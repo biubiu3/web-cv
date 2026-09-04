@@ -12,6 +12,8 @@ publication:
   name: "The International Journal of Robotics Research"
   short_name: "IJRR"
 venue_display: "The International Journal of Robotics Research (IJRR)"
+publication_status: "Published"
+publication_status_key: "published"
 display_area: "Multisensory Robot Manipulation"
 publication_order: 10
 spotlight: true
@@ -20,6 +22,13 @@ open_access: true
 abstract: "HEAR formalizes Vision-Sound-Language-Action as a continuous robot-control paradigm in which transient acoustic events remain available across delayed, chunked decision loops. The framework combines causal audio memory, multimodal reasoning, near-future audio prediction, and flow-matching action generation. OpenX-Sound and HEAR-Bench provide pretraining data and sound-causal evaluation tasks for this setting."
 summary: "A sound-centric embodied framework that gives robot policies causal audio memory, multimodal reasoning, future-audio prediction, and smooth action generation."
 story_order: 70
+topic_keywords:
+  - Physical AI
+  - Multisensory Robotics
+  - Vision-Sound-Language-Action
+  - Embodied AI
+  - Multimodal Foundation Models
+  - Robot Manipulation
 tags:
   - IJRR 2026
   - General Robot Systems

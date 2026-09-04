@@ -13,6 +13,8 @@ publication:
   name: "IEEE/RSJ International Conference on Intelligent Robots and Systems"
   short_name: "IROS"
 venue_display: "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2025)"
+publication_status: "Published"
+publication_status_key: "published"
 display_area: "Robot Perception"
 publication_order: 70
 peer_reviewed: true
@@ -20,6 +22,13 @@ open_access: true
 abstract: "MovSAM performs moving-object segmentation from a single image, where temporal motion cues are unavailable. A multimodal large language model reasons about the scene and produces textual object prompts; these are fused with visual representations from SAM and a vision-language model, then refined through an iterative reasoning loop."
 summary: "Single-image moving-object segmentation through multimodal reasoning, language-guided prompting, and iterative refinement."
 story_order: 20
+topic_keywords:
+  - Multimodal Large Language Models
+  - Segment Anything
+  - Moving Object Segmentation
+  - Vision-Language Reasoning
+  - Open-World Perception
+  - Autonomous Driving
 tags:
   - IROS 2025
   - Perception & Geometry

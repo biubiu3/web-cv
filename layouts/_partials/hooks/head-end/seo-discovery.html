@@ -12,7 +12,7 @@
 {{- $alternateName := cond (eq .Lang "zh") "Nie Chang" "聂畅" }}
 {{- $jobTitle := cond (eq .Lang "zh") "上海交通大学博士生，物理 AI 与具身智能研究者" "Final-year Ph.D. researcher in Physical AI and embodied intelligence" }}
 {{- $description := cond (eq .Lang "zh") "聂畅研究物理 AI、具身智能、智能体机器人系统、LLM、VLM 与视觉-语言-动作模型。" "Nie Chang researches Physical AI, embodied intelligence, agentic robot systems, LLMs, VLMs, and Vision-Language-Action models." }}
-{{- $knowsAbout := slice "Physical AI" "Embodied Intelligence" "Agentic Robot Systems" "Large Language Models" "Vision-Language Models" "Vision-Language-Action Models" "Multisensory Robot Manipulation" "Robot Learning" "Robust Geometric Estimation" }}
+{{- $knowsAbout := slice "Physical AI" "Embodied Intelligence" "Agentic Robot Systems" "Large Language Models" "Vision-Language Models" "Vision-Language-Action Models" "Multisensory Robot Manipulation" "Robot Learning" "Dense Visual SLAM" "3D Gaussian Splatting" "Robust Geometric Estimation" }}
 {{- $sameAs := slice "https://scholar.google.com/citations?user=Tc2sl7gAAAAJ" "https://www.linkedin.com/in/chang-nie-819a463b6/" }}
 {{- $affiliations := slice
   (dict "@type" "CollegeOrUniversity" "name" "Shanghai Jiao Tong University" "url" "https://en.sjtu.edu.cn/")
@@ -40,10 +40,17 @@
   "description" $description
   "inLanguage" site.Language.Locale
   "dateCreated" "2022-10-24"
-  "dateModified" "2026-09-02"
+  "dateModified" "2026-09-04"
   "mainEntity" $person
 }}
 <script type="application/ld+json">{{ $profilePage | jsonify | safeJS }}</script>
+{{- end }}
+
+{{- if and .IsPage (eq .Section "publications") }}
+  {{- $topicKeywords := .Params.topic_keywords | default .Params.tags }}
+  {{- with $topicKeywords }}
+<meta name="keywords" content="{{ delimit . ", " }}">
+  {{- end }}
 {{- end }}
 
 {{- if and .IsPage (eq .Section "publications") (eq .Lang "en") }}
@@ -57,6 +64,9 @@
 <meta name="citation_language" content="en">
 {{- with .Params.abstract }}
 <meta name="citation_abstract" content="{{ . }}">
+{{- end }}
+{{- with (.Params.topic_keywords | default .Params.tags) }}
+<meta name="citation_keywords" content="{{ delimit . "; " }}">
 {{- end }}
 {{- if and .Params.peer_reviewed .Params.publication.name }}
   {{- if in .Params.publication_types "article-journal" }}

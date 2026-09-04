@@ -11,6 +11,7 @@ publication:
   short_name: "T-RO (under review)"
 venue_display: "IEEE Transactions on Robotics (T-RO)"
 publication_status: "Under review"
+publication_status_key: "under_review"
 display_area: "General Robot Learning"
 publication_order: 20
 spotlight: true
@@ -19,6 +20,13 @@ open_access: true
 abstract: "Teach-and-Grow Learning (TGL) is an agent-centered architecture for acquiring reusable robot capabilities from a small number of successful demonstrations. A multimodal agent builds closed-loop Skill Blocks, grounds and composes them in new scenes, chooses between learned and geometric tools, observes physical outcomes, and revises its route when execution departs from intent. A Skill Library and structured Experience Memory preserve successful behaviors, failures, and repairs for later reuse."
 summary: "An agent-centered robot-learning architecture that turns sparse teaching into reusable Skill Blocks and persistent experience for future tasks."
 story_order: 80
+topic_keywords:
+  - Agentic AI
+  - Generalist Robots
+  - Continual Robot Learning
+  - Embodied Agents
+  - Skill Learning
+  - Long-Term Memory
 tags:
   - T-RO · Under Review
   - General Robot Systems

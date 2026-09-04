@@ -16,6 +16,8 @@ publication:
   name: "IEEE International Conference on Robotics and Automation"
   short_name: "ICRA"
 venue_display: "IEEE International Conference on Robotics and Automation（IEEE 机器人与自动化国际会议，ICRA 2026）"
+publication_status: "已发表"
+publication_status_key: "published"
 display_area: "机器人感知与重建"
 publication_order: 30
 peer_reviewed: true
@@ -23,6 +25,13 @@ open_access: true
 abstract: "MRASfM 利用固定的相机间几何关系，将运动恢复结构方法适配到多相机驾驶系统。方法通过平面模型去除不可靠路面点，将整个相机集合视为一个单元进行束调整，并借助粗到细的关联和装配聚合多个场景。"
 summary: "面向驾驶环境可靠、高效重建与场景聚合的多相机 SfM 框架。"
 story_order: 30
+topic_keywords:
+  - 自动驾驶
+  - 多相机三维重建
+  - 运动恢复结构（SfM）
+  - 束调整
+  - 4D 自动标注
+  - 高精地图
 tags:
   - ICRA 2026
   - 感知与几何

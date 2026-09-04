@@ -12,6 +12,7 @@ publication:
   short_name: "TCSVT（审稿中）"
 venue_display: "IEEE Transactions on Circuits and Systems for Video Technology（IEEE 电路与系统视频技术汇刊，TCSVT）"
 publication_status: "审稿中"
+publication_status_key: "under_review"
 display_area: "具身数据生成"
 publication_order: 60
 peer_reviewed: false
@@ -19,6 +20,13 @@ open_access: true
 abstract: "ERMV 是一个机器人数据增强框架，可从稀疏帧编辑和机器人状态条件出发，编辑完整的多视角机器人轨迹。极线运动感知注意力维持几何与外观一致性，稀疏时空建模高效扩展编辑窗口，多模态反馈则在序列不一致时请求定向干预。"
 summary: "一致、高效地编辑多视角机器人轨迹，为具身策略训练扩充数据。"
 story_order: 60
+topic_keywords:
+  - 具身智能数据
+  - 机器人数据增强
+  - 生成式视频编辑
+  - 多视角一致性
+  - 4D 场景编辑
+  - VLA 训练数据
 tags:
   - TCSVT · 审稿中
   - 多模态数据与模型

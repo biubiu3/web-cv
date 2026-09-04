@@ -2,7 +2,7 @@
 title: ''
 summary: '聂畅是上海交通大学博士生，研究物理 AI、具身智能、智能体机器人系统、LLM/VLM 推理与视觉-语言-动作模型。'
 date: 2022-10-24
-lastmod: 2026-09-03
+lastmod: 2026-09-04
 type: landing
 seo:
   title: '聂畅 | 物理 AI、具身智能与机器人学习'
@@ -30,56 +30,61 @@ sections:
     id: news
     content:
       title: 最新动态
-      text: 论文与项目进展，按时间从新到旧排列。
+      text: 沿研究主线选取的论文与项目进展。
       initial_count: 4
       more_label: 展开更多
       less_label: 收起
       items:
-        - date: '2026-08-31'
-          display_date: '2026.08'
-          tag: 论文
-          text: DiffSAC 正在 IJCV 审稿。
-          url: 'publications/diffsac/'
-        - date: '2026-08-17'
-          display_date: '2026.08'
-          tag: 论文
-          text: Teach and Grow 正在 T-RO 审稿。
-          url: 'publications/tgl/'
-        - date: '2026-06-01'
-          display_date: '2026.06'
-          tag: 论文
-          text: MRASfM 发表于 ICRA 2026。
-          url: 'publications/mrasfm/'
-        - date: '2026-04-30'
-          display_date: '2026.04'
-          tag: 论文
-          text: MID 发表于 IEEE TNNLS。
-          url: 'publications/mid/'
         - date: '2026-03-17'
           display_date: '2026.03'
           tag: 论文
           text: HEAR 发表于 IJRR。
           url: 'publications/hear/'
-        - date: '2025-10-19'
-          display_date: '2025.10'
+        - date: '2026-08-17'
+          display_date: '2026.08'
           tag: 论文
-          text: MovSAM 发表于 IROS 2025。
-          url: 'publications/movsam/'
+          text: Teach and Grow 正在 T-RO 审稿。
+          url: 'publications/tgl/'
         - date: '2025-07-23'
           display_date: '2025.07'
           tag: 论文
           text: ERMV 正在 TCSVT 审稿。
           url: 'publications/ermv/'
-        - date: '2024-06-20'
-          display_date: '2024.06'
-          tag: 项目
-          text: 多相机 SfM 进入量产 4D 自动标注流程。
-          url: 'projects/sfm/'
+        - date: '2026-04-30'
+          display_date: '2026.04'
+          tag: 论文
+          text: MID 发表于 IEEE TNNLS。
+          url: 'publications/mid/'
+        - date: '2026-06-01'
+          display_date: '2026.06'
+          tag: 论文
+          text: MRASfM 发表于 ICRA 2026。
+          url: 'publications/mrasfm/'
+        - date: '2026'
+          display_date: '2026'
+          tag: 已接收
+          text: VCGS-SLAM 被 IJCV 2026 接收。
+          url: 'publications/vcgs-slam/'
+        - date: '2025-10-19'
+          display_date: '2025.10'
+          tag: 论文
+          text: MovSAM 发表于 IROS 2025。
+          url: 'publications/movsam/'
+        - date: '2026-08-31'
+          display_date: '2026.08'
+          tag: 论文
+          text: DiffSAC 正在 IJCV 审稿。
+          url: 'publications/diffsac/'
         - date: '2023-10-01'
           display_date: '2023.10'
           tag: 论文
           text: RLSAC 发表于 ICCV 2023。
           url: 'publications/rlsac/'
+        - date: '2024-06-20'
+          display_date: '2024.06'
+          tag: 项目
+          text: 多相机 SfM 进入量产 4D 自动标注流程。
+          url: 'projects/sfm/'
         - date: '2022-01-19'
           display_date: '2022.01'
           tag: 项目
@@ -117,7 +122,7 @@ sections:
           - Computer Vision
       sort_by: story_order
       sort_ascending: true
-      count: 4
+      count: 5
     design:
       view: article-grid
       columns: 2
