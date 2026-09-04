@@ -1,0 +1,47 @@
+{{/* Wider responsive Markdown figures for long-form academic pages. */}}
+{{ $destination := .Destination }}
+{{ $isRemote := strings.HasPrefix $destination "http" }}
+{{ $caption := .Title | default "" }}
+{{ $id := anchorize ($caption | plainify) }}
+{{ $alt := .Text | default ($caption | plainify) }}
+{{ $image := "" }}
+
+{{- if not $isRemote -}}
+  {{- $image = (.Page.Resources.ByType "image").GetMatch $destination -}}
+  {{- if not $image -}}
+    {{- $image = resources.Get (path.Join "media" $destination) -}}
+  {{- end -}}
+{{- end -}}
+
+<figure{{ with $id }} id="figure-{{ . }}"{{ end }}>
+  <div class="flex justify-center">
+    <div class="w-full">
+      {{- if $image -}}
+        {{- $canProcess := and (reflect.IsImageResourceProcessable $image) (ne $image.MediaType.SubType "gif") -}}
+        {{- if $canProcess -}}
+          {{- $display := $image.Fit "1080x1080 webp" -}}
+          {{- $responsive := partial "functions/process_responsive_image.html" (dict "image" $display "mode" "responsive") -}}
+          <img
+            alt="{{ $alt }}"
+            srcset="{{ $responsive.srcset }}"
+            sizes="(max-width: 480px) 100vw, (max-width: 768px) 90vw, (max-width: 1279px) 88vw, 928px"
+            src="{{ $responsive.fallback.RelPermalink }}"
+            width="{{ $display.Width }}"
+            height="{{ $display.Height }}"
+            loading="lazy"
+            data-zoomable>
+        {{- else -}}
+          <img alt="{{ $alt }}" src="{{ $image.RelPermalink }}" loading="lazy" data-zoomable>
+        {{- end -}}
+      {{- else -}}
+        {{- if not $isRemote -}}
+          {{- warnf "render-image: could not resolve local image %q — %s" $destination .Position -}}
+        {{- end -}}
+        <img src="{{ $destination | safeURL }}" alt="{{ $alt }}" loading="lazy" data-zoomable>
+      {{- end -}}
+    </div>
+  </div>
+  {{- with $caption }}
+    <figcaption>{{ . | markdownify | emojify }}</figcaption>
+  {{- end -}}
+</figure>

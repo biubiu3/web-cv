@@ -108,7 +108,7 @@ async function inventory(page) {
 }
 
 async function captureSections(page, suffix) {
-  const sectionIds = ['about', 'robot-demos', 'research', 'engineering-projects', 'papers', 'foundations', 'multimodal-models', 'general-systems', 'contact'];
+  const sectionIds = ['about', 'news', 'robot-demos', 'research', 'engineering-projects', 'papers', 'foundations', 'multimodal-models', 'general-systems', 'contact'];
   for (const id of sectionIds) {
     const section = page.locator(`#${id}`).first();
     if (!await section.count()) continue;
@@ -136,6 +136,27 @@ async function captureSections(page, suffix) {
   };
   await page.screenshot({ path: path.join(outputDir, 'home-desktop.png'), fullPage: true });
   await captureSections(page, 'desktop');
+
+  const newsDetails = page.locator('#news details.news-timeline__more').first();
+  if (await newsDetails.count()) {
+    report.interactions.newsTimeline = {
+      initialOpen: await newsDetails.evaluate((details) => details.open),
+      initialVisibleItems: await page.locator('#news .news-timeline__item:visible').count(),
+      totalItems: await page.locator('#news .news-timeline__item').count(),
+    };
+    await newsDetails.locator('summary').click();
+    await page.waitForTimeout(200);
+    Object.assign(report.interactions.newsTimeline, {
+      expanded: await newsDetails.evaluate((details) => details.open),
+      expandedVisibleItems: await page.locator('#news .news-timeline__item:visible').count(),
+      collapseLabelVisible: await page.locator('#news .news-timeline__hide').isVisible(),
+    });
+    await page.locator('#news').screenshot({ path: path.join(outputDir, 'news-expanded-desktop.png') });
+    await newsDetails.locator('summary').click();
+    Object.assign(report.interactions.newsTimeline, {
+      collapsedAgain: !(await newsDetails.evaluate((details) => details.open)),
+    });
+  }
 
   const links = await page.locator('a[href]').evaluateAll((anchors) =>
     anchors.map((anchor) => ({
@@ -384,6 +405,39 @@ async function captureSections(page, suffix) {
   };
   await page.screenshot({ path: path.join(outputDir, 'project-mower-zh-desktop.png'), fullPage: true });
 
+  report.views.publicationLayouts = [];
+  for (const slug of ['diffsac', 'tgl', 'mrasfm', 'mid', 'hear', 'movsam', 'ermv', 'rlsac']) {
+    await page.goto(new URL(`publications/${slug}/`, auditBase).href);
+    await settle(page);
+    const firstFigure = page.locator('main > .prose > figure').first();
+    if (await firstFigure.count()) {
+      await firstFigure.scrollIntoViewIfNeeded();
+      await page.waitForTimeout(250);
+    }
+    report.views.publicationLayouts.push(await page.evaluate((publicationSlug) => {
+      const box = (selector) => {
+        const element = document.querySelector(selector);
+        if (!element) return null;
+        const rect = element.getBoundingClientRect();
+        return { width: rect.width, left: rect.left };
+      };
+      return {
+        slug: publicationSlug,
+        clientWidth: document.documentElement.clientWidth,
+        scrollWidth: document.documentElement.scrollWidth,
+        main: box('.page-body main'),
+        prose: box('.page-body main > .prose'),
+        firstFigure: box('.page-body main > .prose > figure'),
+        toc: box('.hb-toc'),
+      };
+    }, slug));
+    if (slug === 'hear') {
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await page.waitForTimeout(200);
+      await page.screenshot({ path: path.join(outputDir, 'publication-hear-desktop.png'), fullPage: true });
+    }
+  }
+
   await page.goto(homeURL);
   await settle(page);
   report.interactions.contact = await page.locator('#contact a[href^="mailto:"]').first().evaluate((link) => ({
@@ -409,6 +463,19 @@ async function captureSections(page, suffix) {
   };
   await page.screenshot({ path: path.join(outputDir, 'home-mobile.png'), fullPage: true });
   await captureSections(page, 'mobile');
+
+  const mobileNewsDetails = page.locator('#news details.news-timeline__more').first();
+  if (await mobileNewsDetails.count()) {
+    await mobileNewsDetails.locator('summary').click();
+    await page.waitForTimeout(200);
+    report.interactions.newsTimelineMobile = {
+      expanded: await mobileNewsDetails.evaluate((details) => details.open),
+      visibleItems: await page.locator('#news .news-timeline__item:visible').count(),
+      clientWidth: await page.locator('#news .news-timeline').evaluate((element) => element.clientWidth),
+      scrollWidth: await page.locator('#news .news-timeline').evaluate((element) => element.scrollWidth),
+    };
+    await page.locator('#news').screenshot({ path: path.join(outputDir, 'news-expanded-mobile.png') });
+  }
 
   const menuButton = page.locator('label[for="nav-toggle"], button[aria-label*="menu" i], button[title*="menu" i]').first();
   if (await menuButton.count()) {
@@ -450,6 +517,10 @@ async function captureSections(page, suffix) {
   await settle(page);
   const mowerMobileVideoBox = await page.locator('.project-video-card video').first().boundingBox();
   const mowerMobileGalleryBox = await page.locator('.project-video-gallery').first().boundingBox();
+  const mowerMobileDiagramViewport = await page.locator('.project-figure__media--scroll').first().evaluate((element) => ({
+    clientWidth: element.clientWidth,
+    scrollWidth: element.scrollWidth,
+  }));
   report.views.mowerProjectMobile = {
     url: page.url(),
     title: await page.title(),
@@ -458,6 +529,7 @@ async function captureSections(page, suffix) {
     bodyScrollWidth: await page.evaluate(() => document.body.scrollWidth),
     clientWidth: await page.evaluate(() => document.documentElement.clientWidth),
     englishDiagrams: await page.locator('.project-figure--diagram img[src$="-en.svg"]').count(),
+    diagramViewport: mowerMobileDiagramViewport,
     videos: await page.locator('.project-video-card video').count(),
     videoWidth: mowerMobileVideoBox?.width,
     galleryWidth: mowerMobileGalleryBox?.width,

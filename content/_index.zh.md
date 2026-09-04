@@ -26,6 +26,65 @@ sections:
       avatar:
         size: medium
         shape: circle
+  - block: news-timeline
+    id: news
+    content:
+      title: 最新动态
+      text: 论文与项目进展，按时间从新到旧排列。
+      initial_count: 4
+      more_label: 展开更多
+      less_label: 收起
+      items:
+        - date: '2026-08-31'
+          display_date: '2026.08'
+          tag: 论文
+          text: DiffSAC 正在 IJCV 审稿。
+          url: 'publications/diffsac/'
+        - date: '2026-08-17'
+          display_date: '2026.08'
+          tag: 论文
+          text: Teach and Grow 正在 T-RO 审稿。
+          url: 'publications/tgl/'
+        - date: '2026-06-01'
+          display_date: '2026.06'
+          tag: 论文
+          text: MRASfM 发表于 ICRA 2026。
+          url: 'publications/mrasfm/'
+        - date: '2026-04-30'
+          display_date: '2026.04'
+          tag: 论文
+          text: MID 发表于 IEEE TNNLS。
+          url: 'publications/mid/'
+        - date: '2026-03-17'
+          display_date: '2026.03'
+          tag: 论文
+          text: HEAR 发表于 IJRR。
+          url: 'publications/hear/'
+        - date: '2025-10-19'
+          display_date: '2025.10'
+          tag: 论文
+          text: MovSAM 发表于 IROS 2025。
+          url: 'publications/movsam/'
+        - date: '2025-07-23'
+          display_date: '2025.07'
+          tag: 论文
+          text: ERMV 正在 TCSVT 审稿。
+          url: 'publications/ermv/'
+        - date: '2024-06-20'
+          display_date: '2024.06'
+          tag: 项目
+          text: 多相机 SfM 进入量产 4D 自动标注流程。
+          url: 'projects/sfm/'
+        - date: '2023-10-01'
+          display_date: '2023.10'
+          tag: 论文
+          text: RLSAC 发表于 ICCV 2023。
+          url: 'publications/rlsac/'
+        - date: '2022-01-19'
+          display_date: '2022.01'
+          tag: 项目
+          text: 智能割草机器人完成实地测试项目阶段。
+          url: 'projects/mower/'
   - block: markdown
     id: research
     content:

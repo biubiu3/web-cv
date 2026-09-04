@@ -7,7 +7,10 @@
     {{- $display = .Fit "1800x1200 webp" -}}
   {{- end -}}
   <figure class="project-figure{{ if $isSVG }} project-figure--diagram{{ end }}">
-    <img src="{{ $display.RelPermalink }}"{{ if not $isSVG }} width="{{ $display.Width }}" height="{{ $display.Height }}"{{ end }} loading="lazy" decoding="async" alt="{{ $.Get "alt" | plainify }}">
-    {{- with $.Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end -}}
+    <div class="project-figure__media{{ if $isSVG }} project-figure__media--scroll{{ end }}"{{ if $isSVG }} tabindex="0" aria-label="{{ if eq $.Page.Lang "zh" }}可横向滚动的流程图{{ else }}Horizontally scrollable flowchart{{ end }}"{{ end }}>
+      <img src="{{ $display.RelPermalink }}"{{ if not $isSVG }} width="{{ $display.Width }}" height="{{ $display.Height }}"{{ end }} loading="lazy" decoding="async" alt="{{ $.Get "alt" | plainify }}">
+      {{ if $isSVG }}<span class="project-figure__scroll-hint" aria-hidden="true">{{ if eq $.Page.Lang "zh" }}滑动查看{{ else }}Swipe to explore{{ end }} ↔</span>{{ end }}
+    </div>
+    {{- with $.Get "caption" }}<figcaption><span>{{ . }}</span>{{ if $isSVG }}<a class="project-figure__open" href="{{ $display.RelPermalink }}" target="_blank" rel="noopener">{{ if eq $.Page.Lang "zh" }}打开原始尺寸{{ else }}Open full size{{ end }} <span aria-hidden="true">↗</span></a>{{ end }}</figcaption>{{ end -}}
   </figure>
 {{- end -}}

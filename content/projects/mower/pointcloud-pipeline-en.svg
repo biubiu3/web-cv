@@ -31,12 +31,12 @@
       .output{fill:url(#result);stroke:#72d7e8;stroke-width:2;rx:15;filter:url(#shadow)}
       .line{fill:none;stroke:#1b5578;stroke-width:3;marker-end:url(#arrow)}
       .feed{fill:none;stroke:#2c789d;stroke-width:2.5;marker-end:url(#arrow)}
-      .label{font:700 25px Inter,Arial,sans-serif;fill:#12364e;text-anchor:middle}
-      .small{font:600 21px Inter,Arial,sans-serif;fill:#244a62;text-anchor:middle}
-      .tiny{font:600 17px Inter,Arial,sans-serif;fill:#426277;text-anchor:middle}
+      .label{font:700 28px Inter,Arial,sans-serif;fill:#12364e;text-anchor:middle}
+      .small{font:600 23px Inter,Arial,sans-serif;fill:#244a62;text-anchor:middle}
+      .tiny{font:600 20px Inter,Arial,sans-serif;fill:#426277;text-anchor:middle}
       .light{fill:#fff}
-      .group-title{font:700 18px Inter,Arial,sans-serif;letter-spacing:2px;fill:#337393}
-      .branch{font:700 18px Inter,Arial,sans-serif;fill:#126b8d}
+      .group-title{font:700 20px Inter,Arial,sans-serif;letter-spacing:2px;fill:#337393}
+      .branch{font:700 20px Inter,Arial,sans-serif;fill:#126b8d}
     </style>
   </defs>
 
@@ -137,7 +137,7 @@
   <path class="feed" d="M1193 268 H1252 V575 H1320"/>
   <path class="feed" d="M1193 366 H1260 V575 H1320"/>
   <path class="feed" d="M1193 461 H1268 V575 H1320"/>
-  <path class="feed" d="M282 777 V866 H1240 V490 H1320"/>
+  <path class="feed" d="M177 804 V930 H1235 V490 H1320"/>
   <path class="feed" d="M1005 873 H1220 V490 H1320"/>
 
   <path class="line" d="M1512 437 V458"/>

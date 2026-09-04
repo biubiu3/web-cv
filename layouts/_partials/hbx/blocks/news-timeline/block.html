@@ -1,0 +1,43 @@
+{{/* Compact, bilingual homepage timeline with a native accessible disclosure. */}}
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+{{ $content := $block.content | default dict }}
+{{ $items := index $content "items" | default slice }}
+{{ $limit := int (index $content "initial_count" | default 4) }}
+{{ $visible := first $limit $items }}
+{{ $remaining := after $limit $items }}
+
+<div class="news-timeline px-6">
+  <header class="news-timeline__heading">
+    {{ with index $content "title" }}<h2>{{ printf "%v" . | emojify | $page.RenderString }}</h2>{{ end }}
+    {{ with index $content "text" }}<div>{{ printf "%v" . | $page.RenderString | safeHTML }}</div>{{ end }}
+  </header>
+
+  <ol class="news-timeline__list">
+    {{ range $visible }}
+      <li class="news-timeline__item">
+        <time datetime="{{ .date }}">{{ .display_date }}</time>
+        {{ with .tag }}<span class="news-timeline__tag">{{ . }}</span>{{ end }}
+        <a href="{{ .url | relLangURL }}">{{ .text }}</a>
+      </li>
+    {{ end }}
+  </ol>
+
+  {{ if $remaining }}
+    <details class="news-timeline__more">
+      <summary>
+        <span class="news-timeline__show">{{ index $content "more_label" | default "Show more" }} <span aria-hidden="true">↓</span></span>
+        <span class="news-timeline__hide">{{ index $content "less_label" | default "Show less" }} <span aria-hidden="true">↑</span></span>
+      </summary>
+      <ol class="news-timeline__list news-timeline__list--more" start="{{ add $limit 1 }}">
+        {{ range $remaining }}
+          <li class="news-timeline__item">
+            <time datetime="{{ .date }}">{{ .display_date }}</time>
+            {{ with .tag }}<span class="news-timeline__tag">{{ . }}</span>{{ end }}
+            <a href="{{ .url | relLangURL }}">{{ .text }}</a>
+          </li>
+        {{ end }}
+      </ol>
+    </details>
+  {{ end }}
+</div>

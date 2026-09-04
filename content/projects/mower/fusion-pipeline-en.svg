@@ -24,12 +24,12 @@
       .line{fill:none;stroke:#1b5578;stroke-width:3;marker-end:url(#arrow)}
       .feed{fill:none;stroke:#477795;stroke-width:2.5;marker-end:url(#arrow)}
       .dash{fill:none;stroke:#7f91a0;stroke-width:2.2;stroke-dasharray:8 7;marker-end:url(#arrow)}
-      .title{font:700 25px Inter,Arial,sans-serif;fill:#fff;text-anchor:middle}
-      .label{font:700 23px Inter,Arial,sans-serif;fill:#14384f;text-anchor:middle}
-      .small{font:600 19px Inter,Arial,sans-serif;fill:#294b61;text-anchor:middle}
-      .tiny{font:600 16px Inter,Arial,sans-serif;fill:#496779;text-anchor:middle}
-      .branch{font:700 18px Inter,Arial,sans-serif;fill:#126b8d}
-      .group-title{font:700 18px Inter,Arial,sans-serif;letter-spacing:2px;fill:#337393}
+      .title{font:700 26px Inter,Arial,sans-serif;fill:#fff;text-anchor:middle}
+      .label{font:700 26px Inter,Arial,sans-serif;fill:#14384f;text-anchor:middle}
+      .small{font:600 22px Inter,Arial,sans-serif;fill:#294b61;text-anchor:middle}
+      .tiny{font:600 19px Inter,Arial,sans-serif;fill:#496779;text-anchor:middle}
+      .branch{font:700 20px Inter,Arial,sans-serif;fill:#126b8d}
+      .group-title{font:700 20px Inter,Arial,sans-serif;letter-spacing:2px;fill:#337393}
     </style>
   </defs>
 
