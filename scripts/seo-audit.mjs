@@ -56,6 +56,8 @@ const pageRoutes = [
   'zh/projects/sfm/',
   'projects/mower/',
   'zh/projects/mower/',
+  'projects/avp/',
+  'zh/projects/avp/',
   ...Object.keys(publications).map((slug) => `publications/${slug}/`),
 ];
 
@@ -96,6 +98,7 @@ for (const resource of ['robots.txt', 'llms.txt', 'llms-full.txt', 'sitemap.xml'
       requireValue(text.includes(`/publications/${slug}/`), `llms.txt is missing publication ${slug}`);
     }
     requireValue(text.includes('/projects/mower/'), 'llms.txt is missing the autonomous lawn robot project');
+    requireValue(text.includes('/projects/avp/'), 'llms.txt is missing the automated valet parking project');
   }
   if (resource === 'sitemap.xml') {
     requireValue(text.includes(canonicalRoute('en/sitemap.xml')), 'Sitemap index is missing the English sitemap');
@@ -172,7 +175,7 @@ for (const relative of pageRoutes) {
     requireValue(/\bAbstract\b/.test(state.visibleText), 'Publication abstract is not visibly rendered', { relative });
   }
 
-  if (/^(zh\/)?projects\/(sfm|mower)\/$/.test(relative)) {
+  if (/^(zh\/)?projects\/(sfm|mower|avp)\/$/.test(relative)) {
     const project = state.jsonLD.find((item) => item['@type'] === 'TechArticle');
     requireValue(Boolean(project), 'Project page is missing TechArticle structured data', { relative });
     requireValue(state.h1.length === 1, 'Project page should have exactly one H1', { relative, h1: state.h1 });

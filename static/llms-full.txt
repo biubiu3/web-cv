@@ -39,7 +39,7 @@ HEAR and Teach and Grow are the two current representative systems. HEAR introdu
 
 - Context: An industry–academia collaboration with NETA Auto whose 4D vision auto-annotation workflow was applied in production.
 - Wider system: Data preparation and synchronization, semantic perception, multi-sensor localization, static and ground reconstruction, ground-element auto-annotation, and multi-run local-map construction.
-- Role: Nie Chang was responsible for the SfM/static scene-reconstruction subsystem and its downstream geometry interface.
+- Leadership and focus: Nie Chang led the overall technical route, module coordination, acceptance loop, and engineering delivery, with deep hands-on work on the SfM/static-reconstruction core and downstream geometry interfaces.
 - Inputs and outputs: Six-view surround imagery, localization, semantic masks, and initial calibration were converted into refined vehicle poses and camera extrinsics, sparse scene geometry, and dense ground point clouds for downstream reconstruction.
 - Engineering focus: Semantically masked SuperPoint features, overlap- and time-constrained matching, two-view verification, rig-aware registration and bundle adjustment, ACMP depth with COLMAP fusion, spatial filtering, and multi-run aggregation.
 - Validation: Mean dense-depth error was 4.7695% against a lidar reference under an 8% project threshold. Rig-aware SfM improved trajectory-length agreement and angular RMSE on all three reported sequences; translation RMSE improved on one.
@@ -47,11 +47,22 @@ HEAR and Teach and Grow are the two current representative systems. HEAR introdu
 - Chinese project page: https://biubiu3.github.io/web-cv/zh/projects/sfm/
 - Related paper: https://biubiu3.github.io/web-cv/publications/mrasfm/
 
+### Automated Valet Parking: Complete Campus-Scale AVP System
+
+- Context: An applied industry–academia program with Voyager Intelligent Systems for autonomous park-in, retrieval, and summon in real campus and parking-garage environments.
+- Wider system: Human–machine interaction, four-camera surround and ultrasonic perception, BEV multi-task inference, fusion localization, layered semantic mapping, hierarchical driving/parking planning, lateral and longitudinal control, and safety replanning.
+- Leadership and focus: Nie Chang served as project lead for the architecture, module interfaces, milestones, and vehicle integration, with a deep technical focus on planning and control.
+- Planning design: Centerline-guided improved A* and local state sampling handled aisle driving; orientation-aware Hybrid A* initialized a constrained optimal-control problem for executable parking trajectories.
+- Operating modes: Known-map parking, remembered or assigned spaces, unknown-map exploration and mapping, park-in/out, and remote summon to a pickup point.
+- Public evidence: Sanitized onboard BEV perception and real-garage exploration/mapping videos; internal requirement, acceptance, and commercial documents are not distributed.
+- Project page: https://biubiu3.github.io/web-cv/projects/avp/
+- Chinese project page: https://biubiu3.github.io/web-cv/zh/projects/avp/
+
 ### Autonomous Lawn Robot: LiDAR Obstacle Perception and Multi-Sensor Fusion
 
 - Context: A large applied industry–academia project with Positec that designed an autonomous mower as a complete mobile robot for unstructured lawns.
 - Wider system: Multi-camera and RGB-D sensing, LiDAR, RTK/GNSS, IMU, wheel odometry, onboard GPU compute, multi-sensor localization, perception, planning, and control.
-- Role: Nie Chang was responsible for terrain-aware LiDAR obstacle detection and the multi-sensor obstacle-fusion layer.
+- Leadership and focus: Nie Chang led the system design, module coordination, and field integration, with deep hands-on work on terrain-aware LiDAR obstacle detection and the multi-sensor obstacle-fusion layer.
 - Point-cloud design: Structured grid/range projection, local terrain reasoning for grass and slopes, efficient clustering, odometry-linked temporal reuse, obstacle tracking, and planning-facing publication.
 - Fusion design: Point-cloud geometry was projected into semantic masks and visual detections, producing geometry-only, class-aware, and vision-estimated obstacle types.
 - Project media: English engineering flowcharts, a fused-perception field image, and a 41-second synchronized LiDAR/camera playback.

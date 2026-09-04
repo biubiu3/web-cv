@@ -1,35 +1,36 @@
+{{- $isZh := eq .Page.Lang "zh" -}}
 <section class="project-system-map mower-system-map" aria-labelledby="mower-system-map-title">
   <header>
-    <span>System view</span>
-    <h3 id="mower-system-map-title">A complete autonomous mobile robot for unstructured lawns</h3>
-    <p>Localization, perception, planning, and control share one onboard sensor and compute platform.</p>
+    <span>{{ if $isZh }}完整项目闭环{{ else }}Complete program loop{{ end }}</span>
+    <h3 id="mower-system-map-title">{{ if $isZh }}面向非结构化草坪的完整自主移动机器人{{ else }}A complete autonomous mobile robot for unstructured lawns{{ end }}</h3>
+    <p>{{ if $isZh }}定位、感知、规划与控制共享同一套车载传感器和计算平台。{{ else }}Localization, perception, planning, and control share one onboard sensor and compute platform.{{ end }}</p>
   </header>
   <div class="project-system-map__flow">
     <div class="project-system-map__group">
-      <span>Onboard sensing and compute</span>
+      <span>{{ if $isZh }}车载传感器与计算{{ else }}Onboard sensing and compute{{ end }}</span>
       <div class="project-system-map__grid">
-        <div class="project-system-map__stage"><span>01 · Vision</span><strong>Multi-camera and RGB-D</strong><small>Lawn, objects, semantics, and appearance</small></div>
-        <div class="project-system-map__stage"><span>02 · Geometry</span><strong>LiDAR</strong><small>Range, terrain, and obstacle point clouds</small></div>
-        <div class="project-system-map__stage"><span>03 · Motion and position</span><strong>RTK/GNSS · IMU · wheel odometry</strong><small>Global constraints and continuous local motion</small></div>
+        <div class="project-system-map__stage"><span>01 · Vision</span><strong>{{ if $isZh }}多相机与 RGB-D{{ else }}Multi-camera and RGB-D{{ end }}</strong><small>{{ if $isZh }}草地区域、目标类别、场景语义与外观{{ else }}Lawn, objects, semantics, and appearance{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>02 · Geometry</span><strong>{{ if $isZh }}激光雷达{{ else }}LiDAR{{ end }}</strong><small>{{ if $isZh }}距离、局部地形与障碍物点云{{ else }}Range, terrain, and obstacle point clouds{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>03 · Motion</span><strong>RTK/GNSS · IMU · {{ if $isZh }}轮速{{ else }}wheel odometry{{ end }}</strong><small>{{ if $isZh }}全局约束与连续局部运动{{ else }}Global constraints and continuous local motion{{ end }}</small></div>
       </div>
     </div>
     <i aria-hidden="true">↓</i>
     <div class="project-system-map__group">
-      <span>Autonomy core</span>
+      <span>{{ if $isZh }}自主作业核心{{ else }}Autonomy core{{ end }}</span>
       <div class="project-system-map__grid mower-system-map__core">
-        <div class="project-system-map__stage"><span>04</span><strong>Multi-sensor localization</strong><small>Vision, LiDAR, inertial, wheel, and satellite cues</small></div>
-        <div class="project-system-map__stage"><span>05</span><strong>Visual objects and semantics</strong><small>Mowable area, object categories, and scene semantics</small></div>
+        <div class="project-system-map__stage"><span>04</span><strong>{{ if $isZh }}多传感器融合定位{{ else }}Multi-sensor localization{{ end }}</strong><small>{{ if $isZh }}视觉、激光、惯性、轮速与卫星约束{{ else }}Vision, LiDAR, inertial, wheel, and satellite cues{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>05</span><strong>{{ if $isZh }}视觉目标与场景语义{{ else }}Visual objects and semantics{{ end }}</strong><small>{{ if $isZh }}可割草区域、目标类别与像素级语义{{ else }}Mowable area, object categories, and scene semantics{{ end }}</small></div>
       </div>
     </div>
     <i aria-hidden="true">↓</i>
-    <div class="project-system-map__stage is-owned"><span>06 · My role</span><strong>LiDAR obstacle detection + multi-sensor obstacle fusion</strong><small>Separate obstacles from uneven grass, then unify 3D geometry, semantic segmentation, and visual detections into planning-ready obstacle hypotheses</small></div>
+    <div class="project-system-map__stage is-owned"><span>06 · {{ if $isZh }}项目主导与重点技术{{ else }}Program leadership and technical focus{{ end }}</span><strong>{{ if $isZh }}总体集成 + 点云障碍检测 + 多传感器障碍融合{{ else }}System integration + LiDAR obstacle detection + multi-sensor obstacle fusion{{ end }}</strong><small>{{ if $isZh }}主导模块协作与实地联调；重点解决起伏草地中的障碍分离，并把三维几何、语义分割和视觉目标统一为规划可用的假设{{ else }}Lead module integration and field commissioning; separate obstacles from uneven grass and unify 3D geometry, semantic segmentation, and visual detections for planning{{ end }}</small></div>
     <i aria-hidden="true">↓</i>
     <div class="project-system-map__group">
-      <span>Robot behavior</span>
+      <span>{{ if $isZh }}机器人行为{{ else }}Robot behavior{{ end }}</span>
       <div class="project-system-map__grid">
-        <div class="project-system-map__stage"><span>07</span><strong>Local environment model</strong><small>Traversable lawn and dynamic/static obstacles</small></div>
-        <div class="project-system-map__stage"><span>08</span><strong>Path and coverage planning</strong><small>Safe avoidance, coverage mowing, and return-to-charge</small></div>
-        <div class="project-system-map__stage"><span>09</span><strong>Chassis and mowing control</strong><small>Turn perception into real-time motion decisions</small></div>
+        <div class="project-system-map__stage"><span>07</span><strong>{{ if $isZh }}局部环境模型{{ else }}Local environment model{{ end }}</strong><small>{{ if $isZh }}可通行草地与动态/静态障碍物{{ else }}Traversable lawn and dynamic/static obstacles{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>08</span><strong>{{ if $isZh }}路径与覆盖规划{{ else }}Path and coverage planning{{ end }}</strong><small>{{ if $isZh }}安全绕障、覆盖割草与回充{{ else }}Safe avoidance, coverage mowing, and return-to-charge{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>09</span><strong>{{ if $isZh }}底盘与割草控制{{ else }}Chassis and mowing control{{ end }}</strong><small>{{ if $isZh }}把环境状态转化为实时运动决策{{ else }}Turn perception into real-time motion decisions{{ end }}</small></div>
       </div>
     </div>
   </div>

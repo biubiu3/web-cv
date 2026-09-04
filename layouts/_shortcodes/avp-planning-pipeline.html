@@ -1,0 +1,27 @@
+{{- $isZh := eq .Page.Lang "zh" -}}
+<div class="project-pipeline avp-planning-pipeline" role="img" aria-label="{{ if $isZh }}自主代客泊车从任务到可执行轨迹的分层规划流程{{ else }}Hierarchical planning flow from an automated-valet-parking task to an executable trajectory{{ end }}">
+  <div class="project-pipeline__stage is-input">
+    <span>01</span><strong>{{ if $isZh }}任务与地图状态{{ else }}Task and map state{{ end }}</strong>
+    <small>{{ if $isZh }}已知/未知地图 · 目标车位或召唤点 · 当前位姿{{ else }}Known/unknown map · target slot or pickup point · current pose{{ end }}</small>
+  </div>
+  <i aria-hidden="true">→</i>
+  <div class="project-pipeline__stage">
+    <span>02</span><strong>{{ if $isZh }}全局行车引导{{ else }}Global driving guide{{ end }}</strong>
+    <small>{{ if $isZh }}中心线图 · 改进 A* · 最小转弯半径 · B 样条{{ else }}Centerline graph · improved A* · turn-radius arcs · B-spline{{ end }}</small>
+  </div>
+  <i aria-hidden="true">→</i>
+  <div class="project-pipeline__stage">
+    <span>03</span><strong>{{ if $isZh }}局部避障轨迹{{ else }}Local avoidance trajectories{{ end }}</strong>
+    <small>{{ if $isZh }}状态采样 · 中心线/过渡/障碍/曲率代价 · 在线重规划{{ else }}State sampling · centerline/transition/obstacle/curvature costs · online replanning{{ end }}</small>
+  </div>
+  <i aria-hidden="true">→</i>
+  <div class="project-pipeline__stage">
+    <span>04</span><strong>{{ if $isZh }}泊车搜索{{ else }}Parking search{{ end }}</strong>
+    <small>{{ if $isZh }}带朝向的 Hybrid A* · 车辆非完整约束 · 碰撞检测{{ else }}Orientation-aware Hybrid A* · nonholonomic vehicle constraints · collision checks{{ end }}</small>
+  </div>
+  <i aria-hidden="true">→</i>
+  <div class="project-pipeline__stage is-output">
+    <span>05</span><strong>{{ if $isZh }}轨迹优化与执行{{ else }}Trajectory optimization and execution{{ end }}</strong>
+    <small>{{ if $isZh }}最优控制 · IPOPT · 横纵向跟踪 · 反馈闭环{{ else }}Optimal control · IPOPT · lateral/longitudinal tracking · feedback loop{{ end }}</small>
+  </div>
+</div>

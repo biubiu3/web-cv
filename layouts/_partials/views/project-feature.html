@@ -28,8 +28,8 @@
     <p class="project-feature-summary">{{ $item.Params.summary | default $item.Summary | plainify }}</p>
     <dl class="project-feature-facts">
       <div><dt>{{ if $isZh }}完整系统{{ else }}Wider system{{ end }}</dt><dd>{{ index $meta "wider_system" }}</dd></div>
-      <div><dt>{{ if $isZh }}工作模块{{ else }}Role{{ end }}</dt><dd>{{ index $meta "role" }}</dd></div>
-      <div><dt>{{ if $isZh }}模块输出{{ else }}Outputs{{ end }}</dt><dd>{{ index $meta "outputs" }}</dd></div>
+      <div><dt>{{ if $isZh }}项目主导与重点{{ else }}Leadership &amp; focus{{ end }}</dt><dd>{{ index $meta "role" }}</dd></div>
+      <div><dt>{{ if $isZh }}系统交付{{ else }}System delivery{{ end }}</dt><dd>{{ index $meta "outputs" }}</dd></div>
     </dl>
     <a class="project-feature-link" href="{{ $link }}">
       {{ if $isZh }}查看完整工程案例{{ else }}Read the engineering case{{ end }} <span aria-hidden="true">→</span>

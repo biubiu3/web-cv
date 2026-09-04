@@ -50,12 +50,14 @@ const isRepresentative = (url) => {
     '/web-cv/publications/hear/',
     '/web-cv/projects/',
     '/web-cv/projects/sfm/',
+    '/web-cv/projects/avp/',
     '/web-cv/tags/',
     '/web-cv/zh/',
     '/web-cv/zh/publications/',
     '/web-cv/zh/publications/hear/',
     '/web-cv/zh/projects/',
     '/web-cv/zh/projects/sfm/',
+    '/web-cv/zh/projects/avp/',
     '/web-cv/zh/tags/',
   ].includes(pathname);
 };

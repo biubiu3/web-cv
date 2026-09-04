@@ -195,11 +195,11 @@ sections:
     content:
       title: '工程项目'
       text: |-
-        除了论文研究，我也参与面向真实传感器、生产接口与实地运行的工程项目。两个代表性案例分别是面向自动驾驶数据的多相机 SfM，以及智能割草机器人的点云与多传感器融合障碍感知。
+        除了论文研究，我也负责面向真实传感器、生产接口与实地运行的产学研工程项目。三个代表性案例覆盖园区自主代客泊车、自动驾驶 4D 视觉自动标注，以及智能割草机器人的完整自主系统。
       filters:
         folders:
           - projects
-      count: 2
+      count: 3
     design:
       view: project-feature
       columns: 1

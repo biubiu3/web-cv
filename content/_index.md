@@ -203,11 +203,11 @@ sections:
     content:
       title: 'Engineering Projects'
       text: |-
-        Alongside my research papers, I build systems for real sensors, production interfaces, and field operation. The two selected projects cover multi-camera SfM for autonomous-driving data and LiDAR plus multi-sensor obstacle perception for an intelligent lawn robot.
+        Alongside my research papers, I lead industry–academia systems built around real sensors, production interfaces, and field operation. Three case studies cover automated valet parking, 4D vision auto-annotation for autonomous-driving data, and the complete autonomy stack of an intelligent lawn robot.
       filters:
         folders:
           - projects
-      count: 2
+      count: 3
     design:
       view: project-feature
       columns: 1

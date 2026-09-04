@@ -1,0 +1,38 @@
+{{- $isZh := eq .Page.Lang "zh" -}}
+<section class="project-system-map avp-system-map" aria-labelledby="avp-system-map-title">
+  <header>
+    <span>{{ if $isZh }}完整项目闭环{{ else }}Complete program loop{{ end }}</span>
+    <h3 id="avp-system-map-title">{{ if $isZh }}园区自主代客泊车系统{{ else }}Campus-scale automated valet parking{{ end }}</h3>
+    <p>{{ if $isZh }}从用户下发任务、车端感知与地图，到分层规划、车辆控制和安全重规划。{{ else }}From user intent and onboard sensing to mapping, hierarchical planning, vehicle control, and safety replanning.{{ end }}</p>
+  </header>
+  <div class="project-system-map__flow">
+    <div class="project-system-map__group">
+      <span>{{ if $isZh }}任务、传感器与计算平台{{ else }}Task, sensing, and compute{{ end }}</span>
+      <div class="project-system-map__grid">
+        <div class="project-system-map__stage"><span>01 · HMI</span><strong>{{ if $isZh }}地图与泊车任务{{ else }}Maps and parking tasks{{ end }}</strong><small>{{ if $isZh }}地图下载/更新 · 自主泊入/泊出 · 远程召唤{{ else }}Map download/update · park-in/out · remote summon{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>02 · Sensors</span><strong>{{ if $isZh }}环视与近场感知{{ else }}Surround and near-field sensing{{ end }}</strong><small>{{ if $isZh }}4 路鱼眼相机 · 超声波 · IMU · 轮速/GPS{{ else }}Four fisheye cameras · ultrasonic sensing · IMU · wheel/GPS{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>03 · Vehicle</span><strong>{{ if $isZh }}车载计算与底盘接口{{ else }}Onboard compute and chassis{{ end }}</strong><small>{{ if $isZh }}嵌入式 GPU/ECU · CAN · 转向、制动与驱动{{ else }}Embedded GPU/ECU · CAN · steering, braking, and drive{{ end }}</small></div>
+      </div>
+    </div>
+    <i aria-hidden="true">↓</i>
+    <div class="project-system-map__group">
+      <span>{{ if $isZh }}自主驾驶核心{{ else }}Autonomy core{{ end }}</span>
+      <div class="project-system-map__grid">
+        <div class="project-system-map__stage"><span>04 · Perception</span><strong>{{ if $isZh }}BEV 多任务感知{{ else }}BEV multi-task perception{{ end }}</strong><small>{{ if $isZh }}车位、标线与文字 · 可行驶区 · 障碍物检测与跟踪{{ else }}Slots, markings, and text · drivable space · obstacle detection and tracking{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>05 · Localization</span><strong>{{ if $isZh }}定位与语义地图{{ else }}Localization and semantic map{{ end }}</strong><small>{{ if $isZh }}视觉/惯性/轮速融合 · 回环 · 语义 ICP · 探索建图{{ else }}Visual/inertial/wheel fusion · loop closure · semantic ICP · exploration mapping{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>06 · Planning</span><strong>{{ if $isZh }}分层行车与泊车规划{{ else }}Hierarchical driving and parking planning{{ end }}</strong><small>{{ if $isZh }}全局引导 · 局部避障 · Hybrid A* · 最优控制平滑{{ else }}Global guidance · local avoidance · Hybrid A* · optimal-control smoothing{{ end }}</small></div>
+      </div>
+    </div>
+    <i aria-hidden="true">↓</i>
+    <div class="project-system-map__stage is-owned"><span>{{ if $isZh }}项目主导与系统集成{{ else }}Program leadership and integration{{ end }}</span><strong>{{ if $isZh }}把需求、算法、车端接口与实车联调组织成一套可运行系统{{ else }}Turn requirements, algorithms, vehicle interfaces, and field integration into one operational system{{ end }}</strong><small>{{ if $isZh }}总体架构与里程碑 · 跨模块接口 · 规划控制重点攻关 · 场景测试与问题闭环{{ else }}Architecture and milestones · cross-module interfaces · planning/control focus · scenario tests and issue closure{{ end }}</small></div>
+    <i aria-hidden="true">↓</i>
+    <div class="project-system-map__group">
+      <span>{{ if $isZh }}执行、安全与应用{{ else }}Execution, safety, and application{{ end }}</span>
+      <div class="project-system-map__grid">
+        <div class="project-system-map__stage"><span>07 · Control</span><strong>{{ if $isZh }}横纵向跟踪控制{{ else }}Lateral/longitudinal control{{ end }}</strong><small>{{ if $isZh }}跟踪参考轨迹并下发车辆执行指令{{ else }}Track the reference trajectory and command the vehicle{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>08 · Safety</span><strong>{{ if $isZh }}障碍响应与重新规划{{ else }}Obstacle response and replanning{{ end }}</strong><small>{{ if $isZh }}近场补盲 · 动态障碍更新 · 停车与绕行{{ else }}Near-field coverage · dynamic updates · stop and detour{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>09 · Service</span><strong>{{ if $isZh }}探索、泊入泊出与召唤{{ else }}Explore, park, retrieve, and summon{{ end }}</strong><small>{{ if $isZh }}已知/未知地图 · 随机、记忆或指定车位 · 取车点返回{{ else }}Known/unknown maps · random, remembered, or assigned slots · return to pickup{{ end }}</small></div>
+      </div>
+    </div>
+  </div>
+</section>

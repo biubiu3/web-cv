@@ -1,8 +1,8 @@
 ---
 title: "From Surround Cameras to Production Geometry: Multi-Camera SfM for 4D Auto-Annotation"
 date: "2024-06-20T00:00:00Z"
-lastmod: "2026-09-03T00:00:00Z"
-summary: "An applied industry–academia project with NETA Auto where I developed the SfM scene-reconstruction subsystem, turning synchronized surround-camera data into refined poses, calibration, and sparse-to-dense geometry for a 4D vision auto-annotation pipeline."
+lastmod: "2026-09-04T00:00:00Z"
+summary: "An applied industry–academia program with NETA Auto spanning multi-sensor data preparation, semantics, localization, reconstruction, auto-annotation, and multi-run local maps. As project lead, I directed the full technical route and delivery, with deep hands-on work on the multi-camera SfM geometry core."
 featured: true
 reading_time: false
 share: true
@@ -21,9 +21,9 @@ project:
   period: '2023–2024'
   status: 'Applied in production'
   wider_system: 'Data preparation, semantic perception, sensor-fusion localization, reconstruction, auto-annotation, and multi-run local maps'
-  role: 'SfM scene-reconstruction subsystem'
-  outputs: 'Refined vehicle poses and camera extrinsics; sparse and dense ground point clouds'
-  context: 'A large 4D vision auto-annotation program spanning data preparation, semantic perception, multi-sensor localization, static and ground reconstruction, automatic annotation, and multi-run local-map generation. I developed the SfM/static-reconstruction subsystem and its downstream geometry interface.'
+  role: 'Project lead; overall technical route and system delivery, with a development focus on multi-camera SfM/static reconstruction'
+  outputs: 'Complete 4D auto-annotation engineering chain; refined poses/extrinsics, sparse and dense geometry, and downstream interfaces'
+  context: 'A large 4D vision program spanning data preparation, semantic perception, multi-sensor localization, static and ground reconstruction, automatic annotation, and multi-run local-map generation. I led the complete technical route, module coordination, and engineering delivery while taking a deep hands-on role in SfM/static reconstruction and its downstream geometry interface.'
 project_videos:
   - src: 'headcam.mp4'
     poster: 'headcam-poster.jpg'
@@ -45,7 +45,9 @@ project_videos:
 
 {{< project-overview >}}
 
-Developed with NETA Auto, this applied **4D vision auto-annotation program** connected semantic perception, vehicle localization, static reconstruction, road-surface reconstruction, and map-element generation. I was responsible for the **Structure-from-Motion (SfM) scene-reconstruction subsystem** and the geometry it delivered downstream.
+Developed with NETA Auto, this applied **4D vision auto-annotation program** started from multi-sensor driving data and connected data preparation, semantic perception, vehicle localization, static and road-surface reconstruction, map-element auto-annotation, and multi-run local-map generation.
+
+I served as project lead, directing the technical route, work organization, module interfaces, acceptance loop, and engineering delivery. My deepest hands-on development was in **multi-camera SfM/static reconstruction** and its downstream geometry interfaces. The case study therefore begins with how the complete production system worked before examining the geometry core in detail, rather than reducing the program to one SfM module.
 
 The engineering work later informed the [MRASfM research paper](../../publications/mrasfm/). The production subsystem spans interfaces, implementation choices, validation, and downstream delivery.
 
@@ -63,9 +65,9 @@ At program level, the input covered driving-camera streams together with IMU, GN
 
 {{< project-system-map >}}
 
-Within this pipeline, the SfM module consumed semantic masks and localization, then delivered geometry to ground reconstruction, annotation, and local-map generation.
+As lead, I coordinated more than the reconstruction algorithm: upstream teams needed stable data specifications, timing, calibration, semantics, and localization; downstream teams needed traceable frames, quality state, and geometry formats. Multi-camera SfM sat at the geometric hub of that chain, consuming masks and localization before delivering a common spatial foundation to ground reconstruction, annotation, and local-map generation.
 
-## SfM subsystem interface
+## Technical focus: the multi-camera SfM interface
 
 The reconstruction module received synchronized six-view surround images, multi-sensor localization, semantic masks, and initial camera intrinsics/extrinsics. It returned refined vehicle poses, updated inter-camera extrinsics, a sparse scene model, and a dense ground point cloud suitable for downstream road reconstruction.
 
@@ -184,8 +186,8 @@ The clips below connect the sensor stream to the intermediate and final geometry
 
 {{< project-video-gallery >}}
 
-## Engineering contribution
+## Program leadership and engineering contribution
 
-The system value came from combining upstream priors, selective re-estimation, rigid hardware constraints, and representations that downstream teams could consume. The implementation added fallback registration for weak views, bounded candidate matching, geometric and semantic filtering, runtime-aware dense reconstruction, and observable checks at each interface.
+As project lead, I aligned the data, perception, localization, reconstruction, annotation, and mapping modules around a common delivery target. Within the geometry core, I implemented fallback registration for weak views, bounded candidate matching, geometric and semantic filtering, runtime-aware dense reconstruction, and observable checks at each interface. The value came from the interaction of upstream priors, selective re-estimation, rigid hardware constraints, and representations that downstream teams could consume—not from one isolated algorithm.
 
 That experience subsequently informed the research abstraction in MRASfM, where the multi-camera reconstruction and aggregation method is studied as a general technical problem.

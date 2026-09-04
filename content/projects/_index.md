@@ -1,8 +1,8 @@
 ---
 title: 'Engineering Projects'
-summary: 'Applied robotics and 3D-vision systems developed through industry–academia collaboration and validated in production or field operation.'
+summary: 'Applied autonomous-driving, robotics, and 3D-vision systems that I led through industry–academia collaboration and validated in production or field operation.'
 date: 2024-06-20
-lastmod: 2026-09-03
+lastmod: 2026-09-04
 type: landing
 
 # Page sections
@@ -10,7 +10,7 @@ sections:
   - block: collection
     content:
       title: Selected Engineering Projects
-      text: Two applied systems projects spanning multi-camera reconstruction for autonomous driving and multi-sensor perception for an intelligent lawn robot.
+      text: Three applied systems projects. Each case first explains the complete engineering objective, architecture, and technical loop, then describes my program-level leadership and deepest technical focus.
       filters:
         folders:
           - projects
