@@ -1,0 +1,34 @@
+{{/* A compact bilingual research map that separates conceptual progression from publication recency. */}}
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+{{ $content := $block.content | default dict }}
+{{ $stages := index $content "stages" | default slice }}
+
+<div class="research-trajectory-map px-6">
+  <header class="research-trajectory-map__heading">
+    {{ with index $content "eyebrow" }}<span>{{ . }}</span>{{ end }}
+    {{ with index $content "title" }}<h2 id="research-trajectory-title">{{ printf "%v" . | emojify | $page.RenderString }}</h2>{{ end }}
+    {{ with index $content "text" }}<p>{{ printf "%v" . | $page.RenderString | safeHTML }}</p>{{ end }}
+  </header>
+
+  <div class="research-trajectory-map__flow" aria-labelledby="research-trajectory-title">
+    {{ range $stageIndex, $stage := $stages }}
+      <article class="research-trajectory-map__stage">
+        <div class="research-trajectory-map__kicker">
+          <span>{{ index $stage "index" }}</span>
+          <span>{{ index $stage "label" }}</span>
+        </div>
+        <h3>{{ index $stage "title" }}</h3>
+        <p>{{ index $stage "text" }}</p>
+        <div class="research-trajectory-map__papers">
+          {{ range index $stage "papers" }}
+            <a href="{{ (index . "url") | relLangURL }}">{{ index . "label" }}</a>
+          {{ end }}
+        </div>
+      </article>
+      {{ if lt $stageIndex (sub (len $stages) 1) }}
+        <i aria-hidden="true">→</i>
+      {{ end }}
+    {{ end }}
+  </div>
+</div>

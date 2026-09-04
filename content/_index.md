@@ -37,33 +37,23 @@ sections:
     id: news
     content:
       title: 'News'
-      text: 'Selected paper and project milestones across my research trajectory.'
+      text: 'Selected paper and project milestones, ordered by year with the newest work first.'
       initial_count: 4
       more_label: 'More news'
       less_label: 'Show less'
       items:
-        - date: '2026-03-17'
-          display_date: 'Mar 2026'
-          tag: 'Paper'
-          text: 'HEAR was published in IJRR.'
-          url: 'publications/hear/'
-        - date: '2026-08-17'
-          display_date: 'Aug 2026'
+        - date: '2026'
+          display_date: '2026'
+          tag: 'Manuscript'
+          text: 'DiffSAC is under review at IJCV.'
+          url: 'publications/diffsac/'
+        - date: '2026'
+          display_date: '2026'
           tag: 'Manuscript'
           text: 'Teach and Grow is under review at T-RO.'
           url: 'publications/tgl/'
-        - date: '2025-07-23'
-          display_date: 'Jul 2025'
-          tag: 'Manuscript'
-          text: 'ERMV is under review at TCSVT.'
-          url: 'publications/ermv/'
-        - date: '2026-04-30'
-          display_date: 'Apr 2026'
-          tag: 'Paper'
-          text: 'MID was published in IEEE TNNLS.'
-          url: 'publications/mid/'
-        - date: '2026-06-01'
-          display_date: 'Jun 2026'
+        - date: '2026'
+          display_date: '2026'
           tag: 'Paper'
           text: 'MRASfM was published at ICRA 2026.'
           url: 'publications/mrasfm/'
@@ -72,28 +62,43 @@ sections:
           tag: 'Accepted'
           text: 'VCGS-SLAM was accepted by IJCV.'
           url: 'publications/vcgs-slam/'
-        - date: '2025-10-19'
-          display_date: 'Oct 2025'
+        - date: '2026'
+          display_date: '2026'
+          tag: 'Paper'
+          text: 'MID was published in IEEE TNNLS.'
+          url: 'publications/mid/'
+        - date: '2026'
+          display_date: '2026'
+          tag: 'Paper'
+          text: 'HEAR was published in IJRR.'
+          url: 'publications/hear/'
+        - date: '2025'
+          display_date: '2025'
           tag: 'Paper'
           text: 'MovSAM was published at IROS 2025.'
           url: 'publications/movsam/'
-        - date: '2026-08-31'
-          display_date: 'Aug 2026'
+        - date: '2025'
+          display_date: '2025'
           tag: 'Manuscript'
-          text: 'DiffSAC is under review at IJCV.'
-          url: 'publications/diffsac/'
-        - date: '2023-10-01'
-          display_date: 'Oct 2023'
-          tag: 'Paper'
-          text: 'RLSAC was published at ICCV 2023.'
-          url: 'publications/rlsac/'
-        - date: '2024-06-20'
-          display_date: 'Jun 2024'
+          text: 'ERMV is under review at TCSVT.'
+          url: 'publications/ermv/'
+        - date: '2024'
+          display_date: '2024'
           tag: 'Project'
           text: 'Multi-camera SfM entered a production 4D auto-annotation pipeline.'
           url: 'projects/sfm/'
-        - date: '2022-01-19'
-          display_date: 'Jan 2022'
+        - date: '2023'
+          display_date: '2023'
+          tag: 'Paper'
+          text: 'RLSAC was published at ICCV 2023.'
+          url: 'publications/rlsac/'
+        - date: '2022'
+          display_date: '2022'
+          tag: 'Project'
+          text: 'The campus-scale AVP system completed integration and vehicle testing with Voyager Intelligent Systems.'
+          url: 'projects/avp/'
+        - date: '2022'
+          display_date: '2022'
           tag: 'Project'
           text: 'The autonomous lawn robot completed its field-tested project phase.'
           url: 'projects/mower/'
@@ -113,62 +118,70 @@ sections:
   - block: markdown
     id: papers
     content:
-      title: 'A Research Story: From Reliable Perception to Growing Robots'
+      title: 'Latest Work First, Connected by One Research Agenda'
       text: |-
-        My work follows a continuous path: **make perception reliable**, then **learn across modalities and generate better data**, and finally **build robot systems that can use sound, tools, feedback, and memory to acquire reusable capabilities**. The papers follow this research story, with year and venue shown on every card. **HEAR** and **Teach and Grow (TGL)** are the current representative outcomes.
+        The publication list is ordered **newest first**, so current work is visible immediately. Each card retains its year, venue or review status, and technical area. The connection between the papers is explained separately: reliable perception and geometry support multimodal data and models, which in turn enable robot systems that listen, reason, act, and learn from experience.
     design:
       columns: '1'
   - block: collection
-    id: foundations
+    id: latest-publications
     content:
-      title: '01 · Reliable Perception & Geometry'
-      text: Learning how to sample, segment, and reconstruct robustly provides the geometric foundation for later embodied systems.
+      title: 'Publications · Newest First'
+      text: The newest publications and manuscripts appear first; thematic continuity is summarized in the research map below.
       filters:
         folders:
           - publications
         tags:
           - Computer Vision
-      sort_by: story_order
-      sort_ascending: true
-      count: 5
-    design:
-      view: article-grid
-      columns: 2
-      fill_image: false
-  - block: collection
-    id: multimodal-models
-    content:
-      title: '02 · Multimodal Data & Models'
-      text: The next step is to learn transferable restoration principles and create consistent robot experience across modalities and time.
-      filters:
-        folders:
-          - publications
-        tags:
           - Multimodal Learning
-      sort_by: story_order
-      sort_ascending: true
-      count: 2
-    design:
-      view: article-grid
-      columns: 2
-      fill_image: false
-  - block: collection
-    id: general-systems
-    content:
-      title: '03 · General Robot Systems'
-      text: HEAR and TGL bring the earlier threads together in multisensory and agent-centered robot systems that perceive causal signals and grow through physical experience.
-      filters:
-        folders:
-          - publications
-        tags:
           - Robot Manipulation
-      sort_by: story_order
-      sort_ascending: true
-      count: 2
+      sort_by: date
+      sort_ascending: false
+      count: 9
     design:
       view: article-grid
       columns: 2
       fill_image: false
+  - block: research-trajectory
+    id: research-trajectory
+    content:
+      eyebrow: 'How the work connects'
+      title: 'One trajectory, three technical layers'
+      text: 'The cards above prioritize recency. This map restores the conceptual progression without pushing older papers to the top of the page.'
+      stages:
+        - index: '01'
+          label: 'Foundation'
+          title: 'Reliable Perception & Geometry'
+          text: 'Robust sampling, open-world segmentation, SLAM, and multi-camera reconstruction establish dependable scene structure.'
+          papers:
+            - label: 'DiffSAC'
+              url: 'publications/diffsac/'
+            - label: 'MRASfM'
+              url: 'publications/mrasfm/'
+            - label: 'VCGS-SLAM'
+              url: 'publications/vcgs-slam/'
+            - label: 'MovSAM'
+              url: 'publications/movsam/'
+            - label: 'RLSAC'
+              url: 'publications/rlsac/'
+        - index: '02'
+          label: 'Bridge'
+          title: 'Multimodal Data & Models'
+          text: 'Self-supervised denoising and consistent 4D editing turn heterogeneous observations into more useful learning experience.'
+          papers:
+            - label: 'MID'
+              url: 'publications/mid/'
+            - label: 'ERMV'
+              url: 'publications/ermv/'
+        - index: '03'
+          label: 'Current frontier'
+          title: 'General Robot Systems'
+          text: 'Sound, tools, feedback, skills, and memory are integrated into robots that reason and improve through physical interaction.'
+          papers:
+            - label: 'Teach and Grow'
+              url: 'publications/tgl/'
+            - label: 'HEAR'
+              url: 'publications/hear/'
   - block: video-showcase
     id: robot-demos
     content:

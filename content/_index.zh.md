@@ -30,33 +30,23 @@ sections:
     id: news
     content:
       title: 最新动态
-      text: 沿研究主线选取的论文与项目进展。
+      text: 按年份由新到旧展示代表性论文与项目进展。
       initial_count: 4
       more_label: 展开更多
       less_label: 收起
       items:
-        - date: '2026-03-17'
-          display_date: '2026.03'
+        - date: '2026'
+          display_date: '2026'
           tag: 论文
-          text: HEAR 发表于 IJRR。
-          url: 'publications/hear/'
-        - date: '2026-08-17'
-          display_date: '2026.08'
+          text: DiffSAC 正在 IJCV 审稿。
+          url: 'publications/diffsac/'
+        - date: '2026'
+          display_date: '2026'
           tag: 论文
           text: Teach and Grow 正在 T-RO 审稿。
           url: 'publications/tgl/'
-        - date: '2025-07-23'
-          display_date: '2025.07'
-          tag: 论文
-          text: ERMV 正在 TCSVT 审稿。
-          url: 'publications/ermv/'
-        - date: '2026-04-30'
-          display_date: '2026.04'
-          tag: 论文
-          text: MID 发表于 IEEE TNNLS。
-          url: 'publications/mid/'
-        - date: '2026-06-01'
-          display_date: '2026.06'
+        - date: '2026'
+          display_date: '2026'
           tag: 论文
           text: MRASfM 发表于 ICRA 2026。
           url: 'publications/mrasfm/'
@@ -65,28 +55,43 @@ sections:
           tag: 已接收
           text: VCGS-SLAM 被 IJCV 2026 接收。
           url: 'publications/vcgs-slam/'
-        - date: '2025-10-19'
-          display_date: '2025.10'
+        - date: '2026'
+          display_date: '2026'
+          tag: 论文
+          text: MID 发表于 IEEE TNNLS。
+          url: 'publications/mid/'
+        - date: '2026'
+          display_date: '2026'
+          tag: 论文
+          text: HEAR 发表于 IJRR。
+          url: 'publications/hear/'
+        - date: '2025'
+          display_date: '2025'
           tag: 论文
           text: MovSAM 发表于 IROS 2025。
           url: 'publications/movsam/'
-        - date: '2026-08-31'
-          display_date: '2026.08'
+        - date: '2025'
+          display_date: '2025'
           tag: 论文
-          text: DiffSAC 正在 IJCV 审稿。
-          url: 'publications/diffsac/'
-        - date: '2023-10-01'
-          display_date: '2023.10'
-          tag: 论文
-          text: RLSAC 发表于 ICCV 2023。
-          url: 'publications/rlsac/'
-        - date: '2024-06-20'
-          display_date: '2024.06'
+          text: ERMV 正在 TCSVT 审稿。
+          url: 'publications/ermv/'
+        - date: '2024'
+          display_date: '2024'
           tag: 项目
           text: 多相机 SfM 进入量产 4D 自动标注流程。
           url: 'projects/sfm/'
-        - date: '2022-01-19'
-          display_date: '2022.01'
+        - date: '2023'
+          display_date: '2023'
+          tag: 论文
+          text: RLSAC 发表于 ICCV 2023。
+          url: 'publications/rlsac/'
+        - date: '2022'
+          display_date: '2022'
+          tag: 项目
+          text: 园区 AVP 系统与寅家科技完成系统集成和实车测试。
+          url: 'projects/avp/'
+        - date: '2022'
+          display_date: '2022'
           tag: 项目
           text: 智能割草机器人完成实地测试项目阶段。
           url: 'projects/mower/'
@@ -105,62 +110,70 @@ sections:
   - block: markdown
     id: papers
     content:
-      title: 从可靠感知到持续成长的机器人
+      title: 最新工作优先，一条研究主线贯穿
       text: |-
-        我的工作形成了一条连续的故事线：先让**感知与几何估计更可靠**，再研究**跨模态学习和高质量数据生成**，最终构建能够利用声音、工具、反馈与记忆来获得可复用能力的**通用机器人系统**。以下论文沿研究脉络展开，每张卡片同时标注年份与发表信息，其中 **HEAR** 和 **TGL** 是当前最具代表性的成果。
+        论文列表按照**最新工作优先**排列，让当前进展首先被看到；每张卡片保留年份、发表或审稿状态及技术方向。论文之间的联系单独通过研究路线呈现：可靠感知与几何支撑多模态数据和模型，进一步走向能够聆听、推理、行动并从经验中成长的机器人系统。
     design:
       columns: '1'
   - block: collection
-    id: foundations
+    id: latest-publications
     content:
-      title: '01 · 可靠感知与几何'
-      text: 从学习如何采样、分割和重建开始，为后续具身系统建立可靠的几何基础。
+      title: '研究论文 · 最新优先'
+      text: 论文和稿件按年份与公开时间由新到旧排列；下方研究路线图进一步说明它们之间的技术联系。
       filters:
         folders:
           - publications
         tags:
           - Computer Vision
-      sort_by: story_order
-      sort_ascending: true
-      count: 5
-    design:
-      view: article-grid
-      columns: 2
-      fill_image: false
-  - block: collection
-    id: multimodal-models
-    content:
-      title: '02 · 多模态数据与模型'
-      text: 进一步探索跨模态可迁移的学习规律，并生成跨视角、跨时间一致的机器人经验。
-      filters:
-        folders:
-          - publications
-        tags:
           - Multimodal Learning
-      sort_by: story_order
-      sort_ascending: true
-      count: 2
-    design:
-      view: article-grid
-      columns: 2
-      fill_image: false
-  - block: collection
-    id: general-systems
-    content:
-      title: '03 · 通用机器人系统'
-      text: HEAR 与 TGL 将此前的工作汇聚为多感官、智能体中心的机器人系统，使其能够感知因果信号并从物理经验中成长。
-      filters:
-        folders:
-          - publications
-        tags:
           - Robot Manipulation
-      sort_by: story_order
-      sort_ascending: true
-      count: 2
+      sort_by: date
+      sort_ascending: false
+      count: 9
     design:
       view: article-grid
       columns: 2
       fill_image: false
+  - block: research-trajectory
+    id: research-trajectory
+    content:
+      eyebrow: 这些工作如何连接
+      title: 一条研究主线，三个技术层次
+      text: 论文卡片强调最新进展；这张路线图保留概念演进关系，同时避免把较早工作放在页面最前方。
+      stages:
+        - index: '01'
+          label: 技术基础
+          title: 可靠感知与几何
+          text: 通过鲁棒采样、开放世界分割、SLAM 和多相机重建，建立可信的场景结构。
+          papers:
+            - label: 'DiffSAC'
+              url: 'publications/diffsac/'
+            - label: 'MRASfM'
+              url: 'publications/mrasfm/'
+            - label: 'VCGS-SLAM'
+              url: 'publications/vcgs-slam/'
+            - label: 'MovSAM'
+              url: 'publications/movsam/'
+            - label: 'RLSAC'
+              url: 'publications/rlsac/'
+        - index: '02'
+          label: 连接层
+          title: 多模态数据与模型
+          text: 利用自监督去噪与一致的 4D 编辑，把异构观测转化为更有效的学习经验。
+          papers:
+            - label: 'MID'
+              url: 'publications/mid/'
+            - label: 'ERMV'
+              url: 'publications/ermv/'
+        - index: '03'
+          label: 当前前沿
+          title: 通用机器人系统
+          text: 将声音、工具、反馈、技能与记忆集成到能够推理并从物理交互中持续改进的机器人中。
+          papers:
+            - label: 'Teach and Grow'
+              url: 'publications/tgl/'
+            - label: 'HEAR'
+              url: 'publications/hear/'
   - block: video-showcase
     id: robot-demos
     content:
