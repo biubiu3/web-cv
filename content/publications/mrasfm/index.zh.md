@@ -25,6 +25,7 @@ open_access: true
 abstract: "MRASfM 利用固定的相机间几何关系，将运动恢复结构方法适配到多相机驾驶系统。方法通过平面模型去除不可靠路面点，将整个相机集合视为一个单元进行束调整，并借助粗到细的关联和装配聚合多个场景。"
 summary: "面向驾驶环境可靠、高效重建与场景聚合的多相机 SfM 框架。"
 story_order: 30
+homepage_order: 50
 topic_keywords:
   - 自动驾驶
   - 多相机三维重建

@@ -20,6 +20,7 @@ open_access: true
 abstract: "DiffSAC 使用几何条件扩散模型学习有效最小集的分布。不同于一次性排序单个点，该方法迭代细化逐点置信度，并生成少量高质量候选集合。框架覆盖直线和平面拟合、基础矩阵与本质矩阵估计，以及单应性估计。"
 summary: "通过几何条件扩散生成少量高质量最小集，以提高鲁棒估计效率。"
 story_order: 40
+homepage_order: 90
 topic_keywords:
   - 扩散模型
   - 鲁棒估计

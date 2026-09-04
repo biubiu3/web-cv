@@ -20,6 +20,7 @@ open_access: true
 abstract: "ERMV is a data-augmentation framework for editing complete multi-view robot trajectories from sparse frame edits and robot-state conditions. Epipolar motion-aware attention supports geometric and appearance consistency, sparse spatio-temporal modeling expands the editing window efficiently, and multimodal feedback checks sequence inconsistencies before requesting targeted intervention."
 summary: "Consistent and efficient editing of multi-view robot trajectories for augmenting embodied policy training data."
 story_order: 60
+homepage_order: 30
 topic_keywords:
   - Embodied AI Data
   - Robot Data Augmentation

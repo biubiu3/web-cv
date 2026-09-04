@@ -108,7 +108,7 @@ async function inventory(page) {
 }
 
 async function captureSections(page, suffix) {
-  const sectionIds = ['about', 'news', 'robot-demos', 'research', 'engineering-projects', 'papers', 'latest-publications', 'research-trajectory', 'contact'];
+  const sectionIds = ['about', 'news', 'robot-demos', 'research', 'engineering-projects', 'papers', 'selected-publications', 'research-trajectory', 'contact'];
   for (const id of sectionIds) {
     const section = page.locator(`#${id}`).first();
     if (!await section.count()) continue;

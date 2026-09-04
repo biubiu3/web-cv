@@ -20,6 +20,7 @@ open_access: true
 abstract: "Teach-and-Grow Learning（TGL）是一种智能体中心架构，旨在从少量成功示范中获得可复用的机器人能力。多模态智能体构建闭环 Skill Block，在新场景中进行定位和组合，在学习式工具与几何工具之间选择，观察物理结果，并在执行偏离意图时修改路线。Skill Library 与结构化 Experience Memory 持久保存成功行为、失败与修复经验。"
 summary: "将少量教学转化为可复用 Skill Block 与持久经验，使后续任务能够受益的智能体中心机器人学习架构。"
 story_order: 80
+homepage_order: 10
 topic_keywords:
   - 智能体 AI（Agentic AI）
   - 通用机器人

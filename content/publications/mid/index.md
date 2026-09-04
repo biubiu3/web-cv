@@ -20,6 +20,7 @@ open_access: true
 abstract: "MID treats a noisy observation as an intermediate state in a nonlinear corruption process and learns to reverse that process using noisy data alone. One network estimates the current corruption stage and another removes the corresponding residual increment; a local first-order approximation supports iterative restoration under nonlinear noise. The formulation is instantiated across vision, biomedical signals, point sets, and biological sequences."
 summary: "A self-supervised iterative framework that learns nonlinear denoising directly from noisy observations across multiple data modalities."
 story_order: 50
+homepage_order: 70
 topic_keywords:
   - Self-Supervised Learning
   - Multimodal Learning

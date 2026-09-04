@@ -37,21 +37,31 @@ sections:
     id: news
     content:
       title: 'News'
-      text: 'Selected paper and project milestones, ordered by year with the newest work first.'
+      text: 'Selected paper and project milestones across my research trajectory.'
       initial_count: 4
       more_label: 'More news'
       less_label: 'Show less'
       items:
         - date: '2026'
           display_date: '2026'
-          tag: 'Manuscript'
-          text: 'DiffSAC is under review at IJCV.'
-          url: 'publications/diffsac/'
+          tag: 'Paper'
+          text: 'HEAR was published in IJRR.'
+          url: 'publications/hear/'
         - date: '2026'
           display_date: '2026'
           tag: 'Manuscript'
           text: 'Teach and Grow is under review at T-RO.'
           url: 'publications/tgl/'
+        - date: '2025'
+          display_date: '2025'
+          tag: 'Manuscript'
+          text: 'ERMV is under review at TCSVT.'
+          url: 'publications/ermv/'
+        - date: '2026'
+          display_date: '2026'
+          tag: 'Paper'
+          text: 'MID was published in IEEE TNNLS.'
+          url: 'publications/mid/'
         - date: '2026'
           display_date: '2026'
           tag: 'Paper'
@@ -62,36 +72,26 @@ sections:
           tag: 'Accepted'
           text: 'VCGS-SLAM was accepted by IJCV.'
           url: 'publications/vcgs-slam/'
-        - date: '2026'
-          display_date: '2026'
-          tag: 'Paper'
-          text: 'MID was published in IEEE TNNLS.'
-          url: 'publications/mid/'
-        - date: '2026'
-          display_date: '2026'
-          tag: 'Paper'
-          text: 'HEAR was published in IJRR.'
-          url: 'publications/hear/'
         - date: '2025'
           display_date: '2025'
           tag: 'Paper'
           text: 'MovSAM was published at IROS 2025.'
           url: 'publications/movsam/'
-        - date: '2025'
-          display_date: '2025'
+        - date: '2026'
+          display_date: '2026'
           tag: 'Manuscript'
-          text: 'ERMV is under review at TCSVT.'
-          url: 'publications/ermv/'
-        - date: '2024'
-          display_date: '2024'
-          tag: 'Project'
-          text: 'Multi-camera SfM entered a production 4D auto-annotation pipeline.'
-          url: 'projects/sfm/'
+          text: 'DiffSAC is under review at IJCV.'
+          url: 'publications/diffsac/'
         - date: '2023'
           display_date: '2023'
           tag: 'Paper'
           text: 'RLSAC was published at ICCV 2023.'
           url: 'publications/rlsac/'
+        - date: '2024'
+          display_date: '2024'
+          tag: 'Project'
+          text: 'Multi-camera SfM entered a production 4D auto-annotation pipeline.'
+          url: 'projects/sfm/'
         - date: '2022'
           display_date: '2022'
           tag: 'Project'
@@ -118,16 +118,16 @@ sections:
   - block: markdown
     id: papers
     content:
-      title: 'Latest Work First, Connected by One Research Agenda'
+      title: 'Selected Publications, Connected by One Research Agenda'
       text: |-
-        The publication list is ordered **newest first**, so current work is visible immediately. Each card retains its year, venue or review status, and technical area. The connection between the papers is explained separately: reliable perception and geometry support multimodal data and models, which in turn enable robot systems that listen, reason, act, and learn from experience.
+        The publication list follows a curated order that foregrounds the work I most want readers to encounter. Each card retains its year, venue or review status, and technical area. The connection between the papers is explained separately: reliable perception and geometry support multimodal data and models, which in turn enable robot systems that listen, reason, act, and learn from experience.
     design:
       columns: '1'
   - block: collection
-    id: latest-publications
+    id: selected-publications
     content:
-      title: 'Publications · Newest First'
-      text: The newest publications and manuscripts appear first; thematic continuity is summarized in the research map below.
+      title: 'Selected Publications'
+      text: Nine representative works in a curated reading order; the research map below explains their technical continuity.
       filters:
         folders:
           - publications
@@ -135,8 +135,8 @@ sections:
           - Computer Vision
           - Multimodal Learning
           - Robot Manipulation
-      sort_by: date
-      sort_ascending: false
+      sort_by: homepage_order
+      sort_ascending: true
       count: 9
     design:
       view: article-grid
@@ -147,7 +147,7 @@ sections:
     content:
       eyebrow: 'How the work connects'
       title: 'One trajectory, three technical layers'
-      text: 'The cards above prioritize recency. This map restores the conceptual progression without pushing older papers to the top of the page.'
+      text: 'The cards above follow a curated reading order. This map shows how the works connect from dependable scene understanding to multimodal learning and general robot systems.'
       stages:
         - index: '01'
           label: 'Foundation'

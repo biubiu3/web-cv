@@ -22,6 +22,7 @@ open_access: true
 abstract: "HEAR 将视觉-声音-语言-动作形式化为连续机器人控制范式，使瞬时声学事件在延迟、分块的决策循环中仍可被利用。框架结合因果音频记忆、多模态推理、近未来声音预测与流匹配动作生成；OpenX-Sound 和 HEAR-Bench 分别提供预训练数据与声音因果评测任务。"
 summary: "为机器人策略加入因果音频记忆、多模态推理、未来声音预测与平滑动作生成的声音中心具身框架。"
 story_order: 70
+homepage_order: 20
 topic_keywords:
   - 物理 AI
   - 多感官机器人

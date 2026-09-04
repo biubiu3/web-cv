@@ -25,6 +25,7 @@ open_access: true
 abstract: "MRASfM adapts structure-from-motion to multi-camera driving systems by exploiting fixed inter-camera geometry during registration. It removes unreliable road-surface points with a plane model, treats the camera set as a unit during bundle adjustment, and aggregates multiple scenes through coarse-to-fine association and assembly."
 summary: "A multi-camera structure-from-motion framework for reliable and efficient reconstruction and scene aggregation in driving environments."
 story_order: 30
+homepage_order: 50
 topic_keywords:
   - Autonomous Driving
   - Multi-Camera 3D Reconstruction

@@ -20,6 +20,7 @@ open_access: true
 abstract: "DiffSAC uses a geometry-conditioned diffusion model to learn the distribution of effective minimum sets for consensus-based robust estimation. Iterative refinement transforms per-point confidence into a small collection of high-quality candidate sets. The framework is evaluated across line and plane fitting, fundamental and essential matrix estimation, and homography estimation."
 summary: "Geometry-conditioned diffusion sampling that proposes a small number of high-quality minimum sets for efficient robust estimation."
 story_order: 40
+homepage_order: 90
 topic_keywords:
   - Diffusion Models
   - Robust Estimation

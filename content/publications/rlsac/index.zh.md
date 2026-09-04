@@ -25,6 +25,7 @@ open_access: true
 abstract: "RLSAC 将采样一致性鲁棒估计建模为强化学习过程。图神经网络联合编码观测数据与采样历史，提出下一组最小集，并以其下游假设质量作为无监督奖励。学习到的状态转移可以复用于多类鲁棒估计问题。"
 summary: "利用数据特征、采样历史和下游反馈来指导采样一致性的强化学习方法。"
 story_order: 10
+homepage_order: 60
 topic_keywords:
   - 强化学习
   - 鲁棒估计

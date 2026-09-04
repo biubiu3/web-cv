@@ -25,6 +25,7 @@ open_access: true
 abstract: "RLSAC casts sample-consensus robust estimation as a reinforcement-learning process. A graph neural network combines observations with sampling history to propose the next minimum set, while downstream hypothesis quality supplies an unsupervised reward. The learned state transition makes the sampling policy reusable across robust-estimation problems."
 summary: "Reinforcement-learning-guided sample consensus that uses data features, sampling history, and downstream feedback for robust estimation."
 story_order: 10
+homepage_order: 60
 topic_keywords:
   - Reinforcement Learning
   - Robust Estimation

@@ -26,6 +26,7 @@ open_access: true
 abstract: "This work develops a compact 3D Gaussian dense visual SLAM system for embedded deployment. Voxel-anchored Gaussians control map growth, a learnable sliding-window mask removes redundant primitives during online mapping, residual codebook quantization compresses anchor attributes, and local-to-global bundle adjustment with an ICP loss improves camera tracking. Experiments cover Replica, ScanNet, TUM RGB-D, embedded hardware, and a multisensor mobile-robot dataset."
 summary: "Compact dense visual SLAM with voxel-anchored Gaussians, online pruning, residual quantization, and embedded deployment."
 story_order: 25
+homepage_order: 40
 topic_keywords:
   - 3D Gaussian Splatting
   - Dense Visual SLAM
@@ -145,4 +146,3 @@ The system is tested on Jetson and laptop-class embedded platforms. The authors 
 ## Scope and current limitations
 
 The system assumes RGB-D input and known camera intrinsics. Fast camera motion can blur both color and depth observations, weakening the tracking losses. Highly dynamic scenes can also introduce artifacts and drift because the map is optimized as a mostly static representation. These cases motivate motion-aware observations and explicit dynamic-scene modeling in future versions.
-

@@ -30,7 +30,7 @@ sections:
     id: news
     content:
       title: 最新动态
-      text: 按年份由新到旧展示代表性论文与项目进展。
+      text: 沿研究主线选取的论文与项目进展。
       initial_count: 4
       more_label: 展开更多
       less_label: 收起
@@ -38,13 +38,23 @@ sections:
         - date: '2026'
           display_date: '2026'
           tag: 论文
-          text: DiffSAC 正在 IJCV 审稿。
-          url: 'publications/diffsac/'
+          text: HEAR 发表于 IJRR。
+          url: 'publications/hear/'
         - date: '2026'
           display_date: '2026'
           tag: 论文
           text: Teach and Grow 正在 T-RO 审稿。
           url: 'publications/tgl/'
+        - date: '2025'
+          display_date: '2025'
+          tag: 论文
+          text: ERMV 正在 TCSVT 审稿。
+          url: 'publications/ermv/'
+        - date: '2026'
+          display_date: '2026'
+          tag: 论文
+          text: MID 发表于 IEEE TNNLS。
+          url: 'publications/mid/'
         - date: '2026'
           display_date: '2026'
           tag: 论文
@@ -55,36 +65,26 @@ sections:
           tag: 已接收
           text: VCGS-SLAM 被 IJCV 2026 接收。
           url: 'publications/vcgs-slam/'
-        - date: '2026'
-          display_date: '2026'
-          tag: 论文
-          text: MID 发表于 IEEE TNNLS。
-          url: 'publications/mid/'
-        - date: '2026'
-          display_date: '2026'
-          tag: 论文
-          text: HEAR 发表于 IJRR。
-          url: 'publications/hear/'
         - date: '2025'
           display_date: '2025'
           tag: 论文
           text: MovSAM 发表于 IROS 2025。
           url: 'publications/movsam/'
-        - date: '2025'
-          display_date: '2025'
+        - date: '2026'
+          display_date: '2026'
           tag: 论文
-          text: ERMV 正在 TCSVT 审稿。
-          url: 'publications/ermv/'
-        - date: '2024'
-          display_date: '2024'
-          tag: 项目
-          text: 多相机 SfM 进入量产 4D 自动标注流程。
-          url: 'projects/sfm/'
+          text: DiffSAC 正在 IJCV 审稿。
+          url: 'publications/diffsac/'
         - date: '2023'
           display_date: '2023'
           tag: 论文
           text: RLSAC 发表于 ICCV 2023。
           url: 'publications/rlsac/'
+        - date: '2024'
+          display_date: '2024'
+          tag: 项目
+          text: 多相机 SfM 进入量产 4D 自动标注流程。
+          url: 'projects/sfm/'
         - date: '2022'
           display_date: '2022'
           tag: 项目
@@ -110,16 +110,16 @@ sections:
   - block: markdown
     id: papers
     content:
-      title: 最新工作优先，一条研究主线贯穿
+      title: 代表性论文与贯穿其中的研究主线
       text: |-
-        论文列表按照**最新工作优先**排列，让当前进展首先被看到；每张卡片保留年份、发表或审稿状态及技术方向。论文之间的联系单独通过研究路线呈现：可靠感知与几何支撑多模态数据和模型，进一步走向能够聆听、推理、行动并从经验中成长的机器人系统。
+        以下论文按照经过筛选的展示顺序排列，优先呈现最希望读者首先了解的工作；每张卡片保留年份、发表或审稿状态及技术方向。论文之间的联系单独通过研究路线呈现：可靠感知与几何支撑多模态数据和模型，进一步走向能够聆听、推理、行动并从经验中成长的机器人系统。
     design:
       columns: '1'
   - block: collection
-    id: latest-publications
+    id: selected-publications
     content:
-      title: '研究论文 · 最新优先'
-      text: 论文和稿件按年份与公开时间由新到旧排列；下方研究路线图进一步说明它们之间的技术联系。
+      title: '代表性论文'
+      text: 九项工作的重点展示顺序；下方研究路线图进一步说明它们之间的技术联系。
       filters:
         folders:
           - publications
@@ -127,8 +127,8 @@ sections:
           - Computer Vision
           - Multimodal Learning
           - Robot Manipulation
-      sort_by: date
-      sort_ascending: false
+      sort_by: homepage_order
+      sort_ascending: true
       count: 9
     design:
       view: article-grid
@@ -139,7 +139,7 @@ sections:
     content:
       eyebrow: 这些工作如何连接
       title: 一条研究主线，三个技术层次
-      text: 论文卡片强调最新进展；这张路线图保留概念演进关系，同时避免把较早工作放在页面最前方。
+      text: 论文卡片采用经过筛选的阅读顺序；这张路线图进一步展示这些工作如何从可靠场景理解连接到多模态学习与通用机器人系统。
       stages:
         - index: '01'
           label: 技术基础

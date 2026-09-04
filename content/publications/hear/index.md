@@ -22,6 +22,7 @@ open_access: true
 abstract: "HEAR formalizes Vision-Sound-Language-Action as a continuous robot-control paradigm in which transient acoustic events remain available across delayed, chunked decision loops. The framework combines causal audio memory, multimodal reasoning, near-future audio prediction, and flow-matching action generation. OpenX-Sound and HEAR-Bench provide pretraining data and sound-causal evaluation tasks for this setting."
 summary: "A sound-centric embodied framework that gives robot policies causal audio memory, multimodal reasoning, future-audio prediction, and smooth action generation."
 story_order: 70
+homepage_order: 20
 topic_keywords:
   - Physical AI
   - Multisensory Robotics

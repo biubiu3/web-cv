@@ -22,6 +22,7 @@ open_access: true
 abstract: "MovSAM performs moving-object segmentation from a single image, where temporal motion cues are unavailable. A multimodal large language model reasons about the scene and produces textual object prompts; these are fused with visual representations from SAM and a vision-language model, then refined through an iterative reasoning loop."
 summary: "Single-image moving-object segmentation through multimodal reasoning, language-guided prompting, and iterative refinement."
 story_order: 20
+homepage_order: 80
 topic_keywords:
   - Multimodal Large Language Models
   - Segment Anything
