@@ -10,7 +10,9 @@ sections:
   - block: collection
     content:
       title: Selected Engineering Projects
-      text: Four systems projects spanning laboratory robotics, autonomous driving, and 3D vision. Each case explains the engineering objective and architecture, then develops the technical route, demonstrations, and research direction.
+      text: Five systems projects spanning industrial and laboratory robotics, autonomous driving, and 3D vision. The pages describe system design, my contribution, and project demonstrations.
+      sort_by: weight
+      sort_ascending: true
       filters:
         folders:
           - projects

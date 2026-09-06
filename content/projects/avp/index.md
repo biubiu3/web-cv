@@ -1,4 +1,5 @@
 ---
+weight: 40
 title: "A Car That Finds, Parks, and Returns: A Campus-Scale AVP System"
 date: "2022-02-15T00:00:00Z"
 lastmod: "2026-09-04T00:00:00Z"

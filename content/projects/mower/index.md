@@ -1,4 +1,5 @@
 ---
+weight: 50
 title: "A Lawn Robot Designed Like an Autonomous Vehicle: LiDAR Obstacle Perception and Multi-Sensor Fusion"
 date: "2022-01-19T00:00:00Z"
 lastmod: "2026-09-04T00:00:00Z"

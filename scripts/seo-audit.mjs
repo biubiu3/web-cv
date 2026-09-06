@@ -58,6 +58,8 @@ const pageRoutes = [
   'zh/projects/mower/',
   'projects/robot-chemist/',
   'zh/projects/robot-chemist/',
+  'projects/factory-material-handling/',
+  'zh/projects/factory-material-handling/',
   'projects/avp/',
   'zh/projects/avp/',
   ...Object.keys(publications).map((slug) => `publications/${slug}/`),
@@ -177,7 +179,7 @@ for (const relative of pageRoutes) {
     requireValue(/\bAbstract\b/.test(state.visibleText), 'Publication abstract is not visibly rendered', { relative });
   }
 
-  if (/^(zh\/)?projects\/(sfm|mower|avp|robot-chemist)\/$/.test(relative)) {
+  if (/^(zh\/)?projects\/(sfm|mower|avp|robot-chemist|factory-material-handling)\/$/.test(relative)) {
     const project = state.jsonLD.find((item) => item['@type'] === 'TechArticle');
     requireValue(Boolean(project), 'Project page is missing TechArticle structured data', { relative });
     requireValue(state.h1.length === 1, 'Project page should have exactly one H1', { relative, h1: state.h1 });

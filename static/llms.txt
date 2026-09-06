@@ -48,3 +48,8 @@ This file is a concise guide to the public, human-readable pages on the site. Pu
 
 - [Extended research context](https://biubiu3.github.io/web-cv/llms-full.txt): Detailed profile and publication summaries for retrieval and citation.
 - [XML sitemap](https://biubiu3.github.io/web-cv/sitemap.xml): Canonical inventory of English and Chinese pages.
+
+## Factory Material Handling
+
+- [Dual-arm mobile material handling](https://biubiu3.github.io/web-cv/projects/factory-material-handling/): Factory deployment project connecting object recognition, navigation, and dual-arm tote handling. Nie Chang was responsible for object recognition and dual-arm manipulation. Includes an indoor robot demonstration labeled 3x speed.
+- [工厂搬运机器人](https://biubiu3.github.io/web-cv/zh/projects/factory-material-handling/): 物体识别、工位导航、双臂拆垛与料箱转运。

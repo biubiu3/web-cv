@@ -1,4 +1,5 @@
 ---
+weight: 30
 title: "From Surround Cameras to Production Geometry: Multi-Camera SfM for 4D Auto-Annotation"
 date: "2024-06-20T00:00:00Z"
 lastmod: "2026-09-04T00:00:00Z"

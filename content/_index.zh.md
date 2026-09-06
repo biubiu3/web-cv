@@ -213,11 +213,13 @@ sections:
     content:
       title: '工程项目'
       text: |-
-        除了论文研究，我也负责面向真实传感器、生产接口与实地运行的产学研工程项目。三个代表性案例覆盖园区自主代客泊车、自动驾驶 4D 视觉自动标注，以及智能割草机器人的完整自主系统。
+        我曾负责园区自主代客泊车、自动驾驶 4D 自动标注和智能割草机器人项目，参与系统设计、算法开发与实地测试。在工业机器人项目中，我负责工厂搬运机器人的物体识别与双臂操作。
+      sort_by: weight
+      sort_ascending: true
       filters:
         folders:
           - projects
-      count: 3
+      count: 5
     design:
       view: project-feature
       columns: 1

@@ -9,7 +9,9 @@ sections:
   - block: collection
     content:
       title: 代表性工程项目
-      text: 四个系统项目，涵盖实验室机器人、自动驾驶与三维视觉。每个案例从工程目标与系统架构出发，展开技术路线、实机演示与研究方向。
+      text: 五个系统项目，涵盖工业与实验室机器人、自动驾驶及三维视觉。各页面介绍系统设计、我的工作和项目演示。
+      sort_by: weight
+      sort_ascending: true
       filters:
         folders:
           - projects

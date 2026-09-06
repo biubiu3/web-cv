@@ -1,0 +1,29 @@
+{{- $zh := eq .Page.Lang "zh" -}}
+<section class="project-system-map factory-system-map" aria-labelledby="factory-map-title">
+  <header>
+    <span>{{ if $zh }}系统架构{{ else }}System architecture{{ end }}</span>
+    <h3 id="factory-map-title">{{ if $zh }}识别目标 → 工位对齐 → 双臂搬运 → 状态更新{{ else }}Recognize → align → handle → update{{ end }}</h3>
+    <p>{{ if $zh }}导航建立操作位置，视觉提供目标状态，双臂共同完成料箱转运。{{ else }}Navigation establishes the working position; vision supplies target states; both arms handle the tote.{{ end }}</p>
+  </header>
+  <div class="project-system-map__flow">
+    <div class="project-system-map__group">
+      <span>{{ if $zh }}感知与任务准备{{ else }}Perception and task preparation{{ end }}</span>
+      <div class="project-system-map__grid">
+        <div class="project-system-map__stage"><span>01</span><strong>{{ if $zh }}场景感知{{ else }}Observe the scene{{ end }}</strong><small>{{ if $zh }}图像与深度 · 料箱分割 · 邻近关系{{ else }}Images and depth · tote segmentation · neighbors{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>02</span><strong>{{ if $zh }}目标与顺序{{ else }}Select the target{{ end }}</strong><small>{{ if $zh }}拆垛顺序 · 操作方式 · 目标位姿{{ else }}Unstacking order · handling mode · target pose{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>03</span><strong>{{ if $zh }}导航与对齐{{ else }}Navigate and align{{ end }}</strong><small>{{ if $zh }}粗接近 · 侧向观察 · 精细取料位置{{ else }}Approach · side view · fine pickup position{{ end }}</small></div>
+      </div>
+    </div>
+    <i aria-hidden="true">↓</i>
+    <div class="project-system-map__group">
+      <span>{{ if $zh }}料箱转运主循环{{ else }}Tote transfer cycle{{ end }}</span>
+      <div class="project-system-map__grid">
+        <div class="project-system-map__stage"><span>04</span><strong>{{ if $zh }}双臂取箱{{ else }}Lift with both arms{{ end }}</strong><small>{{ if $zh }}位姿更新 · 双侧夹持 · 协同抬升{{ else }}Pose update · bilateral grasp · coordinated lift{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>05</span><strong>{{ if $zh }}持箱转运{{ else }}Transport the tote{{ end }}</strong><small>{{ if $zh }}稳定持箱 · 移动至卸料区域{{ else }}Stable hold · travel to the delivery area{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>06</span><strong>{{ if $zh }}卸料与释放{{ else }}Place and release{{ end }}</strong><small>{{ if $zh }}位置调整 · 双臂放置 · 松爪撤离{{ else }}Position adjustment · lower · release and retreat{{ end }}</small></div>
+      </div>
+    </div>
+    <i aria-hidden="true">↺</i>
+    <div class="project-system-map__stage"><strong>{{ if $zh }}动作完成 → 状态复位 → 更新目标 → 下一轮搬运{{ else }}Action complete → reset state → refresh target → next transfer{{ end }}</strong><small>{{ if $zh }}导航到位与操作状态反馈贯穿任务流程。{{ else }}Navigation arrival and manipulation status connect the stages of the task.{{ end }}</small></div>
+  </div>
+</section>

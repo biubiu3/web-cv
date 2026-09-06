@@ -221,11 +221,13 @@ sections:
     content:
       title: 'Engineering Projects'
       text: |-
-        Alongside my research papers, I lead industry–academia systems built around real sensors, production interfaces, and field operation. Three case studies cover automated valet parking, 4D vision auto-annotation for autonomous-driving data, and the complete autonomy stack of an intelligent lawn robot.
+        I led projects in automated valet parking, 4D auto-annotation for driving data, and autonomous mowing. My work included system design, algorithm development, and field testing. In industrial robotics, I worked on object recognition and dual-arm manipulation for factory material handling.
+      sort_by: weight
+      sort_ascending: true
       filters:
         folders:
           - projects
-      count: 3
+      count: 5
     design:
       view: project-feature
       columns: 1

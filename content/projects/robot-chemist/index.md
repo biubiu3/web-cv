@@ -1,5 +1,6 @@
 ---
 {
+  "weight": 10,
   "title": "A Robotic Chemist: Dual-Arm Mobile Manipulation for AI for Science",
   "date": "2026-09-06T00:00:00Z",
   "lastmod": "2026-09-06T00:00:00Z",
