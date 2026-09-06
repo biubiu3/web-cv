@@ -14,8 +14,8 @@
   ],
   "image": {
     "filename": "featured.png",
-    "caption": "Technical illustration based on the physical platform: two independently mounted, inclined arms on a shared mobile base for grasping, alignment, and placement.",
-    "alt_text": "Generated technical illustration: two independent arms on inclined mounts above a low mobile platform, a central camera post, and grasp-align-place task insets."
+    "caption": "Robotic chemist concept: a wheeled platform connects laboratory workstations, while two arms perform labware manipulation linked to demonstration, skill learning, and execution feedback.",
+    "alt_text": "Generated technical illustration: a dual-arm robot on a wheeled base, a mobile navigation route between workstations, and demonstration mapping, sim-to-real learning, and execution feedback."
   },
   "project": {
     "collaboration": "AI for Science · Laboratory robotics",
