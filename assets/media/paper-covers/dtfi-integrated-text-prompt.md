@@ -1,0 +1,15 @@
+# DTFI cover provenance
+
+Generated with the built-in imagegen tool on 2026-09-06. Final asset: `dtfi-integrated-text-v1.png`, copied to `content/publications/dtfi/featured.png`.
+
+## Initial prompt
+
+Use case: scientific-educational. Create a landscape 16:9 academic publication cover for DTFI (2023), a LiDAR-camera fusion detector and IMM-UKF vehicle tracker. White background, restrained navy typography, muted blue camera features, teal point clouds, orange tracking accents; flat precise technical illustration, readable English labels integrated in image. No glowing sci-fi, no advertising, no invented performance graphs. Top title "DTFI" and subtitle "LiDAR-camera fusion + IMM-UKF tracking". Three clearly numbered panels in a left-to-right pipeline, with generous whitespace and strong readability at thumbnail scale. Panel 1 "1  Align & fuse": small realistic schematic highway camera frame with 3 cars; image feature grid next to sparse LiDAR points; show one projected point surrounded by a highlighted 5 x 5 neighborhood on the feature grid. Camera features and LiDAR points both feed a single fused point representation. Labels "RGB features", "LiDAR points", "5 × 5 local window". Panel 2 "2  Detect in 3D": fused points feed upright pillar columns, then a bird's-eye-view grid with oriented car bounding boxes. Labels "Pillar encoder", "3D boxes". Panel 3 "3  Track motion": detected boxes and a small predicted trajectory feed "Hungarian association", then a paired filter block with two equally sized parallel sub-boxes "CV + UKF" and "CTRV + UKF" under heading "IMM"; both feed a single "Tracked trajectories" output, drawn as two vehicle paths (one straight, one turning) with consistent car IDs. A small dashed tuning arrow labeled "PSO tuning" feeds the IMM block. Bottom one-line caption "Local feature alignment → efficient detection → adaptive motion estimation". Make every arrow scientifically meaningful. Camera and LiDAR are complementary inputs, not sequential sensors. PSO is parameter tuning, not an online per-frame optimizer. Keep text modest in number and crisp, avoid math beyond stated labels. No numeric accuracy claims.
+
+## Review revisions
+
+Added predicted tracks as a second input to Hungarian association. Replaced the numerical window label with `Local feature window`: the cover is schematic, while both articles specify the paper's exact 5 × 5 kernel. Verified complementary image/point inputs, pillar encoding, CV/CTRV UKF branches, PSO parameter tuning, and trajectory output. Cover is illustrative, not an experimental image.
+
+## Source artwork and numerical evidence
+
+Article figures are rendered excerpts of the user-supplied published paper: pipeline = Fig. 2 (p. 1244), detector = Fig. 3 (p. 1245), image-features = Fig. 4 (p. 1245), detection-results = Fig. 6 (p. 1249), tracking-results = Fig. 7 (p. 1250). Each is attributed in both articles. Tables I–IV were checked visually in the PDF, including DTFI's Table II MOTA of 72.91. No publisher PDF is redistributed by this addition; links go to the DOI.

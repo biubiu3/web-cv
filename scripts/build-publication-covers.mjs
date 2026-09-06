@@ -14,6 +14,7 @@ const covers = [
   ['ermv', 'ermv-integrated-text-v2.png'],
   ['movsam', 'movsam-integrated-text-v2.png'],
   ['rlsac', 'rlsac-integrated-text-v2.png'],
+  ['dtfi', 'dtfi-integrated-text-v1.png'],
 ];
 
 mkdirSync(outputRoot, { recursive: true });

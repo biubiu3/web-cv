@@ -124,7 +124,7 @@ sections:
     id: selected-publications
     content:
       title: '代表性论文'
-      text: 九项工作的重点展示顺序；下方研究路线图进一步说明它们之间的技术联系。
+      text: 十项工作的重点展示顺序；下方研究路线图进一步说明它们之间的技术联系。
       filters:
         folders:
           - publications
@@ -134,7 +134,7 @@ sections:
           - Robot Manipulation
       sort_by: homepage_order
       sort_ascending: true
-      count: 9
+      count: 10
     design:
       view: article-grid
       columns: 2

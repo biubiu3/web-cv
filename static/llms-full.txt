@@ -178,3 +178,5 @@ Each publication page provides the current author list, venue, review status, ab
 
 - [Dual-arm mobile material handling](https://biubiu3.github.io/web-cv/projects/factory-material-handling/): Factory deployment project connecting object recognition, navigation, and dual-arm tote handling. Nie Chang was responsible for object recognition and dual-arm manipulation. Includes an indoor robot demonstration labeled 3x speed.
 - [工厂搬运机器人](https://biubiu3.github.io/web-cv/zh/projects/factory-material-handling/): 物体识别、工位导航、双臂拆垛与料箱转运。
+
+- [DTFI: LiDAR-camera fusion and IMM-UKF tracking (TETCI 2023)](https://biubiu3.github.io/web-cv/publications/dtfi/): Chang Nie, Zhiyang Ju, Zhifeng Sun, Hui Zhang. Local feature fusion, pillar-based 3D detection, CV/CTRV motion estimation, and KITTI experiments. DOI: 10.1109/TETCI.2023.3259441. [中文](https://biubiu3.github.io/web-cv/zh/publications/dtfi/).

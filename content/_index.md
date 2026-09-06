@@ -132,7 +132,7 @@ sections:
     id: selected-publications
     content:
       title: 'Selected Publications'
-      text: Nine representative works in a curated reading order; the research map below explains their technical continuity.
+      text: Ten representative works in a curated reading order; the research map below explains their technical continuity.
       filters:
         folders:
           - publications
@@ -142,7 +142,7 @@ sections:
           - Robot Manipulation
       sort_by: homepage_order
       sort_ascending: true
-      count: 9
+      count: 10
     design:
       view: article-grid
       columns: 2

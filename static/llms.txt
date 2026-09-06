@@ -20,7 +20,7 @@ This file is a concise guide to the public, human-readable pages on the site. Pu
 
 ## Publications
 
-- [Publications](https://biubiu3.github.io/web-cv/publications/): Nine works with complete author lists, emphasized venue and publication status, method figures, reader-oriented topic keywords, abstracts, and technical summaries.
+- [Publications](https://biubiu3.github.io/web-cv/publications/): Ten works with complete author lists, emphasized venue and publication status, method figures, reader-oriented topic keywords, abstracts, and technical summaries.
 - [Towards the Vision-Sound-Language-Action Paradigm: The HEAR Framework for Sound-Centric Manipulation](https://biubiu3.github.io/web-cv/publications/hear/): Published in The International Journal of Robotics Research (IJRR).
 - [Teach and Grow: An Agent-Centered Architecture for General Robot Learning](https://biubiu3.github.io/web-cv/publications/tgl/): Under review at IEEE Transactions on Robotics (T-RO).
 - [ERMV: Editing 4D Robotic Multi-view Images to Enhance Embodied Agents](https://biubiu3.github.io/web-cv/publications/ermv/): Under review at IEEE Transactions on Circuits and Systems for Video Technology (TCSVT).
@@ -53,3 +53,5 @@ This file is a concise guide to the public, human-readable pages on the site. Pu
 
 - [Dual-arm mobile material handling](https://biubiu3.github.io/web-cv/projects/factory-material-handling/): Factory deployment project connecting object recognition, navigation, and dual-arm tote handling. Nie Chang was responsible for object recognition and dual-arm manipulation. Includes an indoor robot demonstration labeled 3x speed.
 - [工厂搬运机器人](https://biubiu3.github.io/web-cv/zh/projects/factory-material-handling/): 物体识别、工位导航、双臂拆垛与料箱转运。
+
+- [DTFI: LiDAR-camera fusion and IMM-UKF tracking (TETCI 2023)](https://biubiu3.github.io/web-cv/publications/dtfi/): Chang Nie, Zhiyang Ju, Zhifeng Sun, Hui Zhang. Local feature fusion, pillar-based 3D detection, CV/CTRV motion estimation, and KITTI experiments. DOI: 10.1109/TETCI.2023.3259441. [中文](https://biubiu3.github.io/web-cv/zh/publications/dtfi/).
