@@ -13,9 +13,9 @@
     "Robot Learning"
   ],
   "image": {
-    "filename": "featured.jpg",
-    "caption": "Robot footage at a laboratory instrument workstation.",
-    "alt_text": "Robot arms, centrifuge, and tube racks"
+    "filename": "featured.png",
+    "caption": "Concept illustration: demonstration mapping, sim-to-real skill learning, and laboratory manipulation on a dual-arm mobile platform.",
+    "alt_text": "Generated technical illustration of a dual-arm mobile robot, demonstration mapping, sim-to-real learning, grasping, alignment, placement, and execution feedback."
   },
   "project": {
     "collaboration": "AI for Science · Laboratory robotics",
@@ -23,7 +23,7 @@
     "status": "Laboratory demonstrations and policy-learning research",
     "card_label": "Robotic chemist · Dual-arm mobile manipulation",
     "wider_system": "Multimodal perception, mobile platform, dual-arm manipulation, demonstration mapping, skill learning, and hierarchical planning",
-    "role": "Primary responsibility: robot manipulation.",
+    "role": "Primary responsibility for robot manipulation, with a focus on grasping, transferring, and aligning laboratory objects for placement.",
     "outputs": "Labware grasping, placement, and pouring demonstrations; centrifuge workstation footage",
     "context": "The project explores how a dual-arm mobile robot can learn and execute laboratory operations. Its architecture connects perception, learning, control, hardware, and task validation. Demonstrations show interactions with labware and instruments; the research route extends toward reusable skills and feedback-driven long-horizon tasks.",
     "focus_label": "My role",
@@ -38,7 +38,7 @@
     },
     {
       "src": "centrifuge.mp4",
-      "poster": "featured.jpg",
+      "poster": "centrifuge-poster.jpg",
       "title": "Centrifuge workstation",
       "description": "A real-time excerpt focused on robot arms, tubes, and the instrument."
     }
@@ -81,9 +81,15 @@ Real-robot demonstrations are costly, while glassware and delicate contact const
 
 Visual reconstruction methods such as 3D Gaussian representations can improve appearance consistency; collision geometry and physical parameters still require their own models. A teacher policy can use privileged simulation information, including accurate object states. A student learns to act from observations available on the robot. Variation in object poses, appearance, and physical conditions broadens training coverage.
 
-### Whole-body coordination and a dual-arm skill library
+### Organizing dual-arm manipulation into reusable skills
 
-The base and arms jointly determine reachability, collision clearance, and vessel orientation. Whole-body coordination must therefore organize mobility and manipulation together. Short laboratory tasks—tube pickup, placement, vessel holding, and pouring—provide reusable execution units.
+I was primarily responsible for **robot manipulation**, working on the grasping, transfer, and aligned placement of laboratory objects. These tasks connect object understanding directly to arm execution. The robot needs a suitable grasp, a stable object pose during transport, and enough clearance for the eventual placement. My focus was on translating these requirements into continuous manipulation sequences that interact with the actual objects on the laboratory bench.
+
+For grasping and transfer, I focused on the relationship between object geometry, gripper approach, and the motion that follows contact. Beakers and slender objects present two useful cases: a beaker requires attention to contact location and stability, while a slender object makes grasp position and end-effector orientation particularly consequential. A grasp affects the subsequent lift, transfer, and release, so the action must be considered as a sequence. The beaker animation below shows approach and grasp followed by transfer toward a target area; the slender-object animation shows grasping across different objects and tabletop arrangements.
+
+Tube placement shifts the emphasis to the relative geometry of the end effector and the receiving structure. A rack opening turns a transport task into an alignment problem: the arm must establish an approach pose, guide the tube into the opening, and release it after placement. In this part of the manipulation work, I focused on the continuity between alignment, lowering, gripper opening, and withdrawal. Each stage must leave the object and robot in a suitable state for the next. The tube-placement animation makes these transitions visible and illustrates the attention to action sequencing that laboratory work requires.
+
+On the dual-arm platform, I also considered individual actions within a shared workspace. The approach, holding pose, and retreat of one arm affect the space available to the other; coordinated handling further depends on action order and relative vessel pose. My manipulation work focuses on organizing grasping, transfer, alignment, and release into short skills with clear starting and ending conditions. Those conditions provide useful interfaces to longer experimental workflows, allowing a task planner to determine when a skill can begin, when the next step can proceed, and where recovery should resume after a failure.
 
 {{< chemist-skills >}}
 
@@ -102,10 +108,6 @@ Execution failures can also guide targeted simulation updates and further skill 
 </div>
 
 The labware video records interactions around a tube rack, balance, beaker, and robot arms. The centrifuge excerpt shows arm and tube operations at an instrument workstation. These are observable action demonstrations; they do not establish liquid identity, dispensing accuracy, experimental yield, or unattended operation.
-
-## My contribution: robot manipulation
-
-I was primarily responsible for **robot manipulation**, the physical execution component for interacting with laboratory vessels and instruments. The architecture and research route above describe the wider project; my responsibility centered on the manipulation tasks.
 
 ## AI for Science: bringing computational proposals to the bench
 

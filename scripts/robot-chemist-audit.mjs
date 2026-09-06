@@ -2,9 +2,10 @@ import { chromium } from 'playwright';
 import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
 const base = process.env.SITE_URL || 'http://127.0.0.1:4173/web-cv/';
-const output = 'artifacts/robot-chemist';
+const output = process.env.AUDIT_OUTPUT || 'artifacts/robot-chemist';
 await fs.mkdir(output, { recursive: true });
-const browser = await chromium.launch({ executablePath: '/root/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome', headless: true });
+const proxy = process.env.PLAYWRIGHT_PROXY_SERVER ? { server: process.env.PLAYWRIGHT_PROXY_SERVER, username: process.env.PLAYWRIGHT_PROXY_USERNAME, password: process.env.PLAYWRIGHT_PROXY_PASSWORD } : undefined;
+const browser = await chromium.launch({ proxy, executablePath: '/root/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome', headless: true });
 const page = await browser.newPage();
 const report = [];
 const errors = [];
@@ -25,6 +26,23 @@ for (const width of [1440, 390]) {
     assert.equal(await page.locator('h1').count(), 1);
     assert.equal(await page.locator('.chemist-skills img').count(), 3);
     assert.equal(await page.locator('.chemist-system-map').count(), 1);
+    assert.equal(await page.locator('h2').filter({ hasText: /My contribution|我的工作/ }).count(), 0);
+    assert.equal(await page.getByText('The architecture and research route above describe the wider project;', { exact: false }).count(), 0);
+    const cover = page.locator('.article-header img').first();
+    assert.match(await cover.getAttribute('src'), /featured/);
+    assert.match(await cover.getAttribute('alt'), /Generated technical illustration|生成的技术示意图/);
+    const animation = [];
+    for (const gif of await page.locator('.chemist-skills img').all()) {
+      assert.match(await gif.getAttribute('src'), /(?:beaker-transfer|slender-object-grasp|tube-placement)\.gif$/);
+      await gif.scrollIntoViewIfNeeded();
+      const first = await gif.screenshot();
+      await page.waitForTimeout(700);
+      const second = await gif.screenshot();
+      assert.equal(first.equals(second), false, 'GIF must visibly advance, not render as a static first frame');
+      animation.push({ src: await gif.getAttribute('src'), visiblyAnimated: true });
+    }
+    await page.locator('.chemist-skills').screenshot({ path: `${output}/${lang ? 'zh' : 'en'}-${width}-gifs.png` });
+    await page.locator('.article-header').screenshot({ path: `${output}/${lang ? 'zh' : 'en'}-${width}-cover.png` });
     assert.equal(await page.locator('video').count(), 2);
     const media = [];
     for (const video of await page.locator('video').all()) {
@@ -51,7 +69,7 @@ for (const width of [1440, 390]) {
       await page.locator('.chemist-system-map').screenshot({ path: `${output}/${lang ? 'zh' : 'en'}-architecture.png` });
       await page.locator('.chemist-videos').screenshot({ path: `${output}/${lang ? 'zh' : 'en'}-videos.png` });
     }
-    report.push({ url, width, ...state, media });
+    report.push({ url, width, ...state, media, animation });
     await page.goto(new URL(`${lang}projects/`, base).href);
     assert.equal(await page.locator('.project-feature-card').count(), 4);
     assert.equal(await page.locator('.project-feature-card h2 a').filter({ hasText: /A Robotic Chemist|机器人化学家/ }).count(), 1);
@@ -59,5 +77,5 @@ for (const width of [1440, 390]) {
 }
 assert.deepEqual(errors, []);
 await fs.writeFile(`${output}/browser-report.json`, JSON.stringify({ passed: true, errors, report }, null, 2));
-console.log(JSON.stringify({ passed: true, pages: report.length, videoPlaybackChecks: report.length * 2 }));
+console.log(JSON.stringify({ passed: true, pages: report.length, videoPlaybackChecks: report.length * 2, animatedGifChecks: report.length * 3 }));
 await browser.close();

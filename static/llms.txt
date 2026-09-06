@@ -42,7 +42,7 @@ This file is a concise guide to the public, human-readable pages on the site. Pu
 - [Automated Valet Parking](https://biubiu3.github.io/web-cv/projects/avp/): A complete AVP program with Voyager Intelligent Systems connecting surround/BEV perception, fusion localization, semantic mapping, hierarchical driving and parking planning, vehicle control, and remote summon. Nie Chang led the project and focused technically on planning, control, and end-to-end integration.
 - [Autonomous Lawn Robot: LiDAR Obstacle Perception and Multi-Sensor Fusion](https://biubiu3.github.io/web-cv/projects/mower/): A field-tested program with Positec spanning localization, visual/LiDAR perception, obstacle fusion, planning, and control. Nie Chang led the system design and integration, with a technical focus on terrain-aware point clouds and multi-sensor obstacle fusion.
 
-- [Robotic Chemist](https://biubiu3.github.io/web-cv/projects/robot-chemist/): Nie Chang primarily handled robot manipulation. Dual-arm mobile manipulation for laboratory work, with labware and centrifuge workstation demonstrations and a research route covering demonstration mapping, skill learning, simulation-to-reality transfer, and task assessment.
+- [Robotic Chemist](https://biubiu3.github.io/web-cv/projects/robot-chemist/): Nie Chang primarily handled robot manipulation, including grasping, transfer, and aligned placement. Dual-arm mobile manipulation for laboratory work, with labware and centrifuge workstation demonstrations and a research route covering demonstration mapping, skill learning, simulation-to-reality transfer, and task assessment.
 
 ## Machine-Readable Resources
 

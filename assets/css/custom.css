@@ -3042,11 +3042,11 @@ section[id] {
 /* Laboratory demonstrations: preserve small source images and portrait footage. */
 .chemist-skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 2rem 0; }
 .chemist-skills figure { margin: 0; overflow: hidden; border: 1px solid #64748b40; border-radius: 1rem; }
-.chemist-skills img { display: block; width: 100%; height: 17rem; object-fit: contain; background: #071827; margin: 0; }
+.chemist-skills img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: #071827; margin: 0; }
 .chemist-skills figcaption { padding: .8rem; margin: 0; font-size: .85rem; text-align: center; }
 .chemist-videos .project-video-card video { aspect-ratio: auto; height: 26rem; }
 @media (max-width: 640px) {
   .chemist-skills { grid-template-columns: 1fr; }
-  .chemist-skills img { height: 20rem; }
+  .chemist-skills img { height: auto; }
   .chemist-videos .project-video-card video { height: auto; max-height: 32rem; }
 }

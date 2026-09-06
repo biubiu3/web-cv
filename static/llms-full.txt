@@ -165,10 +165,10 @@ Each publication page provides the current author list, venue, review status, ab
 
 ## Robotic Chemist for AI for Science
 
-- Personal responsibility: Nie Chang was primarily responsible for robot manipulation.
+- Personal responsibility: Nie Chang primarily handled robot manipulation, focusing on grasping, object transfer, aligned placement, and action sequencing in the dual-arm workspace.
 
 - Scope: Dual-arm mobile manipulation for laboratory operations.
-- Demonstrations: Labware grasping, placement, pouring, and centrifuge workstation interactions.
+- Demonstrations: Animated beaker transfer, slender-object grasping, and tube placement; labware and centrifuge workstation videos.
 - Research route: Human-to-robot demonstration mapping, learning from few demonstrations, simulation-to-reality transfer, reusable skills, and hierarchical planning with outcome assessment.
 - Evidence boundary: The research architecture is distinguished from demonstrated actions; no experimental yield, accuracy, or unattended-operation claims.
 - Project page: https://biubiu3.github.io/web-cv/projects/robot-chemist/
