@@ -14,8 +14,8 @@
   ],
   "image": {
     "filename": "featured.png",
-    "caption": "Concept illustration: demonstration mapping, sim-to-real skill learning, and laboratory manipulation on a dual-arm mobile platform.",
-    "alt_text": "Generated technical illustration of a dual-arm mobile robot, demonstration mapping, sim-to-real learning, grasping, alignment, placement, and execution feedback."
+    "caption": "Technical illustration based on the physical platform: two independently mounted, inclined arms on a shared mobile base for grasping, alignment, and placement.",
+    "alt_text": "Generated technical illustration: two independent arms on inclined mounts above a low mobile platform, a central camera post, and grasp-align-place task insets."
   },
   "project": {
     "collaboration": "AI for Science · Laboratory robotics",
