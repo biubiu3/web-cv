@@ -37,6 +37,11 @@ sections:
       items:
         - date: '2026'
           display_date: '2026'
+          tag: 项目
+          text: 新增机器人化学家项目：面向 AI for Science 的双臂移动操作。
+          url: 'projects/robot-chemist/'
+        - date: '2026'
+          display_date: '2026'
           tag: 论文
           text: HEAR 发表于 IJRR。
           url: 'publications/hear/'

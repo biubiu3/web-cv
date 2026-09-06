@@ -44,6 +44,11 @@ sections:
       items:
         - date: '2026'
           display_date: '2026'
+          tag: 'Project'
+          text: 'New project case: a dual-arm mobile robotic chemist for AI for Science.'
+          url: 'projects/robot-chemist/'
+        - date: '2026'
+          display_date: '2026'
           tag: 'Paper'
           text: 'HEAR was published in IJRR.'
           url: 'publications/hear/'

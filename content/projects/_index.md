@@ -1,8 +1,8 @@
 ---
 title: 'Engineering Projects'
-summary: 'Applied autonomous-driving, robotics, and 3D-vision systems that I led through industry–academia collaboration and validated in production or field operation.'
+summary: 'Autonomous driving, robotics, 3D vision, and AI for Science projects: system architectures, technical methods, and robot demonstrations.'
 date: 2024-06-20
-lastmod: 2026-09-04
+lastmod: 2026-09-06
 type: landing
 
 # Page sections
@@ -10,7 +10,7 @@ sections:
   - block: collection
     content:
       title: Selected Engineering Projects
-      text: Three applied systems projects. Each case first explains the complete engineering objective, architecture, and technical loop, then describes my program-level leadership and deepest technical focus.
+      text: Four systems projects spanning laboratory robotics, autonomous driving, and 3D vision. Each case explains the engineering objective and architecture, then develops the technical route, demonstrations, and research direction.
       filters:
         folders:
           - projects

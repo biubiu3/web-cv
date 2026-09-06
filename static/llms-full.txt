@@ -162,3 +162,14 @@ Each publication page provides the current author list, venue, review status, ab
 - Chinese publication index: https://biubiu3.github.io/web-cv/zh/publications/
 - XML sitemap: https://biubiu3.github.io/web-cv/sitemap.xml
 - Concise LLM guide: https://biubiu3.github.io/web-cv/llms.txt
+
+## Robotic Chemist for AI for Science
+
+- Personal responsibility: Nie Chang was primarily responsible for robot manipulation.
+
+- Scope: Dual-arm mobile manipulation for laboratory operations.
+- Demonstrations: Labware grasping, placement, pouring, and centrifuge workstation interactions.
+- Research route: Human-to-robot demonstration mapping, learning from few demonstrations, simulation-to-reality transfer, reusable skills, and hierarchical planning with outcome assessment.
+- Evidence boundary: The research architecture is distinguished from demonstrated actions; no experimental yield, accuracy, or unattended-operation claims.
+- Project page: https://biubiu3.github.io/web-cv/projects/robot-chemist/
+- Chinese project page: https://biubiu3.github.io/web-cv/zh/projects/robot-chemist/

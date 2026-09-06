@@ -1,0 +1,9 @@
+{{- $zh := eq .Page.Lang "zh" -}}
+<div class="chemist-skills">
+  {{- range slice (dict "src" "twin_grasp_cup.gif" "zh" "双臂器皿操作" "en" "Dual-arm labware handling") (dict "src" "pour_twin.gif" "zh" "双臂协调倾倒" "en" "Coordinated pouring") (dict "src" "put.gif" "zh" "试管对齐与放置" "en" "Tube alignment and placement") -}}
+    {{- $label := cond $zh .zh .en -}}
+    {{- with $.Page.Resources.GetMatch .src -}}
+    <figure><img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="{{ $label }}" loading="lazy"><figcaption>{{ $label }}</figcaption></figure>
+    {{- end -}}
+  {{- end -}}
+</div>
