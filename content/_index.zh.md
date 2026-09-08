@@ -47,8 +47,8 @@ sections:
           url: 'publications/hear/'
         - date: '2026'
           display_date: '2026'
-          tag: 顶刊在审
-          text: 智能体终身机器人学习架构 Teach and Grow (TGL) 投稿 IEEE Transactions on Robotics (T-RO) 审稿中。
+          tag: 最新突破
+          text: 智能体终身机器人学习架构 Teach and Grow (TGL) 提出从稀疏物理示教中持续积累可复用闭环技能的全新范式。
           url: 'publications/tgl/'
         - date: '2026'
           display_date: '2026'
@@ -67,13 +67,13 @@ sections:
           url: 'publications/mrasfm/'
         - date: '2026'
           display_date: '2026'
-          tag: 顶刊在审
-          text: 扩散引导采样一致性几何估计 DiffSAC 投稿计算机视觉顶级期刊 IJCV 审稿中。
+          tag: 研究亮点
+          text: 扩散引导采样一致性几何估计 DiffSAC 首创生成式共识估计，30-50 Hz 极速推理削减 40% 旋转误差。
           url: 'publications/diffsac/'
         - date: '2025'
           display_date: '2025'
-          tag: 顶刊在审
-          text: 4D 多视角机器人轨迹生成模型 ERMV 投稿 IEEE TCSVT 审稿中（双臂实机成功率由 2% 跃升至 89%）。
+          tag: 研究亮点
+          text: 4D 多视角机器人轨迹生成模型 ERMV 攻克跨视角物理几何一致性，双臂实机成功率由 2% 飙升至 89%。
           url: 'publications/ermv/'
         - date: '2025'
           display_date: '2025'

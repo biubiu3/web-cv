@@ -25,7 +25,7 @@ bio: |
   mass-production real-robot deployment:
   - **Embodied AI & Multimodal Agents**: Pioneered continuous audio-visual-action
     learning (**HEAR**, IJRR 2026), lifelong agentic robot learning with persistent
-    memory (**TGL**, under review at T-RO), and 4D generative trajectory editing (**ERMV**).
+    memory (**TGL**), and 4D generative trajectory editing (**ERMV**).
   - **High-Precision Visual Geometry & Spatial Intelligence**: Developed
     diffusion-guided robust consensus (**DiffSAC**), embedded 3D Gaussian
     Splatting SLAM (**VCGS-SLAM**, IJCV 2026), multi-camera SfM (**MRASfM**, ICRA 2026),

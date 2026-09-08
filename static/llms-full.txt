@@ -77,112 +77,274 @@ HEAR and Teach and Grow are the two current representative systems. HEAR introdu
 - Project page: https://biubiu3.github.io/web-cv/projects/lsv/
 - Chinese project page: https://biubiu3.github.io/web-cv/zh/projects/lsv/
 
-## Publication Record
+## Publication Record & BibTeX Citations
 
-### Towards the Vision-Sound-Language-Action Paradigm: The HEAR Framework for Sound-Centric Manipulation
+### 1. HEAR: Towards the Vision-Sound-Language-Action Paradigm for Sound-Centric Manipulation
 
-- Authors: Nie Chang; Tianchen Deng; Guangming Wang; Zhe Liu; Hesheng Wang.
-- Venue: The International Journal of Robotics Research (IJRR).
-- Summary: HEAR formalizes Vision-Sound-Language-Action as a continuous robot-control paradigm. It combines causal audio memory, multimodal reasoning, near-future audio prediction, flow-matching action generation, OpenX-Sound pretraining data, HEAR-Bench evaluation, and real-robot demonstrations.
-- Page: https://biubiu3.github.io/web-cv/publications/hear/
-- Project: https://hear.irmv.top/
-- Code: https://github.com/IRMVLab/HEAR
-- Preprint: https://arxiv.org/abs/2603.16086
+- **Title**: Towards the Vision-Sound-Language-Action Paradigm: The HEAR Framework for Sound-Centric Manipulation
+- **Authors**: Nie Chang; Tianchen Deng; Guangming Wang; Zhe Liu; Hesheng Wang
+- **Venue**: *The International Journal of Robotics Research (IJRR 2026)*
+- **Impact & SOTA**: First continuous Vision-Sound-Language-Action (VSLA) robot manipulation framework. Outperforms π0.5 by **+33%** (0.81 vs 0.61 sim success rate); achieves **96% Real Alarm resistance** against acoustic noise on real dual Franka Panda manipulators.
+- **Abstract**: HEAR establishes the Vision-Sound-Language-Action (VSLA) paradigm for continuous robot control. By fusing causal audio memory with high-frequency audio prediction and flow-matching action generation, HEAR maintains situational awareness across high-speed dynamic manipulation, eliminating the unobserved evidence gaps inherent to action chunking. Evaluated on the standardized HEAR-Bench and pretrained on OpenX-Sound.
+- **URLs**:
+  - Page: https://biubiu3.github.io/web-cv/publications/hear/
+  - Project & Demo: https://hear.irmv.top/
+  - Code: https://github.com/IRMVLab/HEAR
+  - Preprint: https://arxiv.org/abs/2603.16086
+- **BibTeX**:
+```bibtex
+@article{nie2026hear,
+  title={Towards the Vision-Sound-Language-Action Paradigm: The HEAR Framework for Sound-Centric Manipulation},
+  author={Nie, Chang and Deng, Tianchen and Wang, Guangming and Liu, Zhe and Wang, Hesheng},
+  journal={The International Journal of Robotics Research},
+  year={2026},
+  url={https://arxiv.org/abs/2603.16086}
+}
+```
 
-### Teach and Grow: An Agent-Centered Architecture for General Robot Learning
+### 2. Teach and Grow (TGL): An Agent-Centered Architecture for General Robot Learning
 
-- Authors: Nie Chang; Zhe Liu; Hesheng Wang.
-- Venue and status: Under review at IEEE Transactions on Robotics (T-RO).
-- Summary: An agent-centered robot-learning architecture that turns sparse successful demonstrations into reusable Skill Blocks and persistent experience. A multimodal agent grounds and composes skills, chooses between learned and geometric tools, observes physical outcomes, repairs execution, and stores successful behaviors, failures, and repairs for later reuse.
-- Page: https://biubiu3.github.io/web-cv/publications/tgl/
-- Preprint: https://arxiv.org/abs/2608.17209
+- **Title**: Teach and Grow: An Agent-Centered Architecture for General Robot Learning
+- **Authors**: Nie Chang; Zhe Liu; Hesheng Wang
+- **Focus**: Lifelong agentic robot learning, verifiable Skill Blocks, episodic memory, causal failure repair
+- **Impact & SOTA**: Breaks the prohibitive retraining tax of monolithic end-to-end models. Translates sparse human demonstrations into reusable Skill Blocks; achieves a **0% to 67% success leap** on complex multi-block causal assembly via closed-loop reflection and tool invocation without catastrophic forgetting.
+- **Abstract**: Teach and Grow (TGL) introduces an agent-centered lifelong robot learning architecture. A multimodal core orchestrates learned neural policies and classical geometric tools, observes physical execution outcomes, diagnoses execution faults, and dynamically synthesizes repairs. Successful trajectories, failure lessons, and repair strategies are stored in structured episodic memory for perpetual skill accumulation.
+- **URLs**:
+  - Page: https://biubiu3.github.io/web-cv/publications/tgl/
+  - Preprint: https://arxiv.org/abs/2608.17209
+- **BibTeX**:
+```bibtex
+@article{nie2026tgl,
+  title={Teach and Grow: An Agent-Centered Architecture for General Robot Learning},
+  author={Nie, Chang and Liu, Zhe and Wang, Hesheng},
+  journal={arXiv preprint arXiv:2608.17209},
+  year={2026},
+  url={https://arxiv.org/abs/2608.17209}
+}
+```
 
-### ERMV: Editing 4D Robotic Multi-view Images to Enhance Embodied Agents
+### 3. ERMV: Editing 4D Robotic Multi-view Images to Enhance Embodied Agents
 
-- Authors: Nie Chang; Guangming Wang; Zhe Liu; Hesheng Wang.
-- Venue and status: Under review at IEEE Transactions on Circuits and Systems for Video Technology (TCSVT).
-- Summary: ERMV edits complete multi-view robot trajectories from sparse frame edits and robot-state conditions. Epipolar motion-aware attention, sparse spatio-temporal modeling, and multimodal feedback support consistent and efficient embodied-data augmentation.
-- Page: https://biubiu3.github.io/web-cv/publications/ermv/
-- Code: https://github.com/IRMVLab/ERMV
-- Preprint: https://arxiv.org/abs/2507.17462
+- **Title**: ERMV: Editing 4D Robotic Multi-view Images to Enhance Embodied Agents
+- **Authors**: Nie Chang; Guangming Wang; Zhe Liu; Hesheng Wang
+- **Focus**: 4D robotic multi-view generative video editing, sparse spatiotemporal attention, VLA synthetic data engines
+- **Impact & SOTA**: First framework to enforce rigorous multi-camera geometric and kinematic consistency in generative 4D robot trajectory editing. Delivers a **44.5x boost** (from 2% to 89% task success) in real dual-arm manipulation within unseen cluttered environments.
+- **Abstract**: ERMV synthesizes photo-realistic, multi-view 4D robot manipulation trajectories from sparse keyframe edits conditioned on robot kinematics. Integrating sparse spatiotemporal token modeling, motion-aware epipolar attention, and causal VLM verification, ERMV generates infinite, geometrically consistent training data to train robust Vision-Language-Action (VLA) foundation models.
+- **URLs**:
+  - Page: https://biubiu3.github.io/web-cv/publications/ermv/
+  - Code: https://github.com/IRMVLab/ERMV
+  - Preprint: https://arxiv.org/abs/2507.17462
+- **BibTeX**:
+```bibtex
+@article{nie2025ermv,
+  title={ERMV: Editing 4D Robotic Multi-view Images to Enhance Embodied Agents},
+  author={Nie, Chang and Wang, Guangming and Liu, Zhe and Wang, Hesheng},
+  journal={arXiv preprint arXiv:2507.17462},
+  year={2025},
+  url={https://arxiv.org/abs/2507.17462}
+}
+```
 
-### MID: A Self-Supervised Multimodal Iterative Denoising Framework
+### 4. VCGS-SLAM: Voxelized 3D Gaussian Representation for Dense Visual SLAM on Embedded Vision Systems
 
-- Authors: Nie Chang; Tianchen Deng; Zhe Liu; Hesheng Wang.
-- Venue: IEEE Transactions on Neural Networks and Learning Systems (TNNLS).
-- DOI: 10.1109/TNNLS.2026.3683544.
-- Summary: MID treats noisy observations as intermediate states in a nonlinear corruption process and learns an iterative reverse process from noisy data alone. The same formulation is instantiated across vision, biomedical signals, point sets, and biological sequences.
-- Page: https://biubiu3.github.io/web-cv/publications/mid/
-- Preprint: https://arxiv.org/abs/2511.00997
+- **Title**: Voxelized 3D Gaussian Representation for Dense Visual SLAM on Embedded Vision System
+- **Authors**: Tianchen Deng; Chang Nie; Shuhong Liu; Wenhua Wu; Jianfei Yang; Shenghai Yuan; Jiuming Liu; Zhe Liu; Danwei Wang; Hesheng Wang
+- **Venue**: *International Journal of Computer Vision (IJCV 2026)*
+- **Impact & SOTA**: Voxel-anchored 3D Gaussian SLAM achieving **226% rendering acceleration** (up to **458 FPS**) and **2.3x memory compression**, running seamlessly on edge embedded NVIDIA Jetson platforms.
+- **Abstract**: VCGS-SLAM introduces a compact voxelized 3D Gaussian representation for real-time dense visual SLAM. By combining sliding-window pruning masks and residual vector quantization (RVQ) with hybrid local-to-global bundle adjustment and point-to-plane ICP, it delivers millimeter-accurate metric mapping and high-fidelity rendering on low-power embedded devices.
+- **URLs**:
+  - Page: https://biubiu3.github.io/web-cv/publications/vcgs-slam/
+  - Code: https://github.com/dtc111111/VCGS-SLAM
+  - Preprint: https://arxiv.org/abs/2403.11247
+- **BibTeX**:
+```bibtex
+@article{deng2026vcgs,
+  title={Voxelized 3D Gaussian Representation for Dense Visual SLAM on Embedded Vision System},
+  author={Deng, Tianchen and Nie, Chang and Liu, Shuhong and Wu, Wenhua and Yang, Jianfei and Yuan, Shenghai and Liu, Jiuming and Liu, Zhe and Wang, Danwei and Wang, Hesheng},
+  journal={International Journal of Computer Vision},
+  year={2026},
+  url={https://arxiv.org/abs/2403.11247}
+}
+```
 
-### MRASfM: Multi-Camera Reconstruction and Aggregation through Structure-from-Motion in Driving Scenes
+### 5. MRASfM: Multi-Camera Reconstruction and Aggregation through Structure-from-Motion in Driving Scenes
 
-- Authors: Nie Chang (equal contribution); Lingfeng Xuan (equal contribution); Yiqing Xu; Zhe Liu; Yanzi Miao; Hesheng Wang.
-- Venue: IEEE International Conference on Robotics and Automation (ICRA 2026).
-- Summary: A multi-camera structure-from-motion framework that uses fixed inter-camera geometry, semantic road-plane filtering, camera-set bundle adjustment, and coarse-to-fine association to reconstruct and aggregate driving scenes reliably and efficiently.
-- Page: https://biubiu3.github.io/web-cv/publications/mrasfm/
-- Preprint: https://arxiv.org/abs/2510.15467
+- **Title**: MRASfM: Multi-Camera Reconstruction and Aggregation through Structure-from-Motion in Driving Scenes
+- **Authors**: Nie Chang (equal contribution); Lingfeng Xuan (equal contribution); Yiqing Xu; Zhe Liu; Yanzi Miao; Hesheng Wang
+- **Venue**: *IEEE International Conference on Robotics and Automation (ICRA 2026)*
+- **Impact & SOTA**: **Ranked #1 on the official nuScenes Multi-Camera SfM Benchmark** (0.124 translation RMSE); accelerates camera-set bundle adjustment by **45.4x** (from 8,720 min down to 192 min).
+- **Abstract**: MRASfM pioneers a rigid-rig multi-camera Structure-from-Motion and scene aggregation architecture for autonomous driving. Leveraging known multi-camera extrinsics, semantic road-plane filtering, camera-set bundle adjustment, and hierarchical coarse-to-fine correspondence matching, it reconstructs millimeter-accurate 4D static backgrounds across extensive multi-run vehicle trajectories.
+- **URLs**:
+  - Page: https://biubiu3.github.io/web-cv/publications/mrasfm/
+  - Preprint: https://arxiv.org/abs/2510.15467
+- **BibTeX**:
+```bibtex
+@inproceedings{nie2026mrasfm,
+  title={MRASfM: Multi-Camera Reconstruction and Aggregation through Structure-from-Motion in Driving Scenes},
+  author={Nie, Chang and Xuan, Lingfeng and Xu, Yiqing and Liu, Zhe and Miao, Yanzi and Wang, Hesheng},
+  booktitle={IEEE International Conference on Robotics and Automation (ICRA)},
+  year={2026},
+  url={https://arxiv.org/abs/2510.15467}
+}
+```
 
-### Voxelized 3D Gaussian Representation for Dense Visual SLAM on Embedded Vision System
+### 6. MID: A Self-Supervised Multimodal Iterative Denoising Framework
 
-- Authors: Tianchen Deng; Chang Nie; Shuhong Liu; Wenhua Wu; Jianfei Yang; Shenghai Yuan; Jiuming Liu; Zhe Liu; Danwei Wang; Hesheng Wang.
-- Venue and status: Accepted by the International Journal of Computer Vision (IJCV) in 2026.
-- Summary: A voxel-anchored 3D Gaussian representation for dense visual SLAM that reduces redundant primitives with an online sliding-window mask and residual vector quantization, while combining local-to-global bundle adjustment with ICP for embedded deployment.
-- Page: https://biubiu3.github.io/web-cv/publications/vcgs-slam/
-- Code: https://github.com/dtc111111/VCGS-SLAM
-- Preprint: https://arxiv.org/abs/2403.11247
+- **Title**: MID: A Self-Supervised Multimodal Iterative Denoising Framework
+- **Authors**: Nie Chang; Tianchen Deng; Zhe Liu; Hesheng Wang
+- **Venue**: *IEEE Transactions on Neural Networks and Learning Systems (TNNLS 2026)*
+- **DOI**: 10.1109/TNNLS.2026.3683544
+- **Impact & SOTA**: Self-supervised denoising without clean reference pairs across 5 modalities (RGB images, LiDAR point clouds, EEG bio-signals, DNA sequences, and depth maps), yielding up to **53.7% relative pose gain** in downstream visual odometry.
+- **Abstract**: MID formulates noisy observations as intermediate states of a continuous degradation process and learns an iterative reverse denoising trajectory using uncurated noisy data alone. Validated across diverse robotics and physical sensory modalities.
+- **URLs**:
+  - Page: https://biubiu3.github.io/web-cv/publications/mid/
+  - Preprint: https://arxiv.org/abs/2511.00997
+- **BibTeX**:
+```bibtex
+@article{nie2026mid,
+  title={MID: A Self-Supervised Multimodal Iterative Denoising Framework},
+  author={Nie, Chang and Deng, Tianchen and Liu, Zhe and Wang, Hesheng},
+  journal={IEEE Transactions on Neural Networks and Learning Systems},
+  year={2026},
+  doi={10.1109/TNNLS.2026.3683544}
+}
+```
 
-### MovSAM: A Single-image Moving Object Segmentation Framework Based on Deep Thinking
+### 7. MovSAM: A Single-image Moving Object Segmentation Framework Based on Deep Thinking
 
-- Authors: Nie Chang; Yiqing Xu; Guangming Wang; Zhe Liu; Yanzi Miao; Hesheng Wang.
-- Venue: IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2025).
-- DOI: 10.1109/IROS60139.2025.11246064.
-- Summary: MovSAM pioneers single-image moving-object segmentation without optical flow or adjacent frames. Powered by MLLM Deep Thinking and SAM2 feature aggregation, it scores 92.5 J&F to decisively outperform multi-frame video baselines, providing a zero-shot, open-vocabulary spatial perception foundation for embodied robotics.
-- Page: https://biubiu3.github.io/web-cv/publications/movsam/
-- Code: https://github.com/IRMVLab/MovSAM
-- Preprint: https://arxiv.org/abs/2504.06863
+- **Title**: MovSAM: A Single-image Moving Object Segmentation Framework Based on Deep Thinking
+- **Authors**: Nie Chang; Yiqing Xu; Guangming Wang; Zhe Liu; Yanzi Miao; Hesheng Wang
+- **Venue**: *IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2025)*
+- **DOI**: 10.1109/IROS60139.2025.11246064
+- **Impact & SOTA**: Achieves **92.5 J&F** on DAVIS 2016 from a **single still image without optical flow or adjacent frames**, decisively beating dedicated multi-frame video models (FlowP/FlowI 86.7).
+- **Abstract**: MovSAM enables zero-shot moving-object segmentation from a single image when temporal motion cues are missing. An MLLM deep-thinking engine inspects scene semantics to deduce dynamic intent and output textual prompts, which are fused with SAM2 and BEiT-3 representations over a bounded iterative refinement loop.
+- **URLs**:
+  - Page: https://biubiu3.github.io/web-cv/publications/movsam/
+  - Code: https://github.com/IRMVLab/MovSAM
+  - Preprint: https://arxiv.org/abs/2504.06863
+- **BibTeX**:
+```bibtex
+@inproceedings{nie2025movsam,
+  title={MovSAM: A Single-image Moving Object Segmentation Framework Based on Deep Thinking},
+  author={Nie, Chang and Xu, Yiqing and Wang, Guangming and Liu, Zhe and Miao, Yanzi and Wang, Hesheng},
+  booktitle={IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  year={2025},
+  doi={10.1109/IROS60139.2025.11246064}
+}
+```
 
-### DiffSAC: Diffusion-guided Sampling for Consensus-based Robust Estimation
+### 8. DiffSAC: Diffusion-guided Sampling for Consensus-based Robust Estimation
 
-- Authors: Nie Chang; Guangming Wang; Zhe Liu; Hesheng Wang.
-- Venue and status: Under review at the International Journal of Computer Vision (IJCV).
-- Summary: A geometry-conditioned diffusion model learns to generate effective minimum sets for consensus-based robust estimation, iteratively refining point confidence and proposing a compact set of high-quality candidates across multiple fitting and geometric-estimation tasks.
-- Page: https://biubiu3.github.io/web-cv/publications/diffsac/
-- Code: https://github.com/IRMVLab/DiffSAC
-- Preprint: https://arxiv.org/abs/2608.30603
+- **Title**: DiffSAC: Diffusion-guided Sampling for Consensus-based Robust Estimation
+- **Authors**: Nie Chang; Guangming Wang; Zhe Liu; Hesheng Wang
+- **Focus**: Generative diffusion consensus, minimum-set proposals, real-time geometric vision
+- **Impact & SOTA**: SOTA robust estimation running at **30-50 Hz**, slashing median rotation error by **40%** compared to classical RANSAC/MAGSAC++ under extreme outlier regimes.
+- **Abstract**: DiffSAC reformulates sample consensus as conditional diffusion generation over minimal sets. Rather than relying on heuristic scoring and brute-force rejection, a geometry-conditioned score-based diffusion model directly generates all-inlier candidate hypotheses in a single rapid reverse trajectory.
+- **URLs**:
+  - Page: https://biubiu3.github.io/web-cv/publications/diffsac/
+  - Code: https://github.com/IRMVLab/DiffSAC
+  - Preprint: https://arxiv.org/abs/2608.30603
+- **BibTeX**:
+```bibtex
+@article{nie2026diffsac,
+  title={DiffSAC: Diffusion-guided Sampling for Consensus-based Robust Estimation},
+  author={Nie, Chang and Wang, Guangming and Liu, Zhe and Wang, Hesheng},
+  journal={arXiv preprint arXiv:2608.30603},
+  year={2026},
+  url={https://arxiv.org/abs/2608.30603}
+}
+```
 
-### RLSAC: Reinforcement Learning Enhanced Sample Consensus for End-to-End Robust Estimation
+### 9. RLSAC: Reinforcement Learning Enhanced Sample Consensus for End-to-End Robust Estimation
 
-- Authors: Nie Chang (equal contribution); Guangming Wang (equal contribution); Zhe Liu; Luca Cavalli; Marc Pollefeys; Hesheng Wang.
-- Venue: IEEE/CVF International Conference on Computer Vision (ICCV 2023).
-- Summary: RLSAC casts sample-consensus robust estimation as an unsupervised Markov decision process, developed in close collaboration with Prof. Marc Pollefeys' group at ETH Zürich. A graph neural network encodes observations, residuals, and sampling history, breaking the combinatorial complexity bottleneck of classical RANSAC under severe outlier contamination.
-- Page: https://biubiu3.github.io/web-cv/publications/rlsac/
-- Code: https://github.com/IRMVLab/RLSAC
-- Preprint: https://arxiv.org/abs/2308.05318
+- **Title**: RLSAC: Reinforcement Learning Enhanced Sample Consensus for End-to-End Robust Estimation
+- **Authors**: Nie Chang (equal contribution); Guangming Wang (equal contribution); Zhe Liu; Luca Cavalli; Marc Pollefeys; Hesheng Wang
+- **Venue**: *IEEE/CVF International Conference on Computer Vision (ICCV 2023)*
+- **Collaboration**: ETH Zürich (Prof. Marc Pollefeys' group) & SJTU
+- **Impact & SOTA**: Pioneered RL-guided sample consensus, overcoming combinatorial sampling explosions under severe outlier contamination with 0 inlier annotations.
+- **Abstract**: RLSAC models sample-consensus robust estimation as an unsupervised Markov decision process. A graph neural network encodes point observations, residuals, and sampling history, learning a state transition policy rewarded solely by downstream geometric solver consensus.
+- **URLs**:
+  - Page: https://biubiu3.github.io/web-cv/publications/rlsac/
+  - Code: https://github.com/IRMVLab/RLSAC
+  - Paper: https://openaccess.thecvf.com/content/ICCV2023/html/Nie_RLSAC_Reinforcement_Learning_Enhanced_Sample_Consensus_for_End-to-End_Robust_Estimation_ICCV_2023_paper.html
+- **BibTeX**:
+```bibtex
+@inproceedings{nie2023rlsac,
+  title={RLSAC: Reinforcement Learning Enhanced Sample Consensus for End-to-End Robust Estimation},
+  author={Nie, Chang and Wang, Guangming and Liu, Zhe and Cavalli, Luca and Pollefeys, Marc and Wang, Hesheng},
+  booktitle={IEEE/CVF International Conference on Computer Vision (ICCV)},
+  year={2023},
+  pages={17822--17832}
+}
+```
 
-## Citation Guidance
+### 10. DTFI: LiDAR-Camera Deep Fusion and IMM-UKF Tracking for Highway Perception
 
-Each publication page provides the current author list, venue, review status, abstract, method figure, DOI, and preprint information. English publication pages also expose Google Scholar citation metadata.
+- **Title**: DTFI: LiDAR-Camera Deep Fusion and IMM-UKF Tracking for Highway Perception
+- **Authors**: Chang Nie; Zhiyang Ju; Zhifeng Sun; Hui Zhang
+- **Venue**: *IEEE Transactions on Emerging Topics in Computational Intelligence (TETCI 2023)*
+- **DOI**: 10.1109/TETCI.2023.3259441
+- **Impact & SOTA**: 30 Hz real-time multi-sensor highway perception achieving **86.00% Mostly Tracked (MT)** and **sub-1% (0.92%) Mostly Lost (ML)** on the KITTI benchmark.
+- **Abstract**: DTFI integrates deep point-cloud and camera feature fusion with an Interactive Multiple Model Unscented Kalman Filter (IMM-UKF) for real-time 3D object detection and trajectory tracking under high-speed highway driving conditions.
+- **URLs**:
+  - Page: https://biubiu3.github.io/web-cv/publications/dtfi/
+  - DOI: https://doi.org/10.1109/TETCI.2023.3259441
+- **BibTeX**:
+```bibtex
+@article{nie2023dtfi,
+  title={DTFI: LiDAR-Camera Deep Fusion and IMM-UKF Tracking for Highway Perception},
+  author={Nie, Chang and Ju, Zhiyang and Sun, Zhifeng and Zhang, Hui},
+  journal={IEEE Transactions on Emerging Topics in Computational Intelligence},
+  year={2023},
+  doi={10.1109/TETCI.2023.3259441}
+}
+```
 
-## Site Discovery
+---
 
-- Publication index: https://biubiu3.github.io/web-cv/publications/
-- Chinese publication index: https://biubiu3.github.io/web-cv/zh/publications/
-- XML sitemap: https://biubiu3.github.io/web-cv/sitemap.xml
-- Concise LLM guide: https://biubiu3.github.io/web-cv/llms.txt
+## Flagship Systems & Industrial Deployments
 
-## Robotic Chemist for AI for Science
+### 1. Multi-Camera SfM 4D Vision Auto-Annotation (NETA Auto)
+- **Role**: Overall Technical Route Lead & Chief Delivery Engineer
+- **Impact**: Slashed processing latency by **95%+** (from 30-40 min down to 1-1.5 min), achieved **4.77% dense depth accuracy** against LiDAR ground truth (OEM threshold: 8%), and reduced angular drift by 3x across production sequences.
+- **Page**: https://biubiu3.github.io/web-cv/projects/sfm/
 
-- Personal responsibility: Nie Chang led the dual-arm manipulation system, focusing on high-precision grasping, delicate labware transfer, millimeter-level aligned placement, and sim-to-real transfer.
-- Scope: Dual-arm mobile manipulation for automated AI for Science chemistry laboratories.
-- Demonstrations: Delicate beaker transfer, slender-object grasping, tube rack placement, and centrifuge workstation operations.
-- Research route: 3D Gaussian Splatting digital twins, human-to-robot demonstration mapping, few-shot skill learning, simulation-to-reality transfer, and hierarchical planning.
-- Project page: https://biubiu3.github.io/web-cv/projects/robot-chemist/
-- Chinese project page: https://biubiu3.github.io/web-cv/zh/projects/robot-chemist/
+### 2. Autonomous Valet Parking (Voyager Tech)
+- **Role**: Project Lead & Chief Software Architect
+- **Impact**: Full-stack L4 autonomous valet parking deployed across campus roads and multi-floor underground garages, connecting surround BEV perception, decimeter fusion localization, and Hybrid A* + IPOPT trajectory optimization.
+- **Page**: https://biubiu3.github.io/web-cv/projects/avp/
 
-## Factory Material Handling
+### 3. Commercial Autonomous Lawn Robot (Positec / WORX)
+- **Role**: System Design Lead & Perception-Fusion Delivery Architect
+- **Impact**: Commercial lawn mower deployed across non-planar outdoor turf, detecting **7cm micro-trench hazards** and integrating factor-graph RTK/LiDAR/IMU fusion.
+- **Page**: https://biubiu3.github.io/web-cv/projects/mower/
 
-- [Dual-arm mobile material handling](https://biubiu3.github.io/web-cv/projects/factory-material-handling/): Heavy-payload industrial mobile manipulation system achieving sub-centimeter pallet localization, millimeter-level 6D pose estimation, and synchronized dual-arm de-palletizing under extreme factory vibrations. Nie Chang spearheaded pose estimation and dual-arm coordination.
-- [工厂搬运机器人](https://biubiu3.github.io/web-cv/zh/projects/factory-material-handling/): 工业级重载双臂自主移动操作平台，攻克毫米级位姿估计与振动干扰下双臂协同拆垛难题。
+### 4. Robotic Chemist for AI for Science
+- **Role**: Dual-Arm Manipulation Lead & Sim-to-Real Architect
+- **Impact**: Dual-arm mobile manipulation for chemistry labs, integrating 3D Gaussian Splatting digital twins, millimeter-level labware handling, and centrifuge operations.
+- **Page**: https://biubiu3.github.io/web-cv/projects/robot-chemist/
 
-- [DTFI: LiDAR-camera fusion and IMM-UKF tracking (TETCI 2023)](https://biubiu3.github.io/web-cv/publications/dtfi/): Chang Nie, Zhiyang Ju, Zhifeng Sun, Hui Zhang. 30 Hz real-time highway perception with deep feature fusion and IMM-UKF tracking, achieving 86.00% Mostly Tracked (MT) and sub-1% Mostly Lost (ML) on KITTI. DOI: 10.1109/TETCI.2023.3259441. [中文](https://biubiu3.github.io/web-cv/zh/publications/dtfi/).
+### 5. Industrial Mobile Material Handling Robot
+- **Role**: Pose Estimation & Dual-Arm Coordination Lead
+- **Impact**: Heavy-payload mobile manipulation achieving sub-centimeter pallet localization, millimeter 6D pose estimation, and vibration-resistant dual-arm de-palletizing.
+- **Page**: https://biubiu3.github.io/web-cv/projects/factory-material-handling/
+
+### 6. Low-Speed Autonomous Research Vehicle Platform
+- **Role**: Hardware-Software Platform Architect (2019–2022)
+- **Impact**: Ground-up autonomy stack across low-speed passenger vehicles and 4WIS AGVs, with 8 real-vehicle closed-loop demonstrations.
+- **Page**: https://biubiu3.github.io/web-cv/projects/lsv/
+
+---
+
+## Canonical Sitemap & Site Discovery
+
+- **English Academic Profile**: https://biubiu3.github.io/web-cv/
+- **Chinese Academic Profile (中文主页)**: https://biubiu3.github.io/web-cv/zh/
+- **Publications Index**: https://biubiu3.github.io/web-cv/publications/
+- **Chinese Publications Index**: https://biubiu3.github.io/web-cv/zh/publications/
+- **Projects Index**: https://biubiu3.github.io/web-cv/projects/
+- **Chinese Projects Index**: https://biubiu3.github.io/web-cv/zh/projects/
+- **XML Sitemap**: https://biubiu3.github.io/web-cv/sitemap.xml
+- **Concise LLM Guide**: https://biubiu3.github.io/web-cv/llms.txt
+- **Extended LLM Knowledge Base**: https://biubiu3.github.io/web-cv/llms-full.txt
+

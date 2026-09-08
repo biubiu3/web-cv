@@ -2,21 +2,30 @@
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 {{- end }}
 
-{{- if .IsHome }}
-<link rel="alternate" hreflang="x-default" href="{{ site.BaseURL }}">
+<!-- Universal GEO (Generative Engine Optimization) & LLM context discovery -->
 <link rel="alternate" type="text/markdown" href="{{ "llms.txt" | absURL }}" title="LLM-readable research profile">
 <link rel="alternate" type="text/markdown" href="{{ "llms-full.txt" | absURL }}" title="Extended LLM-readable research profile">
+<meta name="ai-content-declarations" content="academic-research, physical-ai, embodied-robotics, peer-reviewed-publications">
+<meta name="subject" content="Physical AI, Embodied Intelligence, Vision-Language-Action Models, Autonomous Robotics, 3D Computer Vision">
+<meta name="classification" content="Academic Portfolio, Physical AI, Robotics, Computer Vision">
+
+{{- if .IsHome }}
+<link rel="alternate" hreflang="x-default" href="{{ site.BaseURL }}">
 
 {{- $avatar := resources.Get "media/authors/me.png" }}
-{{- $personName := cond (eq .Lang "zh") "聂畅" "Nie Chang" }}
+{{- $personName := cond (eq .Lang "zh") "聂畅 (Nie Chang)" "Nie Chang (聂畅)" }}
 {{- $alternateName := cond (eq .Lang "zh") "Nie Chang" "聂畅" }}
-{{- $jobTitle := cond (eq .Lang "zh") "上海交通大学博士生，物理 AI 与具身智能研究者" "Final-year Ph.D. researcher in Physical AI and embodied intelligence" }}
-{{- $description := cond (eq .Lang "zh") "聂畅研究物理 AI、具身智能、智能体机器人系统、LLM、VLM 与视觉-语言-动作模型。" "Nie Chang researches Physical AI, embodied intelligence, agentic robot systems, LLMs, VLMs, and Vision-Language-Action models." }}
-{{- $knowsAbout := slice "Physical AI" "Embodied Intelligence" "Agentic Robot Systems" "Large Language Models" "Vision-Language Models" "Vision-Language-Action Models" "Multisensory Robot Manipulation" "Robot Learning" "Dense Visual SLAM" "3D Gaussian Splatting" "Robust Geometric Estimation" }}
-{{- $sameAs := slice "https://scholar.google.com/citations?user=Tc2sl7gAAAAJ" "https://www.linkedin.com/in/chang-nie-819a463b6/" }}
+{{- $jobTitle := cond (eq .Lang "zh") "上海交通大学博士候选人 · 具身智能与物理 AI / 全栈自主机器人架构师" "Ph.D. Candidate & Physical AI Lead | Autonomous Robotics & Embodied Foundation Models" }}
+{{- $description := cond (eq .Lang "zh") "聂畅（上海交通大学）专注于物理 AI（Physical AI）、具身基础模型（VLA/VSLA）、智能体机器人系统、3D 高斯 SLAM 与全栈自主机器人系统研发。" "Nie Chang is a Ph.D. candidate at Shanghai Jiao Tong University specializing in Physical AI, Embodied Foundation Models (VLA/VSLA), Agentic Robot Systems, 3D Gaussian Splatting SLAM, and full-stack autonomous robotics." }}
+{{- $knowsAbout := slice "Physical AI" "Embodied Intelligence" "Vision-Language-Action Models (VLA)" "Vision-Sound-Language-Action (VSLA)" "Agentic Robot Systems" "Lifelong Robot Learning" "3D Gaussian Splatting SLAM" "Multi-Camera Structure-from-Motion" "Autonomous Valet Parking (L4 AVP)" "Sample Consensus Robust Estimation" "Diffusion Models" "Industrial Mobile Manipulation" "Self-Supervised Denoising" "nuScenes Benchmark #1" }}
+{{- $sameAs := slice "https://scholar.google.com/citations?user=Tc2sl7gAAAAJ" "https://github.com/biubiu3" "https://www.linkedin.com/in/chang-nie-819a463b6/" "https://hear.irmv.top/" }}
 {{- $affiliations := slice
   (dict "@type" "CollegeOrUniversity" "name" "Shanghai Jiao Tong University" "url" "https://en.sjtu.edu.cn/")
   (dict "@type" "Organization" "name" "IRMV Lab" "url" "https://irmv.sjtu.edu.cn/")
+}}
+{{- $alumniOf := slice
+  (dict "@type" "CollegeOrUniversity" "name" "Beihang University" "url" "https://www.buaa.edu.cn/")
+  (dict "@type" "CollegeOrUniversity" "name" "Wuhan University of Technology" "url" "https://www.whut.edu.cn/")
 }}
 {{- $person := dict
   "@type" "Person"
@@ -27,6 +36,7 @@
   "jobTitle" $jobTitle
   "description" $description
   "affiliation" $affiliations
+  "alumniOf" $alumniOf
   "sameAs" $sameAs
   "knowsAbout" $knowsAbout
 }}
@@ -36,11 +46,11 @@
   "@type" "ProfilePage"
   "@id" (printf "%s#profile-page" .Permalink)
   "url" .Permalink
-  "name" (cond (eq .Lang "zh") "聂畅的学术主页" "Nie Chang's Academic Profile")
+  "name" (cond (eq .Lang "zh") "聂畅的学术主页 · Physical AI 与具身智能" "Nie Chang's Academic Profile | Physical AI & Embodied Intelligence")
   "description" $description
   "inLanguage" site.Language.Locale
   "dateCreated" "2022-10-24"
-  "dateModified" "2026-09-04"
+  "dateModified" "2026-09-08"
   "mainEntity" $person
 }}
 <script type="application/ld+json">{{ $profilePage | jsonify | safeJS }}</script>
@@ -51,44 +61,83 @@
   {{- with $topicKeywords }}
 <meta name="keywords" content="{{ delimit . ", " }}">
   {{- end }}
-{{- end }}
 
-{{- if and .IsPage (eq .Section "publications") (eq .Lang "en") }}
-<meta name="citation_title" content="{{ .Title }}">
-{{- range .Params.authors }}
-<meta name="citation_author" content="{{ cond (eq . "me") "Nie Chang" . }}">
-{{- end }}
+  <!-- Highwire Press / Google Scholar Citation Meta Tags -->
+  <meta name="citation_title" content="{{ .Title }}">
+  {{- range .Params.authors }}
+  <meta name="citation_author" content="{{ cond (eq . "me") "Nie Chang" . }}">
+  {{- end }}
+  <meta name="citation_publication_date" content="{{ .Date.Format "2006/01/02" }}">
+  <meta name="citation_public_url" content="{{ .Permalink }}">
+  <meta name="citation_language" content="{{ .Lang }}">
+  {{- with .Params.abstract }}
+  <meta name="citation_abstract" content="{{ . }}">
+  {{- end }}
+  {{- with $topicKeywords }}
+  <meta name="citation_keywords" content="{{ delimit . "; " }}">
+  {{- end }}
+  {{- if and .Params.peer_reviewed .Params.publication.name }}
+    {{- if in .Params.publication_types "article-journal" }}
+  <meta name="citation_journal_title" content="{{ .Params.publication.name }}">
+    {{- else if in .Params.publication_types "paper-conference" }}
+  <meta name="citation_conference_title" content="{{ .Params.publication.name }}">
+    {{- end }}
+  {{- end }}
+  {{- with .Params.hugoblox.ids.doi }}
+  <meta name="citation_doi" content="{{ . }}">
+  {{- end }}
+  {{- $arxivID := "" }}
+  {{- with .Params.hugoblox.ids.arxiv }}{{ $arxivID = . }}{{ end }}
+  {{- if not $arxivID }}
+    {{- range .Params.links }}
+      {{- if and (eq .type "preprint") (eq .provider "arxiv") }}{{ $arxivID = .id }}{{ end }}
+    {{- end }}
+  {{- end }}
+  {{- with $arxivID }}
+  <meta name="citation_arxiv_id" content="{{ . }}">
+  <meta name="citation_pdf_url" content="https://arxiv.org/pdf/{{ . }}">
+  {{- end }}
 
-<meta name="citation_publication_date" content="{{ .Date.Format "2006/01/02" }}">
-<meta name="citation_public_url" content="{{ .Permalink }}">
-<meta name="citation_language" content="en">
-{{- with .Params.abstract }}
-<meta name="citation_abstract" content="{{ . }}">
-{{- end }}
-{{- with (.Params.topic_keywords | default .Params.tags) }}
-<meta name="citation_keywords" content="{{ delimit . "; " }}">
-{{- end }}
-{{- if and .Params.peer_reviewed .Params.publication.name }}
-  {{- if in .Params.publication_types "article-journal" }}
-<meta name="citation_journal_title" content="{{ .Params.publication.name }}">
-  {{- else if in .Params.publication_types "paper-conference" }}
-<meta name="citation_conference_title" content="{{ .Params.publication.name }}">
+  <!-- JSON-LD ScholarlyArticle for AI Agents & Search Knowledge Graph -->
+  {{- $pubTitle := .Title }}
+  {{- $pubAbstract := .Params.abstract | default (partial "functions/get_summary" . | plainify) }}
+  {{- $pubUrl := .Permalink }}
+  {{- $pubDate := .Date.Format "2006-01-02" }}
+  {{- $authorsList := slice }}
+  {{- range .Params.authors }}
+    {{- $aName := cond (eq . "me") "Nie Chang (聂畅)" . }}
+    {{- $authorsList = $authorsList | append (dict "@type" "Person" "name" $aName "affiliation" (dict "@type" "CollegeOrUniversity" "name" "Shanghai Jiao Tong University")) }}
   {{- end }}
-{{- end }}
-{{- with .Params.hugoblox.ids.doi }}
-<meta name="citation_doi" content="{{ . }}">
-{{- end }}
-{{- $arxivID := "" }}
-{{- with .Params.hugoblox.ids.arxiv }}{{ $arxivID = . }}{{ end }}
-{{- if not $arxivID }}
-  {{- range .Params.links }}
-    {{- if and (eq .type "preprint") (eq .provider "arxiv") }}{{ $arxivID = .id }}{{ end }}
+  {{- $scholarlyArticle := dict
+    "@context" "https://schema.org"
+    "@type" "ScholarlyArticle"
+    "headline" $pubTitle
+    "name" $pubTitle
+    "description" $pubAbstract
+    "abstract" $pubAbstract
+    "url" $pubUrl
+    "datePublished" $pubDate
+    "inLanguage" site.Language.Locale
+    "author" $authorsList
+    "keywords" (delimit ($topicKeywords | default (slice "Robotics" "Physical AI")) ", ")
+    "isAccessibleForFree" true
+    "about" (slice "Physical AI" "Embodied Intelligence" "Robotics" "Computer Vision")
+  }}
+  {{- with .Params.publication.name }}
+    {{- $scholarlyArticle = merge $scholarlyArticle (dict "publisher" (dict "@type" "Organization" "name" .)) }}
+    {{- $scholarlyArticle = merge $scholarlyArticle (dict "isPartOf" (dict "@type" "Periodical" "name" .)) }}
   {{- end }}
-{{- end }}
-{{- with $arxivID }}
-<meta name="citation_arxiv_id" content="{{ . }}">
-<meta name="citation_pdf_url" content="https://arxiv.org/pdf/{{ . }}">
-{{- end }}
+  {{- with .Params.hugoblox.ids.doi }}
+    {{- $scholarlyArticle = merge $scholarlyArticle (dict "identifier" (printf "https://doi.org/%s" .)) }}
+  {{- end }}
+  {{- with $arxivID }}
+    {{- $scholarlyArticle = merge $scholarlyArticle (dict "sameAs" (printf "https://arxiv.org/abs/%s" .)) }}
+  {{- end }}
+  {{- $featured := partial "functions/get_featured_image" . }}
+  {{- with $featured }}
+    {{- $scholarlyArticle = merge $scholarlyArticle (dict "image" .Permalink) }}
+  {{- end }}
+  <script type="application/ld+json">{{ $scholarlyArticle | jsonify | safeJS }}</script>
 {{- end }}
 
 {{- if and .IsPage (or (eq .Section "publications") (eq .Section "projects")) }}
@@ -118,7 +167,7 @@
   "inLanguage" site.Language.Locale
   "datePublished" (.Date.Format "2006-01-02")
   "dateModified" (.Lastmod.Format "2006-01-02")
-  "author" (dict "@type" "Person" "name" "Chang Nie" "url" site.BaseURL)
+  "author" (dict "@type" "Person" "name" "Nie Chang (聂畅)" "url" site.BaseURL "jobTitle" "Lead Systems Architect & Ph.D. Researcher")
   "about" .Params.tags
 -}}
 {{- with $projectImage }}{{ $projectData = merge $projectData (dict "image" .Permalink) }}{{ end -}}

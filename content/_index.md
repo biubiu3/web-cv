@@ -54,8 +54,8 @@ sections:
           url: 'publications/hear/'
         - date: '2026'
           display_date: '2026'
-          tag: 'Under Review'
-          text: 'Teach and Grow (TGL), an agent-centered lifelong robot learning architecture, is under review at IEEE Transactions on Robotics (T-RO).'
+          tag: 'Latest Breakthrough'
+          text: 'Teach and Grow (TGL) introduces an agent-centered lifelong robot learning architecture that accumulates verified closed-loop capabilities from sparse physical feedback.'
           url: 'publications/tgl/'
         - date: '2026'
           display_date: '2026'
@@ -74,13 +74,13 @@ sections:
           url: 'publications/mrasfm/'
         - date: '2026'
           display_date: '2026'
-          tag: 'Under Review'
-          text: 'DiffSAC, diffusion-guided sample consensus for robust geometric estimation, is under review at IJCV.'
+          tag: 'Research Highlight'
+          text: 'DiffSAC introduces diffusion-guided sample consensus for robust geometric estimation, slashing median rotation error by 40% at 30-50 Hz.'
           url: 'publications/diffsac/'
         - date: '2025'
           display_date: '2025'
-          tag: 'Under Review'
-          text: 'ERMV, a 4D generative trajectory editing framework, is under review at IEEE TCSVT (boosting real dual-arm robot success from 2% to 89%).'
+          tag: 'Research Highlight'
+          text: 'ERMV introduces a 4D generative trajectory editing framework, boosting real dual-arm robot task success from 2% to 89% in unseen cluttered environments.'
           url: 'publications/ermv/'
         - date: '2025'
           display_date: '2025'
@@ -117,7 +117,7 @@ sections:
 
         My research realizes this vision across three interconnected pillars:
 
-        1. **Agent-Centered Lifelong Robot Learning**: Overcoming the prohibitive "retraining tax" of monolithic end-to-end models by introducing verifiable, self-repairing Skill Blocks and structured Experience Memory. Robots acquire closed-loop capabilities from sparse demonstrations, autonomously diagnose and recover from physical failures, and continually grow their skill repertoires without global retraining (e.g., **TGL**, under review at IEEE T-RO).
+        1. **Agent-Centered Lifelong Robot Learning**: Overcoming the prohibitive "retraining tax" of monolithic end-to-end models by introducing verifiable, self-repairing Skill Blocks and structured Experience Memory. Robots acquire closed-loop capabilities from sparse demonstrations, autonomously diagnose and recover from physical failures, and continually grow their skill repertoires without global retraining (e.g., **Teach and Grow (TGL)**).
         2. **Multimodal Embodied Foundation Models & VLA**: Breaking the visual-only barrier by pioneering the Visual-Sound-Language-Action (VSLA) paradigm. By seamlessly integrating continuous high-frequency acoustics, touch, and proprioception with multimodal foundation models, our systems eliminate the dangerous evidence gaps created by action chunking, maintaining razor-sharp causal situational awareness during dynamic manipulation (e.g., **HEAR**, published in IJRR 2026).
         3. **High-Precision Spatial Intelligence & 4D Embodied World Engines**: From diffusion-guided robust estimation (**DiffSAC**), embedded 3D Gaussian Splatting SLAM (**VCGS-SLAM**, IJCV 2026), and rigid camera-rig SfM (**MRASfM**, ICRA 2026) to geometrically consistent 4D generative trajectory synthesis (**ERMV**), building the metric foundation and infinite high-fidelity data engines essential for physical AI.
     design:
@@ -242,7 +242,7 @@ sections:
     content:
       title: Building the Future of Physical AI Together
       text: |-
-        I am actively seeking research scientist, staff engineer, and postdoctoral opportunities worldwide across Physical AI, Embodied Foundation Models, and Autonomous Systems. If you are looking for an ambitious researcher who bridges mathematical depth, top-tier publications, and proven full-stack real-robot leadership, let's connect!
+        I am actively seeking research scientist, staff engineer, and postdoctoral opportunities worldwide across Physical AI, Embodied Foundation Models, and Autonomous Systems. If you are looking for an ambitious researcher who combines frontier theoretical innovation, top-tier publications, and proven full-stack real-robot leadership, let's connect!
       button:
         text: Get in Touch
         url: mailto:changniep@gmail.com
