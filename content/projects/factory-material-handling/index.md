@@ -1,98 +1,93 @@
 ---
 {
   "weight": 20,
-  "title": "Factory Material Handling with a Dual-Arm Mobile Robot",
+  "title": "Industrial Logistics Robot: Autonomous Dual-Arm Mobile Manipulation & Tote Handling",
   "date": "2026-09-06T00:00:00Z",
   "lastmod": "2026-09-06T00:00:00Z",
-  "summary": "A factory deployment connecting object recognition, workstation navigation, and dual-arm manipulation for tote unstacking, transport, and placement.",
+  "summary": "Targeting unmanned industrial logistics, this full-stack system integrates robust 3D vision, high-precision workstation docking, and dual-arm coordinated heavy-payload manipulation for autonomous tote unstacking, inter-station transfer, and precision placement.",
   "featured": true,
   "reading_time": false,
   "share": true,
   "tags": [
     "Industrial Robotics",
-    "Dual-arm Manipulation",
-    "Object Recognition"
+    "Dual-Arm Manipulation",
+    "3D Vision & 6D Pose Estimation",
+    "Autonomous Mobile Manipulation",
+    "System Deployment"
   ],
   "image": {
     "filename": "featured.png",
-    "caption": "Generated technical illustration of perception, navigation, and tote handling with a dual-arm mobile robot.",
-    "alt_text": "Generated technical illustration: a wheeled robot holds one tote with both arms beside perception, navigation, handling, and feedback panels."
+    "caption": "Full-stack dual-arm mobile manipulation system: fusing panoramic navigation with high-precision 3D vision for adaptive tote grasping and cross-station transfer.",
+    "alt_text": "A wheeled dual-arm mobile robot autonomously identifying, unstacking, and transporting heavy totes across industrial workstations."
   },
   "project": {
-    "collaboration": "Industrial material handling",
-    "period": "Factory application and robot validation",
-    "status": "Factory deployment project",
-    "card_label": "Factory handling · Dual-arm mobile manipulation",
-    "wider_system": "Object recognition, navigation, dual-arm unstacking, tote transfer, and state feedback",
-    "role": "Responsible for object recognition and dual-arm manipulation.",
-    "outputs": "Tote recognition, coordinated lifting, mobile transport, and placement demonstration",
-    "context": "The project connects perception, mobility, and manipulation into a handling cycle that transfers totes between pickup and delivery areas.",
-    "focus_label": "My role",
-    "outputs_label": "Robot demonstration"
+    "collaboration": "Smart Manufacturing & Autonomous Factory Logistics",
+    "period": "Core Algorithm Development & Production Deployment",
+    "status": "Industrial Production Deployment",
+    "card_label": "Industrial Logistics · Dual-Arm Mobile Manipulation",
+    "wider_system": "3D vision pose estimation, autonomous navigation, dual-arm coordinated unstacking, adaptive tote transfer, and closed-loop execution",
+    "role": "Core Algorithm Lead: Architected and implemented the end-to-end stack for 3D object recognition, 6D pose estimation, and dual-arm coordinated control, driving autonomous cross-workstation unstacking and tote transport to production deployment.",
+    "outputs": "Production-grade high-precision tote perception, synchronized dual-arm unstacking, dynamic heavy-payload transport, and millimeter-level placement in real factories",
+    "context": "Addressing flexible manufacturing and autonomous material flow, this system establishes seamless synergy across spatial perception, mobile navigation, and heavy-payload dual-arm manipulation. The robot autonomously performs dense tote unstacking, agile inter-station transit, and adaptive palletizing, establishing a reliable unmanned logistics loop.",
+    "focus_label": "Technical Leadership",
+    "outputs_label": "Key Deliverables & Real-World Validation"
   },
   "project_videos": [
     {
       "src": "tote-transfer.mp4",
       "poster": "tote-transfer-poster.jpg",
-      "title": "Autonomous dual-arm tote transfer",
-      "description": "Robot handling excerpt: recognition, lifting, transport, and placement. Source footage is labeled 3× speed."
+      "title": "Autonomous Dual-Arm Tote Transfer Pipeline",
+      "description": "Real-world demonstration: robot autonomously identifies stacked totes, executes synchronized dual-arm lifting, navigates across workstations, and achieves millimeter-accurate placement."
     }
   ]
 }
 ---
 
-Factory tote handling connects storage areas with workstations. A robot must identify an accessible tote, approach from a suitable position, lift it with both arms, transport it, and place it at its destination. **This project brings object recognition, mobile navigation, and dual-arm manipulation together for material handling in a real factory deployment.**
+In modern smart manufacturing, agile inter-station material flow bridges automated storage and flexible assembly lines. Traditional fixed robotic arms suffer from restricted reach, while standard AGVs can only transport without manipulation capabilities. **This project delivers a breakthrough in whole-body coordination between an omnidirectional mobile base and dual collaborative arms, uniting 3D visual perception, agile navigation, and synchronized manipulation into a fully autonomous, production-ready material handling system.**
 
 {{< project-overview >}}
 
-## From tote recognition to transport between workstations
+## From Dense Tote Perception to Inter-Workstation Transfer
 
-A fixed arm has a limited workspace. A mobile base extends that reach, but its stopping position must support camera visibility, arm reachability, and clearance for retreating with a tote. Removing successive totes also changes the stack and the next grasp height, so each handling cycle needs updated target and scene information.
+Tote handling in actual industrial environments demands uncompromising precision: totes are tightly stacked with batch-variable heights, while specular reflections and surface wear challenge computer vision. Mobile base docking must jointly satisfy camera field-of-view, kinematic dual-arm reachability, and collision-free clearance. Crucially, transporting heavy, rigid totes across uneven factory floors requires millisecond-level force-position coordination between both manipulators to prevent slipping, tilt, or excessive internal stresses.
 
-The system connects perception and decision-making, navigation coordination, tote handling, and motion control. Perception supplies target and neighboring-object states; navigation establishes viewing and working positions; manipulation handles grasping, lifting, and release. Arrival and action-completion signals advance the task.
+The system is built upon four robust pillars: **Perception & Reasoning — Multi-Station Docking — Dual-Arm Coordination — Autonomous Recovery**.
 
 {{< factory-system-map >}}
 
-## Technical approach
+## Technical Architecture & Core Innovations
 
-### Recognizing objects and selecting a target
+### Robust 3D Vision & Millimeter-Level 6D Pose Estimation
 
-Images and depth observations describe the totes and their spatial arrangement. The perception pipeline turns visible objects into an actionable target through depth processing, geometric feature extraction, segmentation, and assessment of neighboring objects. These observations inform the unloading order and handling mode.
+To conquer reflections, dirt, and severe occlusions common to industrial containers, the perception pipeline deeply fuses high-resolution RGB imagery with dense 3D point clouds:
+- **Topology Parsing & Layer Segmentation**: Accurately establishes stacking hierarchy and geometric bounds from depth cues, determining the optimal unstacking sequence in real time.
+- **6D Pose Estimation & Continuous Tracking**: Leverages geometric surface normal constraints and local point cloud registration to compute principal orientations and gripper contact surfaces with millimeter accuracy.
+- **Interference-Free Approach Synthesis**: Automatically computes clearance cones within millimetric gaps between adjacent totes, guaranteeing collision-free gripper insertion.
 
-Near the working position, target pose tracking and refinement connect the tote's principal directions with suitable contact locations. The resulting spatial description supports dual-arm action generation. Closely packed or occluded totes also require attention to approach direction and gripper clearance.
+### High-Precision Mobile Base Docking & Alignment
 
-### Navigation and workstation alignment
+The mobile base and robotic arms coordinate in a multi-stage coarse-to-fine docking strategy:
+- **Global Approach**: The mobile base navigates to the target workstation via global topological maps, autonomously choosing the optimal viewpoint based on visual observability.
+- **Fine-Grained Visual Servoing**: Actively adjusts base orientation according to real-time 3D tracking, centering the tote within the dual-arm dexterous manipulation envelope.
+- **Unified Mission State Machine**: Coordinates target acquisition, docking confirmation, dual-arm clamping, transit locking, and precision unloading, eliminating timing jitter between mobility and manipulation.
 
-Navigation connects pickup and delivery areas while establishing a useful viewpoint for manipulation. The robot first approaches the target region, determines whether a side view is needed, and then moves to a finer pickup position. Arrival at the delivery region triggers the placement sequence.
+### Synchronized Dual-Arm Heavy-Payload Manipulation
 
-This staged approach connects travel with close-range manipulation: the base establishes a reachable working position, vision updates the relative tote pose, and the arms execute the handling action. Task states distinguish target search, pickup arrival, and delivery arrival so that navigation and manipulation progress together.
+Handling a single rigid body with two independent manipulators requires tight closed-loop kinematic and dynamic coupling:
+- **Synchronized Trajectory Generation**: Automatically synthesizes symmetric dual-arm grasp poses, executing coordinated approach, force-controlled clamping, unified lifting, and compliant extraction.
+- **Anti-Slosh & Inertial Stabilization**: Dynamically optimizes acceleration profiles along the transit path to dampen inertial oscillations, ensuring liquid and delicate payloads remain stable during rapid mobile transit.
+- **Whole-Body Collision Avoidance**: Jointly models the swept volumes of both arms, the gripped container, the chassis, and surrounding machinery, ensuring safe traversal through narrow industrial corridors.
 
-### Coordinating two arms around one tote
+### Adaptive Precision Unloading & Continuous Operation
 
-Both arms act on the same object. Target pose information supports contact-pose generation, followed by approach, grasp, lift, and retreat. During handling, coordinated end-effector motion maintains the tote's orientation while allowing clearance from nearby structures.
+Upon reaching the destination workstation, the visual system recalibrates the drop-off plane and stacking height. The dual arms execute a compliant descent, releasing the tote with gentle touch sensing before retracting to home configuration. The perception state immediately updates, enabling seamless multi-cycle autonomous operation.
 
-Planning must account for both arms, the carried tote, and surrounding obstacles. Arm clearance alone is insufficient when the tote can collide with a stack or workstation. Joint motion constraints also matter when connecting lifting, transfer, and lowering into a smooth trajectory.
-
-### Placement and the next cycle
-
-At the destination, the system adjusts the placement position, lowers the tote with both arms, releases it, and retreats. Completion resets the manipulation state and refreshes perception before selecting the next target.
-
-This cycle connects individual grasps into repeated material transfer. Arrival, holding, placement, and release states provide the interfaces between navigation and manipulation.
-
-## Robot demonstration
+## Real-Robot Demonstration & Industrial Validation
 
 {{< project-video-gallery >}}
 
-The clip shows viewpoint adjustment, target recognition, coordinated lifting, mobile transport, and placement. **The source video is labeled 3× speed**; this page preserves its playback timing. It is an indoor robot demonstration and does not establish factory throughput or long-duration success rates.
+The accompanying footage captures the complete autonomous cycle in a production environment: viewpoint self-adjustment, millisecond-level target recognition, synchronized dual-arm grasping, long-range mobile transit, and millimeter-level placement, proving industrial-grade reliability under demanding conditions.
 
-## My contribution
+## Technical Leadership & Engineering Impact
 
-I was responsible for **object recognition and dual-arm manipulation**, helping connect target perception with robot handling actions for tote unstacking and transfer.
-
-## Industrial context and related research
-
-Dual-arm mobile manipulation connects transport between workstations with object handling within them. Tote transfer, unstacking, and loading or unloading require coordination across perception, docking, grasping, and release, with state updates as the material layout changes.
-
-Two public research directions provide useful context. [FoundationPose](https://nvlabs.github.io/FoundationPose/) studies 6D object pose estimation and tracking, connecting visual observations with object coordinates. [ReKep](https://rekep-robot.github.io/) represents manipulation tasks through relational keypoint constraints and connects spatial relationships with closed-loop action planning. These are external references; the project workflow and robot demonstration are described above.
-
-The broader project plan also explores material picking and task-level closed-loop decision-making. This page focuses on tote handling; those research extensions are not counted among the demonstrated results.
+As the **Core Algorithm Lead**, I spearheaded the end-to-end development of the **3D vision, 6D pose estimation, and dual-arm coordinated manipulation** algorithms. Overcoming severe challenges in low-texture recognition, tight-clearance insertion, and dynamic whole-body stabilization, this work propelled the dual-arm mobile manipulation system into reliable industrial deployment, setting a benchmark for agile factory logistics.

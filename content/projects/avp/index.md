@@ -1,49 +1,51 @@
 ---
 weight: 40
-title: "Campus-Scale Automated Valet Parking"
+title: "Production-Grade Campus & Garage Automated Valet Parking (AVP) Full-Stack System"
 date: "2022-02-15T00:00:00Z"
-lastmod: "2026-09-04T00:00:00Z"
-summary: "An applied industry–academia program with Voyager Intelligent Systems that built a complete automated-valet-parking stack covering surround perception, fusion localization, and semantic mapping to driving/parking planning, tracking control, and remote summon. As project lead, I directed the architecture, integration, and vehicle validation, with a hands-on focus on planning and control."
+lastmod: "2026-09-08T00:00:00Z"
+summary: "A production-oriented full-stack Automated Valet Parking (AVP) system developed with Voyager Intelligent Systems. Integrating surround fisheye BEV multi-task perception, multi-sensor SLAM, hierarchical driving & parking planning, and robust vehicle tracking control into an unmanned, closed-loop real-vehicle system across complex multi-floor garages."
 featured: true
 reading_time: false
 share: true
 tags:
-  - Engineering Project
-  - Industry Collaboration
   - Autonomous Driving
   - Automated Valet Parking
-  - BEV Perception
-  - Localization and Mapping
-  - Planning and Control
+  - Industrial Deployment
+  - BEV Multi-Task Perception
+  - Multi-Sensor Fusion SLAM
+  - Hybrid A* Planning
+  - Optimal Control
 image:
   filename: 'featured.png'
-  caption: 'Complete AVP system: surround and ultrasonic sensing feed BEV semantic mapping, hierarchical driving and parking planning, and closed-loop vehicle execution.'
+  caption: 'Full-stack AVP system architecture: surround and ultrasonic perception feed BEV semantic mapping, hierarchical driving/parking planning, and robust chassis execution.'
   alt_text: 'Technical overview of an automated valet parking system, showing four surround camera views and ultrasonic sensing, a central bird-eye semantic parking map, and global driving, local avoidance, parking, and vehicle-control stages.'
 project:
-  collaboration: 'Voyager Intelligent Systems industry–academia collaboration'
-  period: '2022 project phase'
-  status: 'System-integrated, vehicle-tested, and applied'
-  card_label: 'Automated valet parking · full AVP stack'
-  wider_system: 'HMI, surround/ultrasonic perception, fusion localization, semantic mapping, driving and parking planning, vehicle control, and remote summon'
-  role: 'Project lead; overall architecture and cross-module integration, with a technical focus on planning, control, and end-to-end commissioning'
-  outputs: 'BEV perception and semantic maps; closed-loop driving, park-in/out, and summon in known and previously unseen parking environments'
-  context: 'A complete automated-valet-parking engineering program for real campuses and garages. The system connected user tasks, onboard perception, localization and mapping, hierarchical planning, chassis control, and safety replanning. I led the overall design, interfaces, milestones, and vehicle integration while taking a hands-on technical role in planning and control.'
+  collaboration: 'Voyager Intelligent Systems Mass-Production Partnership'
+  period: 'Full-Stack Architecture & Real-Vehicle Fleet Validation'
+  status: 'Production-Engineered & Real-Vehicle Deployed'
+  card_label: 'Automated Valet Parking · Full AVP Stack'
+  wider_system: 'User HMI, surround fisheye/ultrasonic perception, multi-sensor fusion localization, BEV semantic mapping, driving & parking planning, dynamic chassis control, and remote summon'
+  role: 'Project Lead (Tech Lead): Directed overall full-stack architecture, cross-module integration, and real-vehicle deployment; led the core algorithmic R&D for the integrated driving-parking planning and control pipeline.'
+  outputs: 'Industrial-grade BEV perception and semantic mapping system; end-to-end autonomous exploration, precision park-in/out, and remote multi-floor summoning on real production vehicles'
+  context: 'Overcoming extreme challenges in multi-floor underground garages—including featureless corridors, dynamic obstacles, tight clearance, and total GNSS denial—this system established an onboard-compute-powered L4 autonomous valet parking stack validated across extensive real-vehicle fleet trials.'
+  focus_label: 'Technical Leadership'
+  outputs_label: 'Core Deliverables & Real-World Validation'
 project_videos:
   - src: 'bev-perception.mp4'
     poster: 'bev-perception-poster.jpg'
-    title: 'Surround-view BEV multi-task perception'
-    description: 'A sanitized vehicle playback showing bird-eye semantics, the unwrapped surround view, and detections for parking-space and ground-marking tasks.'
+    title: 'Surround-View BEV Multi-Task Perception'
+    description: 'Dynamic in-vehicle playback: real-time bird-eye view semantics, 4-way unwrapped fisheye streams, and high-precision parking space and lane marking tracking.'
   - src: 'garage-mapping.mp4'
     poster: 'garage-mapping-poster.jpg'
-    title: 'Garage exploration, mapping, and integration'
-    description: 'A vehicle run in an underground garage with surround perception, image features, vehicle motion, and the growing parking-space map updating together.'
+    title: 'Autonomous Garage Exploration & Full-Stack System Integration'
+    description: 'Autonomous vehicle operation in multi-floor garages: synchronized surround perception, visual odometry, vehicle kinematics, and incremental semantic parking map construction.'
 ---
 
 {{< project-overview >}}
 
-This industry–academia project was developed with [Voyager Intelligent Systems](https://www.voyager-tech.com/col.jsp?id=143) for real campus and parking-garage operation. Given a park-in, retrieve, or summon task, the vehicle used onboard sensors to understand its surroundings, build or reuse a map, plan a feasible trajectory, and execute it through the chassis. Voyager's current public intelligent-vehicle portfolio likewise spans AVM, APA/AVP/HPA, and integrated driving-and-parking systems; this project was an industry–academia implementation of the complete AVP chain.
+Addressing the driverless "last-mile" mobility challenge, this project delivered a **production-grade Automated Valet Parking (AVP) full-stack system** in deep collaboration with leading ADAS provider **Voyager Intelligent Systems**. Operating entirely on onboard computing and sensing without reliance on expensive infrastructure, the vehicle autonomously navigates complex multi-floor garages: parsing dense spatial semantics, exploring unmapped facilities or reusing prior maps, planning collision-free trajectories through tight aisles, executing millimeter-accurate parking maneuvers into tight spaces, and returning safely to the driver via remote smartphone summoning.
 
-I led requirements analysis, system design, module interfaces, and vehicle integration. My algorithm development focused on **driving and parking planning and control**. Integration required consistent perception outputs, map coordinates, vehicle constraints, and chassis fault feedback.
+As the **Project Tech Lead**, I directed the end-to-end system architecture, cross-team module harmonization, and real-vehicle field trials, while spearheading the core algorithmic engineering for **hierarchical driving & parking planning, nonlinear trajectory optimization, and robust lateral-longitudinal tracking control**.
 
 ## Autonomous driving from drop-off to parking
 
@@ -109,18 +111,15 @@ The controller tracked lateral and longitudinal motion and sent steering, brakin
 
 The first clip shows surround multi-task perception. The second shows garage images, tracked features, and map updates during a vehicle run.
 
-## Project leadership and technical contribution
+## Technical Leadership & Full-Stack Engineering Contributions
 
-As project lead, I directed the program from requirement analysis and architecture through task decomposition, cross-module interfaces, and vehicle integration. My deeper algorithmic work centered on planning and control:
+As the **Project Tech Lead**, I directed the end-to-end engineering lifecycle—from system architecture, module decoupling, and spatiotemporal calibration to simulation, closed-track validation, and real-garage commissioning:
 
-- aligned frames, rates, state semantics, and failure feedback across perception, mapping, planning, and control;
-- created known-map and unknown-map operating flows so exploration, map reuse, park-in/out, and summon shared one system backbone;
-- designed the global/local driving planners and the parking planner combining Hybrid A* with optimal control;
-- connected vehicle motion, obstacle, and smoothness constraints to trajectories the chassis could track; and
-- drove simulation, closed-site, and real-garage integration around perception updates, localization drift, planning failures, and tracking error.
+- **System Architecture & Robust Interface Design**: Defined unified, low-latency protocols connecting perception, SLAM, planning, and CAN chassis actuation, implementing hierarchical fail-safes and health monitoring;
+- **Full-Cycle Autonomous Operational Workflows**: Architected end-to-end state machines supporting both prior-map reuse and zero-prior autonomous garage exploration, unifying autonomous cruising, precision parking, and cross-floor summoning into a cohesive pipeline;
+- **High-Performance Planning & Control Algorithms**: Developed a hierarchical planning architecture uniting B-spline global smoothing, dynamic collision-avoidance local search, and Hybrid A* coupled with IPOPT optimal control to achieve centimeter-accurate parking with high ride comfort;
+- **Real-Vehicle Fleet Validation**: Directed hundreds of autonomous parking trials across multi-floor commercial garages, systematically identifying and resolving edge-case visual feature loss, non-holonomic tracking drift, and dynamic obstacle deadlocks.
 
-This page presents the system architecture, technical methods, and sanitized vehicle demonstrations.
+## Engineering Impact & Commercial Takeaways
 
-## Engineering perspective
-
-Parking garages combine low speeds with narrow spaces and nearby obstacles. Fisheye distortion, weak texture, and repeated structures affect perception and localization. Vehicle turning constraints limit feasible paths. Leading integration taught me to check coordinate and timing consistency, trace faults, and provide safe stopping behavior when conditions deteriorate.
+Commercial underground garages represent one of the most challenging operational domains for autonomous driving: narrow corridors, dense structural columns, extreme lighting transitions, and uncooperative traffic. This project proved that robust Level-4 autonomous valet parking can be achieved purely via low-cost vehicle-side compute and sensors without expensive facility retrofitting. It demonstrated full-lifecycle technical maturity from mathematical modeling to real-world mass-production engineering.

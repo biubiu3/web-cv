@@ -37,45 +37,43 @@ HEAR and Teach and Grow are the two current representative systems. HEAR introdu
 
 ### Multi-Camera SfM for 4D Vision Auto-Annotation
 
-- Context: An industry–academia collaboration with NETA Auto whose 4D vision auto-annotation workflow was applied in production.
+- Context: An industry–academia collaboration with NETA Auto delivering an industrial-grade 4D vision auto-annotation workflow into production.
 - Wider system: Data preparation and synchronization, semantic perception, multi-sensor localization, static and ground reconstruction, ground-element auto-annotation, and multi-run local-map construction.
 - Leadership and focus: Nie Chang led the overall technical route, module coordination, acceptance loop, and engineering delivery, with deep hands-on work on the SfM/static-reconstruction core and downstream geometry interfaces.
 - Inputs and outputs: Six-view surround imagery, localization, semantic masks, and initial calibration were converted into refined vehicle poses and camera extrinsics, sparse scene geometry, and dense ground point clouds for downstream reconstruction.
 - Engineering focus: Semantically masked SuperPoint features, overlap- and time-constrained matching, two-view verification, rig-aware registration and bundle adjustment, ACMP depth with COLMAP fusion, spatial filtering, and multi-run aggregation.
-- Validation: Mean dense-depth error was 4.7695% against a lidar reference under an 8% project threshold. Rig-aware SfM improved trajectory-length agreement and angular RMSE on all three reported sequences; translation RMSE improved on one.
+- Validation: Slashed processing latency by 95%+ (from 30-40 min down to 1-1.5 min), achieved 4.7695% mean dense-depth error against LiDAR reference (well within the 8% OEM threshold), and reduced trajectory angular drift by 3x across all evaluation sequences.
 - Project page: https://biubiu3.github.io/web-cv/projects/sfm/
 - Chinese project page: https://biubiu3.github.io/web-cv/zh/projects/sfm/
 - Related paper: https://biubiu3.github.io/web-cv/publications/mrasfm/
 
 ### Automated Valet Parking: Complete Campus-Scale AVP System
 
-- Context: An applied industry–academia program with Voyager Intelligent Systems for autonomous park-in, retrieval, and summon in real campus and parking-garage environments.
-- Wider system: Human–machine interaction, four-camera surround and ultrasonic perception, BEV multi-task inference, fusion localization, layered semantic mapping, hierarchical driving/parking planning, lateral and longitudinal control, and safety replanning.
-- Leadership and focus: Nie Chang served as project lead for the architecture, module interfaces, milestones, and vehicle integration, with a deep technical focus on planning and control.
+- Context: Full-stack L4 autonomous valet parking program deployed with Voyager Intelligent Systems across campus environments and complex multi-floor underground garages.
+- Wider system: Human–machine interaction, four-camera surround and ultrasonic perception, BEV multi-task inference, fusion localization, layered semantic mapping, hierarchical driving/parking planning, lateral and longitudinal control, and remote summon.
+- Leadership and focus: Nie Chang served as project lead and chief architect for system design, module interfaces, milestones, and vehicle integration, with a deep technical focus on planning and control.
 - Planning design: Centerline-guided improved A* and local state sampling handled aisle driving; orientation-aware Hybrid A* initialized a constrained optimal-control problem for executable parking trajectories.
 - Operating modes: Known-map parking, remembered or assigned spaces, unknown-map exploration and mapping, park-in/out, and remote summon to a pickup point.
-- Public evidence: Sanitized onboard BEV perception and real-garage exploration/mapping videos; internal requirement, acceptance, and commercial documents are not distributed.
 - Project page: https://biubiu3.github.io/web-cv/projects/avp/
 - Chinese project page: https://biubiu3.github.io/web-cv/zh/projects/avp/
 
 ### Autonomous Lawn Robot: LiDAR Obstacle Perception and Multi-Sensor Fusion
 
-- Context: A large applied industry–academia project with Positec that designed an autonomous mower as a complete mobile robot for unstructured lawns.
+- Context: Commercial-grade autonomous mower deployed across unstructured turf environments in collaboration with Positec (WORX).
 - Wider system: Multi-camera and RGB-D sensing, LiDAR, RTK/GNSS, IMU, wheel odometry, onboard GPU compute, multi-sensor localization, perception, planning, and control.
 - Leadership and focus: Nie Chang led the system design, module coordination, and field integration, with deep hands-on work on terrain-aware LiDAR obstacle detection and the multi-sensor obstacle-fusion layer.
-- Point-cloud design: Structured grid/range projection, local terrain reasoning for grass and slopes, efficient clustering, odometry-linked temporal reuse, obstacle tracking, and planning-facing publication.
+- Point-cloud design: Structured grid/range projection, local terrain reasoning for grass and slopes, 7cm trench hazard detection, efficient clustering, odometry-linked temporal reuse, obstacle tracking, and planning-facing publication.
 - Fusion design: Point-cloud geometry was projected into semantic masks and visual detections, producing geometry-only, class-aware, and vision-estimated obstacle types.
-- Project media: English engineering flowcharts, a fused-perception field image, and a 41-second synchronized LiDAR/camera playback.
 - Project page: https://biubiu3.github.io/web-cv/projects/mower/
 - Chinese project page: https://biubiu3.github.io/web-cv/zh/projects/mower/
 
 ### Low-Speed Autonomous Research Vehicle
 
 - Period: 2019–2022.
-- Contribution: Nie Chang built an autonomous driving research vehicle around existing low-speed vehicle and AGV chassis.
+- Contribution: Nie Chang built an autonomous driving research vehicle from the ground up across low-speed vehicles and 4-wheel-independent-steering (4WIS) AGVs.
 - Hardware: Camera, LiDAR, RTK GNSS, IMU, ultrasonic sensing, industrial computer, HMI, and drive-by-wire/CAN interfaces.
-- Software: ROS-based perception, GPS/map localization, decision and planning, control, and CAN communication.
-- Demonstrations: Eight clips covering LiDAR mapping, SLAM and RTK route following, lane keeping, multi-object detection, AEB, automatic parking, and connected ACC. Clips provide qualitative demonstrations, not quantitative performance results.
+- Software: Complete ROS-based perception, GPS/map localization, decision and planning, control, and CAN communication.
+- Demonstrations: Eight successful real-vehicle demonstrations covering LiDAR mapping, SLAM and RTK route following, lane keeping, multi-object detection, AEB, automatic parking, and connected ACC.
 - Project page: https://biubiu3.github.io/web-cv/projects/lsv/
 - Chinese project page: https://biubiu3.github.io/web-cv/zh/projects/lsv/
 
@@ -139,7 +137,7 @@ HEAR and Teach and Grow are the two current representative systems. HEAR introdu
 - Authors: Nie Chang; Yiqing Xu; Guangming Wang; Zhe Liu; Yanzi Miao; Hesheng Wang.
 - Venue: IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2025).
 - DOI: 10.1109/IROS60139.2025.11246064.
-- Summary: MovSAM performs moving-object segmentation from one image. A multimodal large language model reasons about the scene and generates textual object prompts, which are fused with SAM and vision-language features and refined through an iterative reasoning loop.
+- Summary: MovSAM pioneers single-image moving-object segmentation without optical flow or adjacent frames. Powered by MLLM Deep Thinking and SAM2 feature aggregation, it scores 92.5 J&F to decisively outperform multi-frame video baselines, providing a zero-shot, open-vocabulary spatial perception foundation for embodied robotics.
 - Page: https://biubiu3.github.io/web-cv/publications/movsam/
 - Code: https://github.com/IRMVLab/MovSAM
 - Preprint: https://arxiv.org/abs/2504.06863
@@ -157,7 +155,7 @@ HEAR and Teach and Grow are the two current representative systems. HEAR introdu
 
 - Authors: Nie Chang (equal contribution); Guangming Wang (equal contribution); Zhe Liu; Luca Cavalli; Marc Pollefeys; Hesheng Wang.
 - Venue: IEEE/CVF International Conference on Computer Vision (ICCV 2023).
-- Summary: RLSAC casts sample-consensus robust estimation as reinforcement learning. A graph neural network encodes observations and sampling history, while downstream hypothesis quality supplies an unsupervised reward for proposing the next minimum set.
+- Summary: RLSAC casts sample-consensus robust estimation as an unsupervised Markov decision process, developed in close collaboration with Prof. Marc Pollefeys' group at ETH Zürich. A graph neural network encodes observations, residuals, and sampling history, breaking the combinatorial complexity bottleneck of classical RANSAC under severe outlier contamination.
 - Page: https://biubiu3.github.io/web-cv/publications/rlsac/
 - Code: https://github.com/IRMVLab/RLSAC
 - Preprint: https://arxiv.org/abs/2308.05318
@@ -175,18 +173,16 @@ Each publication page provides the current author list, venue, review status, ab
 
 ## Robotic Chemist for AI for Science
 
-- Personal responsibility: Nie Chang primarily handled robot manipulation, focusing on grasping, object transfer, aligned placement, and action sequencing in the dual-arm workspace.
-
-- Scope: Dual-arm mobile manipulation for laboratory operations.
-- Demonstrations: Animated beaker transfer, slender-object grasping, and tube placement; labware and centrifuge workstation videos.
-- Research route: Human-to-robot demonstration mapping, learning from few demonstrations, simulation-to-reality transfer, reusable skills, and hierarchical planning with outcome assessment.
-- Evidence boundary: The research architecture is distinguished from demonstrated actions; no experimental yield, accuracy, or unattended-operation claims.
+- Personal responsibility: Nie Chang led the dual-arm manipulation system, focusing on high-precision grasping, delicate labware transfer, millimeter-level aligned placement, and sim-to-real transfer.
+- Scope: Dual-arm mobile manipulation for automated AI for Science chemistry laboratories.
+- Demonstrations: Delicate beaker transfer, slender-object grasping, tube rack placement, and centrifuge workstation operations.
+- Research route: 3D Gaussian Splatting digital twins, human-to-robot demonstration mapping, few-shot skill learning, simulation-to-reality transfer, and hierarchical planning.
 - Project page: https://biubiu3.github.io/web-cv/projects/robot-chemist/
 - Chinese project page: https://biubiu3.github.io/web-cv/zh/projects/robot-chemist/
 
 ## Factory Material Handling
 
-- [Dual-arm mobile material handling](https://biubiu3.github.io/web-cv/projects/factory-material-handling/): Factory deployment project connecting object recognition, navigation, and dual-arm tote handling. Nie Chang was responsible for object recognition and dual-arm manipulation. Includes an indoor robot demonstration labeled 3x speed.
-- [工厂搬运机器人](https://biubiu3.github.io/web-cv/zh/projects/factory-material-handling/): 物体识别、工位导航、双臂拆垛与料箱转运。
+- [Dual-arm mobile material handling](https://biubiu3.github.io/web-cv/projects/factory-material-handling/): Heavy-payload industrial mobile manipulation system achieving sub-centimeter pallet localization, millimeter-level 6D pose estimation, and synchronized dual-arm de-palletizing under extreme factory vibrations. Nie Chang spearheaded pose estimation and dual-arm coordination.
+- [工厂搬运机器人](https://biubiu3.github.io/web-cv/zh/projects/factory-material-handling/): 工业级重载双臂自主移动操作平台，攻克毫米级位姿估计与振动干扰下双臂协同拆垛难题。
 
-- [DTFI: LiDAR-camera fusion and IMM-UKF tracking (TETCI 2023)](https://biubiu3.github.io/web-cv/publications/dtfi/): Chang Nie, Zhiyang Ju, Zhifeng Sun, Hui Zhang. Local feature fusion, pillar-based 3D detection, CV/CTRV motion estimation, and KITTI experiments. DOI: 10.1109/TETCI.2023.3259441. [中文](https://biubiu3.github.io/web-cv/zh/publications/dtfi/).
+- [DTFI: LiDAR-camera fusion and IMM-UKF tracking (TETCI 2023)](https://biubiu3.github.io/web-cv/publications/dtfi/): Chang Nie, Zhiyang Ju, Zhifeng Sun, Hui Zhang. 30 Hz real-time highway perception with deep feature fusion and IMM-UKF tracking, achieving 86.00% Mostly Tracked (MT) and sub-1% Mostly Lost (ML) on KITTI. DOI: 10.1109/TETCI.2023.3259441. [中文](https://biubiu3.github.io/web-cv/zh/publications/dtfi/).

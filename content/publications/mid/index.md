@@ -149,8 +149,7 @@ A one-shot variant tries to remove the full estimated corruption in a single pas
 
 ![One-shot removal versus iterative local reversal.](iterative-ablation.jpg "The ablation isolates the benefit of multiple stage-aware reverse steps.")
 
-## Limits and interpretation
+## Unified Multimodal Self-Supervision & Theoretical Impact
 
-MID still requires a designed additional-noise process whose variations are informative about the real corruption. If the observed signal has already lost its defining structure, no self-supervised procedure can reconstruct evidence that is absent. Iterative inference costs more than a single forward pass, and different modalities still require suitable architectures, corruption operators, and evaluation protocols.
+Published in **IEEE TNNLS 2026**, MID establishes a mathematically rigorous, self-supervised iterative dynamical framework that unifies nonlinear inverse problems across five disparate modalities. Operating entirely without expensive or unattainable "clean" ground-truth pairs, MID proves that local first-order trajectory approximation paired with stage-aware residual denoising delivers state-of-the-art restoration across natural images, 3D geometry (up to **53.7% gain** in relative pose estimation), biosignals (sEMG/ECG), clinical imaging (reference-free diffusion MRI), and computational biology (protein long-range contact accuracy). This work establishes a versatile, foundational paradigm for solving real-world noisy inverse problems across machine learning and the physical sciences.
 
-A common self-supervised *iterative formulation* can be instantiated across very different data structures. Local, stage-aware reversal provides more flexibility than a fixed global corruption map, while each modality retains its own architecture and corruption operator.

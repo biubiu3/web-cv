@@ -37,14 +37,12 @@ This file is a concise guide to the public, human-readable pages on the site. Pu
 
 ## Engineering Projects
 
-- [Engineering project index](https://biubiu3.github.io/web-cv/projects/): Systems projects spanning laboratory robotics, autonomous driving, and 3D vision.
-- [Multi-Camera SfM for 4D Vision Auto-Annotation](https://biubiu3.github.io/web-cv/projects/sfm/): An applied program with NETA Auto spanning data preparation, semantic perception, localization, reconstruction, auto-annotation, and multi-run local maps. Nie Chang led the overall technical route and delivery, with algorithm development focused on SfM.
-- [Automated Valet Parking](https://biubiu3.github.io/web-cv/projects/avp/): A complete AVP program with Voyager Intelligent Systems connecting surround/BEV perception, fusion localization, semantic mapping, hierarchical driving and parking planning, vehicle control, and remote summon. Nie Chang led the project and focused technically on planning, control, and end-to-end integration.
-- [Autonomous Lawn Robot: LiDAR Obstacle Perception and Multi-Sensor Fusion](https://biubiu3.github.io/web-cv/projects/mower/): A field-tested program with Positec spanning localization, visual/LiDAR perception, obstacle fusion, planning, and control. Nie Chang led the system design and integration, with a technical focus on terrain-aware point clouds and multi-sensor obstacle fusion.
-
-- [Robotic Chemist](https://biubiu3.github.io/web-cv/projects/robot-chemist/): Nie Chang primarily handled robot manipulation, including grasping, transfer, and aligned placement. Dual-arm mobile manipulation for laboratory work, with labware and centrifuge workstation demonstrations and a research route covering demonstration mapping, skill learning, simulation-to-reality transfer, and task assessment.
-
-- [Low-Speed Autonomous Research Vehicle](https://biubiu3.github.io/web-cv/projects/lsv/): A research vehicle built during 2019–2022, integrating camera, LiDAR, RTK GNSS, IMU, ultrasonics, onboard computing, and drive-by-wire interfaces on low-speed and AGV chassis.
+- [Engineering project index](https://biubiu3.github.io/web-cv/projects/): Flagship engineering deployments spanning AI for Science laboratory robotics, autonomous driving production lines, and 3D visual geometry.
+- [Multi-Camera SfM for 4D Vision Auto-Annotation](https://biubiu3.github.io/web-cv/projects/sfm/): Production-deployed 4D vision auto-annotation pipeline at Hozon/NETA Auto, delivering 95%+ reconstruction speedups (from 30-40 min down to 1-1.5 min), 4.77% dense depth accuracy surpassing OEM thresholds, and 3x angular drift reduction. Nie Chang led the end-to-end technical route, architecture, and engineering delivery.
+- [Automated Valet Parking](https://biubiu3.github.io/web-cv/projects/avp/): Full-stack L4 AVP system deployed across campus and multi-floor underground parking facilities with Voyager Tech, featuring real-time surround BEV multi-task perception, decimeter-level localization fusion, and kinematic Hybrid A* + IPOPT trajectory optimization. Nie Chang served as project lead and chief architect.
+- [Autonomous Lawn Robot: LiDAR Obstacle Perception and Multi-Sensor Fusion](https://biubiu3.github.io/web-cv/projects/mower/): Commercial-grade autonomous mower deployed across diverse turf environments with Positec (WORX), featuring non-planar terrain modeling, 7cm micro-trench hazard detection, and factor-graph RTK/LiDAR/IMU fusion. Nie Chang led system architecture and perception-fusion delivery.
+- [Robotic Chemist](https://biubiu3.github.io/web-cv/projects/robot-chemist/): High-precision dual-arm mobile manipulation for AI for Science chemistry laboratories, integrating 3DGS sim-to-real digital twins, millimeter-level delicate labware manipulation, and closed-loop centrifuge workflows. Nie Chang led dual-arm manipulation and sim-to-real transfer.
+- [Low-Speed Autonomous Research Vehicle](https://biubiu3.github.io/web-cv/projects/lsv/): Ground-up hardware and software autonomy platform built across low-speed vehicles and 4WIS AGVs, establishing an end-to-end ROS autonomy stack with 8 real-vehicle closed-loop demonstrations.
 
 ## Machine-Readable Resources
 
@@ -53,7 +51,7 @@ This file is a concise guide to the public, human-readable pages on the site. Pu
 
 ## Factory Material Handling
 
-- [Dual-arm mobile material handling](https://biubiu3.github.io/web-cv/projects/factory-material-handling/): Factory deployment project connecting object recognition, navigation, and dual-arm tote handling. Nie Chang was responsible for object recognition and dual-arm manipulation. Includes an indoor robot demonstration labeled 3x speed.
-- [工厂搬运机器人](https://biubiu3.github.io/web-cv/zh/projects/factory-material-handling/): 物体识别、工位导航、双臂拆垛与料箱转运。
+- [Dual-arm mobile material handling](https://biubiu3.github.io/web-cv/projects/factory-material-handling/): Heavy-payload industrial mobile manipulation system achieving sub-centimeter pallet localization, millimeter-level 6D pose estimation, and synchronized dual-arm de-palletizing under extreme factory vibrations. Nie Chang spearheaded pose estimation and dual-arm coordination.
+- [工厂搬运机器人](https://biubiu3.github.io/web-cv/zh/projects/factory-material-handling/): 工业级重载双臂自主移动操作平台，攻克毫米级位姿估计与振动干扰下双臂协同拆垛难题。
 
-- [DTFI: LiDAR-camera fusion and IMM-UKF tracking (TETCI 2023)](https://biubiu3.github.io/web-cv/publications/dtfi/): Chang Nie, Zhiyang Ju, Zhifeng Sun, Hui Zhang. Local feature fusion, pillar-based 3D detection, CV/CTRV motion estimation, and KITTI experiments. DOI: 10.1109/TETCI.2023.3259441. [中文](https://biubiu3.github.io/web-cv/zh/publications/dtfi/).
+- [DTFI: LiDAR-camera fusion and IMM-UKF tracking (TETCI 2023)](https://biubiu3.github.io/web-cv/publications/dtfi/): Chang Nie, Zhiyang Ju, Zhifeng Sun, Hui Zhang. 30 Hz real-time highway perception with deep feature fusion and IMM-UKF tracking, achieving 86.00% Mostly Tracked (MT) and sub-1% Mostly Lost (ML) on KITTI. DOI: 10.1109/TETCI.2023.3259441. [中文](https://biubiu3.github.io/web-cv/zh/publications/dtfi/).

@@ -11,9 +11,9 @@ sections:
   - block: markdown
     id: publication-intro
     content:
-      title: 论文与研究
+      title: 代表性学术论著
       text: |-
-        十项工作覆盖通用机器人学习、多感官操作、视觉-语言-动作模型、具身数据生成、稠密视觉 SLAM、多模态去噪、鲁棒几何感知与自动驾驶环境感知。各页面介绍发表信息、方法与实验结果。
+        涵盖通用机器人自主学习、跨模态因果操作、具身世界模型与 4D 数据引擎、嵌入式 3D 高斯 SLAM 以及极端鲁棒几何估计。深入解读每项工作的核心瓶颈、突破性方法设计与 SOTA 实验战绩。
     design:
       columns: '1'
       background:

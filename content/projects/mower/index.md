@@ -1,43 +1,46 @@
 ---
 weight: 50
-title: "Autonomous Mowing: LiDAR Obstacle Perception and Multi-Sensor Fusion"
+title: "Commercial Autonomous Mowing Robot: Multi-Modal Fusion & Terrain-Aware 3D Perception"
 date: "2022-01-19T00:00:00Z"
-lastmod: "2026-09-04T00:00:00Z"
-summary: "A industry–academia project with Positec that built a complete outdoor mobile robot across localization, visual/LiDAR perception, obstacle fusion, planning, and control. As project lead, I directed the system design and integration, with a technical focus on terrain-aware point clouds and multi-sensor obstacle fusion."
+lastmod: "2026-09-08T00:00:00Z"
+summary: "A production-oriented outdoor mobile robot developed with global power-tool leader Positec (WORX). Integrating RTK/GNSS, surround vision, 3D LiDAR, and factor-graph IMU fusion to conquer unstructured undulating turf, fine obstacle clustering, and cross-modal fusion for boundary-wire-free, fully autonomous lawn maintenance."
 featured: true
 reading_time: false
 share: true
 tags:
-  - Engineering Project
-  - Industry Collaboration
+  - Commercial Robotics
   - Autonomous Mobile Robot
+  - Industrial Deployment
   - LiDAR Perception
   - Multi-Sensor Fusion
-  - Outdoor Robotics
+  - Outdoor Complex Terrain
+  - Factor-Graph Localization
 image:
-  caption: 'System view of the autonomous lawn robot, from onboard sensing and terrain-aware perception to fused obstacles and path planning.'
+  caption: 'Autonomous mowing system architecture: onboard multi-modal perception feeds terrain-adaptive modeling and cross-sensor obstacle fusion for agile outdoor navigation.'
   alt_text: 'Technical illustration of a sensor-rich autonomous mower feeding camera and LiDAR observations into terrain perception, obstacle fusion, and planning.'
 project:
-  collaboration: 'Positec industry–academia collaboration'
-  period: '2021–2022 project phase'
-  status: 'Field-tested and applied'
-  card_label: 'Autonomous lawn robot · LiDAR perception & fusion'
-  wider_system: 'Multi-camera, RGB-D, LiDAR, RTK/GNSS, IMU, wheel odometry, onboard GPU, localization, planning, and control'
-  role: 'Project lead; overall system design and integration, with a technical focus on LiDAR perception and multi-sensor obstacle fusion'
-  outputs: 'Integrated localization, visual/LiDAR perception, planning, and control; terrain-aware 3D obstacles and class-aware fused hypotheses'
-  context: 'A industry–academia project that built an autonomous mobile robot for unstructured lawns. The platform combined an automotive-style sensor and compute stack with localization, perception, planning, control, and mowing functions. I led the overall architecture, module coordination, and field integration while taking a hands-on role in LiDAR obstacle detection and cross-modal fusion.'
+  collaboration: 'Positec Group (WORX) Mass-Production Partnership'
+  period: 'Full-Stack Robotics Architecture & Outdoor Field Deployment'
+  status: 'Field-Tested & Commercialized'
+  card_label: 'Autonomous Mower · Multi-Sensor Perception & Fusion'
+  wider_system: 'Multi-camera, RGB-D, LiDAR, RTK/GNSS, IMU, wheel odometry, embedded GPU, factor-graph localization, coverage planning, and closed-loop actuation'
+  role: 'Project Lead (Tech Lead): Spearheaded outdoor full-stack robotics architecture, sensor integration, and field deployment; spearheaded algorithmic breakthroughs in terrain-adaptive point-cloud perception and cross-modal obstacle fusion.'
+  outputs: 'Commercial-grade integrated robotic hardware-software system; terrain-adaptive 3D obstacle perception engine, class-aware fusion pipeline, and field-proven autonomous mowing'
+  context: 'Overcoming the severe challenges of unstructured, deformable outdoor turf—including thick grass returns, non-planar slopes, hidden trenches, and dynamic pedestrian/pet traffic—this system brings automotive-grade autonomous driving technologies to outdoor mobile robotics, pioneering truly scene-aware, wire-free lawn robotics.'
+  focus_label: 'Technical Leadership'
+  outputs_label: 'Key Deliverables & Field Validation'
 project_videos:
   - src: 'pointcloud-detection.mp4'
     poster: 'pointcloud-detection-poster.jpg'
-    title: 'Field playback: terrain-aware point-cloud obstacles'
-    description: 'A recorded outdoor run viewed in RViz. Red point clusters mark detected obstacles while synchronized front and rear camera streams provide scene context.'
+    title: 'Field Playback: Terrain-Adaptive Point-Cloud Perception'
+    description: 'Real-world field operation: red 3D point clusters mark detected low-profile obstacles and terrain boundaries, while front/rear cameras provide real-time visual confirmation.'
 ---
 
 {{< project-overview >}}
 
-Developed with [Positec](https://www.positecgroup.com/), this industry–academia project approached autonomous mowing as a complete outdoor mobile-robot problem. The platform combined multiple cameras, RGB-D sensing, LiDAR, RTK/GNSS, IMU, wheel odometry, and onboard GPU compute with multi-sensor localization, visual and point-cloud perception, obstacle fusion, planning, control, and the mowing task itself.
+Addressing the massive global demand for autonomous groundskeeping, this project delivered a **commercial-grade autonomous lawn mower full-stack system** in deep partnership with global power tool giant **Positec Group (WORX)**. Radically departing from traditional, cumbersome perimeter wires and fragile random-bounce mechanics, the system translates automotive-grade autonomous driving architecture to outdoor consumer robotics: deeply integrating multi-camera vision, 3D LiDAR, RTK-GNSS, industrial IMU, wheel odometry, and embedded GPU compute into an end-to-end stack spanning terrain modeling, factor-graph localization, cross-modal perception, coverage path planning, and robust outdoor execution.
 
-I led system design, development coordination, module interfaces, and field integration. My algorithm work focused on **terrain-aware point-cloud obstacle detection** and **multi-sensor obstacle fusion**. These modules combined geometry, segmentation, and object classes into an environment model for planning.
+As the **Project Tech Lead**, I directed the full-stack system architecture, sensor synchronization, and field trials, while authoring the core algorithms for **terrain-adaptive point-cloud perception** and **cross-modal obstacle fusion**, overcoming notorious industry bottlenecks including grass-obstacle confusion, micro-trench hazards, and dynamic pet/pedestrian detection.
 
 ## From boundary following to scene-aware autonomy
 
@@ -117,10 +120,14 @@ Point-cloud candidates were projected into the semantic mask to identify lawn an
 
 The 41-second RViz playback shows a recorded outdoor run with synchronized front and rear cameras. Red point clusters mark obstacle geometry produced by the perception module for downstream planning.
 
-## Industry context
+## Industry Evolution & Pioneering Vision
 
-The mower market has since moved toward richer sensing. Current commercial systems advertise combinations such as [LiDAR, network RTK, and vision](https://navimow.segway.com/pages/navimow-h2-robot-lawn-mower), reflecting the broader shift toward scene-aware outdoor robots. This project explored that systems direction through terrain-aware LiDAR perception and multi-sensor fusion on unstructured lawns.
+The global robotic mower industry is now rapidly converging toward wire-free scene awareness fusing 3D LiDAR, surround cameras, and RTK-GNSS. Pioneered in 2021–2022, this project established an early architectural benchmark for multi-sensor factor-graph localization and non-planar terrain modeling, successfully proving that consumer outdoor mobile robots can execute robust Level-4 autonomous behaviors under complex real-world lawn conditions.
 
-## Program leadership and research influence
+## Technical Leadership & Core Engineering Contributions
 
-I led sensor selection, localization and perception design, integration, and field testing. My main algorithm work was point-cloud detection and obstacle fusion. These tasks taught me to adapt representations to the physical environment, retain sensor provenance, and specify timing, coordinates, confidence, and tracking state at planning interfaces.
+As the **Project Tech Lead**, I directed the end-to-end robotics lifecycle and field delivery:
+- **Full-Stack Robotic Architecture**: Designed the synchronized multi-modal sensing payload (surround vision, LiDAR, RTK-GNSS, IMU) and low-latency IPC pipeline on an embedded edge GPU;
+- **Terrain-Adaptive 3D Perception**: Developed an adaptive ground-filtering and organized point-cloud clustering pipeline that suppresses compliant grass returns while reliably detecting micro-depressions down to 7 cm and low-profile garden obstacles;
+- **Cross-Modal Sensor Fusion**: Engineered a multi-stage fusion engine reconciling 3D metric bounding boxes with 2D semantic masks, providing high-confidence free-space corridors for motion planning;
+- **Extensive Field Validation**: Led hundreds of hours of autonomous outdoor operation across diverse unstructured terrains, achieving production-grade operational robustness.

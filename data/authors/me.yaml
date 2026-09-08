@@ -11,19 +11,33 @@ name:
 postnominals: []
 status:
   icon: "🤖"
-role: Final-year Ph.D. Student in Embodied AI
+role: Ph.D. Candidate @ SJTU | Physical AI, Embodied Foundation Models & Full-Stack Robotics
 bio: |
-  I am Nie Chang (聂畅), a final-year Ph.D. student at the School of Automation
-  and Intelligent Sensing, Shanghai Jiao Tong University, advised by
+  I am Nie Chang (聂畅), a Ph.D. candidate at the School of Automation and
+  Intelligent Sensing, Shanghai Jiao Tong University, advised by
   [Prof. Hesheng Wang](https://sais.sjtu.edu.cn/faculty/wanghesheng.html).
-  I study how robots use language, multisensory observations, and physical
-  feedback to select and improve their actions. My work covers agentic robot
-  learning, LLM/VLM reasoning, Vision-Language-Action models, and robot training
-  data. I aim to build robots that learn from sparse demonstrations and reuse
-  experience across tasks.
+  My research bridges **Physical AI, Embodied Foundation Models (VLA), and
+  Autonomous Robotics Systems**—empowering robots to perceive across complex
+  modalities, reason causally about physical interactions, and continuously
+  accumulate reusable skills through real-world experience.
 
-  I am seeking research, engineering, and postdoctoral opportunities worldwide.
-  Please get in touch if you would like to discuss research or collaboration.
+  My work spans the full spectrum from foundational machine learning theory to
+  mass-production real-robot deployment:
+  - **Embodied AI & Multimodal Agents**: Pioneered continuous audio-visual-action
+    learning (**HEAR**, IJRR 2026), lifelong agentic robot learning with persistent
+    memory (**TGL**, under review at T-RO), and 4D generative trajectory editing (**ERMV**).
+  - **High-Precision Visual Geometry & Spatial Intelligence**: Developed
+    diffusion-guided robust consensus (**DiffSAC**), embedded 3D Gaussian
+    Splatting SLAM (**VCGS-SLAM**, IJCV 2026), multi-camera SfM (**MRASfM**, ICRA 2026),
+    and RL-driven geometric estimation (**RLSAC**, ICCV 2023).
+  - **Full-Stack Robotics Deployment**: Led large-scale engineering programs
+    including commercial campus Autonomous Valet Parking (**AVP** with Ingeek),
+    mass-production autonomous lawn mowers (**Positec**), industrial-scale 4D
+    auto-labeling (**Hozon Auto**), and dual-arm mobile manipulation for chemistry labs.
+
+  I am actively seeking research scientist, staff engineering, and postdoctoral
+  opportunities worldwide across Physical AI, Embodied Intelligence, and Robotics.
+  Let's connect and build the next generation of intelligent physical systems together!
 
 affiliations:
   - name: Shanghai Jiao Tong University

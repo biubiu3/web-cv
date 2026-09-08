@@ -9,8 +9,8 @@ type: landing
 sections:
   - block: collection
     content:
-      title: Selected Engineering Projects
-      text: Six systems projects spanning industrial and laboratory robotics, autonomous driving, and 3D vision. The pages describe system design, my contribution, and project demonstrations.
+      title: Featured Engineering Projects & Systems
+      text: Spanning industrial mobile manipulation, commercial autonomous driving, high-precision 4D auto-annotation, and AI for Science laboratory robotics. Showcasing end-to-end full-stack engineering—from architecture design and core algorithm innovation to real-world production deployment.
       count: 6
       sort_by: weight
       sort_ascending: true

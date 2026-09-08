@@ -11,9 +11,9 @@ sections:
   - block: markdown
     id: publication-intro
     content:
-      title: Publications
+      title: 'Selected Publications & Research'
       text: |-
-        Ten works spanning general robot learning, multisensory manipulation, Vision-Language-Action models, embodied data generation, dense visual SLAM, multimodal denoising, robust geometric perception, and autonomous driving perception. Each paper includes publication details, methods, and experimental results.
+        Spanning agentic lifelong robot learning, multimodal causal manipulation, embodied generative world models, embedded 3D Gaussian Splatting SLAM, and ultra-robust geometric estimation. Highlighting fundamental challenges, breakthrough methodologies, and state-of-the-art experimental results.
     design:
       columns: '1'
       background:

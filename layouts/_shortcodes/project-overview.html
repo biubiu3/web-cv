@@ -1,15 +1,15 @@
 {{- $meta := .Page.Params.project | default dict -}}
 {{- $isZh := eq .Page.Lang "zh" -}}
-<aside class="project-overview" aria-label="{{ if $isZh }}项目范围{{ else }}Project scope{{ end }}">
+<aside class="project-overview" aria-label="{{ if $isZh }}核心工程系统全景{{ else }}Featured Engineering System Overview{{ end }}">
   <div class="project-overview__lead">
-    <span>{{ if $isZh }}工程案例{{ else }}Engineering case study{{ end }}</span>
+    <span>{{ if $isZh }}核心工程系统{{ else }}Featured Engineering System{{ end }}</span>
     <strong>{{ index $meta "collaboration" }}</strong>
     <p>{{ index $meta "context" }}</p>
   </div>
   <dl>
-    <div><dt>{{ if $isZh }}时间{{ else }}Period{{ end }}</dt><dd>{{ index $meta "period" }}</dd></div>
-    <div><dt>{{ if $isZh }}项目状态{{ else }}Project status{{ end }}</dt><dd>{{ index $meta "status" }}</dd></div>
-    <div><dt>{{ with index $meta "focus_label" }}{{ . }}{{ else }}{{ if $isZh }}我的职责{{ else }}My role{{ end }}{{ end }}</dt><dd>{{ index $meta "role" }}</dd></div>
-    <div><dt>{{ with index $meta "outputs_label" }}{{ . }}{{ else }}{{ if $isZh }}系统交付{{ else }}System delivery{{ end }}{{ end }}</dt><dd>{{ index $meta "outputs" }}</dd></div>
+    <div><dt>{{ if $isZh }}项目周期{{ else }}Timeline{{ end }}</dt><dd>{{ index $meta "period" }}</dd></div>
+    <div><dt>{{ if $isZh }}落地状态{{ else }}Status{{ end }}</dt><dd>{{ index $meta "status" }}</dd></div>
+    <div><dt>{{ with index $meta "focus_label" }}{{ . }}{{ else }}{{ if $isZh }}核心技术主导{{ else }}Technical Leadership{{ end }}{{ end }}</dt><dd>{{ index $meta "role" }}</dd></div>
+    <div><dt>{{ with index $meta "outputs_label" }}{{ . }}{{ else }}{{ if $isZh }}核心成果与验证{{ else }}Key Deliverables &amp; Verification{{ end }}{{ end }}</dt><dd>{{ index $meta "outputs" }}</dd></div>
   </dl>
 </aside>

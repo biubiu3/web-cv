@@ -1,9 +1,9 @@
 {{- $zh := eq .Page.Lang "zh" -}}
 <section class="project-system-map lsv-system-map" aria-labelledby="lsv-map-title">
   <header>
-    <span>{{ if $zh }}系统架构{{ else }}System architecture{{ end }}</span>
-    <h3 id="lsv-map-title">{{ if $zh }}传感器 → 状态估计 → 运动目标 → 底盘执行{{ else }}Sensors → state estimates → motion goals → chassis{{ end }}</h3>
-    <p>{{ if $zh }}车载 ROS 模块连接环境观测与车辆运动，CAN 接口传递指令与状态。{{ else }}Onboard ROS modules connect observations to vehicle motion; the CAN interface carries commands and state.{{ end }}</p>
+    <span>{{ if $zh }}全栈自动驾驶系统架构{{ else }}Full-Stack Autonomous Driving Architecture{{ end }}</span>
+    <h3 id="lsv-map-title">{{ if $zh }}多传感器融合 → 实时状态估计 → 决策规划 → 线控底盘执行{{ else }}Multi-Sensor Fusion → State Estimation → Planning → Drive-by-Wire Actuation{{ end }}</h3>
+    <p>{{ if $zh }}车载全栈 ROS 系统打通环境感知、实时建图定位与高精度轨迹跟踪，线控底盘经由 CAN 毫秒级闭环执行。{{ else }}Full-stack onboard ROS autonomy connects perception, SLAM, and planning; the drive-by-wire chassis executes closed-loop control over CAN.{{ end }}</p>
   </header>
   <div class="project-system-map__flow">
     <div class="project-system-map__group">

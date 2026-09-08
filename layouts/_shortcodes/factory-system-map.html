@@ -1,9 +1,9 @@
 {{- $zh := eq .Page.Lang "zh" -}}
 <section class="project-system-map factory-system-map" aria-labelledby="factory-map-title">
   <header>
-    <span>{{ if $zh }}系统架构{{ else }}System architecture{{ end }}</span>
-    <h3 id="factory-map-title">{{ if $zh }}识别目标 → 工位对齐 → 双臂搬运 → 状态更新{{ else }}Recognize → align → handle → update{{ end }}</h3>
-    <p>{{ if $zh }}导航建立操作位置，视觉提供目标状态，双臂共同完成料箱转运。{{ else }}Navigation establishes the working position; vision supplies target states; both arms handle the tote.{{ end }}</p>
+    <span>{{ if $zh }}系统与算法架构{{ else }}System &amp; Algorithmic Architecture{{ end }}</span>
+    <h3 id="factory-map-title">{{ if $zh }}目标识别 → 工位对齐 → 双臂搬运 → 状态闭环{{ else }}Target Recognition → Station Alignment → Dual-Arm Handling → Closed Loop{{ end }}</h3>
+    <p>{{ if $zh }}高精导航精准定位工位，3D 视觉实时解算料箱位姿，双臂协同自适应抓取与高稳定性转运。{{ else }}High-precision navigation aligns with workstations; 3D vision resolves 6D tote poses; coordinated dual arms execute adaptive grasp and stable transport.{{ end }}</p>
   </header>
   <div class="project-system-map__flow">
     <div class="project-system-map__group">

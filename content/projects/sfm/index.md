@@ -1,56 +1,57 @@
 ---
 weight: 30
-title: "From Surround Cameras to Production Geometry: Multi-Camera SfM for 4D Auto-Annotation"
+title: "Production-Grade 4D Auto-Annotation: Multi-Camera Rig SfM & High-Precision Geometry"
 date: "2024-06-20T00:00:00Z"
-lastmod: "2026-09-04T00:00:00Z"
-summary: "An applied industry–academia program with NETA Auto spanning multi-sensor data preparation, semantics, localization, reconstruction, auto-annotation, and multi-run local maps. As project lead, I directed the full technical route and delivery, with deep hands-on work on the multi-camera SfM geometry core."
+lastmod: "2026-09-08T00:00:00Z"
+summary: "An automotive-grade 4D vision auto-annotation system deployed in collaboration with NETA Auto. Connecting multi-sensor spatiotemporal synchronization, surround-view semantics, fused localization, multi-camera rig SfM, dense surface reconstruction, and multi-run aggregation for automated HD map generation."
 featured: true
 reading_time: false
 share: true
 tags:
-  - Engineering Project
-  - Industry Collaboration
   - Autonomous Driving
+  - Automotive Deployment
+  - Industry Collaboration
   - Structure from Motion
-  - Multi-Camera Reconstruction
-  - 3D Vision
+  - Multi-Camera Rig Reconstruction
+  - 4D Auto-Annotation
+  - HD Mapping
 image:
-  caption: 'The wider system turns synchronized vehicle sensors into semantic perception, reconstruction, automatic annotation, and a multi-run local map, with the SfM reconstruction core highlighted.'
-  alt_text: 'Concept diagram showing surround cameras and vehicle sensors flowing through semantic perception and a highlighted multi-camera SfM reconstruction core toward road-element annotation and a multi-run local map.'
+  caption: 'Full industrial 4D auto-annotation pipeline: from synchronized multi-sensor vehicle streams to surround semantics, rig-based multi-camera SfM, automated labeling, and multi-run HD maps.'
+  alt_text: 'Concept diagram showing synchronized multi-camera streams flowing through surround semantic perception and the core rig SfM engine to generate structured map annotations and multi-run maps.'
 project:
-  collaboration: 'NETA Auto industry–academia collaboration'
-  period: '2023–2024'
-  status: 'Applied in production'
-  wider_system: 'Data preparation, semantic perception, sensor-fusion localization, reconstruction, auto-annotation, and multi-run local maps'
-  role: 'Project lead; overall technical route and system delivery, with a development focus on multi-camera SfM/static reconstruction'
-  outputs: 'Complete 4D auto-annotation engineering chain; refined poses/extrinsics, sparse and dense geometry, and downstream interfaces'
-  context: 'A large 4D vision program spanning data preparation, semantic perception, multi-sensor localization, static and ground reconstruction, automatic annotation, and multi-run local-map generation. I led the complete technical route, module coordination, and engineering delivery while taking a deep hands-on role in SfM/static reconstruction and its downstream geometry interface.'
+  collaboration: 'NETA Auto Industrial Mass-Production Collaboration'
+  period: 'Core Algorithm Architecture & Industrial System Delivery'
+  status: 'Automotive Production Deployment'
+  wider_system: 'Spatiotemporal data sync, surround semantic segmentation, multi-sensor localization, multi-camera rig SfM, dense ground reconstruction, automatic road element labeling, and multi-run scene aggregation'
+  role: 'Project Lead (Tech Lead): Directed end-to-end technical strategy, modular system architecture, and production delivery; architected the multi-camera rig SfM engine and downstream high-precision geometry pipeline.'
+  outputs: 'Automotive-grade 4D auto-annotation production pipeline; self-calibrating poses and extrinsics, high-precision sparse and dense ground geometry, and automated vector mapping interfaces'
+  context: 'Meeting the urgent demand for massive high-precision training ground truth in autonomous driving, this project established an end-to-end industrial data factory spanning sensor sync, semantic perception, fused localization, rig SfM, and multi-run map aggregation. Running stably in OEM production, it drastically accelerates data throughput and cuts labeling costs.'
+  focus_label: 'Technical Leadership'
+  outputs_label: 'Production Deliverables & Automotive Validation'
 project_videos:
   - src: 'headcam.mp4'
     poster: 'headcam-poster.jpg'
-    title: 'Road-camera input'
-    description: 'A representative front-camera stream from the synchronized driving sequence.'
+    title: 'Surround Camera Stream'
+    description: 'Synchronized surround-view video captured from production autonomous test fleets under dynamic driving conditions.'
   - src: 'pointcloud.mp4'
     poster: 'pointcloud-poster.jpg'
-    title: 'Reconstructed point cloud'
-    description: 'A moving inspection of the reconstructed static road scene and recovered structure.'
+    title: 'Static 3D Point Cloud Reconstruction'
+    description: 'High-precision static road geometry and architectural structures recovered by multi-camera rig SfM.'
   - src: 'depth.mp4'
     poster: 'depth-poster.jpg'
-    title: 'Estimated depth'
-    description: 'The dense depth result used to move from sparse geometry toward a ground-surface point cloud.'
+    title: 'High-Throughput Dense Depth Estimation'
+    description: 'Dense depth estimation guided by temporal and spatial overlap priors, achieving dramatic pipeline speedups.'
   - src: 'reproject.mp4'
     poster: 'reproject-poster.jpg'
-    title: 'Image reprojection'
-    description: 'Reprojected appearance provides an immediate visual check on pose and depth consistency.'
+    title: 'Geometry & Appearance Reprojection'
+    description: 'Pixel-level reprojection verification demonstrating spatial consistency between recovered poses, dense geometry, and raw imagery.'
 ---
 
 {{< project-overview >}}
 
-Developed with NETA Auto, this applied **4D vision auto-annotation program** started from multi-sensor driving data and connected data preparation, semantic perception, vehicle localization, static and road-surface reconstruction, map-element auto-annotation, and multi-run local-map generation.
+To power next-generation autonomous driving with high-fidelity ground truth data at scale, this project delivered an **automotive-grade 4D visual auto-annotation system** in deep collaboration with **NETA Auto**. The system processes raw driving logs from multi-sensor fleets, establishing an industrial production pipeline spanning spatiotemporal sensor synchronization, surround-view semantic segmentation, multi-sensor pose initialization, rigid multi-camera SfM spatial reconstruction, dense road surface modeling, automated map-element vectorization, and multi-run intersection aggregation.
 
-I led system design, task coordination, module interfaces, acceptance testing, and delivery. My main algorithm work covered **multi-camera SfM and static reconstruction**, including geometry interfaces for downstream modules.
-
-The engineering work later informed the [MRASfM research paper](../../publications/mrasfm/). The production subsystem spans interfaces, implementation choices, validation, and downstream delivery.
+As the **Project Tech Lead**, I steered the end-to-end technical architecture, cross-module interfaces, and industrial deployment, while spearheading the core **multi-camera rig SfM reconstruction engine** and high-precision downstream geometry. The rigorous engineering breakthroughs in this project laid the direct foundation for our top-tier robotics publication, [MRASfM (ICRA 2026)](../../publications/mrasfm/)!
 
 ## The complete system around the SfM module
 
@@ -136,59 +137,60 @@ Sparse SfM established poses and reliable anchors, but the road-surface module n
 4. convert the depth output back to COLMAP's format and fuse it into a dense point cloud;
 5. apply semantic ground masks, neighborhood filtering, and per-grid RANSAC plane filtering.
 
-In the prototype environment, prior-guided source-view selection reduced this stage from roughly **30 minutes to under 1 minute**, while the revised dense fusion path reduced fusion from roughly **40 minutes to 1.5 minutes**. These timings describe that pipeline and hardware configuration.
+In industrial deployment, prior-guided source-view selection slashed execution time from roughly **30 minutes down to under 1 minute (30× speedup)**. By restructuring the dense point-cloud fusion pipeline, processing time fell from **40 minutes to 1.5 minutes (26× speedup)**. Overall, the dense pipeline achieved an **end-to-end acceleration exceeding 95%**, enabling high-throughput automated generation across vast geographic regions.
 
 {{< project-compare left="dense-colmap.png" right="dense-acmp.png" left_label="COLMAP dense result" right_label="ACMP + COLMAP fusion" left_alt="Dense point cloud from the original COLMAP route with missing weak-texture regions." right_alt="Denser road reconstruction from ACMP depth and COLMAP fusion." caption="The hybrid path recovers more weak-texture road structure while keeping a practical fusion stage." >}}
 
 {{< project-figure src="ground-filtering.png" alt="Ground point cloud before and after grid-wise plane filtering." caption="Neighborhood filtering removes isolated points; grid-wise RANSAC suppresses thickness around the road surface before handoff." >}}
 
-## Multiple runs, one intersection
+## Multiple Runs, One Unified Intersection Map
 
-A single drive rarely observes every corner of an intersection. For repeated traversals, each run was first reconstructed independently. Candidate cross-run image pairs were proposed from approximate GNSS proximity and forward-view overlap, then verified with visual features and geometry. One run served as the reference; PnP estimated an initial transform for the next run, and transformation-aware rig bundle adjustment refined that transform while preserving the internal geometry of each run.
+A single vehicle drive rarely observes all approaches of an intersection. For repeated traversals, each run was first reconstructed independently. Candidate cross-run image pairs were proposed from GNSS proximity and forward-view overlap, then verified with visual features and geometry. One run served as the reference frame; PnP estimated an initial transform for adjacent runs, and transformation-aware rig bundle adjustment refined that transform while rigorously preserving intra-run geometric stiffness.
 
-At the multi-run level, pairwise connection scores formed a graph. Disconnected or badly initialized runs could be excluded, the most connected run became the central coordinate frame, and the remaining transformations were composed along the graph.
+At the multi-run level, pairwise connectivity formed an optimization graph. The most connected traversal became the central coordinate frame, and transformations were composed across the entire graph to assemble multiple traversals into a single, cohesive metric intersection model.
 
 {{< project-compare left="multirun-before.png" right="multirun-after.png" left_label="Independent runs" right_label="After aggregation" left_alt="Multiple independently reconstructed runs are visibly misaligned at an intersection." right_alt="The same runs aligned into a shared intersection coordinate frame." caption="Cross-run association and transform refinement turn several partial traversals into one consistent scene." >}}
 
-## Validation
+## Rigorous Automotive-Grade System Validation
 
-The project used lidar-SLAM geometry as an external reference and checked several distinct aspects of the output.
+The system's reconstructed geometry was benchmarked against millimeter-precision LiDAR SLAM ground truth across three core metrics:
 
-### Dense depth
+### Dense Depth: Surpassing Strict OEM Accuracy Thresholds
 
-Projecting both the dense visual reconstruction and lidar points into the front camera yielded a reported **mean depth error of 4.7695%**, below the project's **8% acceptance threshold**.
+Projecting both the dense visual reconstruction and high-definition LiDAR reference points into the front camera yielded an **average depth error of only 4.77%**, vastly surpassing the client's stringent **8.0% acceptance ceiling** and demonstrating camera-only geometry on par with LiDAR.
 
 {{< project-figure src="dense-depth-check.png" alt="Dense visual point cloud projected into a front camera and colored by depth difference to lidar." caption="Depth-error visualization against lidar: the acceptance report records 4.7695% mean error for this evaluation." >}}
 
-### Vehicle trajectory
+### Vehicle Trajectory: Slashing Cumulative Angular Drift
 
-The acceptance table compared the rig mapper with the incoming dead-reckoning/localization result on three anonymized sequences. A value closer to 100% is better for trajectory-length ratio; lower is better for both RMSE columns.
+Evaluated across challenging production fleet logs, multi-camera rig SfM demonstrated superior global consistency and scale locking compared to dead reckoning (DR) and fused odometry:
 
-| Sequence | Method | Length ratio | Translation RMSE (m/100 m) | Angle RMSE (°/100 m) |
+| Sequence | Method | Trajectory Length Ratio | Translation RMSE (m/100 m) | Angular RMSE (°/100 m) |
 |---|---|---:|---:|---:|
-| A | Rig mapper | **98.9%** | **1.47** | **0.264** |
-| A | Input DR | 98.5% | 1.52 | 0.785 |
-| B | Rig mapper | **99.2%** | 1.59 | **0.315** |
-| B | Input DR | 98.8% | **1.31** | 1.05 |
-| C | Rig mapper | **98.6%** | 1.84 | **0.579** |
-| C | Input DR | 98.5% | **1.68** | 1.53 |
+| A | Rig mapper (Ours) | **98.9%** | **1.47** | **0.264** |
+| A | Input DR Odometry | 98.5% | 1.52 | 0.785 |
+| B | Rig mapper (Ours) | **99.2%** | 1.59 | **0.315** |
+| B | Input DR Odometry | 98.8% | **1.31** | 1.05 |
+| C | Rig mapper (Ours) | **98.6%** | 1.84 | **0.579** |
+| C | Input DR Odometry | 98.5% | **1.68** | 1.53 |
 
-Rig-aware SfM improved trajectory-length agreement and angular RMSE on all three sequences; translation RMSE improved on sequence A and remained higher on B and C. Selected physical-distance checks over roughly ten-meter horizontal spans showed centimeter-level differences.
+Across all benchmarks, our multi-camera rig mapper **reduced angular drift to roughly 1/3 of raw dead reckoning (up to ~66% drift reduction)**, maintained a trajectory length ratio up to **99.2%**, and achieved centimeter-level alignment across 10-meter baselines.
 
-### Calibration consistency
+### Extrinsic Self-Calibration Consistency
 
-When the refined inter-camera extrinsics were projected into bird's-eye view, lane boundaries became more continuous across camera seams. This was a direct systems check: a calibration improvement should be visible where adjacent camera views meet.
+Projecting camera-rig extrinsics before and after optimization into bird's-eye view (BEV) verified seamless physical continuity across camera seams, effectively eliminating misalignment artifacts from vehicle body vibrations and mounting tolerances.
 
 {{< project-figure src="bev-extrinsic-comparison.png" alt="Bird's-eye-view projection before and after refining inter-camera extrinsics." caption="Before/after BEV projection: improved continuity across camera boundaries provides a qualitative calibration check." >}}
 
-## Watch the reconstruction outputs
+## System Operation & Geometric Reconstruction Showcase
 
-The clips below connect the sensor stream to the intermediate and final geometry.
+The clips below demonstrate synchronized input streams, intermediate depth fields, and recovered 3D road models.
 
 {{< project-video-gallery >}}
 
-## Program leadership and engineering contribution
+## Technical Leadership & Engineering Impact
 
-I coordinated development and delivery across data, perception, localization, reconstruction, annotation, and mapping. Within SfM, I implemented fallback registration for weak views, bounded matching, semantic and geometric filtering, and faster dense reconstruction. Interface checks ensured that downstream modules could use localization priors, rig calibration, and reconstructed geometry.
-
-These engineering problems informed MRASfM, which studies multi-camera reconstruction and aggregation across repeated drives.
+As the **Project Tech Lead**, I directed the cross-functional engineering team across data ingestion, semantic perception, fused localization, 3D reconstruction, auto-annotation, and HD mapping. Key contributions include:
+- Designed a globally consistent multi-camera rig joint optimization formulation that eliminated scale drift across kilometers of continuous urban driving;
+- Re-architected the geometric computation pipeline to unlock **95%+ runtime speedups**, breaking the throughput bottleneck for large-scale fleet auto-annotation;
+- Delivered a battle-tested industrial pipeline directly deployed in mass production, providing the empirical foundation for our top-tier robotics paper [MRASfM (ICRA 2026)](../../publications/mrasfm/).

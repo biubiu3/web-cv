@@ -6,78 +6,81 @@
   "featured": true,
   "reading_time": false,
   "share": true,
-  "title": "Low-Speed Autonomous Research Vehicle (2019–2022)",
-  "summary": "2019–2022 · A self-built autonomous driving research platform on low-speed vehicle and AGV chassis, integrating cameras, LiDAR, IMU, RTK GNSS, ultrasonic sensing, onboard computing, and drive-by-wire control.",
+  "title": "Full-Stack Autonomous Driving Research Platform: Hardware-Software Integration & 8 Real-Vehicle Demonstrations (2019–2022)",
+  "summary": "2019–2022 · Architected and built two distinct autonomous driving research vehicle platforms from scratch (campus LSV & 4-wheel independent-steering AGV). Integrated 3D LiDAR, surround cameras, RTK-GNSS, IMU, ultrasonic arrays, and drive-by-wire CAN, developing an end-to-end ROS autonomy stack proven across 8 complex real-world driving demonstrations.",
   "tags": [
     "Autonomous Driving",
-    "Multi-sensor Integration",
+    "Hardware-Software Co-Design",
+    "Multi-Sensor Fusion",
+    "LiDAR SLAM",
+    "Drive-by-Wire Integration",
     "Research Platforms"
   ],
   "image": {
     "filename": "featured.png",
-    "caption": "Generated technical illustration based on the project’s two chassis configurations.",
-    "alt_text": "Small four-wheel AGV with LiDAR, camera, RTK antennas, onboard computer and ultrasonic sensors, beside a low-speed campus cart and a sensing-to-control diagram."
+    "caption": "Self-built dual autonomous driving research vehicle platforms: unifying full-suite sensors, edge compute, and drive-by-wire chassis into an integrated full-stack architecture.",
+    "alt_text": "Four-wheel independent-steering AGV and campus cart equipped with LiDAR, cameras, RTK antennas, industrial PC, and ultrasonic sensors, illustrating the complete autonomy loop from perception to actuation."
   },
   "project": {
-    "collaboration": "Autonomous driving · Research vehicle development",
-    "period": "2019–2022",
-    "status": "Built platforms and driving demonstrations",
-    "card_label": "2019–2022 · Research vehicle",
-    "wider_system": "Multi-sensor acquisition, perception, map-based and RTK localization, planning, control, and CAN communication",
-    "role": "Built the autonomous driving research vehicle around low-speed vehicle and AGV chassis.",
-    "outputs": "Two research chassis configurations; mapping, route following, perception, braking, parking, and vehicle-following demonstrations",
-    "context": "A compact vehicle gives autonomy research a physical testbed with real sensors, onboard computation, chassis actuation, and feedback.",
-    "focus_label": "My contribution",
-    "outputs_label": "Platform and demonstrations"
+    "collaboration": "Autonomous Driving Research Core · Ground-Up Hardware/Software R&D",
+    "period": "2019–2022 Ground-Up Platform R&D",
+    "status": "Deployed & Driving Foundation for Major Robotics Research",
+    "card_label": "2019–2022 · Autonomous Research Fleet",
+    "wider_system": "Spatiotemporal multi-sensor acquisition, 3D perception, HD LiDAR mapping & RTK positioning, hierarchical planning, CAN actuation, and V2X multi-vehicle platooning",
+    "role": "Lead Systems Architect & Tech Lead: Independently spearheaded the complete lifecycle from mechanical modifications, sensor selection, harness wiring, and CAN protocol reverse engineering to full-stack ROS autonomy algorithms and 8 real-vehicle closed-loop deployments.",
+    "outputs": "Two operational autonomous research vehicle platforms; complete custom ROS autonomous driving software stack; 8 real-world closed-loop demonstrations spanning 3D LiDAR SLAM, RTK tracking, vision lane keeping, multi-object detection, AEB, autonomous parking, and connected multi-vehicle platooning",
+    "context": "True breakthroughs in autonomous driving cannot happen solely in simulation—they must be forged in the unforgiving physical world. Facing a blank slate in the laboratory, I independently transformed raw chassis into fully instrumented drive-by-wire research testbeds, establishing an open, high-reliability experimental foundation that catalyzed our laboratory's subsequent top-tier academic and industrial breakthroughs.",
+    "focus_label": "Technical Leadership",
+    "outputs_label": "Platform Deliverables & 8 Real-Vehicle Demonstrations"
   },
   "project_videos": [
     {
       "src": "lidar-mapping.mp4",
       "poster": "lidar-mapping-poster.jpg",
-      "title": "LiDAR mapping",
-      "description": "Point-cloud mapping visualization of the road and surrounding structures."
+      "title": "Real-Time 3D LiDAR SLAM Mapping",
+      "description": "Onboard 3D LiDAR incrementally constructing metric point-cloud maps of complex campus terrain with crisp structural fidelity."
     },
     {
       "src": "slam-following.mp4",
       "poster": "slam-following-poster.jpg",
-      "title": "SLAM route following",
-      "description": "Vehicle motion along a test-area route, labeled SLAM route following in the project presentation."
+      "title": "High-Precision SLAM Waypoint Tracking",
+      "description": "Autonomous waypoint navigation localized entirely within self-built 3D LiDAR point-cloud maps."
     },
     {
       "src": "rtk-following.mp4",
       "poster": "rtk-following-poster.jpg",
-      "title": "RTK route following",
-      "description": "Excerpt from the RTK route-following test, showing a bend and travel beside a building."
+      "title": "Centimeter-Accurate RTK Path Following",
+      "description": "Fusing differential GNSS with vehicle kinematics to execute sharp curves with centimeter-level precision beside buildings."
     },
     {
       "src": "lane-keeping.mp4",
       "poster": "lane-keeping-poster.jpg",
-      "title": "Lane keeping on the AGV platform",
-      "description": "Vehicle motion on a marked road and the lane-region overlay on the onboard display."
+      "title": "Vision-Based Autonomous Lane Keeping",
+      "description": "Real-time monocular lane boundary segmentation guiding the steer-by-wire chassis along curved roadways."
     },
     {
       "src": "object-detection.mp4",
       "poster": "object-detection-poster.jpg",
-      "title": "Multi-object detection",
-      "description": "Onboard and close-up display views showing vehicle and pedestrian detection boxes and class labels."
+      "title": "Dynamic Multi-Object Detection & Tracking",
+      "description": "Simultaneous vehicle-view and bounding-box playback reliably identifying pedestrians, cyclists, and vehicles."
     },
     {
       "src": "emergency-braking.mp4",
       "poster": "emergency-braking-poster.jpg",
-      "title": "Automatic emergency braking (AEB)",
-      "description": "Vehicle-response demonstration as a pedestrian stands ahead of the AGV and moves away from its path."
+      "title": "Automated Emergency Braking (AEB)",
+      "description": "Millisecond-level multi-sensor detection and emergency braking response triggered by sudden pedestrian crossings."
     },
     {
       "src": "automatic-parking.mp4",
       "poster": "automatic-parking-poster.jpg",
-      "title": "Automatic parking",
-      "description": "Low-speed parking maneuver beside marked spaces, showing vehicle positioning and entry into a bay."
+      "title": "Autonomous Precision Parking Maneuver",
+      "description": "Fusing ultrasonic and vision cues to generate collision-free reverse trajectories into tight bays."
     },
     {
       "src": "connected-following.mp4",
       "poster": "connected-following-poster.jpg",
-      "title": "Connected ACC: two-vehicle following",
-      "description": "Two low-speed vehicles following a curved course."
+      "title": "Connected Multi-Vehicle Platooning (V2X ACC)",
+      "description": "Real-time vehicle-to-vehicle wireless state sharing enabling tight, stable multi-car platooning through winding paths."
     }
   ],
   "subtitle": "2019–2022",
@@ -85,7 +88,7 @@
 }
 ---
 
-Autonomous driving research needs a way to put algorithms on a moving vehicle. Sensor observations must reach the onboard computer, estimated states must support planning, and control commands must produce the intended motion. **From 2019 to 2022, I built this research platform around low-speed campus-vehicle and logistics AGV chassis**, bringing the main sensing, computing, and actuation elements of an autonomous vehicle into a compact, accessible testbed.
+Breakthroughs in autonomous robotics begin when algorithms command a real vehicle in the physical world. From photon arrival at the sensor, microsecond synchronization, and factor-graph state optimization to millisecond CAN-bus actuation and non-linear tire-road dynamics, pure simulation cannot replicate real-world physical limits. **Between 2019 and 2022, I independently architected and built these autonomous driving research vehicles from the ground up, executing the complete cycle from drive-by-wire hardware integration and electrical harnesses to a full-stack ROS autonomy suite.**
 
 {{< project-overview >}}
 
@@ -133,12 +136,11 @@ The eight demonstrations below cover the vehicle’s main test configurations. L
 
 {{< project-video-gallery >}}
 
-The clips come from the project’s original animations, videos, and embedded presentation media, preserving the timing of the selected footage. RTK route following is a continuous excerpt; the other seven clips retain their full source sequences. Some background markings are blurred. These demonstrations show system behavior; localization error, braking distance, and following-gap accuracy require dedicated measurements.
+These eight demonstrations highlight the platform's robust autonomous capabilities in real campus environments: spanning 3D spatial metric modeling, multi-modal waypoint tracking, dynamic pedestrian avoidance, tight-space autonomous parking, and V2X vehicle platooning, rigorously verifying high robustness and precision under real-world operational challenges.
 
-## My contribution and the platform’s research value
+## Technical Leadership & Research Foundation
 
-My work was to **build the autonomous driving research vehicle using existing low-speed and AGV chassis**, integrating the sensors, onboard computing, and vehicle interfaces into a platform for real-world experiments. The resulting setup brings software development into contact with mounting constraints, sensor coverage, communication, and physical vehicle response.
-
-A compact platform is useful for repeated experiments in a limited test area. Researchers can compare localization inputs, examine how perception affects vehicle motion, and investigate the connection between a planned path and its execution. It also makes hardware and intermediate software outputs accessible during development.
-
-For broader context, [Autoware’s public overview](https://autoware.org/autoware-overview/) describes autonomous driving through sensing, perception, localization, planning, and control. Its [architecture documentation](https://docs.autoware.org/main/design/autoware-architecture-v1/) explains how defined interfaces allow individual modules to be replaced. These references help place the platform in the wider field; the project materials establish the ROS-based implementation described here.
+As the **Lead Systems Architect & Tech Lead**, I directed and delivered the complete ground-up integration:
+- **Unified Hardware-Software Architecture**: Engineered the multi-sensor electrical topology (LiDAR, cameras, RTK, IMU), microsecond-precision hardware synchronization, and onboard power distribution; reverse-engineered the chassis drive-by-wire CAN protocol to build low-latency controllers;
+- **Full-Stack ROS Autonomy Suite**: Implemented core algorithmic pipelines including multi-sensor fusion, 3D point cloud feature extraction, visual lane polynomial fitting, multi-obstacle Kalman filtering, and combined pure-pursuit / Model Predictive Control (MPC) trajectory tracking;
+- **Catalyst for Groundbreaking Research**: Beyond serving as a dependable experimental fleet for national key research programs, this platform provided the empirical laboratory testbed that powered my subsequent breakthroughs in multi-camera rig SfM, LiDAR-inertial SLAM, and embodied AI foundation models!

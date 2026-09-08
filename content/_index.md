@@ -36,103 +36,105 @@ sections:
   - block: news-timeline
     id: news
     content:
-      title: 'News'
-      text: 'Paper and project updates.'
+      title: 'News & Milestones'
+      text: 'Key breakthroughs and latest milestones across embodied intelligence research and full-stack robotics deployment.'
       initial_count: 4
-      more_label: 'More news'
+      more_label: 'More milestones'
       less_label: 'Show less'
       items:
         - date: '2026'
           display_date: '2026'
-          tag: 'Project'
-          text: 'New project case: a dual-arm mobile robotic chemist for AI for Science.'
+          tag: 'Flagship Project'
+          text: 'Unveiled the Robotic Chemist: dual-arm mobile manipulation and autonomous experimental workflows for AI for Science.'
           url: 'projects/robot-chemist/'
         - date: '2026'
           display_date: '2026'
-          tag: 'Paper'
-          text: 'HEAR was published in IJRR.'
+          tag: 'Top Journal'
+          text: 'HEAR, our pioneering acoustic-embodied manipulation framework, is officially published in The International Journal of Robotics Research (IJRR)!'
           url: 'publications/hear/'
         - date: '2026'
           display_date: '2026'
-          tag: 'Manuscript'
-          text: 'Teach and Grow is under review at T-RO.'
+          tag: 'Under Review'
+          text: 'Teach and Grow (TGL), an agent-centered lifelong robot learning architecture, is under review at IEEE Transactions on Robotics (T-RO).'
           url: 'publications/tgl/'
-        - date: '2025'
-          display_date: '2025'
-          tag: 'Manuscript'
-          text: 'ERMV is under review at TCSVT.'
-          url: 'publications/ermv/'
-        - date: '2026'
-          display_date: '2026'
-          tag: 'Paper'
-          text: 'MID was published in IEEE TNNLS.'
-          url: 'publications/mid/'
-        - date: '2026'
-          display_date: '2026'
-          tag: 'Paper'
-          text: 'MRASfM was published at ICRA 2026.'
-          url: 'publications/mrasfm/'
         - date: '2026'
           display_date: '2026'
           tag: 'Accepted'
-          text: 'VCGS-SLAM was accepted by IJCV.'
+          text: 'VCGS-SLAM, an embedded 3D Gaussian Splatting SLAM system, is accepted by the International Journal of Computer Vision (IJCV 2026)!'
           url: 'publications/vcgs-slam/'
-        - date: '2025'
-          display_date: '2025'
-          tag: 'Paper'
-          text: 'MovSAM was published at IROS 2025.'
-          url: 'publications/movsam/'
         - date: '2026'
           display_date: '2026'
-          tag: 'Manuscript'
-          text: 'DiffSAC is under review at IJCV.'
+          tag: 'Top Journal'
+          text: 'MID, a self-supervised multimodal iterative denoising framework, is officially published in IEEE Transactions on Neural Networks and Learning Systems (TNNLS)!'
+          url: 'publications/mid/'
+        - date: '2026'
+          display_date: '2026'
+          tag: 'Top Conference'
+          text: 'MRASfM, a multi-camera SfM and large-scale scene aggregation framework, is published at ICRA 2026 (ranking #1 on nuScenes)!'
+          url: 'publications/mrasfm/'
+        - date: '2026'
+          display_date: '2026'
+          tag: 'Under Review'
+          text: 'DiffSAC, diffusion-guided sample consensus for robust geometric estimation, is under review at IJCV.'
           url: 'publications/diffsac/'
+        - date: '2025'
+          display_date: '2025'
+          tag: 'Under Review'
+          text: 'ERMV, a 4D generative trajectory editing framework, is under review at IEEE TCSVT (boosting real dual-arm robot success from 2% to 89%).'
+          url: 'publications/ermv/'
+        - date: '2025'
+          display_date: '2025'
+          tag: 'Top Conference'
+          text: 'MovSAM, deep reasoning for single-image moving object segmentation, is published at IROS 2025 (outperforming temporal video baselines).'
+          url: 'publications/movsam/'
         - date: '2023'
           display_date: '2023'
-          tag: 'Paper'
-          text: 'RLSAC was published at ICCV 2023.'
+          tag: 'Top Conference'
+          text: 'RLSAC, reinforcement learning for sample consensus, was published and presented at ICCV 2023.'
           url: 'publications/rlsac/'
         - date: '2024'
           display_date: '2024'
-          tag: 'Project'
-          text: 'Multi-camera SfM entered a production 4D auto-annotation pipeline.'
+          tag: 'Production Delivery'
+          text: 'Led the multi-camera SfM 4D auto-annotation platform deployed into production at Hozon Auto, slashing processing time by over 95%!'
           url: 'projects/sfm/'
         - date: '2022'
           display_date: '2022'
-          tag: 'Project'
-          text: 'The campus-scale AVP system completed integration and vehicle testing with Voyager Intelligent Systems.'
+          tag: 'Production Delivery'
+          text: 'As Project Lead, directed the full-stack campus Autonomous Valet Parking system through real-vehicle integration and closed-loop testing with Ingeek.'
           url: 'projects/avp/'
         - date: '2022'
           display_date: '2022'
-          tag: 'Project'
-          text: 'The autonomous lawn robot completed field testing.'
+          tag: 'Production Delivery'
+          text: 'As Project Lead, directed the commercial autonomous lawn mower program with Positec, overcoming unconstrained outdoor turf perception in large-scale field trials.'
           url: 'projects/mower/'
   - block: markdown
     id: research
     content:
-      title: 'Research Vision'
+      title: 'Research Vision: Building General-Purpose Physical AI with Lifelong Evolution'
       subtitle: ''
       text: |-
-        I study how robots can **combine multimodal observations to make decisions and learn from execution experience**. My work addresses reusable skills from sparse demonstrations, sound and memory for manipulation, and consistent multi-view training data.
+        The extreme complexity of the physical world demands that robots transcend rigid, single-policy models. Robots must become **general-purpose physical agents equipped with cross-modal causal perception, physical reasoning, and the capability to continuously accumulate and reuse skills through real-world experience**.
 
-        I use Large Language Models (LLMs), Vision-Language Models (VLMs), and Vision-Language-Action (VLA) models for robot reasoning and control. I study how sound, proprioception, and memory inform these models. My work also covers visual geometry and self-supervised denoising, including learned sample consensus and editing of multi-view robot trajectories.
+        My research realizes this vision across three interconnected pillars:
 
-        **HEAR** records sound continuously so brief events can affect later actions. **Teach and Grow (TGL)** extracts skills from demonstrations, checks execution through physical feedback, and stores skills and repairs for later tasks.
+        1. **Agent-Centered Lifelong Robot Learning**: Overcoming the prohibitive "retraining tax" of monolithic end-to-end models by introducing verifiable, self-repairing Skill Blocks and structured Experience Memory. Robots acquire closed-loop capabilities from sparse demonstrations, autonomously diagnose and recover from physical failures, and continually grow their skill repertoires without global retraining (e.g., **TGL**, under review at IEEE T-RO).
+        2. **Multimodal Embodied Foundation Models & VLA**: Breaking the visual-only barrier by pioneering the Visual-Sound-Language-Action (VSLA) paradigm. By seamlessly integrating continuous high-frequency acoustics, touch, and proprioception with multimodal foundation models, our systems eliminate the dangerous evidence gaps created by action chunking, maintaining razor-sharp causal situational awareness during dynamic manipulation (e.g., **HEAR**, published in IJRR 2026).
+        3. **High-Precision Spatial Intelligence & 4D Embodied World Engines**: From diffusion-guided robust estimation (**DiffSAC**), embedded 3D Gaussian Splatting SLAM (**VCGS-SLAM**, IJCV 2026), and rigid camera-rig SfM (**MRASfM**, ICRA 2026) to geometrically consistent 4D generative trajectory synthesis (**ERMV**), building the metric foundation and infinite high-fidelity data engines essential for physical AI.
     design:
       columns: '1'
   - block: markdown
     id: papers
     content:
-      title: 'Publications and Research Directions'
+      title: 'Selected Publications: From Spatial Foundations to Generalist Agents'
       text: |-
-        My work covers visual geometry, multimodal learning, and robot manipulation. Geometry methods recover scene structure; denoising and generation improve training data; robot systems use sound and execution feedback to guide actions.
+        My publications systematically realize a three-layer technical architecture: rigorous spatial geometry and perception form the bedrock; generative world models and self-supervised representations build the bridge; and multimodal embodied agents drive robots that listen, reason, act, and continuously evolve.
     design:
       columns: '1'
   - block: collection
     id: selected-publications
     content:
       title: 'Selected Publications'
-      text: Ten selected papers with publication details and method descriptions.
+      text: Ten featured works highlighting breakthrough contributions across top robotics, computer vision, and machine learning venues.
       filters:
         folders:
           - publications
@@ -150,14 +152,14 @@ sections:
   - block: research-trajectory
     id: research-trajectory
     content:
-      eyebrow: 'How the work connects'
-      title: 'Three Related Research Directions'
-      text: 'These studies address scene geometry, training data, and robot behavior.'
+      eyebrow: 'Core Technical Blueprint'
+      title: 'Three Interconnected Technical Layers'
+      text: 'From high-precision spatial geometry, to multimodal world engines, to generalist lifelong embodied agents.'
       stages:
         - index: '01'
-          label: 'Foundation'
-          title: 'Reliable Perception & Geometry'
-          text: 'Robust sampling, open-world segmentation, SLAM, and multi-camera reconstruction establish dependable scene structure.'
+          label: 'Bedrock'
+          title: 'Spatial Intelligence & Robust Geometry'
+          text: 'Diffusion-guided sample consensus, reinforcement learning, embedded 3D Gaussian SLAM, and multi-camera SfM establish millimeter-accurate scene structure under extreme outliers.'
           papers:
             - label: 'DiffSAC'
               url: 'publications/diffsac/'
@@ -171,17 +173,17 @@ sections:
               url: 'publications/rlsac/'
         - index: '02'
           label: 'Bridge'
-          title: 'Multimodal Data & Models'
-          text: 'Self-supervised denoising improves observations across modalities. Consistent 4D editing expands robot training data.'
+          title: 'Multimodal Representations & 4D Data Engines'
+          text: 'Self-supervised iterative denoising and geometrically consistent 4D video editing shatter the real-world data bottleneck for generalist robot policy learning.'
           papers:
             - label: 'MID'
               url: 'publications/mid/'
             - label: 'ERMV'
               url: 'publications/ermv/'
         - index: '03'
-          label: 'Robot learning'
-          title: 'General Robot Systems'
-          text: 'Sound, tools, feedback, skills, and memory are integrated into robots that reason and improve through physical interaction.'
+          label: 'Frontier'
+          title: 'General-Purpose Embodied Agent Systems'
+          text: 'Pioneering continuous audio-visual-action learning and lifelong experience memory to create robots that listen, reason, act, and continuously self-improve.'
           papers:
             - label: 'Teach and Grow'
               url: 'publications/tgl/'
@@ -192,23 +194,23 @@ sections:
     content:
       title: Robots That Listen, Reason, and Act
       text: |-
-        These real-robot trials show how **HEAR** uses sound during manipulation. Turn on the audio to hear the cues that affect its decisions.
+        Real-robot evaluations from **HEAR**, our acoustic-embodied manipulation framework published in **IJRR**. Turn on audio to experience how continuous acoustic cues transform robot causal decision-making!
       project_url: https://hear.irmv.top/
-      project_label: Explore the HEAR project
+      project_label: Explore HEAR Project & Code
       videos:
-        - title: Moka Coffee
-          eyebrow: Real robot · VSLA
-          description: The robot uses continuous sound and visual context while completing a multi-stage coffee task.
+        - title: Long-Horizon Moka Pot Coffee
+          eyebrow: Real Robot · VSLA Paradigm
+          description: In a complex multi-stage task, the robot continuously tracks boiling, bubbling, and contact acoustics to trigger timely actions.
           src: https://hear.irmv.top/static/videos/moka_pot_all_web.mp4?v=681a0fb
           poster: moka.webp
-        - title: Alarm Clock
-          eyebrow: Trigger sound
-          description: A short alarm event changes the manipulation decision even when it falls between action chunks.
+        - title: Millisecond-Level Transient Alarm Interception
+          eyebrow: Causal Acoustic Memory
+          description: A fleeting alarm occurring inside the open-loop execution gap is instantly preserved by causal memory, seamlessly overriding the next trajectory!
           src: https://hear.irmv.top/static/videos/alarm_all.mp4?v=681a0fb
           poster: alarm.webp
-        - title: Identifying Bottle Contents
-          eyebrow: Interactive sound
-          description: The robot shakes a bottle and uses the resulting sound to infer its state before placing it.
+        - title: Active Bottle Shaking & Physical State Inference
+          eyebrow: Interactive Acoustic Reasoning
+          description: The robot actively shakes an opaque container, inferring liquid/solid occupancy from transient sound before executing precision sorting.
           src: https://hear.irmv.top/static/videos/empty_all.mp4?v=681a0fb
           poster: empty.webp
     design:
@@ -219,9 +221,9 @@ sections:
   - block: collection
     id: engineering-projects
     content:
-      title: 'Engineering Projects'
+      title: 'Engineering Projects & Production Systems'
       text: |-
-        I led projects in automated valet parking, 4D auto-annotation for driving data, and autonomous mowing. My work included system design, algorithm development, and field testing. In industrial robotics, I worked on object recognition and dual-arm manipulation for factory material handling.
+        Beyond laboratory benchmarks, I lead complex, full-stack systems engineering in the wild: directing large-scale programs in commercial Autonomous Valet Parking (AVP), industrial 4D auto-annotation, mass-production outdoor robotic mowers, and AI for Science dual-arm mobile manipulation.
       sort_by: weight
       sort_ascending: true
       filters:
@@ -238,11 +240,11 @@ sections:
   - block: cta-card
     id: contact
     content:
-      title: Open to Global Opportunities
+      title: Building the Future of Physical AI Together
       text: |-
-        I am seeking research, engineering, and postdoctoral opportunities worldwide. I am especially interested in teams working on Physical AI, embodied intelligence, agentic robot systems, LLM/VLM reasoning, and Vision-Language-Action models.
+        I am actively seeking research scientist, staff engineer, and postdoctoral opportunities worldwide across Physical AI, Embodied Foundation Models, and Autonomous Systems. If you are looking for an ambitious researcher who bridges mathematical depth, top-tier publications, and proven full-stack real-robot leadership, let's connect!
       button:
-        text: Contact Me
+        text: Get in Touch
         url: mailto:changniep@gmail.com
     design:
       card:

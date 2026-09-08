@@ -27,12 +27,12 @@
     <h2 id="project-title-{{ $item.File.UniqueID }}"><a href="{{ $link }}">{{ $item.Title }}</a></h2>
     <p class="project-feature-summary">{{ $item.Params.summary | default $item.Summary | plainify }}</p>
     <dl class="project-feature-facts">
-      <div><dt>{{ if $isZh }}完整系统{{ else }}Wider system{{ end }}</dt><dd>{{ index $meta "wider_system" }}</dd></div>
-      <div><dt>{{ with index $meta "focus_label" }}{{ . }}{{ else }}{{ if $isZh }}项目主导与重点{{ else }}Leadership &amp; focus{{ end }}{{ end }}</dt><dd>{{ index $meta "role" }}</dd></div>
-      <div><dt>{{ with index $meta "outputs_label" }}{{ . }}{{ else }}{{ if $isZh }}系统交付{{ else }}System delivery{{ end }}{{ end }}</dt><dd>{{ index $meta "outputs" }}</dd></div>
+      <div><dt>{{ if $isZh }}全栈系统架构{{ else }}Full-Stack Architecture{{ end }}</dt><dd>{{ index $meta "wider_system" }}</dd></div>
+      <div><dt>{{ with index $meta "focus_label" }}{{ . }}{{ else }}{{ if $isZh }}核心技术主导{{ else }}Technical Leadership{{ end }}{{ end }}</dt><dd>{{ index $meta "role" }}</dd></div>
+      <div><dt>{{ with index $meta "outputs_label" }}{{ . }}{{ else }}{{ if $isZh }}核心成果与验证{{ else }}Key Deliverables &amp; Verification{{ end }}{{ end }}</dt><dd>{{ index $meta "outputs" }}</dd></div>
     </dl>
     <a class="project-feature-link" href="{{ $link }}">
-      {{ if $isZh }}查看完整工程案例{{ else }}Read the engineering case{{ end }} <span aria-hidden="true">→</span>
+      {{ if $isZh }}深入了解系统与技术架构{{ else }}Explore Full System &amp; Technical Architecture{{ end }} <span aria-hidden="true">→</span>
     </a>
   </div>
 </article>
