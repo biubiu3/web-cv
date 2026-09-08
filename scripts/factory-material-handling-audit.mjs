@@ -34,10 +34,10 @@ for (const width of [1440, 390]) {
     if(width===1440){await page.locator('.factory-system-map').screenshot({path:`${out}/${label}-architecture.png`});await page.locator('.article-header').screenshot({path:`${out}/${label}-cover.png`});}
     await page.goto(new URL(`${lang}projects/`,base).href);
     const order=await page.locator('.project-feature-card h2 a').evaluateAll(a=>a.map(x=>new URL(x.href).pathname.split('/').filter(Boolean).at(-1)));
-    assert.deepEqual(order,['robot-chemist','factory-material-handling','sfm','avp','mower']); assert.equal(order.filter(x=>x==='factory-material-handling').length,1);
-    assert.deepEqual(order.filter(x=>x!=='factory-material-handling'),['robot-chemist','sfm','avp','mower']);
+    assert.deepEqual(order,['robot-chemist','factory-material-handling','sfm','avp','mower','lsv']); assert.equal(order.filter(x=>x==='factory-material-handling').length,1);
+    assert.deepEqual(order.filter(x=>x!=='factory-material-handling'),['robot-chemist','sfm','avp','mower','lsv']);
     await page.goto(new URL(lang,base).href);
-    assert.equal(await page.locator('#engineering-projects .project-feature-card').count(),5);
+    assert.equal(await page.locator('#engineering-projects .project-feature-card').count(),6);
     report.push({label,media,...state,order});
   }
 }

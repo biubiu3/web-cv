@@ -1,0 +1,29 @@
+{{- $zh := eq .Page.Lang "zh" -}}
+<section class="project-system-map lsv-system-map" aria-labelledby="lsv-map-title">
+  <header>
+    <span>{{ if $zh }}系统架构{{ else }}System architecture{{ end }}</span>
+    <h3 id="lsv-map-title">{{ if $zh }}传感器 → 状态估计 → 运动目标 → 底盘执行{{ else }}Sensors → state estimates → motion goals → chassis{{ end }}</h3>
+    <p>{{ if $zh }}车载 ROS 模块连接环境观测与车辆运动，CAN 接口传递指令与状态。{{ else }}Onboard ROS modules connect observations to vehicle motion; the CAN interface carries commands and state.{{ end }}</p>
+  </header>
+  <div class="project-system-map__flow">
+    <div class="project-system-map__group">
+      <span>{{ if $zh }}传感与计算{{ else }}Sensing and computation{{ end }}</span>
+      <div class="project-system-map__grid">
+        <div class="project-system-map__stage"><span>01</span><strong>{{ if $zh }}环境观测{{ else }}Observe surroundings{{ end }}</strong><small>{{ if $zh }}摄像头 · 激光雷达 · 超声波{{ else }}Camera · LiDAR · ultrasonics{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>02</span><strong>{{ if $zh }}定位输入{{ else }}Positioning inputs{{ end }}</strong><small>{{ if $zh }}RTK GNSS · IMU · 激光地图{{ else }}RTK GNSS · IMU · LiDAR map{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>03</span><strong>{{ if $zh }}车载计算{{ else }}Onboard computation{{ end }}</strong><small>{{ if $zh }}工控机 · ROS · 状态显示{{ else }}Industrial PC · ROS · HMI{{ end }}</small></div>
+      </div>
+    </div>
+    <i aria-hidden="true">↓</i>
+    <div class="project-system-map__group">
+      <span>{{ if $zh }}自动驾驶软件与执行{{ else }}Autonomy and actuation{{ end }}</span>
+      <div class="project-system-map__grid">
+        <div class="project-system-map__stage"><span>04</span><strong>{{ if $zh }}感知与定位{{ else }}Perception and localization{{ end }}</strong><small>{{ if $zh }}目标 · 车道 · 障碍物 · 车辆位姿{{ else }}Objects · lanes · obstacles · vehicle pose{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>05</span><strong>{{ if $zh }}决策规划{{ else }}Decision and planning{{ end }}</strong><small>{{ if $zh }}参考路线 · 行驶目标{{ else }}Reference route · driving objective{{ end }}</small></div>
+        <div class="project-system-map__stage"><span>06</span><strong>{{ if $zh }}控制与线控底盘{{ else }}Control and drive-by-wire{{ end }}</strong><small>{{ if $zh }}运动指令 · CAN 通信 · 底盘执行{{ else }}Motion commands · CAN · chassis actuation{{ end }}</small></div>
+      </div>
+    </div>
+    <i aria-hidden="true">↺</i>
+    <div class="project-system-map__stage"><strong>{{ if $zh }}车辆运动 → 新的观测与状态反馈 → 下一轮控制{{ else }}Vehicle motion → new observations and feedback → next control update{{ end }}</strong><small>{{ if $zh }}地图与 RTK 循迹分别使用对应定位输入。{{ else }}Map-based and RTK route following use their respective localization inputs.{{ end }}</small></div>
+  </div>
+</section>

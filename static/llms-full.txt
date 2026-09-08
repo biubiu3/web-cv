@@ -69,6 +69,15 @@ HEAR and Teach and Grow are the two current representative systems. HEAR introdu
 - Project page: https://biubiu3.github.io/web-cv/projects/mower/
 - Chinese project page: https://biubiu3.github.io/web-cv/zh/projects/mower/
 
+### Low-Speed Autonomous Research Vehicle
+
+- Contribution: Nie Chang built an autonomous driving research vehicle around existing low-speed vehicle and AGV chassis.
+- Hardware: Camera, LiDAR, RTK GNSS, IMU, ultrasonic sensing, industrial computer, HMI, and drive-by-wire/CAN interfaces.
+- Software: ROS-based perception, GPS/map localization, decision and planning, control, and CAN communication.
+- Demonstrations: LiDAR mapping, lane keeping, and two-vehicle following. Clips provide qualitative demonstrations, not quantitative performance results.
+- Project page: https://biubiu3.github.io/web-cv/projects/lsv/
+- Chinese project page: https://biubiu3.github.io/web-cv/zh/projects/lsv/
+
 ## Publication Record
 
 ### Towards the Vision-Sound-Language-Action Paradigm: The HEAR Framework for Sound-Centric Manipulation

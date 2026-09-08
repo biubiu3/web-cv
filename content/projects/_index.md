@@ -10,7 +10,8 @@ sections:
   - block: collection
     content:
       title: Selected Engineering Projects
-      text: Five systems projects spanning industrial and laboratory robotics, autonomous driving, and 3D vision. The pages describe system design, my contribution, and project demonstrations.
+      text: Six systems projects spanning industrial and laboratory robotics, autonomous driving, and 3D vision. The pages describe system design, my contribution, and project demonstrations.
+      count: 6
       sort_by: weight
       sort_ascending: true
       filters:

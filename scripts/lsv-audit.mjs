@@ -1,0 +1,42 @@
+import { chromium } from 'playwright';
+import fs from 'node:fs/promises';
+import assert from 'node:assert/strict';
+const base=process.env.SITE_URL || 'http://127.0.0.1:4173/web-cv/';
+const out='artifacts/lsv';
+await fs.mkdir(out,{recursive:true});
+const browser=await chromium.launch({executablePath:'/root/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome',headless:true});
+const page=await browser.newPage(); const errors=[],report=[];
+page.on('pageerror',e=>errors.push(e.message));
+for(const width of [1440,390]) for(const lang of ['', 'zh/']){
+ await page.setViewportSize({width,height:1000});
+ const response=await page.goto(new URL(`${lang}projects/lsv/`,base).href,{waitUntil:'networkidle'});
+ assert.equal(response.status(),200);
+ await page.evaluate(async()=>{for(const i of document.images)i.loading='eager';await Promise.all([...document.images].map(i=>i.decode().catch(()=>{})));});
+ assert.equal(await page.locator('h1').count(),1);
+ assert.equal(await page.locator('.lsv-system-map').count(),1);
+ const text=await page.locator('article .prose').first().innerText();
+ assert.doesNotMatch(text,/SJTU|上海交通|合同|任务书|万元|@/i);
+ assert.match(text,/RTK/);assert.match(text,/CAN/);
+ assert.equal(await page.locator('video').count(),3);
+ const media=[];
+ for(const v of await page.locator('video').all())media.push(await v.evaluate(async v=>{
+  v.muted=true; await v.play();
+  await new Promise((resolve,reject)=>{let timer=setTimeout(()=>reject(Error('Playback stalled')),10000);const tick=()=>{if(v.currentTime>.15){clearTimeout(timer);v.removeEventListener('timeupdate',tick);resolve();}};v.addEventListener('timeupdate',tick);tick();});
+  v.pause();return {duration:v.duration,width:v.videoWidth,height:v.videoHeight,time:v.currentTime};
+ }));
+ const state=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth,broken:[...document.images].filter(i=>!i.naturalWidth).map(i=>i.src)}));
+ assert.equal(state.overflow,false);assert.deepEqual(state.broken,[]);
+ const label=`${lang?'zh':'en'}-${width}`;
+ await page.screenshot({path:`${out}/${label}.png`,fullPage:true});
+ if(width===1440)await page.locator('.lsv-system-map').screenshot({path:`${out}/${label}-architecture.png`});
+ await page.goto(new URL(`${lang}projects/`,base).href);
+ const order=await page.locator('.project-feature-card h2 a').evaluateAll(a=>a.map(x=>new URL(x.href).pathname.split('/').filter(Boolean).at(-1)));
+ assert.deepEqual(order,['robot-chemist','factory-material-handling','sfm','avp','mower','lsv']);
+ await page.goto(new URL(lang,base).href);
+ assert.equal(await page.locator('#engineering-projects .project-feature-card').count(),6);
+ report.push({label,media,...state,order});
+}
+assert.deepEqual(errors,[]);
+await fs.writeFile(`${out}/browser-report.json`,JSON.stringify({passed:true,report,errors},null,2));
+console.log(JSON.stringify({passed:true,pages:report.length,videoPlaybackChecks:12}));
+await browser.close();

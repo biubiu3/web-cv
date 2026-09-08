@@ -9,7 +9,8 @@ sections:
   - block: collection
     content:
       title: 代表性工程项目
-      text: 五个系统项目，涵盖工业与实验室机器人、自动驾驶及三维视觉。各页面介绍系统设计、我的工作和项目演示。
+      text: 六个系统项目，涵盖工业与实验室机器人、自动驾驶及三维视觉。各页面介绍系统设计、我的工作和项目演示。
+      count: 6
       sort_by: weight
       sort_ascending: true
       filters:

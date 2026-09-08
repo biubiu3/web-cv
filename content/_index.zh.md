@@ -219,7 +219,7 @@ sections:
       filters:
         folders:
           - projects
-      count: 5
+      count: 6
     design:
       view: project-feature
       columns: 1

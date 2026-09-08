@@ -71,7 +71,7 @@ for (const width of [1440, 390]) {
     }
     report.push({ url, width, ...state, media, animation });
     await page.goto(new URL(`${lang}projects/`, base).href);
-    assert.equal(await page.locator('.project-feature-card').count(), 5);
+    assert.equal(await page.locator('.project-feature-card').count(), 6);
     assert.equal(await page.locator('.project-feature-card h2 a').filter({ hasText: /A Robotic Chemist|机器人化学家/ }).count(), 1);
   }
 }
