@@ -71,10 +71,11 @@ HEAR and Teach and Grow are the two current representative systems. HEAR introdu
 
 ### Low-Speed Autonomous Research Vehicle
 
+- Period: 2019–2022.
 - Contribution: Nie Chang built an autonomous driving research vehicle around existing low-speed vehicle and AGV chassis.
 - Hardware: Camera, LiDAR, RTK GNSS, IMU, ultrasonic sensing, industrial computer, HMI, and drive-by-wire/CAN interfaces.
 - Software: ROS-based perception, GPS/map localization, decision and planning, control, and CAN communication.
-- Demonstrations: LiDAR mapping, lane keeping, and two-vehicle following. Clips provide qualitative demonstrations, not quantitative performance results.
+- Demonstrations: Eight clips covering LiDAR mapping, SLAM and RTK route following, lane keeping, multi-object detection, AEB, automatic parking, and connected ACC. Clips provide qualitative demonstrations, not quantitative performance results.
 - Project page: https://biubiu3.github.io/web-cv/projects/lsv/
 - Chinese project page: https://biubiu3.github.io/web-cv/zh/projects/lsv/
 

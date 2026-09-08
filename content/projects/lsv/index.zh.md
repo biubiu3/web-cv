@@ -6,8 +6,8 @@
   "featured": true,
   "reading_time": false,
   "share": true,
-  "title": "低速自动驾驶科研小车：从底盘搭建到实车验证",
-  "summary": "基于低速园区车与物流 AGV 底盘自主搭建科研小车，集成摄像头、激光雷达、IMU、RTK、超声波雷达、车载计算与线控接口，连接感知、定位、规划和控制。",
+  "title": "低速自动驾驶科研小车：从底盘搭建到实车验证（2019–2022）",
+  "summary": "2019–2022 · 基于低速园区车与物流 AGV 底盘自主搭建科研小车，集成摄像头、激光雷达、IMU、RTK、超声波雷达、车载计算与线控接口，连接感知、定位、规划和控制。",
   "tags": [
     "自动驾驶",
     "多传感器集成",
@@ -20,12 +20,12 @@
   },
   "project": {
     "collaboration": "自动驾驶 · 科研车辆搭建",
-    "period": "平台开发与实车测试阶段",
+    "period": "2019–2022",
     "status": "完成平台搭建与驾驶功能演示",
-    "card_label": "科研小车 · 多传感器与线控集成",
+    "card_label": "2019–2022 · 科研小车",
     "wider_system": "多传感器采集、环境感知、地图与 RTK 定位、决策规划、车辆控制及 CAN 通信",
     "role": "基于低速园区车与 AGV 底盘，自主搭建用于自动驾驶研究的实车平台。",
-    "outputs": "集成式科研小车；建图、车道保持与双车跟随演示",
+    "outputs": "两类科研底盘；建图、循迹、感知、制动、泊车与双车跟随演示",
     "context": "将真实传感器、车载计算、底盘执行与状态反馈装进紧凑车体，为自动驾驶算法提供可开展实车实验的平台。",
     "focus_label": "我的工作",
     "outputs_label": "平台与演示"
@@ -35,25 +35,57 @@
       "src": "lidar-mapping.mp4",
       "poster": "lidar-mapping-poster.jpg",
       "title": "激光雷达建图",
-      "description": "SLAM 测试中的点云建图可视化，展示道路与周边环境的空间结构。"
+      "description": "点云建图可视化，展示道路与周边环境的空间结构。"
+    },
+    {
+      "src": "slam-following.mp4",
+      "poster": "slam-following-poster.jpg",
+      "title": "SLAM 循迹",
+      "description": "小车沿场地路线行驶，展示基于 SLAM 定位的循迹测试。"
+    },
+    {
+      "src": "rtk-following.mp4",
+      "poster": "rtk-following-poster.jpg",
+      "title": "RTK 循迹",
+      "description": "RTK 循迹实车节选，展示车辆沿弯道及建筑旁道路行驶。"
     },
     {
       "src": "lane-keeping.mp4",
       "poster": "lane-keeping-poster.jpg",
       "title": "AGV 平台车道保持",
-      "description": "标线道路上的车辆运动，以及车载显示器中的车道区域叠加。"
+      "description": "标线道路上的车辆运动与车载显示器中的车道区域叠加。"
+    },
+    {
+      "src": "object-detection.mp4",
+      "poster": "object-detection-poster.jpg",
+      "title": "多目标检测",
+      "description": "随车视角与屏幕近景，展示车辆、行人检测框及类别标签。"
+    },
+    {
+      "src": "emergency-braking.mp4",
+      "poster": "emergency-braking-poster.jpg",
+      "title": "自动紧急制动（AEB）",
+      "description": "行人位于小车前方及离开行驶路线时的车辆响应测试。"
+    },
+    {
+      "src": "automatic-parking.mp4",
+      "poster": "automatic-parking-poster.jpg",
+      "title": "自动泊车",
+      "description": "标记车位旁的低速泊车动作，展示车辆调整位置并驶入车位。"
     },
     {
       "src": "connected-following.mp4",
       "poster": "connected-following-poster.jpg",
-      "title": "双车跟随",
-      "description": "低速车辆在弯曲路线上的跟随片段，原始项目介绍将该测试标为网联 ACC。"
+      "title": "网联 ACC：双车跟随",
+      "description": "两辆低速车在弯曲路线上的跟随演示。"
     }
-  ]
+  ],
+  "subtitle": "2019–2022",
+  "show_date": false
 }
 ---
 
-自动驾驶研究需要把算法放到一辆真正运动的车上：传感器观测要进入车载计算机，定位结果要支持路径规划，控制指令也要经过底盘执行。**我基于低速园区车与物流 AGV 底盘，自主搭建了这套自动驾驶科研小车。**车体虽然紧凑，但集成了自动驾驶所需的主要感知、计算和执行设备，可以用于开展实车算法实验。
+自动驾驶研究需要把算法放到一辆真正运动的车上：传感器观测要进入车载计算机，定位结果要支持路径规划，控制指令也要经过底盘执行。 **2019–2022 年，我基于低速园区车与物流 AGV 底盘，自主搭建了这套自动驾驶科研小车。** 车体虽然紧凑，但集成了自动驾驶所需的主要感知、计算和执行设备，可以用于开展实车算法实验。
 
 {{< project-overview >}}
 
@@ -97,11 +129,11 @@
 
 ## 实车与算法演示
 
+下面汇集项目的八项演示。SLAM 建图展示环境表达，SLAM 与 RTK 循迹展示两类定位输入下的车辆运动；车道保持和多目标检测展示视觉信息的使用；AEB、自动泊车与网联 ACC 则展示制动、低速机动和双车跟随。
+
 {{< project-video-gallery >}}
 
-以上视频由项目原始动图转换而来，保留素材原有时序，分别展示建图输出、车道保持测试和双车运动。片段用于观察平台行为，尚不能据此给出定位误差、制动距离或跟车间距精度。
-
-项目介绍还记录了 **SLAM 循迹、RTK 循迹、多目标检测、自动紧急制动（AEB）与自动泊车**等测试。这些任务覆盖系统中的不同路径：循迹连接地图或 GNSS 定位与车辆控制，车道保持利用图像中的道路信息，制动与跟随则需要将障碍物或前车信息传递给驾驶决策。
+视频来自项目原始动图、视频及 PPT 内嵌媒体，保留所选片段的原有播放时序。RTK 循迹采用连续节选，其余七段保留完整动作片段；部分背景标识已模糊处理。演示用于观察系统行为，定位误差、制动距离和跟车间距精度仍需通过专门测量评估。
 
 ## 我的工作与平台价值
 

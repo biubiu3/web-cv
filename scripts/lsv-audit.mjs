@@ -16,8 +16,8 @@ for(const width of [1440,390]) for(const lang of ['', 'zh/']){
  assert.equal(await page.locator('.lsv-system-map').count(),1);
  const text=await page.locator('article .prose').first().innerText();
  assert.doesNotMatch(text,/SJTU|上海交通|合同|任务书|万元|@/i);
- assert.match(text,/RTK/);assert.match(text,/CAN/);
- assert.equal(await page.locator('video').count(),3);
+ assert.match(text,/2019–2022/);assert.match(text,/RTK/);assert.match(text,/CAN/);
+ assert.equal(await page.locator('video').count(),8);
  const media=[];
  for(const v of await page.locator('video').all())media.push(await v.evaluate(async v=>{
   v.muted=true; await v.play();
@@ -38,5 +38,5 @@ for(const width of [1440,390]) for(const lang of ['', 'zh/']){
 }
 assert.deepEqual(errors,[]);
 await fs.writeFile(`${out}/browser-report.json`,JSON.stringify({passed:true,report,errors},null,2));
-console.log(JSON.stringify({passed:true,pages:report.length,videoPlaybackChecks:12}));
+console.log(JSON.stringify({passed:true,pages:report.length,videoPlaybackChecks:32}));
 await browser.close();

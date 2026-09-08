@@ -44,7 +44,7 @@ This file is a concise guide to the public, human-readable pages on the site. Pu
 
 - [Robotic Chemist](https://biubiu3.github.io/web-cv/projects/robot-chemist/): Nie Chang primarily handled robot manipulation, including grasping, transfer, and aligned placement. Dual-arm mobile manipulation for laboratory work, with labware and centrifuge workstation demonstrations and a research route covering demonstration mapping, skill learning, simulation-to-reality transfer, and task assessment.
 
-- [Low-Speed Autonomous Research Vehicle](https://biubiu3.github.io/web-cv/projects/lsv/): A self-built research vehicle integrating camera, LiDAR, RTK GNSS, IMU, ultrasonics, onboard computing, and drive-by-wire interfaces on low-speed and AGV chassis.
+- [Low-Speed Autonomous Research Vehicle](https://biubiu3.github.io/web-cv/projects/lsv/): A research vehicle built during 2019–2022, integrating camera, LiDAR, RTK GNSS, IMU, ultrasonics, onboard computing, and drive-by-wire interfaces on low-speed and AGV chassis.
 
 ## Machine-Readable Resources
 

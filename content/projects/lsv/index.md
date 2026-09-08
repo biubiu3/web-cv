@@ -6,8 +6,8 @@
   "featured": true,
   "reading_time": false,
   "share": true,
-  "title": "Low-Speed Autonomous Research Vehicle",
-  "summary": "A self-built autonomous driving research platform on low-speed vehicle and AGV chassis, integrating cameras, LiDAR, IMU, RTK GNSS, ultrasonic sensing, onboard computing, and drive-by-wire control.",
+  "title": "Low-Speed Autonomous Research Vehicle (2019–2022)",
+  "summary": "2019–2022 · A self-built autonomous driving research platform on low-speed vehicle and AGV chassis, integrating cameras, LiDAR, IMU, RTK GNSS, ultrasonic sensing, onboard computing, and drive-by-wire control.",
   "tags": [
     "Autonomous Driving",
     "Multi-sensor Integration",
@@ -20,12 +20,12 @@
   },
   "project": {
     "collaboration": "Autonomous driving · Research vehicle development",
-    "period": "Platform development and vehicle testing",
+    "period": "2019–2022",
     "status": "Built platforms and driving demonstrations",
-    "card_label": "Research vehicle · Sensors to drive-by-wire",
+    "card_label": "2019–2022 · Research vehicle",
     "wider_system": "Multi-sensor acquisition, perception, map-based and RTK localization, planning, control, and CAN communication",
     "role": "Built the autonomous driving research vehicle around low-speed vehicle and AGV chassis.",
-    "outputs": "Integrated vehicle platforms; mapping, lane-keeping, and vehicle-following demonstrations",
+    "outputs": "Two research chassis configurations; mapping, route following, perception, braking, parking, and vehicle-following demonstrations",
     "context": "A compact vehicle gives autonomy research a physical testbed with real sensors, onboard computation, chassis actuation, and feedback.",
     "focus_label": "My contribution",
     "outputs_label": "Platform and demonstrations"
@@ -35,25 +35,57 @@
       "src": "lidar-mapping.mp4",
       "poster": "lidar-mapping-poster.jpg",
       "title": "LiDAR mapping",
-      "description": "Point-cloud mapping visualization from the project’s SLAM demonstration."
+      "description": "Point-cloud mapping visualization of the road and surrounding structures."
+    },
+    {
+      "src": "slam-following.mp4",
+      "poster": "slam-following-poster.jpg",
+      "title": "SLAM route following",
+      "description": "Vehicle motion along a test-area route, labeled SLAM route following in the project presentation."
+    },
+    {
+      "src": "rtk-following.mp4",
+      "poster": "rtk-following-poster.jpg",
+      "title": "RTK route following",
+      "description": "Excerpt from the RTK route-following test, showing a bend and travel beside a building."
     },
     {
       "src": "lane-keeping.mp4",
       "poster": "lane-keeping-poster.jpg",
       "title": "Lane keeping on the AGV platform",
-      "description": "Vehicle motion and the onboard display’s lane-region overlay in a marked-road test."
+      "description": "Vehicle motion on a marked road and the lane-region overlay on the onboard display."
+    },
+    {
+      "src": "object-detection.mp4",
+      "poster": "object-detection-poster.jpg",
+      "title": "Multi-object detection",
+      "description": "Onboard and close-up display views showing vehicle and pedestrian detection boxes and class labels."
+    },
+    {
+      "src": "emergency-braking.mp4",
+      "poster": "emergency-braking-poster.jpg",
+      "title": "Automatic emergency braking (AEB)",
+      "description": "Vehicle-response demonstration as a pedestrian stands ahead of the AGV and moves away from its path."
+    },
+    {
+      "src": "automatic-parking.mp4",
+      "poster": "automatic-parking-poster.jpg",
+      "title": "Automatic parking",
+      "description": "Low-speed parking maneuver beside marked spaces, showing vehicle positioning and entry into a bay."
     },
     {
       "src": "connected-following.mp4",
       "poster": "connected-following-poster.jpg",
-      "title": "Two-vehicle following",
-      "description": "Low-speed vehicles on a curved course; the source presentation identifies this test as connected ACC."
+      "title": "Connected ACC: two-vehicle following",
+      "description": "Two low-speed vehicles following a curved course."
     }
-  ]
+  ],
+  "subtitle": "2019–2022",
+  "show_date": false
 }
 ---
 
-Autonomous driving research needs a way to put algorithms on a moving vehicle. Sensor observations must reach the onboard computer, estimated states must support planning, and control commands must produce the intended motion. **I built this research platform around low-speed campus-vehicle and logistics AGV chassis**, bringing the main sensing, computing, and actuation elements of an autonomous vehicle into a compact, accessible testbed.
+Autonomous driving research needs a way to put algorithms on a moving vehicle. Sensor observations must reach the onboard computer, estimated states must support planning, and control commands must produce the intended motion. **From 2019 to 2022, I built this research platform around low-speed campus-vehicle and logistics AGV chassis**, bringing the main sensing, computing, and actuation elements of an autonomous vehicle into a compact, accessible testbed.
 
 {{< project-overview >}}
 
@@ -97,11 +129,11 @@ The engineering challenge is maintaining consistent interfaces across the chain.
 
 ## Driving demonstrations
 
+The eight demonstrations below cover the vehicle’s main test configurations. LiDAR mapping shows the environment representation; SLAM and RTK route following show motion under two localization inputs. Lane keeping and multi-object detection show the use of visual observations, while AEB, parking, and connected ACC demonstrate braking, low-speed maneuvering, and two-vehicle following.
+
 {{< project-video-gallery >}}
 
-These clips are converted from the supplied animated demonstrations, preserving their source timing. They show mapping output, a lane-keeping test, and two-vehicle motion. The footage supports a qualitative view of the platform’s behavior; it does not provide localization-error, braking-distance, or following-gap measurements.
-
-The project presentation also documents tests of **SLAM route following, RTK route following, multi-object detection, automatic emergency braking (AEB), and automatic parking**. Together, these tasks exercise different paths through the system: map or GNSS localization for route following, image observations for lane keeping, and obstacle or lead-vehicle information for stopping and following.
+The clips come from the project’s original animations, videos, and embedded presentation media, preserving the timing of the selected footage. RTK route following is a continuous excerpt; the other seven clips retain their full source sequences. Some background markings are blurred. These demonstrations show system behavior; localization error, braking distance, and following-gap accuracy require dedicated measurements.
 
 ## My contribution and the platform’s research value
 
