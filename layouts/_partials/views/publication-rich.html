@@ -70,7 +70,11 @@
           {{- $profile := partial "functions/get_author_profile" (dict "slug" $slug "title" $raw) -}}
           {{- $display := $profile.title | default $raw -}}
           {{- if gt $index 0 }}, {{ end -}}
-          <span{{ if eq $raw "me" }} class="publication-rich-self"{{ end }}>{{ $display }}</span>
+          {{- if in (slice "me" "Chang Nie" "Nie Chang" "聂畅") $raw -}}
+            <strong class="publication-rich-self">{{ $display }}</strong>
+          {{- else -}}
+            <span>{{ $display }}</span>
+          {{- end -}}
           {{- if and $item.Params.author_notes (lt $index (len $item.Params.author_notes)) -}}
             {{- with (index $item.Params.author_notes $index) }}<sup title="{{ . }}">†</sup>{{ end -}}
           {{- end -}}
