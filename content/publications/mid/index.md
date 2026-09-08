@@ -53,12 +53,12 @@ links:
 |---|---|
 | Can denoising be learned without paired clean targets? | Treat each noisy observation as a state on a synthetically extended corruption path |
 | How is nonlinear corruption reversed? | Estimate the current noise stage, then remove one learned local residual repeatedly |
-| Is the architecture modality specific? | No—the formulation is instantiated with CNNs or Transformers according to the data structure |
+| Is the architecture modality specific? | CNNs or Transformers implement the same formulation according to the data structure |
 | What is tested? | Natural images, robust geometry, sEMG/ECG, MRI, and protein sequence representations |
 
-Many denoisers quietly assume that clean targets exist. In scientific and embodied data, that assumption can be the hardest part of the problem: a second MRI acquisition is not perfectly aligned, a clean biosignal may be unavailable, and a geometric correspondence set has no single continuous “clean image” counterpart. Real noise can also be nonlinear and heterogeneous, so asking one network to jump directly from an unknown corruption level to a clean output is brittle.
+Denoising often requires clean training targets, which can be difficult to collect. Repeated MRI scans may be misaligned, and clean biosignals may be unavailable. Geometric point sets also need targets suited to their structure. Nonlinear, heterogeneous noise makes single-step recovery more difficult.
 
-MID reframes restoration as navigation along a learned corruption trajectory. Training learns local reversal steps from noisy observations that can be corrupted further in controlled ways, without requiring a clean endpoint.
+MID restores data through local steps along a corruption trajectory. Training adds controlled noise to observed samples and learns to reverse each increment without clean targets.
 
 ## A noisy observation is an intermediate state
 
@@ -74,7 +74,7 @@ $$
 s_t\approx s_{t-1}+\Delta s_{t-1}.
 $$
 
-This is the key move. Instead of learning an unavailable map from noisy observation to pristine truth, the model learns how much corruption is present and how to undo one nearby increment.
+The model estimates the current corruption stage and learns to remove one local increment. Controlled additional noise supplies supervision.
 
 Two networks divide those responsibilities:
 
@@ -125,7 +125,7 @@ The biosignal study uses sEMG from NINAPro DB2 and ECG from the PhysioNet Noise 
 
 ![sEMG restoration across severe noise levels.](emg-results.jpg "MID is compared with filtering, FCN, and SDEMG alternatives on physiological signals.")
 
-Across the reported comparisons, MID outperforms classical filters, FCN, and SDEMG baselines with statistical significance at $p<0.05$. The held-out subject/channel/movement design is essential: it tests whether the reverse process generalizes beyond memorizing one person's waveform.
+MID outperforms classical filters, FCN, and SDEMG in the reported comparisons, with $p<0.05$. Holding out subjects, channels, and movements tests generalization across people and recording conditions.
 
 ## Case study 4: MRI without a clean reference
 
@@ -141,7 +141,7 @@ The final study applies iterative denoising to multiple-sequence-alignment repre
 
 ![Protein contact prediction after representation denoising.](protein-results.jpg "The same reverse-step formulation is applied to amino-acid sequence representations.")
 
-This experiment is less about the absolute size of one gain than about the scope of the formulation: the corrupted object may be a pixel grid, a geometric set, a waveform, or a biological sequence representation.
+The protein experiment extends the same iterative formulation to biological sequence representations, alongside pixel grids, geometric sets, and waveforms.
 
 ## Why iteration matters
 

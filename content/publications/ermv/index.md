@@ -89,7 +89,7 @@ This standard objective becomes robot-specific through how the conditions and at
 
 ## Sparse spatio-temporal modeling
 
-A dense video-volume attention layer grows rapidly with the number of frames and views. ERMV instead forms a sliding window of $L\times N$ tokens—$L$ time steps across $N$ cameras—and selects only $K\ll L\times N$ positions. Crucially, every sampled token keeps its original temporal and camera index. The model can therefore connect a past wrist view to a future external view without pretending they occupy adjacent positions.
+Dense video attention grows rapidly with frame and camera counts. ERMV uses a $L\times N$ window spanning $L$ time steps and $N$ cameras. It samples $K\ll L\times N$ positions from this window. Each token retains its original time and camera index. This lets attention connect a past wrist view with a future external view using their actual positions.
 
 Past and future are generated jointly in one window. In the reported setting, the condition includes four historical views over eight past frames and predicts six views over the next eight frames.
 
@@ -143,7 +143,7 @@ The physical setup uses ACT with a dual-Panda platform and two tasks. Across 100
 
 ![Real-robot editing examples and policy evaluation.](real-robot-results.jpg "ERMV augments dual-Panda demonstrations and evaluates the resulting ACT policy.")
 
-Together, the results show that coherent trajectory editing improves downstream policy robustness in ways that isolated frame-quality measures do not fully capture.
+The real-robot results show higher ACT success in both original and unseen cluttered environments after adding consistent edited trajectories. Policy evaluation complements the image-quality metrics.
 
 ## Scope and limitations
 

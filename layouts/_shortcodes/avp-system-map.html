@@ -1,7 +1,7 @@
 {{- $isZh := eq .Page.Lang "zh" -}}
 <section class="project-system-map avp-system-map" aria-labelledby="avp-system-map-title">
   <header>
-    <span>{{ if $isZh }}完整项目闭环{{ else }}Complete program loop{{ end }}</span>
+    <span>{{ if $isZh }}系统架构{{ else }}System architecture{{ end }}</span>
     <h3 id="avp-system-map-title">{{ if $isZh }}园区自主代客泊车系统{{ else }}Campus-scale automated valet parking{{ end }}</h3>
     <p>{{ if $isZh }}从用户下发任务、车端感知与地图，到分层规划、车辆控制和安全重规划。{{ else }}From user intent and onboard sensing to mapping, hierarchical planning, vehicle control, and safety replanning.{{ end }}</p>
   </header>
@@ -24,7 +24,7 @@
       </div>
     </div>
     <i aria-hidden="true">↓</i>
-    <div class="project-system-map__stage is-owned"><span>{{ if $isZh }}项目主导与系统集成{{ else }}Program leadership and integration{{ end }}</span><strong>{{ if $isZh }}把需求、算法、车端接口与实车联调组织成一套可运行系统{{ else }}Turn requirements, algorithms, vehicle interfaces, and field integration into one operational system{{ end }}</strong><small>{{ if $isZh }}总体架构与里程碑 · 跨模块接口 · 规划控制重点攻关 · 场景测试与问题闭环{{ else }}Architecture and milestones · cross-module interfaces · planning/control focus · scenario tests and issue closure{{ end }}</small></div>
+    <div class="project-system-map__stage is-owned"><span>{{ if $isZh }}项目主导与系统集成{{ else }}Program leadership and integration{{ end }}</span><strong>{{ if $isZh }}总体方案、模块接口与实车集成{{ else }}System design, module interfaces, and vehicle integration{{ end }}</strong><small>{{ if $isZh }}总体架构与里程碑 · 跨模块接口 · 规划控制重点攻关 · 场景测试与故障修复{{ else }}Architecture and milestones · cross-module interfaces · planning/control focus · scenario testing and fault correction{{ end }}</small></div>
     <i aria-hidden="true">↓</i>
     <div class="project-system-map__group">
       <span>{{ if $isZh }}执行、安全与应用{{ else }}Execution, safety, and application{{ end }}</span>

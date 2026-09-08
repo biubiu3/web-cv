@@ -51,7 +51,7 @@ links:
 | Question | DiffSAC's answer |
 |---|---|
 | What is generated? | Confidence fields whose top entries form effective geometric minimum sets |
-| Why diffusion? | Iterative conditional refinement can model several jointly valid sets instead of one fixed ranking |
+| Why diffusion? | Iterative conditional refinement can model several jointly valid sets |
 | What remains classical? | The minimal solver, consensus scoring, and optional local optimization |
 | Evaluation scope | Line and plane fitting, fundamental/essential matrices, and homography estimation |
 | Status | Preprint; under review at IJCV |
@@ -136,20 +136,20 @@ Essential-matrix estimation uses a five-point solver and 1-pixel threshold:
 
 For ModelNet40 registration at 60% outliers, rotation/translation mAA are 0.547/0.453 for DiffSAC and 0.524/0.438 for MAGSAC++. Homography estimation is evaluated on KITTI with a DLT solver and threshold 0.1, with the complete curve reported across operating points.
 
-Together the five problem classes test substantially different minimum-set sizes, feature types, and solvers. The results demonstrate modular sampling across tasks, with a separately trained model and representation for each task.
+Together the five problem classes test different minimum-set sizes, feature types, and solvers. The results demonstrate modular sampling across tasks, with a separately trained model and representation for each task.
 
 ## Ablations: what actually provides the gain?
 
 On fundamental-matrix estimation, direct one-shot confidence prediction reaches rotation/translation mAA of 0.687/0.393, versus 0.783/0.641 for diffusion refinement. Adding LO-RANSAC after DiffSAC raises the result further to 0.794/0.657, showing that learned sampling and classical local optimization are complementary.
 
-Removing descriptors lowers mAA to 0.725/0.603; using SuperPoint features obtains 0.787/0.646. Comparisons with MLP and DGCNN alternatives favor the permutation-invariant Transformer, and maximum-confidence set selection is stronger than the alternative sampling rules tested. Budget studies show DiffSAC with 2,000 consensus iterations outperforming the reported RANSAC configurations even when those use substantially more samples.
+Removing descriptors lowers mAA to 0.725/0.603; using SuperPoint features obtains 0.787/0.646. Comparisons with MLP and DGCNN alternatives favor the permutation-invariant Transformer, and maximum-confidence set selection is stronger than the alternative sampling rules tested. Budget studies show DiffSAC with 2,000 consensus iterations outperforming the reported RANSAC configurations even when those use more samples.
 
 ![Accuracy, iteration budget, and runtime decomposition.](efficiency-results.jpg "Efficiency studies expose both the benefit and cost of iterative confidence generation.")
 
-The reported 2,000-iteration pipeline takes about 33 ms and roughly 2 GB of GPU memory. Runtime is divided into approximately 12% preprocessing, 75% diffusion, and 13% consensus evaluation. Diffusion is therefore clearly the dominant cost—and the obvious target for future acceleration.
+The reported 2,000-iteration pipeline takes about 33 ms and roughly 2 GB of GPU memory. Runtime is divided into approximately 12% preprocessing, 75% diffusion, and 13% consensus evaluation. Diffusion accounts for most of the runtime and is the main target for acceleration.
 
 ## Limits and relation to RLSAC
 
 Each task requires suitable training data and a task-specific model; line and fundamental-matrix estimation use separately trained samplers. Iterative generation adds GPU and latency costs, and classical estimators remain attractive when training data, hardware, or memory are limited. Performance can also depend on how training targets define an effective set.
 
-RLSAC learned sequential proposals from the reward of previous geometric hypotheses. DiffSAC revisits the same core question from a generative direction: which observations should be selected *together*? The transition from reinforcement learning to conditional diffusion reflects a broader research progression, while the invariant principle remains the same—sampling should exploit structure and feedback instead of spending every hypothesis uniformly.
+RLSAC learns sequential sampling from rewards assigned to previous hypotheses. DiffSAC uses conditional diffusion to generate jointly compatible observation sets. The two methods study how feedback and generative modeling can improve sampling within a limited budget.

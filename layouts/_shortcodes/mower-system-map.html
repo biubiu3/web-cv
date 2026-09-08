@@ -1,8 +1,8 @@
 {{- $isZh := eq .Page.Lang "zh" -}}
 <section class="project-system-map mower-system-map" aria-labelledby="mower-system-map-title">
   <header>
-    <span>{{ if $isZh }}完整项目闭环{{ else }}Complete program loop{{ end }}</span>
-    <h3 id="mower-system-map-title">{{ if $isZh }}面向非结构化草坪的完整自主移动机器人{{ else }}A complete autonomous mobile robot for unstructured lawns{{ end }}</h3>
+    <span>{{ if $isZh }}系统架构{{ else }}System architecture{{ end }}</span>
+    <h3 id="mower-system-map-title">{{ if $isZh }}面向非结构化草坪的自主移动机器人{{ else }}An autonomous mobile robot for unstructured lawns{{ end }}</h3>
     <p>{{ if $isZh }}定位、感知、规划与控制共享同一套车载传感器和计算平台。{{ else }}Localization, perception, planning, and control share one onboard sensor and compute platform.{{ end }}</p>
   </header>
   <div class="project-system-map__flow">
@@ -23,7 +23,7 @@
       </div>
     </div>
     <i aria-hidden="true">↓</i>
-    <div class="project-system-map__stage is-owned"><span>06 · {{ if $isZh }}项目主导与重点技术{{ else }}Program leadership and technical focus{{ end }}</span><strong>{{ if $isZh }}总体集成 + 点云障碍检测 + 多传感器障碍融合{{ else }}System integration + LiDAR obstacle detection + multi-sensor obstacle fusion{{ end }}</strong><small>{{ if $isZh }}主导模块协作与实地联调；重点解决起伏草地中的障碍分离，并把三维几何、语义分割和视觉目标统一为规划可用的假设{{ else }}Lead module integration and field commissioning; separate obstacles from uneven grass and unify 3D geometry, semantic segmentation, and visual detections for planning{{ end }}</small></div>
+    <div class="project-system-map__stage is-owned"><span>06 · {{ if $isZh }}项目主导与重点技术{{ else }}Program leadership and technical focus{{ end }}</span><strong>{{ if $isZh }}总体集成 + 点云障碍检测 + 多传感器障碍融合{{ else }}System integration + LiDAR obstacle detection + multi-sensor obstacle fusion{{ end }}</strong><small>{{ if $isZh }}主导模块协作与实地联调；重点解决起伏草地中的障碍分离，并把三维几何、语义分割和视觉目标统一为规划可用的障碍物结果{{ else }}Lead module integration and field commissioning; separate obstacles from uneven grass and unify 3D geometry, semantic segmentation, and visual detections for planning{{ end }}</small></div>
     <i aria-hidden="true">↓</i>
     <div class="project-system-map__group">
       <span>{{ if $isZh }}机器人行为{{ else }}Robot behavior{{ end }}</span>

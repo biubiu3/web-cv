@@ -59,9 +59,9 @@ links:
 | Too many bundle-adjustment variables | Optimize vehicle poses plus fixed inter-camera relationships |
 | Multiple driving sessions | GNSS-assisted association and coarse-to-fine scene aggregation |
 
-Structure from Motion (SfM) is usually introduced with a moving monocular camera and a mostly static scene. A surround-view driving rig breaks that simple picture. Several cameras observe different directions at once; road surfaces produce unstable low-texture matches; and a city-scale model may require combining runs collected at different times. Treating every image as an unrelated camera discards one of the strongest pieces of information in the system: the cameras are bolted to the same vehicle.
+A vehicle rig records several directions at once, while weak road texture can produce unreliable matches. Combining repeated drives also requires alignment across recording sessions. The cameras share a fixed mounting, so their relative geometry can constrain each view’s pose.
 
-MRASfM makes this physical fact a first-class optimization constraint.
+MRASfM uses fixed inter-camera geometry in registration and bundle adjustment.
 
 ## From individual cameras to a rigid camera set
 
@@ -135,7 +135,7 @@ Sequence 00 exposes the cost of discarding the rig structure:
 | Without semantic triangulation | $0.6^\circ$ | 0.3 m | 197 min |
 | Full MRASfM | **$0.5^\circ$** | **0.3 m** | **192 min** |
 
-CSBA is responsible for the largest change: removing it creates many redundant variables, substantially increasing both error and computation. Registration and semantic filtering provide smaller, complementary gains.
+CSBA is responsible for the largest change: removing it creates many redundant variables, increasing both error and computation. Registration and semantic filtering provide smaller, complementary gains.
 
 ## Assumptions and limits
 

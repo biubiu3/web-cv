@@ -47,9 +47,9 @@
 }
 ---
 
-An AI-generated experimental plan still needs a physical executor. Tubes must leave their racks, vessels must be held steadily, and samples must move between instruments. A failed grasp or misplaced container can interrupt every subsequent step. **A robotic chemist connects experimental intent with action in the physical laboratory.**
+Experimental plans depend on physical operations with labware and instruments. Removing a tube, holding a vessel, and transferring a sample each affect the next step. **This project studies laboratory manipulation with a dual-arm mobile robot.**
 
-This project uses a dual-arm mobile robot for labware manipulation and instrument interaction. Mobility connects workstations; two arms support coordinated handling; learning and planning research seeks to turn a small number of demonstrations into reusable, verifiable skills.
+The mobile base connects workstations, while two arms handle labware. Learning and planning research explores how sparse demonstrations can become reusable skills with explicit outcome checks.
 
 {{< project-overview >}}
 
@@ -84,13 +84,13 @@ Visual reconstruction methods such as 3D Gaussian representations can improve ap
 
 ### Organizing dual-arm manipulation into reusable skills
 
-I was primarily responsible for **robot manipulation**, working on the grasping, transfer, and aligned placement of laboratory objects. These tasks connect object understanding directly to arm execution. The robot needs a suitable grasp, a stable object pose during transport, and enough clearance for the eventual placement. My focus was on translating these requirements into continuous manipulation sequences that interact with the actual objects on the laboratory bench.
+I was primarily responsible for **robot manipulation**, including grasping, transferring, and aligning labware for placement. I worked on grasp selection, object stability during transport, and clearance for placement and withdrawal.
 
-For grasping and transfer, I focused on the relationship between object geometry, gripper approach, and the motion that follows contact. Beakers and slender objects present two useful cases: a beaker requires attention to contact location and stability, while a slender object makes grasp position and end-effector orientation particularly consequential. A grasp affects the subsequent lift, transfer, and release, so the action must be considered as a sequence. The beaker animation below shows approach and grasp followed by transfer toward a target area; the slender-object animation shows grasping across different objects and tabletop arrangements.
+For beakers, I considered contact location and stability. Slender objects required careful grasp positioning and end-effector orientation. Each grasp affected the following lift, transfer, and release. The animations show beaker transfer and slender-object grasping across tabletop arrangements.
 
-Tube placement shifts the emphasis to the relative geometry of the end effector and the receiving structure. A rack opening turns a transport task into an alignment problem: the arm must establish an approach pose, guide the tube into the opening, and release it after placement. In this part of the manipulation work, I focused on the continuity between alignment, lowering, gripper opening, and withdrawal. Each stage must leave the object and robot in a suitable state for the next. The tube-placement animation makes these transitions visible and illustrates the attention to action sequencing that laboratory work requires.
+For tube placement, the arm aligns with a rack opening, lowers the tube, releases it, and withdraws. I focused on these transitions so each action left a suitable starting state for the next. The tube-placement animation shows this sequence.
 
-On the dual-arm platform, I also considered individual actions within a shared workspace. The approach, holding pose, and retreat of one arm affect the space available to the other; coordinated handling further depends on action order and relative vessel pose. My manipulation work focuses on organizing grasping, transfer, alignment, and release into short skills with clear starting and ending conditions. Those conditions provide useful interfaces to longer experimental workflows, allowing a task planner to determine when a skill can begin, when the next step can proceed, and where recovery should resume after a failure.
+Both arms share a workspace, so one arm’s approach and holding pose affect the other’s available motion. I organized grasping, transfer, alignment, and release into short skills with explicit starting and ending states. These states provide interfaces for task planning and recovery.
 
 {{< chemist-skills >}}
 
@@ -98,7 +98,7 @@ On the dual-arm platform, I also considered individual actions within a shared w
 
 A task planner must decompose an experimental instruction into steps with explicit prerequisites and select the corresponding skills. The research route explores scene knowledge and vision-language models for task decomposition, followed by checks on spatial relationships and completion state. A failed step can require renewed perception, a skill retry, or a revised plan.
 
-Execution failures can also guide targeted simulation updates and further skill training. This makes errors useful for diagnosis and improvement. The benefit must ultimately be measured through task completion, error detection, and recovery performance.
+The research also proposes using execution failures to revise simulation scenes and skill training. Evaluation will measure task completion, error detection, and recovery performance.
 
 ## Robot demonstrations
 
@@ -108,11 +108,11 @@ Execution failures can also guide targeted simulation updates and further skill 
 
 </div>
 
-The labware video records interactions around a tube rack, balance, beaker, and robot arms. The centrifuge excerpt shows arm and tube operations at an instrument workstation. These are observable action demonstrations; they do not establish liquid identity, dispensing accuracy, experimental yield, or unattended operation.
+The labware video shows operations around a tube rack, balance, beaker, and robot arms. The centrifuge excerpt shows arm and tube interactions at the instrument. Liquid identity, dispensing accuracy, experimental yield, and unattended operation require dedicated evaluation.
 
 ## AI for Science: bringing computational proposals to the bench
 
-Robotic chemists provide a physical interface between scientific computation and experimental execution. Two published directions offer context: [Burger et al.'s mobile robotic chemist](https://www.nature.com/articles/s41586-020-2442-2) demonstrated laboratory instrument use and experimental search; [Boiko et al.'s Coscientist](https://www.nature.com/articles/s41586-023-06792-0) explored language models connected to information retrieval, experimental planning, and automation. These are external research examples, not results or integrated components of this project.
+Robotic chemists provide a physical interface between scientific computation and experimental execution. Two published directions offer context: [Burger et al.'s mobile robotic chemist](https://www.nature.com/articles/s41586-020-2442-2) demonstrated laboratory instrument use and experimental search; [Boiko et al.'s Coscientist](https://www.nature.com/articles/s41586-023-06792-0) explored language models connected to information retrieval, experimental planning, and automation. These external studies provide background. The scope and demonstrations of this project are described above.
 
 This project focuses on embodied execution: grounding laboratory steps in perception, executable skills, and state feedback. Future connections to experimental design, instrument data, and sample tracking could support a cycle of proposing experiments, executing them, collecting results, and updating the next proposal.
 
@@ -120,4 +120,4 @@ This project focuses on embodied execution: grounding laboratory steps in percep
 
 Reusable handling and workstation coordination could support reaction-condition screening, sample preparation, and formulation exploration in chemistry and materials research. Further development could address aliquoting and sample preparation in biology, or experimental preparation and analysis for drug-discovery research. These are prospective applications whose realization depends on domain requirements for measurement, cleanliness, cross-contamination control, and sample traceability.
 
-The longer-term aim is to give researchers more time to formulate questions, design controls, and interpret results, while making repetitive experiments more consistent and better documented. Robotics can connect algorithms, instruments, and researchers so that more scientific ideas can be tested systematically.
+The long-term aim is to let robots handle repetitive operations and maintain complete experimental records. Researchers could then spend more time designing experiments and interpreting results.

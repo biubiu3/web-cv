@@ -59,11 +59,11 @@ links:
 | Question | RLSAC's answer |
 |---|---|
 | What should be learned? | The sampling policy; the geometric solver remains fixed |
-| What supervision is required? | No labels for the “correct” minimum set; hypothesis quality supplies the reward |
+| What supervision is required? | No labels for the correct minimum set; hypothesis quality supplies the reward |
 | What enters the policy state? | Observation features, the current sampling action, residuals, and the history of tested points |
 | Where is it evaluated? | Synthetic line fitting and real two-view fundamental-matrix estimation |
 
-Robust estimation often has an unusual computational shape: the solver may be well understood, yet its success depends on selecting a tiny all-inlier subset from a heavily contaminated observation set. RANSAC handles this by drawing minimum sets repeatedly, fitting a hypothesis from each set, and retaining the best consensus. Uniform sampling is dependable, but it does not learn from the evidence accumulated during that search. RLSAC asks whether the sequence of trials can itself become an adaptive decision process.
+Robust estimation requires an all-inlier minimum set from observations containing many outliers. RANSAC repeatedly samples sets, fits hypotheses, and keeps the best consensus. RLSAC uses residuals and sampling history from tested hypotheses to learn which observations to select next.
 
 ![The policy state is updated after every hypothesis evaluation.](state-transition.jpg "From one sample to the next: observation features, the selected set, residuals, and sampling history form a state transition.")
 
@@ -87,12 +87,12 @@ and the reward is the inlier ratio obtained after solving and scoring the propos
 
 The state contains four complementary signals:
 
-1. **Data features** describe each observation. Their representation is task dependent—for example, point coordinates for line fitting and coordinates, matching scores, and descriptors for correspondence estimation.
+1. **Data features** describe each observation. Line fitting uses point coordinates. Correspondence estimation uses coordinates, matching scores, and descriptors.
 2. **Action features** mark whether a point belongs to the currently sampled set using $+1/-1$ indicators.
 3. **Residual features** record how well every observation agrees with the hypothesis produced by that action.
 4. **Historical features** count how often each point has already been selected, preventing the policy from behaving as if every trial were the first.
 
-Together these signals turn “fit, score, discard” into a state transition. A good hypothesis provides positive evidence about its selected points and nearby structure; a poor one still teaches the sampler which combinations consumed budget without improving consensus.
+Fitting, scoring, and updating the state form one transition. A good hypothesis provides positive feedback about selected points and nearby structure. A poor hypothesis records an unproductive combination.
 
 ## Policy and training
 
@@ -142,4 +142,4 @@ Across these experiments, **an adaptive sampler uses downstream geometric feedba
 
 RLSAC adds a policy-training stage and iterative interaction. Transfer to a new estimation problem requires a compatible input representation, solver, and training data, while the geometric solver itself remains modular.
 
-The broader idea outlives this particular estimator: a system should observe the consequence of a proposal, preserve that evidence in state, and let it change the next proposal. In RLSAC the actions are minimum sets and the feedback is geometric consensus; later work in this research line extends the same closed-loop principle to multimodal prediction and physical robot behavior.
+RLSAC treats minimum sets as actions and geometric consensus as feedback. Sampling history guides later choices. Observing outcomes, retaining experience, and adjusting behavior are also questions in my later work on multimodal learning and robots.

@@ -13,7 +13,7 @@ sections:
     content:
       title: Publications
       text: |-
-        Ten works spanning general robot learning, multisensory manipulation, Vision-Language-Action models, embodied data generation, dense visual SLAM, multimodal denoising, robust geometric perception, and autonomous driving perception. Each record highlights its venue and publication status, then summarizes the main technical contribution with reader-oriented topic keywords.
+        Ten works spanning general robot learning, multisensory manipulation, Vision-Language-Action models, embodied data generation, dense visual SLAM, multimodal denoising, robust geometric perception, and autonomous driving perception. Each paper includes publication details, methods, and experimental results.
     design:
       columns: '1'
       background:

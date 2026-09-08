@@ -19,7 +19,7 @@ publication_order: 10
 spotlight: true
 peer_reviewed: true
 open_access: true
-abstract: "HEAR formalizes Vision-Sound-Language-Action as a continuous robot-control paradigm in which transient acoustic events remain available across delayed, chunked decision loops. The framework combines causal audio memory, multimodal reasoning, near-future audio prediction, and flow-matching action generation. OpenX-Sound and HEAR-Bench provide pretraining data and sound-causal evaluation tasks for this setting."
+abstract: "HEAR models vision, sound, language, and action in continuous robot control in which transient acoustic events remain available across delayed, chunked decision loops. The framework combines causal audio memory, multimodal reasoning, near-future audio prediction, and flow-matching action generation. OpenX-Sound and HEAR-Bench provide pretraining data and sound-causal evaluation tasks for this setting."
 summary: "A sound-centric embodied framework that gives robot policies causal audio memory, multimodal reasoning, future-audio prediction, and smooth action generation."
 story_order: 70
 homepage_order: 20
@@ -63,7 +63,7 @@ links:
 
 A microwave beep, a spoken interruption, or the first bubble of boiling water may last less than one robot action chunk. A vision-language-action policy that observes once, predicts a long action sequence, and looks again only after executing it can miss the event completely. The timing mismatch persists when audio is simply appended to the observation vector; the event must remain causally available after the waveform disappears.
 
-HEAR begins from this systems problem and formalizes a Vision–Sound–Language–Action paradigm in continuous physical time.
+HEAR models sound and action in continuous time and preserves audio events for later decisions.
 
 ## Why chunked control creates an evidence gap
 
@@ -96,7 +96,7 @@ $$
 S_{\mathrm{timed}}=\mathbf{1}\!\left[t_{\mathrm{snd}}\le t_{\mathrm{goal}}\le T\right].
 $$
 
-Completing the physical goal too early can be a failure—for example, removing an object before the alarm authorizes the action.
+Completing the physical goal too early can cause failure. For example, the robot may remove an object before the alarm.
 
 ## Four modules with different temporal roles
 
@@ -165,7 +165,7 @@ Every simulated task is evaluated with 100 trials. Results are success fractions
 | Best reported VLA baseline (π0.5-Waveform) | — | — | — | — | — | — | — | 0.61 |
 | HEAR | **0.91** | **0.89** | **0.83** | **0.51** | **0.81** | **0.85** | **0.88** | **0.81** |
 
-Pour Water reaches 0.51, substantially below the 0.81 average and the other simulated tasks.
+Pour Water reaches 0.51, below the 0.81 average and the other simulated tasks.
 
 ## Real-robot results
 
@@ -196,7 +196,7 @@ HEAR is strong on the shorter causal tasks, while success rates of 0.18 on Moka 
 | Without low-level Envisioner | 0.75 |
 | Regression action head | 0.70 |
 
-The Historizer causes the largest ablation drop, directly supporting the evidence-gap argument. The Advancer also changes behavior: low-motion action chunks occupy 0.15 of outputs for the full model, versus 0.33 without the Advancer and 0.38 with a regression head. Future-sound prediction helps the policy represent progress instead of hesitating.
+The Historizer causes the largest ablation drop, directly supporting the evidence-gap argument. The Advancer also changes behavior: low-motion action chunks occupy 0.15 of outputs for the full model, versus 0.33 without the Advancer and 0.38 with a regression head. Future-sound prediction helps the policy represent progress and reduces hesitation.
 
 Replanning only at the first chunk yields 0.71 average success, replanning halfway yields 0.80, and the default schedule yields 0.81. Window and action-chunk sweeps show the expected trade-off: memory must cover relevant events, while excessively long open-loop execution widens the evidence gap.
 
@@ -208,6 +208,6 @@ Reported false-trigger and missed-detection rates for HEAR are 0.02 and 0.04, re
 
 ## Limits and research significance
 
-Synthetic sound supports pretraining but leaves a real-to-synthetic acoustic domain gap. Microphone placement, echo, motor noise, language variation, and end-to-end latency remain deployment concerns. The difficult real tasks show that remembering sound is necessary but not sufficient for long-horizon manipulation; robust recovery and broader physical experience are still needed.
+Synthetic sound supports pretraining but leaves a real-to-synthetic acoustic domain gap. Microphone placement, echo, motor noise, language variation, and end-to-end latency remain deployment concerns. The difficult real tasks show that remembering sound is necessary but not sufficient for long-horizon manipulation; reliable recovery and broader physical experience are still needed.
 
 HEAR's main contribution is a causal systems formulation of sound-aware manipulation. The model explicitly represents sampling rate, transient duration, memory horizon, prediction target, and the relationship between audio events and action chunks. Experiments show improved sound-causal behavior, alongside clear remaining failures in long-horizon real tasks.

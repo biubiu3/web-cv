@@ -29,7 +29,7 @@ Profiles and contact:
 
 ## Research Program
 
-The research program asks how robots can move beyond fixed, one-shot policies and become systems that perceive across modalities, reason about physical outcomes, and improve through experience. It connects three threads: agent-centered robot learning with reusable skills and persistent experience; LLM/VLM reasoning and VLA models grounded through sound, proprioception, memory, and physical interaction; and robust perception and embodied data generation.
+The research covers robot decisions from multimodal observations and learning from execution experience. It studies reusable skills from sparse demonstrations, sound and memory for manipulation, and consistent multi-view training data. Related work includes visual geometry and self-supervised denoising.
 
 HEAR and Teach and Grow are the two current representative systems. HEAR introduces continuous sound-aware manipulation. Teach and Grow organizes demonstrations, tools, physical feedback, skills, and memory so that a robot system can accumulate reusable capabilities.
 

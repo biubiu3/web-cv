@@ -48,7 +48,7 @@ project_videos:
 
 Developed with NETA Auto, this applied **4D vision auto-annotation program** started from multi-sensor driving data and connected data preparation, semantic perception, vehicle localization, static and road-surface reconstruction, map-element auto-annotation, and multi-run local-map generation.
 
-I served as project lead, directing the technical route, work organization, module interfaces, acceptance loop, and engineering delivery. My deepest hands-on development was in **multi-camera SfM/static reconstruction** and its downstream geometry interfaces. The case study therefore begins with how the complete production system worked before examining the geometry core in detail, rather than reducing the program to one SfM module.
+I led system design, task coordination, module interfaces, acceptance testing, and delivery. My main algorithm work covered **multi-camera SfM and static reconstruction**, including geometry interfaces for downstream modules.
 
 The engineering work later informed the [MRASfM research paper](../../publications/mrasfm/). The production subsystem spans interfaces, implementation choices, validation, and downstream delivery.
 
@@ -116,7 +116,7 @@ Triangulation required adequate parallax and positive depth. Points with large r
 
 ## Why localization priors changed the reconstruction
 
-Without a pose prior, the early system produced streaking, duplicated surfaces, thick planes, and an unresolved scale. Supplying multi-sensor localization as an initialization anchored the reconstruction in metric space and made street furniture—lamp posts, traffic lights, signs, and building edges—substantially clearer.
+Without a pose prior, the early system produced streaking, duplicated surfaces, thick planes, and an unresolved scale. Supplying multi-sensor localization as an initialization anchored the reconstruction in metric space and clarified lamp posts, traffic lights, signs, and building edges.
 
 {{< project-compare left="sparse-without-pose.png" right="sparse-with-pose.png" left_label="Without pose prior" right_label="With localization prior" left_alt="Noisy and distorted sparse reconstruction without localization initialization." right_alt="Cleaner urban reconstruction initialized by localization poses." caption="The localization prior supplies scale and a usable starting geometry; SfM then refines the camera trajectory and rig calibration." >}}
 
@@ -131,7 +131,7 @@ Semantic and radius-based filtering then removed dynamic-object structure and is
 Sparse SfM established poses and reliable anchors, but the road-surface module needed a denser ground representation. The implemented path combined **ACMP depth estimation** with **COLMAP point-cloud fusion**:
 
 1. convert the sparse reconstruction into the depth estimator's input format;
-2. select source views directly from temporal and overlap priors instead of recomputing expensive all-pair point-cloud overlap;
+2. select source views from temporal and overlap priors, avoiding expensive all-pair point-cloud overlap calculations;
 3. estimate depth at a reduced, calibration-consistent resolution with parallel GPU workers;
 4. convert the depth output back to COLMAP's format and fuse it into a dense point cloud;
 5. apply semantic ground masks, neighborhood filtering, and per-grid RANSAC plane filtering.
@@ -189,6 +189,6 @@ The clips below connect the sensor stream to the intermediate and final geometry
 
 ## Program leadership and engineering contribution
 
-As project lead, I aligned the data, perception, localization, reconstruction, annotation, and mapping modules around a common delivery target. Within the geometry core, I implemented fallback registration for weak views, bounded candidate matching, geometric and semantic filtering, runtime-aware dense reconstruction, and observable checks at each interface. The value came from the interaction of upstream priors, selective re-estimation, rigid hardware constraints, and representations that downstream teams could consume—not from one isolated algorithm.
+I coordinated development and delivery across data, perception, localization, reconstruction, annotation, and mapping. Within SfM, I implemented fallback registration for weak views, bounded matching, semantic and geometric filtering, and faster dense reconstruction. Interface checks ensured that downstream modules could use localization priors, rig calibration, and reconstructed geometry.
 
-That experience subsequently informed the research abstraction in MRASfM, where the multi-camera reconstruction and aggregation method is studied as a general technical problem.
+These engineering problems informed MRASfM, which studies multi-camera reconstruction and aggregation across repeated drives.

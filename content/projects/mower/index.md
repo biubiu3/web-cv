@@ -1,9 +1,9 @@
 ---
 weight: 50
-title: "A Lawn Robot Designed Like an Autonomous Vehicle: LiDAR Obstacle Perception and Multi-Sensor Fusion"
+title: "Autonomous Mowing: LiDAR Obstacle Perception and Multi-Sensor Fusion"
 date: "2022-01-19T00:00:00Z"
 lastmod: "2026-09-04T00:00:00Z"
-summary: "A large applied industry–academia program with Positec that built a complete outdoor mobile robot across localization, visual/LiDAR perception, obstacle fusion, planning, and control. As project lead, I directed the system design and integration, with a technical focus on terrain-aware point clouds and multi-sensor obstacle fusion."
+summary: "A industry–academia project with Positec that built a complete outdoor mobile robot across localization, visual/LiDAR perception, obstacle fusion, planning, and control. As project lead, I directed the system design and integration, with a technical focus on terrain-aware point clouds and multi-sensor obstacle fusion."
 featured: true
 reading_time: false
 share: true
@@ -25,7 +25,7 @@ project:
   wider_system: 'Multi-camera, RGB-D, LiDAR, RTK/GNSS, IMU, wheel odometry, onboard GPU, localization, planning, and control'
   role: 'Project lead; overall system design and integration, with a technical focus on LiDAR perception and multi-sensor obstacle fusion'
   outputs: 'Integrated localization, visual/LiDAR perception, planning, and control; terrain-aware 3D obstacles and class-aware fused hypotheses'
-  context: 'A large industry–academia engineering program that built an autonomous mobile robot for unstructured lawns. The platform combined an automotive-style sensor and compute stack with localization, perception, planning, control, and mowing functions. I led the overall architecture, module coordination, and field integration while taking a hands-on role in LiDAR obstacle detection and cross-modal fusion.'
+  context: 'A industry–academia project that built an autonomous mobile robot for unstructured lawns. The platform combined an automotive-style sensor and compute stack with localization, perception, planning, control, and mowing functions. I led the overall architecture, module coordination, and field integration while taking a hands-on role in LiDAR obstacle detection and cross-modal fusion.'
 project_videos:
   - src: 'pointcloud-detection.mp4'
     poster: 'pointcloud-detection-poster.jpg'
@@ -35,17 +35,17 @@ project_videos:
 
 {{< project-overview >}}
 
-Developed with [Positec](https://www.positecgroup.com/), this large industry–academia program approached autonomous mowing as a complete outdoor mobile-robot problem. The platform combined multiple cameras, RGB-D sensing, LiDAR, RTK/GNSS, IMU, wheel odometry, and onboard GPU compute with multi-sensor localization, visual and point-cloud perception, obstacle fusion, planning, control, and the mowing task itself.
+Developed with [Positec](https://www.positecgroup.com/), this industry–academia project approached autonomous mowing as a complete outdoor mobile-robot problem. The platform combined multiple cameras, RGB-D sensing, LiDAR, RTK/GNSS, IMU, wheel odometry, and onboard GPU compute with multi-sensor localization, visual and point-cloud perception, obstacle fusion, planning, control, and the mowing task itself.
 
-As project lead, I directed the technical route, development organization, module interfaces, and field integration. Within that wider responsibility, my deepest algorithmic work was **terrain-aware point-cloud obstacle detection** and **multi-sensor obstacle fusion**, connecting 3D geometry, semantic segmentation, and visual detections to a planning-ready environment model.
+I led system design, development coordination, module interfaces, and field integration. My algorithm work focused on **terrain-aware point-cloud obstacle detection** and **multi-sensor obstacle fusion**. These modules combined geometry, segmentation, and object classes into an environment model for planning.
 
 ## From boundary following to scene-aware autonomy
 
-Robotic mowing has used several navigation paradigms. A conventional design can stay inside a physical loop: Husqvarna's own documentation describes a [boundary wire placed or buried around the lawn and obstacles](https://www.husqvarna.com/us/discover/robotic-mowers/automower-how-it-works/). Satellite-guided products replace the wire with a virtual boundary; for example, [EPOS uses RTK-GNSS and correction data](https://www.husqvarna.com/us/discover/epos/) to localize a mower within an editable work area. More recent systems use vision to recognize grass and obstacles without a wire or local antenna, as illustrated by [Worx Landroid Vision](https://www.worx.com/landroid/vision-technology/).
+Robotic mowing has used several navigation methods. A conventional design can stay inside a physical loop: Husqvarna's own documentation describes a [boundary wire placed or buried around the lawn and obstacles](https://www.husqvarna.com/us/discover/robotic-mowers/automower-how-it-works/). Satellite-guided products replace the wire with a virtual boundary; for example, [EPOS uses RTK-GNSS and correction data](https://www.husqvarna.com/us/discover/epos/) to localize a mower within an editable work area. More recent systems use vision to recognize grass and obstacles without a wire or local antenna, as illustrated by [Worx Landroid Vision](https://www.worx.com/landroid/vision-technology/).
 
 Reliable mowing across uneven turf requires both localization and local scene understanding. RTK supplies global position; cameras contribute object identity and lawn semantics; LiDAR provides range and shape. Their complementary measurements are especially useful on compliant ground, where long grass creates thick 3D returns, local slopes break a single-plane model, and people or animals may enter the work area.
 
-The platform followed a familiar autonomous-driving systems principle: complementary sensors feed a shared perception and decision stack. [Waymo's public description of its sensing-to-reasoning chain](https://waymo.com/faq/) illustrates the same architectural pattern at road-vehicle scale. Our implementation selected sensors for low-speed outdoor work and added terrain models tailored to grass.
+The platform followed a familiar autonomous-driving systems principle: complementary sensors feed a shared perception and decision stack. [Waymo's public description of its sensing-to-reasoning chain](https://waymo.com/faq/) illustrates the same architectural pattern at road-vehicle scale. Our implementation selected sensors for low-speed outdoor work and added terrain models for grass.
 
 {{< mower-system-map >}}
 
@@ -65,15 +65,15 @@ As project lead, I also had to make localization, vision, LiDAR, fusion, plannin
 
 Localization combined global and local motion cues. RTK/GPS provided global constraints; IMU preintegration and wheel odometry maintained short-term continuity; visual and LiDAR odometry supplied environmental geometry. A factor-graph back end organized priors, odometry, inertial, and satellite measurements into a trajectory that could be continuously optimized.
 
-The engineering route explicitly addressed the weak points of both VIO and LIO. The visual branch considered initialization, ground-contact constraints, timing/extrinsic calibration, and health checks. The LiDAR branch covered motion compensation, feature selection, incremental map maintenance, and degeneracy detection. Localization was not a separate showcase module: it supplied the common robot state needed by terrain grids, temporal obstacle tracking, planning, and control.
+The engineering route explicitly addressed the weak points of both VIO and LIO. The visual branch considered initialization, ground-contact constraints, timing/extrinsic calibration, and health checks. The LiDAR branch covered motion compensation, feature selection, incremental map maintenance, and degeneracy detection. Localization supplied the common robot state needed by terrain grids, temporal obstacle tracking, planning, and control.
 
 ### Visual objects and scene semantics
 
 The visual branch balanced safety-class coverage, recognition quality, and embedded runtime. After comparing one-stage detectors with two-stage and Transformer families, the project advanced YOLOR and YOLOX as complementary main routes: one emphasized detection-head and data-loop improvements, while the other emphasized deployment through TensorRT, quantization/operator optimization, pruning, and distillation.
 
-Camera outputs covered object-level categories such as people, animals, vehicles, hydrants, and fences, together with pixel-level lawn semantics. These signals did not determine traversability alone; the fusion layer combined them with point-cloud distance, shape, and terrain evidence.
+Camera outputs covered object-level categories such as people, animals, vehicles, hydrants, and fences, together with pixel-level lawn semantics. The fusion layer combined these signals with point-cloud distance, shape, and terrain evidence to assess traversability.
 
-{{< project-figure src="field-object-detection.gif" alt="Outdoor mower visual-detection debug view with multiple safety-relevant object classes over point-cloud and image observations." caption="Additional field detection evidence: vision supplies object semantics while 3D sensing contributes distance, shape, and terrain support." >}}
+{{< project-figure src="field-object-detection.gif" alt="Outdoor mower visual-detection debug view with multiple safety-relevant object classes over point-cloud and image observations." caption="Field detection example: vision supplies object semantics while 3D sensing contributes distance, shape, and terrain support." >}}
 
 ## Terrain-aware point-cloud perception
 
@@ -123,4 +123,4 @@ The mower market has since moved toward richer sensing. Current commercial syste
 
 ## Program leadership and research influence
 
-As lead, I directed more than the two perception algorithms: the work covered sensor configuration, localization and perception routes, cross-module integration, and the field-test feedback loop. Point-cloud and fusion development were the areas where I contributed most deeply. Three ideas continued into my later robotics research: select representations around the physical environment; preserve each sensor's distinct contribution during fusion; and design interfaces around the timing, coordinates, uncertainty, and state required for action. The mower project connected geometric modeling, learned semantics, and a planning-ready robot system on one field platform.
+I led sensor selection, localization and perception design, integration, and field testing. My main algorithm work was point-cloud detection and obstacle fusion. These tasks taught me to adapt representations to the physical environment, retain sensor provenance, and specify timing, coordinates, confidence, and tracking state at planning interfaces.

@@ -37,7 +37,7 @@ sections:
     id: news
     content:
       title: 'News'
-      text: 'Selected paper and project milestones across my research trajectory.'
+      text: 'Paper and project updates.'
       initial_count: 4
       more_label: 'More news'
       less_label: 'Show less'
@@ -105,7 +105,7 @@ sections:
         - date: '2022'
           display_date: '2022'
           tag: 'Project'
-          text: 'The autonomous lawn robot completed its field-tested project phase.'
+          text: 'The autonomous lawn robot completed field testing.'
           url: 'projects/mower/'
   - block: markdown
     id: research
@@ -113,26 +113,26 @@ sections:
       title: 'Research Vision'
       subtitle: ''
       text: |-
-        My research asks how robots can move beyond fixed, one-shot policies to become systems that **perceive across modalities, reason about physical outcomes, and improve through experience**.
+        I study how robots can **combine multimodal observations to make decisions and learn from execution experience**. My work addresses reusable skills from sparse demonstrations, sound and memory for manipulation, and consistent multi-view training data.
 
-        This agenda connects three threads. First, I study **agent-centered robot learning**, where reusable skills and persistent experience support adaptation without repeatedly rebuilding an entire policy. Second, I connect **Large Language Models (LLMs)** and **Vision-Language Models (VLMs)** with **Vision-Language-Action (VLA) models**, extending them with sound, proprioception, and memory so that reasoning remains grounded in physical interaction. Third, I develop **robust perception and embodied data generation**, from learned sample consensus to consistent editing of robotic multi-view trajectories.
+        I use Large Language Models (LLMs), Vision-Language Models (VLMs), and Vision-Language-Action (VLA) models for robot reasoning and control. I study how sound, proprioception, and memory inform these models. My work also covers visual geometry and self-supervised denoising, including learned sample consensus and editing of multi-view robot trajectories.
 
-        **HEAR** and **Teach and Grow (TGL)** are the clearest expressions of this direction: HEAR introduces continuous sound-aware manipulation, while TGL organizes demonstrations, tools, physical feedback, and memory into a robot system that accumulates reusable capabilities.
+        **HEAR** records sound continuously so brief events can affect later actions. **Teach and Grow (TGL)** extracts skills from demonstrations, checks execution through physical feedback, and stores skills and repairs for later tasks.
     design:
       columns: '1'
   - block: markdown
     id: papers
     content:
-      title: 'Selected Publications, Connected by One Research Agenda'
+      title: 'Publications and Research Directions'
       text: |-
-        The publication list follows a curated order that foregrounds the work I most want readers to encounter. Each card retains its year, venue or review status, and technical area. The connection between the papers is explained separately: reliable perception and geometry support multimodal data and models, which in turn enable robot systems that listen, reason, act, and learn from experience.
+        My work covers visual geometry, multimodal learning, and robot manipulation. Geometry methods recover scene structure; denoising and generation improve training data; robot systems use sound and execution feedback to guide actions.
     design:
       columns: '1'
   - block: collection
     id: selected-publications
     content:
       title: 'Selected Publications'
-      text: Ten representative works in a curated reading order; the research map below explains their technical continuity.
+      text: Ten selected papers with publication details and method descriptions.
       filters:
         folders:
           - publications
@@ -151,8 +151,8 @@ sections:
     id: research-trajectory
     content:
       eyebrow: 'How the work connects'
-      title: 'One trajectory, three technical layers'
-      text: 'The cards above follow a curated reading order. This map shows how the works connect from dependable scene understanding to multimodal learning and general robot systems.'
+      title: 'Three Related Research Directions'
+      text: 'These studies address scene geometry, training data, and robot behavior.'
       stages:
         - index: '01'
           label: 'Foundation'
@@ -172,14 +172,14 @@ sections:
         - index: '02'
           label: 'Bridge'
           title: 'Multimodal Data & Models'
-          text: 'Self-supervised denoising and consistent 4D editing turn heterogeneous observations into more useful learning experience.'
+          text: 'Self-supervised denoising improves observations across modalities. Consistent 4D editing expands robot training data.'
           papers:
             - label: 'MID'
               url: 'publications/mid/'
             - label: 'ERMV'
               url: 'publications/ermv/'
         - index: '03'
-          label: 'Current frontier'
+          label: 'Robot learning'
           title: 'General Robot Systems'
           text: 'Sound, tools, feedback, skills, and memory are integrated into robots that reason and improve through physical interaction.'
           papers:
@@ -192,7 +192,7 @@ sections:
     content:
       title: Robots That Listen, Reason, and Act
       text: |-
-        Selected real-robot trials from **HEAR**, my sound-centric manipulation framework. Turn on sound to see why a robot must remember transient acoustic events while it acts.
+        These real-robot trials show how **HEAR** uses sound during manipulation. Turn on the audio to hear the cues that affect its decisions.
       project_url: https://hear.irmv.top/
       project_label: Explore the HEAR project
       videos:
@@ -206,7 +206,7 @@ sections:
           description: A short alarm event changes the manipulation decision even when it falls between action chunks.
           src: https://hear.irmv.top/static/videos/alarm_all.mp4?v=681a0fb
           poster: alarm.webp
-        - title: Empty or Occupied?
+        - title: Identifying Bottle Contents
           eyebrow: Interactive sound
           description: The robot shakes a bottle and uses the resulting sound to infer its state before placing it.
           src: https://hear.irmv.top/static/videos/empty_all.mp4?v=681a0fb

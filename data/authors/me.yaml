@@ -16,18 +16,14 @@ bio: |
   I am Nie Chang (聂畅), a final-year Ph.D. student at the School of Automation
   and Intelligent Sensing, Shanghai Jiao Tong University, advised by
   [Prof. Hesheng Wang](https://sais.sjtu.edu.cn/faculty/wanghesheng.html).
-  My research develops general robot systems that connect language and
-  multimodal perception with physical action. Across Physical AI and embodied
-  intelligence, I study agentic robot learning, LLM/VLM reasoning,
-  Vision-Language-Action models, multisensory policies, and methods for
-  generating and interpreting robot experience. My long-term goal is to build
-  adaptable robots that can learn from sparse teaching, reason over physical
-  feedback, and reuse experience across tasks.
+  I study how robots use language, multisensory observations, and physical
+  feedback to select and improve their actions. My work covers agentic robot
+  learning, LLM/VLM reasoning, Vision-Language-Action models, and robot training
+  data. I aim to build robots that learn from sparse demonstrations and reuse
+  experience across tasks.
 
-  I am interested in ambitious, collaborative research with real-world impact
-  and am currently exploring research, engineering, and postdoctoral
-  opportunities worldwide. If our interests overlap, please feel free to get in
-  touch.
+  I am seeking research, engineering, and postdoctoral opportunities worldwide.
+  Please get in touch if you would like to discuss research or collaboration.
 
 affiliations:
   - name: Shanghai Jiao Tong University

@@ -54,12 +54,12 @@ links:
 
 | Setting | Design choice |
 |---|---|
-| Input | One RGB image—no optical flow or adjacent frames |
+| Input | One RGB image, without optical flow or adjacent frames |
 | Reasoning | A multimodal LLM identifies likely moving objects and writes a text prompt |
 | Segmentation | SAM2 features, BEiT-3 vision-language features, and a learned feature aggregator |
 | Refinement | A bounded deep-thinking loop revisits the image and current result, up to five rounds |
 
-“Moving” is normally observed across time. If only one frame remains after packet loss, occlusion, or a camera fault, appearance alone cannot prove physical motion. Yet people can still make a useful inference: a cyclist in the road, a running pedestrian, or a car aligned with traffic has semantic and contextual cues that a static foreground detector may miss. MovSAM treats single-image moving-object segmentation as this kind of *reasoning under missing temporal evidence*.
+Motion is usually measured across consecutive observations. After frame loss or a camera fault, object class, pose, and scene context can still suggest likely motion. MovSAM studies segmentation from these single-image cues. Measuring physical velocity requires temporal observations.
 
 ## Reason first, segment second
 
@@ -71,11 +71,11 @@ $$
 
 The implementation uses Llama-3.2-11B-Vision to inspect the full scene, reason step by step about which entities are plausibly moving, and convert that conclusion into text. The resulting prompt acts as a semantic prior for the visual segmentation stack, separating scene reasoning from pixel prediction.
 
-SAM2 supplies image and mask representations, while BEiT-3 provides aligned vision-language features. A feature aggregation module—five convolutional layers followed by a fully connected layer—compresses global context into a 512-dimensional vector and fuses it with the prompt-conditioned representation. The SAM image encoder is frozen; the vision-language model, aggregator, and the remaining SAM components are optimized for the task. The reported system initializes from SAM ViT-Huge and BEiT-3 Large.
+SAM2 supplies image and mask representations, while BEiT-3 provides aligned vision-language features. The feature aggregator uses five convolutional layers followed by a fully connected layer. It compresses global context into a 512-dimensional vector and combines it with the prompt-conditioned representation. The SAM image encoder is frozen; the vision-language model, aggregator, and the remaining SAM components are optimized for the task. The reported system initializes from SAM ViT-Huge and BEiT-3 Large.
 
-## Deep thinking as a bounded correction loop
+## Up to five rounds of refinement
 
-A one-pass language answer may mention the wrong object or omit an ambiguous one. MovSAM therefore places the current segmentation back into the multimodal context and asks the model to reconsider. Each round can revise the prompt and update the mask; the loop ends when the answer stabilizes or reaches five rounds. The resulting “deep thinking” process is a bounded observe–reason–segment–inspect cycle.
+Initial reasoning can select the wrong object or miss one. MovSAM feeds the current segmentation back to the multimodal model, which revises the prompt and updates the mask. The loop stops when the result stabilizes or reaches five rounds.
 
 ![Single-image segmentation in real scenes with missing temporal evidence.](real-world.jpg "MovSAM uses scene semantics and appearance to infer likely moving objects from one image.")
 

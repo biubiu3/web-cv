@@ -64,7 +64,7 @@ Teach-and-Grow Learning asks for a different lifecycle. A robot should be able t
 
 ## From demonstrations to reusable strategy
 
-TGL begins with a few successful demonstrations $\mathcal{D}$. The agent aligns them by meaningful state change—object acquired, container opened, target reached—and searches for shared structure. The resulting semantic strategy can be physically re-instantiated in a new scene.
+TGL begins with a few successful demonstrations $\mathcal{D}$. The agent aligns demonstrations at state changes such as acquiring an object, opening a container, or reaching a target. It extracts shared stages, then grounds and executes them in a new scene.
 
 A Skill Block is represented as
 
@@ -73,7 +73,7 @@ b_i=\langle g_i,\mathcal{S}_i,\rho_i,\gamma_i,
 \Pi_i,v_i,\mathcal{R}_i\rangle,
 $$
 
-where $g_i$ is the intended subgoal, $\mathcal{S}_i$ its scope, $\rho_i$ the strategy, $\gamma_i$ grounding requirements, $\Pi_i$ available executors, $v_i$ an outcome verifier, and $\mathcal{R}_i$ recovery behavior. The exact notation matters because it prevents “skill” from meaning an unstructured text instruction. A block names what should change, how the current scene must be grounded, which robot tool has authority to act, and how success is checked.
+where $g_i$ is the intended subgoal, $\mathcal{S}_i$ its scope, $\rho_i$ the strategy, $\gamma_i$ grounding requirements, $\Pi_i$ available executors, $v_i$ an outcome verifier, and $\mathcal{R}_i$ recovery behavior. A block specifies the expected effect, scene-grounding requirements, authorized robot tools, and success checks.
 
 ![A Skill Block binds intent, grounding, execution, verification, and recovery.](skill-block.png "A Skill Block packages a reusable closed-loop behavior.")
 
@@ -157,7 +157,7 @@ Fisher's exact test gives $p=0.061$ in this two-task, single-seed mechanism stud
 
 A separate eight-attempt cohort obtains 0/8 task successes. Two attempts stop before planning, four fail at path/calibration, and two fail at the gripper, identifying geometric calibration, planning, and end-effector reliability as immediate engineering priorities.
 
-## Acquisition cost and the larger learning ecosystem
+## Skill acquisition and policy execution
 
 The architecture complements learned policies. Once a block becomes stable, a VLA, world-action model, or other fast policy may execute it directly or distill its verified trajectories. The agent handles changes in competence and composition, while a learned fast path serves familiar conditions.
 
@@ -169,6 +169,6 @@ This asymmetry also localizes improvement. A grasp detector can be replaced insi
 
 ## Limitations and open questions
 
-The current agentic route is slower than a distilled policy and depends on the reliability of its robot-native tools. Demonstration induction has tolerance-sensitive boundaries; the fixed-executor evidence has small denominators; and the separate 0/8 cohort shows that planning, calibration, and gripping can dominate overall success. The proposed power-law relationship has not yet been validated across a long sequence of tasks. Generalization across embodiments and safe autonomous exploration also require substantially broader study.
+The current agentic route is slower than a distilled policy and depends on the reliability of its robot-native tools. Demonstration induction has tolerance-sensitive boundaries; the fixed-executor study has few trials; and the separate 0/8 cohort shows that planning, calibration, and gripping can dominate overall success. The proposed power-law relationship has not yet been validated across a long sequence of tasks. Generalization across embodiments and safe autonomous exploration also require broader study.
 
 The current results establish an architectural foundation: sparse teaching, effect-verified Skill Blocks, physical feedback, and persistent memory can form a robot learning cycle without task-specific policy retraining. Establishing a stable lifelong scaling law will require longer task sequences, more embodiments, and broader autonomous exploration.

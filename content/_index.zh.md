@@ -30,7 +30,7 @@ sections:
     id: news
     content:
       title: 最新动态
-      text: 沿研究主线选取的论文与项目进展。
+      text: 论文与项目进展。
       initial_count: 4
       more_label: 展开更多
       less_label: 收起
@@ -98,33 +98,33 @@ sections:
         - date: '2022'
           display_date: '2022'
           tag: 项目
-          text: 智能割草机器人完成实地测试项目阶段。
+          text: 智能割草机器人完成实地测试。
           url: 'projects/mower/'
   - block: markdown
     id: research
     content:
       title: 研究愿景
       text: |-
-        我的研究关注如何让机器人超越固定的一次性策略，成为能够**跨模态感知、推理物理结果，并从经验中持续改进**的系统。
+        我研究机器人如何**结合多模态感知做出决策，并从执行经验中学习**。具体问题包括：如何用少量示教学习可复用技能，如何将声音和记忆用于操作，以及如何生成一致的多视角训练数据。
 
-        这条主线连接三个方向。首先，我研究**以智能体为中心的机器人学习**，通过可复用技能和持久经验实现局部适应，而不必每次重训完整策略。其次，我将<strong>大语言模型（LLM）、视觉语言模型（VLM）和视觉—语言—动作模型（VLA）</strong>连接起来，并引入声音、本体感觉和记忆，使模型推理始终落在真实物理交互中。最后，我研究**鲁棒感知与具身数据生成**，从学习式采样一致性到机器人多视角轨迹的一致编辑。
+        我将大语言模型（LLM）、视觉语言模型（VLM）与视觉语言动作模型（VLA）用于机器人推理和控制，并研究声音、本体感觉与记忆的使用。视觉几何和自监督去噪也是我的研究方向，涵盖采样一致性估计与机器人多视角轨迹编辑。
 
-        **HEAR** 与 **Teach and Grow（TGL）** 是这条路线最具代表性的工作：HEAR 让机器人能够持续感知声音并据此操作；TGL 则将示范、工具、物理反馈和记忆组织为能够积累并复用能力的机器人系统。
+        **HEAR** 持续记录声音，使短促事件能够影响后续操作。**Teach and Grow（TGL）** 从示教中提取技能，利用物理反馈验证执行结果，并保存技能与修复经验供后续任务复用。
     design:
       columns: '1'
   - block: markdown
     id: papers
     content:
-      title: 代表性论文与贯穿其中的研究主线
+      title: 论文与研究方向
       text: |-
-        以下论文按照经过筛选的展示顺序排列，优先呈现最希望读者首先了解的工作；每张卡片保留年份、发表或审稿状态及技术方向。论文之间的联系单独通过研究路线呈现：可靠感知与几何支撑多模态数据和模型，进一步走向能够聆听、推理、行动并从经验中成长的机器人系统。
+        我的工作涉及视觉几何、多模态学习和机器人操作。几何方法恢复场景结构，数据生成与去噪方法改善训练数据，机器人系统则利用声音和执行反馈调整动作。
     design:
       columns: '1'
   - block: collection
     id: selected-publications
     content:
       title: '代表性论文'
-      text: 十项工作的重点展示顺序；下方研究路线图进一步说明它们之间的技术联系。
+      text: 十项代表性工作，附发表信息与方法介绍。
       filters:
         folders:
           - publications
@@ -143,8 +143,8 @@ sections:
     id: research-trajectory
     content:
       eyebrow: 这些工作如何连接
-      title: 一条研究主线，三个技术层次
-      text: 论文卡片采用经过筛选的阅读顺序；这张路线图进一步展示这些工作如何从可靠场景理解连接到多模态学习与通用机器人系统。
+      title: 三个相关的研究方向
+      text: 这些工作分别研究场景几何、训练数据和机器人行为。
       stages:
         - index: '01'
           label: 技术基础
@@ -164,14 +164,14 @@ sections:
         - index: '02'
           label: 连接层
           title: 多模态数据与模型
-          text: 利用自监督去噪与一致的 4D 编辑，把异构观测转化为更有效的学习经验。
+          text: 利用自监督去噪与一致的 4D 编辑，改善不同模态的观测质量，扩充机器人训练数据。
           papers:
             - label: 'MID'
               url: 'publications/mid/'
             - label: 'ERMV'
               url: 'publications/ermv/'
         - index: '03'
-          label: 当前前沿
+          label: 机器人学习
           title: 通用机器人系统
           text: 将声音、工具、反馈、技能与记忆集成到能够推理并从物理交互中持续改进的机器人中。
           papers:
@@ -184,7 +184,7 @@ sections:
     content:
       title: 能够聆听、推理与行动的机器人
       text: |-
-        以下是声音中心机器人操作框架 **HEAR** 的实机实验。打开声音，你可以直观看到：为什么机器人在执行动作的同时，还需要记住稍纵即逝的声学事件。
+        以下实机实验展示 **HEAR** 如何利用声音完成操作。开启声音可听到影响机器人决策的提示音与交互声音。
       project_url: https://hear.irmv.top/
       project_label: 查看 HEAR 项目页
       videos:
@@ -198,7 +198,7 @@ sections:
           description: 即使短促的闹铃发生在动作块之间，它仍会改变机器人的后续决策。
           src: https://hear.irmv.top/static/videos/alarm_all.mp4?v=681a0fb
           poster: alarm.webp
-        - title: 空瓶还是有内容物？
+        - title: 摇瓶辨别内容物
           eyebrow: 交互声音
           description: 机器人摇晃瓶子，根据产生的声音判断状态，再完成对应放置。
           src: https://hear.irmv.top/static/videos/empty_all.mp4?v=681a0fb

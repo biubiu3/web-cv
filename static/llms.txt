@@ -20,7 +20,7 @@ This file is a concise guide to the public, human-readable pages on the site. Pu
 
 ## Publications
 
-- [Publications](https://biubiu3.github.io/web-cv/publications/): Ten works with complete author lists, emphasized venue and publication status, method figures, reader-oriented topic keywords, abstracts, and technical summaries.
+- [Publications](https://biubiu3.github.io/web-cv/publications/): Ten works with complete author lists, venue and publication status, method figures, topic keywords, abstracts, and technical summaries.
 - [Towards the Vision-Sound-Language-Action Paradigm: The HEAR Framework for Sound-Centric Manipulation](https://biubiu3.github.io/web-cv/publications/hear/): Published in The International Journal of Robotics Research (IJRR).
 - [Teach and Grow: An Agent-Centered Architecture for General Robot Learning](https://biubiu3.github.io/web-cv/publications/tgl/): Under review at IEEE Transactions on Robotics (T-RO).
 - [ERMV: Editing 4D Robotic Multi-view Images to Enhance Embodied Agents](https://biubiu3.github.io/web-cv/publications/ermv/): Under review at IEEE Transactions on Circuits and Systems for Video Technology (TCSVT).
@@ -38,7 +38,7 @@ This file is a concise guide to the public, human-readable pages on the site. Pu
 ## Engineering Projects
 
 - [Engineering project index](https://biubiu3.github.io/web-cv/projects/): Systems projects spanning laboratory robotics, autonomous driving, and 3D vision.
-- [Multi-Camera SfM for 4D Vision Auto-Annotation](https://biubiu3.github.io/web-cv/projects/sfm/): An applied program with NETA Auto spanning data preparation, semantic perception, localization, reconstruction, auto-annotation, and multi-run local maps. Nie Chang led the overall technical route and delivery, with deep hands-on work on the SfM geometry core.
+- [Multi-Camera SfM for 4D Vision Auto-Annotation](https://biubiu3.github.io/web-cv/projects/sfm/): An applied program with NETA Auto spanning data preparation, semantic perception, localization, reconstruction, auto-annotation, and multi-run local maps. Nie Chang led the overall technical route and delivery, with algorithm development focused on SfM.
 - [Automated Valet Parking](https://biubiu3.github.io/web-cv/projects/avp/): A complete AVP program with Voyager Intelligent Systems connecting surround/BEV perception, fusion localization, semantic mapping, hierarchical driving and parking planning, vehicle control, and remote summon. Nie Chang led the project and focused technically on planning, control, and end-to-end integration.
 - [Autonomous Lawn Robot: LiDAR Obstacle Perception and Multi-Sensor Fusion](https://biubiu3.github.io/web-cv/projects/mower/): A field-tested program with Positec spanning localization, visual/LiDAR perception, obstacle fusion, planning, and control. Nie Chang led the system design and integration, with a technical focus on terrain-aware point clouds and multi-sensor obstacle fusion.
 

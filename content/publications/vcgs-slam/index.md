@@ -72,7 +72,7 @@ This work, accepted by the **International Journal of Computer Vision (IJCV) in 
 
 The practical effect is visible in the reconstructed map. Many primitives can be removed while preserving the rendered scene, reducing both rasterization work and checkpoint size.
 
-![The compact representation uses substantially fewer Gaussian points while retaining comparable visual reconstruction.](compact-representation.jpg "Paper result: fewer 3D Gaussian points preserve the reconstructed RGB appearance while improving rendering speed and storage use.")
+![The compact representation uses fewer Gaussian points while retaining comparable visual reconstruction.](compact-representation.jpg "Paper result: fewer 3D Gaussian points preserve the reconstructed RGB appearance while improving rendering speed and storage use.")
 
 ## Two coupled threads: mapping and tracking
 
@@ -80,7 +80,7 @@ The input is a sequence of RGB-D frames $\{I_i,D_i\}_{i=1}^{M}$ with camera intr
 
 ![The full system couples compact Gaussian mapping with local-to-global camera tracking.](system-pipeline.png "Paper pipeline: RGB-D input feeds voxelized Gaussian mapping, sliding-window masking, residual quantization, and global bundle adjustment with ICP.")
 
-This separation matters on a robot. Mapping must absorb newly observed surfaces without allowing the representation to grow indefinitely; tracking must still use enough historical evidence to limit accumulated pose error.
+Mapping must incorporate new surfaces while controlling map size. Tracking must retain enough historical observations to limit accumulated pose error.
 
 ## Voxel-anchored Gaussian representation
 
@@ -91,7 +91,7 @@ $$
 =\mathbf{x}^{a}+\{\mathcal{O}_i\}_{i=0}^{k-1}\cdot\mathbf{l}.
 $$
 
-Opacity, rotation, scale, and color are decoded from the anchor feature together with viewing distance and direction. New anchors are added in newly observed or poorly reconstructed regions. A multi-resolution growing rule uses accumulated Gaussian gradients to allocate capacity where it improves the scene instead of spreading primitives uniformly.
+Opacity, rotation, scale, and color are decoded from the anchor feature together with viewing distance and direction. New anchors are added in newly observed or poorly reconstructed regions. A multi-resolution growing rule uses accumulated Gaussian gradients to add capacity in regions that need better reconstruction.
 
 ## Online masking follows the camera window
 
@@ -110,7 +110,7 @@ $$
 =\sum_{k=1}^{L}\mathcal{C}^{k}\!\left[i_n^{k}\right].
 $$
 
-The map then stores small indices plus shared codebooks instead of a full independent vector for every anchor. The reported configuration uses a codebook size of 64 and six residual stages, balancing compactness against reconstruction fidelity.
+The map stores anchor attributes as compact indices into shared codebooks. The reported configuration uses a codebook size of 64 and six residual stages, balancing compactness against reconstruction fidelity.
 
 ![Residual quantization progressively represents scale and offset attributes with shared codebooks.](residual-codebook.jpg "Paper method: each codebook stage approximates the residual left by the previous stage.")
 
