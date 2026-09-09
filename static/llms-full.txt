@@ -9,6 +9,7 @@ Nie Chang is a final-year Ph.D. student at the School of Automation and Intellig
 Research interests:
 
 - Physical AI & Embodied Intelligence
+- Embodied World Models & Physical Simulation (具身世界模型)
 - Agentic Robot System
 - Large Language Model (LLM) & Vision Language Model (VLM)
 - Vision-Language-Action Model (VLA)
@@ -29,9 +30,9 @@ Profiles and contact:
 
 ## Research Program
 
-The research covers robot decisions from multimodal observations and learning from execution experience. It studies reusable skills from sparse demonstrations, sound and memory for manipulation, and consistent multi-view training data. Related work includes visual geometry and self-supervised denoising.
+The research connects multimodal foundation models with physical embodiment, focusing on continuous multisensory policy learning (VSLA), lifelong agentic architectures, and action-conditioned 4D robotic world models. It investigates generative physical world simulation, reusable skills from sparse demonstrations, real-time 3D/4D spatial intelligence, and self-supervised geometric perception.
 
-HEAR and Teach and Grow are the two current representative systems. HEAR introduces continuous sound-aware manipulation. Teach and Grow organizes demonstrations, tools, physical feedback, skills, and memory so that a robot system can accumulate reusable capabilities.
+HEAR, Teach and Grow, and ERMV represent core systems across policy learning, agentic lifelong adaptation, and generative world modeling. HEAR establishes continuous sound-aware manipulation. Teach and Grow organizes skills and episodic memory for perpetual learning. ERMV introduces an action-conditioned 4D multi-view robotic world model delivering consistent physical simulations for VLA training.
 
 ## Engineering Project Record
 
@@ -123,13 +124,13 @@ HEAR and Teach and Grow are the two current representative systems. HEAR introdu
 }
 ```
 
-### 3. ERMV: Editing 4D Robotic Multi-view Images to Enhance Embodied Agents
+### 3. ERMV: A 4D Multi-View Robotic World Model for Embodied Agents
 
-- **Title**: ERMV: Editing 4D Robotic Multi-view Images to Enhance Embodied Agents
+- **Title**: ERMV: A 4D Multi-View Robotic World Model for Embodied Agents
 - **Authors**: Nie Chang; Guangming Wang; Zhe Liu; Hesheng Wang
-- **Focus**: 4D robotic multi-view generative video editing, sparse spatiotemporal attention, VLA synthetic data engines
-- **Impact & SOTA**: First framework to enforce rigorous multi-camera geometric and kinematic consistency in generative 4D robot trajectory editing. Delivers a **44.5x boost** (from 2% to 89% task success) in real dual-arm manipulation within unseen cluttered environments.
-- **Abstract**: ERMV synthesizes photo-realistic, multi-view 4D robot manipulation trajectories from sparse keyframe edits conditioned on robot kinematics. Integrating sparse spatiotemporal token modeling, motion-aware epipolar attention, and causal VLM verification, ERMV generates infinite, geometrically consistent training data to train robust Vision-Language-Action (VLA) foundation models.
+- **Focus**: Action-conditioned 4D robotic world models, multi-camera epipolar geometry, generative physical world simulation, VLA data engines
+- **Impact & SOTA**: First framework to establish an action-conditioned 4D multi-camera world model with rigorous epipolar geometry and kinematic preservation. Enables counterfactual rollout synthesis and physical perturbation generation, unlocking a **44.5x boost** (from 2% to 89% task success) in real dual-arm manipulation within unseen cluttered environments.
+- **Abstract**: ERMV formulates robotic trajectory generation as an action-conditioned 4D multi-view world model. Given multi-view robot observations and joint action sequences, ERMV models the future 4D spatiotemporal world distribution under counterfactual perturbations, physical scene variations, and camera rig kinematics. By integrating sparse spatiotemporal token modeling, motion-aware epipolar attention, and kinematic constraint enforcement, ERMV generates infinite, geometrically consistent multi-view video rollouts to train robust Vision-Language-Action (VLA) foundation models without manual real-world demonstration collection.
 - **URLs**:
   - Page: https://biubiu3.github.io/web-cv/publications/ermv/
   - Code: https://github.com/IRMVLab/ERMV
@@ -137,7 +138,7 @@ HEAR and Teach and Grow are the two current representative systems. HEAR introdu
 - **BibTeX**:
 ```bibtex
 @article{nie2025ermv,
-  title={ERMV: Editing 4D Robotic Multi-view Images to Enhance Embodied Agents},
+  title={ERMV: A 4D Multi-View Robotic World Model for Embodied Agents},
   author={Nie, Chang and Wang, Guangming and Liu, Zhe and Wang, Hesheng},
   journal={arXiv preprint arXiv:2507.17462},
   year={2025},

@@ -80,7 +80,7 @@ sections:
         - date: '2025'
           display_date: '2025'
           tag: 'Research Highlight'
-          text: 'ERMV introduces a 4D generative trajectory editing framework, boosting real dual-arm robot task success from 2% to 89% in unseen cluttered environments.'
+          text: 'ERMV introduces an action-conditioned 4D robotic world model (Robotic World Model), acting as a physical simulator that propels real dual-arm manipulation success from 2% to 89% (a 44.5× leap) in unseen cluttered environments.'
           url: 'publications/ermv/'
         - date: '2025'
           display_date: '2025'
@@ -119,7 +119,7 @@ sections:
 
         1. **Agent-Centered Lifelong Robot Learning**: Overcoming the prohibitive "retraining tax" of monolithic end-to-end models by introducing verifiable, self-repairing Skill Blocks and structured Experience Memory. Robots acquire closed-loop capabilities from sparse demonstrations, autonomously diagnose and recover from physical failures, and continually grow their skill repertoires without global retraining (e.g., **Teach and Grow (TGL)**).
         2. **Multimodal Embodied Foundation Models & VLA**: Breaking the visual-only barrier by pioneering the Visual-Sound-Language-Action (VSLA) paradigm. By seamlessly integrating continuous high-frequency acoustics, touch, and proprioception with multimodal foundation models, our systems eliminate the dangerous evidence gaps created by action chunking, maintaining razor-sharp causal situational awareness during dynamic manipulation (e.g., **HEAR**, published in IJRR 2026).
-        3. **High-Precision Spatial Intelligence & 4D Embodied World Engines**: From diffusion-guided robust estimation (**DiffSAC**), embedded 3D Gaussian Splatting SLAM (**VCGS-SLAM**, IJCV 2026), and rigid camera-rig SfM (**MRASfM**, ICRA 2026) to geometrically consistent 4D generative trajectory synthesis (**ERMV**), building the metric foundation and infinite high-fidelity data engines essential for physical AI.
+        3. **High-Precision Spatial Intelligence & 4D Embodied World Engines**: From action-conditioned 4D robotic world models (**ERMV**), embedded 3D Gaussian Splatting SLAM (**VCGS-SLAM**, IJCV 2026), and rigid camera-rig SfM (**MRASfM**, ICRA 2026) to diffusion-guided robust consensus (**DiffSAC**), constructing the metric foundation and infinite high-fidelity physical world simulators essential for physical AI.
     design:
       columns: '1'
   - block: markdown

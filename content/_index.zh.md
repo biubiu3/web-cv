@@ -73,7 +73,7 @@ sections:
         - date: '2025'
           display_date: '2025'
           tag: 研究亮点
-          text: 4D 多视角机器人轨迹生成模型 ERMV 攻克跨视角物理几何一致性，双臂实机成功率由 2% 飙升至 89%。
+          text: 4D 动作条件机器人世界模型（Robotic World Model）ERMV 攻克跨视角物理几何与运动一致性，作为物理世界模拟器使双臂实机未见杂乱成功率由 2% 飙升至 89%（44.5 倍跃升）！
           url: 'publications/ermv/'
         - date: '2025'
           display_date: '2025'
@@ -88,12 +88,12 @@ sections:
         - date: '2024'
           display_date: '2024'
           tag: 工业落地
-          text: 主导的多相机 SfM 工业级 4D 自动标注平台在哪吒汽车量产流程全面交付，数据处理提速超 95%！
+          text: 作为总体技术负责人主导的哪吒汽车 4D 自动标注多相机 SfM 平台投入量产运行，端到端重建提速 95%+。
           url: 'projects/sfm/'
-        - date: '2022'
-          display_date: '2022'
+        - date: '2023'
+          display_date: '2023'
           tag: 工业落地
-          text: 作为项目负责人主导的园区 AVP 自主代客泊车全栈系统与寅家科技完成严苛实车集成与闭环测试。
+          text: 作为项目负责人主导的寅家科技全栈自主代客泊车系统（AVP）完成商业化园区与多层地下车库全流程闭环验证。
           url: 'projects/avp/'
         - date: '2022'
           display_date: '2022'
@@ -109,9 +109,9 @@ sections:
 
         我的研究围绕这一宏伟使命，贯通三大相互支撑的核心支柱：
 
-        1. **以智能体为中心的持续进化学习（Agentic Robot Learning & Lifelong Autonomy）**：攻克端到端大模型高昂的“重训税”瓶颈，提出可验证、可自愈的模块化技能块（Skill Block）与结构化经验记忆（Experience Memory）。机器人仅需少量示范即可形成闭环技能，并在物理交互中自主诊断、修复并跨任务复用，实现无需全模型重训的终身持续进化（代表作：**TGL**，T-RO 审稿中）；
+        1. **以智能体为中心的持续进化学习（Agentic Robot Learning & Lifelong Autonomy）**：攻克端到端大模型高昂的“重训税”瓶颈，提出可验证、可自愈的模块化技能块（Skill Block）与结构化经验记忆（Experience Memory）。机器人仅需少量示范即可形成闭环技能，并在物理交互中自主诊断、修复并跨任务复用，实现无需全模型重训的终身持续进化（代表作：**Teach and Grow (TGL)**）；
         2. **全模态具身基础模型（Multimodal Embodied Foundation Models & VLA）**：突破传统视觉独占范式，首创将高频听觉、触觉、本体感觉与多模态大模型深度统一的视觉-声音-语言-动作范式（VSLA），破解动作分块执行导致的关键信息盲区，让机器人在瞬息万变的物理交互中保持敏锐的因果洞察（代表作：**HEAR**，机器人旗舰顶刊 IJRR 2026）；
-        3. **高精度空间智能与 4D 具身世界模型（Spatial Intelligence & 4D Data Engine）**：从扩散引导的鲁棒几何估计（**DiffSAC**）、嵌入式 3D 高斯 SLAM（**VCGS-SLAM**，IJCV 2026）、刚性相机组 SfM（**MRASfM**，ICRA 2026），到物理一致的 4D 生成式多视角轨迹编辑（**ERMV**），为物理 AI 构建高精度空间度量基石与取之不尽的高保真世界泛化数据。
+        3. **高精度空间智能与 4D 具身世界模型（Spatial Intelligence & 4D Embodied World Models）**：从动作条件 4D 机器人世界模型（**ERMV**）、紧凑型嵌入式 3D 高斯 SLAM（**VCGS-SLAM**，IJCV 2026）、多相机严苛刚体 SfM（**MRASfM**，ICRA 2026，nuScenes 第一）到扩散几何共识估计（**DiffSAC**），为物理 AI 构建高精空间度量基石与取之不尽的高保真物理世界模拟生成引擎。
     design:
       columns: '1'
   - block: markdown
