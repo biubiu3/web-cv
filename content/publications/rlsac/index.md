@@ -23,7 +23,7 @@ publication_order: 80
 peer_reviewed: true
 open_access: true
 abstract: "RLSAC casts sample-consensus robust estimation as a reinforcement-learning process. A graph neural network combines observations with sampling history to propose the next minimum set, while downstream hypothesis quality supplies an unsupervised reward. The learned state transition makes the sampling policy reusable across robust-estimation problems."
-summary: "Pioneering unsupervised reinforcement learning framework for robust geometric sample consensus (ICCV 2023), breaking combinatorial complexity bottlenecks to surpass classical RANSAC and modern heuristics under severe outlier contamination."
+summary: "A reinforcement-learning sampler that uses hypothesis residuals and sampling history to choose minimum sets for line fitting and two-view geometry."
 story_order: 10
 homepage_order: 60
 topic_keywords:
@@ -41,8 +41,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'Research overview: each sampled hypothesis yields residual, reward, and history evidence that updates the next sampling state.'
-  alt_text: 'White RLSAC scientific diagram showing the sample, classical solve, consensus score, and state-update loop, with residual and inlier-ratio feedback, per-point sampling history, and separate line-fitting and fundamental-matrix examples.'
+  caption: "Learning to sample from geometric feedback."
+  alt_text: "RLSAC — Learning to sample from geometric feedback."
 hugoblox:
   ids:
     arxiv: 2308.05318v1
@@ -63,7 +63,7 @@ links:
 | What enters the policy state? | Observation features, the current sampling action, residuals, and the history of tested points |
 | Where is it evaluated? | Synthetic line fitting and real two-view fundamental-matrix estimation |
 
-Robust estimation requires an all-inlier minimum set from observations containing many outliers. Classical RANSAC relies on blind random sampling, leading to exponential combinatorial trial-and-error under high contamination. RLSAC reformulates consensus estimation as an MDP, learning to propose high-yield minimum sets by leveraging prior residuals and sampling history.
+Robust estimation requires an all-inlier minimum set from observations containing many outliers. As the outlier fraction grows, uniform random sampling is less likely to select such a set within a fixed budget. RLSAC formulates this sequential choice as a Markov decision process (MDP). Its policy uses residuals from the current hypothesis and point-selection history to choose the next minimum set.
 
 ![The policy state is updated after every hypothesis evaluation.](state-transition.jpg "From one sample to the next: observation features, the selected set, residuals, and sampling history form a state transition.")
 
@@ -98,48 +98,28 @@ Fitting, scoring, and updating the state form one transition. A good hypothesis 
 
 The policy uses an EdgeConv/DGCNN-style graph network, so pointwise evidence can interact with local neighborhoods. The network outputs a distribution over observations, from which a non-duplicate minimum set is drawn. The environment then invokes the unchanged geometric solver and updates residual and history features. A discrete Soft Actor-Critic objective trains the policy off-policy, balancing reward and exploration.
 
-Training runs for 100 epochs. An episode stops when the inlier count is unchanged for $\kappa=2$ transitions, when the best inlier ratio has not improved for $\varsigma=3$ transitions, or after $\psi=15$ transitions. Test-time evaluation uses the full maximum iteration budget for every sample. The graph neighborhood size is 15. The reported implementation was trained on an NVIDIA RTX 2080 Ti.
+During training, an episode ends when the consensus stops changing or reaches the transition budget. Testing uses a fixed maximum budget. These stopping rules separate learning from short feedback sequences and evaluating proposals under a controlled search budget.
 
-## Experiment 1: line fitting under severe outliers
+## How feedback changes the next sample
 
-The controlled line-fitting study uses 100 points in a $10\times10$ region and an inlier threshold of 0.1. Accuracy is measured by mean average accuracy at $0.5^\circ$ and median angular error, with a budget of 150 iterations. The visualization below shows iterative feedback progressively concentrating samples on the true line and reducing proposals dominated by outliers.
+Consider a line-fitting problem. A sampled pair determines a candidate line, and the solver measures every point's residual to that line. Those residuals return to the policy together with the selected-point indicators and accumulated selection counts. The next proposal can therefore respond to what the previous geometric fit revealed.
 
-![RLSAC progressively improves the sampled line hypothesis.](line-refinement.jpg "Line fitting across successive policy transitions.")
+This feedback is useful because a high score for an individual observation does not ensure that a combination will produce a stable model. The reward evaluates the hypothesis obtained from the entire minimum set. The graph network lets observations exchange local information before the policy chooses another combination.
 
-| Outlier ratio | Method | mAA $\uparrow$ | Median error $\downarrow$ |
-|---:|---|---:|---:|
-| 50% | RANSAC | 0.796 | $0.071^\circ$ |
-| 50% | RLSAC | **0.858** | **$0.052^\circ$** |
-| 70% | RANSAC | 0.608 | $0.135^\circ$ |
-| 70% | RLSAC | **0.824** | **$0.062^\circ$** |
+![Successive sampling states in line fitting.](line-refinement.jpg "Illustrative sequence from the paper: hypotheses and residual evidence change across policy transitions.")
 
-The gap widens as contamination grows. In extreme outlier regimes, uniform sampling is dominated by unproductive combinations, whereas RLSAC carries forward residual and history evidence to deliver decisive sample-efficiency gains.
+## Moving from points to image correspondences
 
-## Experiment 2: real correspondence estimation
+For two-view geometry, an observation represents a match between image locations. Coordinates, matching information and local descriptors enter the policy; an eight-point solver converts a selected set into a fundamental matrix. Consensus evaluation then measures how well all correspondences agree with the resulting epipolar geometry.
 
-For fundamental-matrix estimation, the study follows the RANSAC tutorial data protocol: 12 training scenes provide 100,000 image pairs each, and two held-out scenes provide 4,950 pairs each. The top 150 correspondences are represented by 261-dimensional inputs built from coordinates, nearest-neighbor matching information, and local descriptors. An eight-point solver generates each hypothesis and a threshold of 4 pixels defines consensus.
+The interface stays consistent across tasks: encode observations, select a minimum set, solve the geometry, score the hypothesis, and update the policy state. Adapting the system requires task-appropriate features, a solver and a residual definition.
 
-![Correspondence confidence and epipolar geometry are refined through feedback.](fundamental-refinement.jpg "Fundamental-matrix estimation examples across RLSAC transitions.")
+![Correspondences and geometric hypotheses across sampling transitions.](fundamental-refinement.jpg "The learned sampler receives feedback from a classical geometric solver.")
 
-At a budget of 1,000 hypotheses, the comparison is:
+## What the experiments examine
 
-| Method | Rotation mAA $\uparrow$ | Translation mAA $\uparrow$ | Rotation median $\downarrow$ | Translation median $\downarrow$ |
-|---|---:|---:|---:|---:|
-| RANSAC | 0.644 | 0.488 | $2.307^\circ$ | $5.100^\circ$ |
-| USAC | 0.741 | 0.604 | $1.036^\circ$ | $2.157^\circ$ |
-| MAGSAC++ | 0.753 | 0.614 | **$0.924^\circ$** | $1.895^\circ$ |
-| RLSAC | **0.760** | **0.622** | $0.926^\circ$ | **$1.751^\circ$** |
+The paper studies synthetic line fitting and real image correspondences under different outlier levels and sampling budgets. Ablations examine the contribution of appearance descriptors and the sampling design. These comparisons support the use of geometric feedback in learned sampling.
 
-![Accuracy as the available hypothesis budget changes.](iteration-results.jpg "Performance versus the number of consensus iterations.")
+## Design insight
 
-## Key Ablations & Architectural Insights
-
-Removing local descriptors lowers rotation/translation mAA from $0.760/0.622$ to $0.702/0.568$, confirming the critical synergy between spatial geometry and appearance descriptors. Off-policy stochastic exploration during training paired with deterministic greedy exploitation at inference achieves the optimal trade-off: broad geometric landscape comprehension during learning and pinpoint resource allocation during real-time deployment.
-
-## Core Innovation & Paradigmatic Breakthrough
-
-RLSAC fundamentally transforms the trial-and-error paradigm that has dominated geometric vision for four decades:
-
-1. **Overcoming Combinatorial Explosion**: Classical RANSAC and heuristic variants suffer exponential complexity scaling under high outlier contamination. RLSAC demonstrates that RL policies can maintain "geometric memory", systematically avoiding rejected hypotheses and navigating complex outlier landscapes.
-2. **Zero-Annotation Closed-Loop Learning**: By defining self-supervised rewards directly from geometric solver consensus, RLSAC sidesteps the prohibitive requirement for ground-truth inlier labeling or explicit minimum-set targets.
-3. **Collaborative Milestone**: Conducted in collaboration with Prof. Marc Pollefeys' group at ETH Zürich and published at ICCV 2023, this work pioneered learning-guided sample consensus, establishing the foundation for our subsequent generative diffusion consensus architecture (DiffSAC) and robust robot perception.
+RLSAC treats each hypothesis evaluation as information for the next decision. Its reusable idea is the stateful interface between learning and geometry: a policy proposes observations, a geometric module evaluates their joint consequence, and the resulting evidence shapes the next proposal.

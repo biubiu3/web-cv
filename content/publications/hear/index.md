@@ -39,8 +39,8 @@ tags:
   - Robot Manipulation
 featured: true
 image:
-  caption: 'HEAR preserves a brief sound across delayed decisions so it can change the robot''s next smooth action.'
-  alt_text: 'Compact white HEAR graphical abstract showing a robot interaction producing a brief sound, four causal-memory packets spanning the blind execution interval, vision, speech, and state entering a concrete task interpretation, intermediate robot poses along a changed action chunk, four sound-event examples, and training-only future-audio prediction.'
+  caption: "Listening while acting."
+  alt_text: "HEAR — Listening while acting."
 hugoblox:
   ids:
     arxiv: 2603.16086v1
@@ -58,7 +58,7 @@ links:
 |---|---|
 | Paradigm | Vision–Sound–Language–Action (VSLA) in continuous physical time |
 | Architecture | Historizer → Envisioner → Advancer → Realizer |
-| Data | OpenX-Sound: about 120,000 sound-augmented pretraining episodes over 100 skills |
+| Data | Sound-augmented robot demonstrations for pretraining |
 | Evaluation | HEAR-Bench: seven sound-causal tasks in simulation plus four real-robot tasks |
 
 A microwave beep, a spoken interruption, or the first bubble of boiling water may last less than one robot action chunk. A vision-language-action policy that observes once, predicts a long action sequence, and looks again only after executing it can miss the event completely. The timing mismatch persists when audio is simply appended to the observation vector; the event must remain causally available after the waveform disappears.
@@ -67,7 +67,7 @@ HEAR models sound and action in continuous time and preserves audio events for l
 
 ## Why chunked control creates an evidence gap
 
-Let robot decisions occur at control times $t_k$, while audio arrives at 16 kHz and motor control runs at about 30 Hz. A causal audio window with system delay $\tau_{\mathrm{sys}}$ can be written as
+Let robot decisions occur at control times $t_k$, while audio arrives continuously at a higher rate. A causal audio window with system delay $\tau_{\mathrm{sys}}$ can be written as
 
 $$
 \mathcal{A}_k=
@@ -133,77 +133,28 @@ $$
 
 The four modules therefore answer four different questions: what sound must be remembered, what it means now, what temporal process it predicts, and what continuous action should follow.
 
-## OpenX-Sound: sound-augmented pretraining
+## Learning acoustic context from robot activity
 
-OpenX-Sound contains approximately 120,000 episodes spanning 100 skills and embodiments from 7 to 120 kg. Because the original Open X-Embodiment videos lack synchronized task audio, HEAR synthesizes sound from their visual sequences for pretraining. Benchmark evaluation uses separate real and simulated tasks.
+OpenX-Sound augments robot videos with synthesized task audio for pretraining. This gives the model examples of how manipulation stages relate to sounds. Temporal alignment matters because an otherwise plausible sound can teach the wrong association if it occurs before or after the relevant action.
 
-A manual synchronization audit samples 500 episodes, each checked by two annotators; 98.7% are judged synchronized within 100 ms. This quality-control measure evaluates temporal alignment in the constructed resource; real microphones still introduce a separate acoustic-domain gap.
+The distinction between synthesized audio and recorded microphone data remains important. Pretraining supplies acoustic context; evaluation in separate tasks examines whether that context helps the policy interpret events during execution.
 
-![Platforms and skills represented in sound-centric pretraining.](robot-platforms.jpg "OpenX-Sound broadens acoustic pretraining across robot scales and manipulation skills.")
+![Robot platforms represented in the pretraining resource.](robot-platforms.jpg "Pretraining connects different manipulation activities with acoustic context.")
 
-## HEAR-Bench: tasks where sound changes the correct action
+## Tasks where sound changes the next action
 
-The simulated benchmark has seven tasks in four causal categories:
+HEAR-Bench uses several kinds of acoustic evidence. Alarms indicate that an action should begin; speech can confirm or interrupt an operation; process sounds describe the progress of pouring or boiling; contact sounds provide clues about material properties.
 
-- **Alarms:** Alarm Clock and Microwave require action after an acoustic event.
-- **Speech:** Check Yes and Interrupt require understanding a spoken response or stop request.
-- **Processes:** Pour Water and Boil Water require tracking an evolving acoustic process.
-- **Materials:** Check Materials uses sound to distinguish object properties.
+Event timing varies across episodes. A policy therefore needs to react to what it heard and retain the event long enough to use it. Completing a geometric goal before the relevant sound may be the wrong behavior.
 
-Event timing is randomized, so a policy cannot succeed reliably by memorizing a fixed delay. Training uses 200,000 pretraining steps and 50,000 steps per simulated task; real tasks use 30,000 steps each. The reported setup uses batch size 256 on two RTX 5090 GPUs.
+![An alarm determines when the robot should act.](alarm-clock.jpg "The acoustic event changes the correct task transition.")
 
-![Alarm Clock requires the robot to wait for a transient sound before acting.](alarm-clock.jpg "A sound-causal task fails if the goal is completed before the alarm.")
+![Pouring produces sound that evolves with the physical process.](pour-water.jpg "Continuous process sounds provide evidence for stage changes.")
 
-![Pour Water requires tracking acoustic progress throughout the manipulation.](pour-water.jpg "Process sounds provide evidence about when the manipulation stage should change.")
+## What the evaluation examines
 
-## Simulation results
+The study compares policies in simulation and real-robot tasks, then varies memory and timing components to examine their roles. The central questions are whether short events survive action gaps, whether acoustic context changes the selected stage, and whether the generated action follows the intended timing.
 
-Every simulated task is evaluated with 100 trials. Results are success fractions, in the order Alarm Clock, Check Yes, Check Materials, Pour Water, Boil Water, Microwave, and Interrupt:
+## Design insight
 
-| Method | Alarm | Yes | Material | Pour | Boil | Microwave | Interrupt | Avg. |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| Best reported VLA baseline (π0.5-Waveform) | — | — | — | — | — | — | — | 0.61 |
-| **HEAR (Ours)** | **0.91** | **0.89** | **0.83** | **0.51** | **0.81** | **0.85** | **0.88** | **0.81** |
-
-Across all seven simulated causal benchmarks, HEAR establishes state-of-the-art performance with an average success rate of **0.81**, outperforming the strongest competitive VLA baseline (π0.5-Waveform at 0.61) by a **massive 33% relative margin**. HEAR excels especially on transient acoustic interaction tasks such as Alarm Clock (0.91), Check Yes (0.89), and Interrupt (0.88), proving high causal fidelity.
-
-## Real-Robot Physical Validation
-
-Evaluated across four demanding real-world physical manipulation tasks with real robotic arms over 400 experimental trials:
-
-| Method | Moka Coffee | Answer Phone | Shake Bottle | Real Alarm | Real-World Avg. |
-|---|---:|---:|---:|---:|---:|
-| Best reported VLA baseline (π0.5-Waveform) | — | — | — | — | 0.39 |
-| **HEAR (Ours)** | 0.18 | 0.15 | **0.88** | **0.96** | **0.54** |
-
-![A long-horizon coffee task combines evolving sound and manipulation state.](moka-coffee.jpg "Moka Coffee explores the frontier of long-horizon multisensory contact manipulation in the physical world.")
-
-![Bottle shaking produces acoustic evidence about material state.](shake-bottle.jpg "Shake Bottle evaluates real-robot acoustic material reasoning.")
-
-On real robots, HEAR achieves a **0.54 average success rate, decisively outperforming the competitive baseline's 0.39 (a 38% relative leap)**. HEAR hits **96%** success on the Real Alarm task and **88%** on Shake Bottle acoustic material reasoning. On extended multi-stage manipulation workflows like Moka Coffee and Answer Phone, HEAR establishes the first viable sound-conditioned trajectory generation benchmark on real hardware, unlocking new frontiers for multisensory embodied autonomy.
-
-## Ablations and Timing Studies
-
-| Variant | Simulated Average Success |
-|---|---:|
-| **Full HEAR Model** | **0.81** |
-| Without pretraining | 0.69 |
-| Without Historizer causal memory | 0.57 |
-| Replace Historizer with GRU | 0.67 |
-| Replace with EMA/pooling | 0.62 |
-| Without Advancer future prediction | 0.73 |
-| Without stage representation | 0.77 |
-| Without low-level Envisioner | 0.75 |
-| Regression action head | 0.70 |
-
-The ablation studies clearly validate the architectural rationale: eliminating the Historizer causes performance to plummet from 0.81 to 0.57 (a 24-point drop), confirming that causal audio memory is essential to bridge the asynchronous perception-action evidence gap. Introducing the Advancer cuts low-motion action hesitation from 0.33 to 0.15, ensuring continuous, purposeful robot execution.
-
-![Success as the causal audio window changes.](window-sweep.png "The audio memory window must cover the event timescale without overwhelming current evidence.")
-
-![Success as the executed action chunk changes.](chunk-sweep.png "Longer open-loop chunks increase the interval in which evidence may arrive and disappear.")
-
-In event detection, HEAR demonstrates exceptional temporal sensitivity, achieving a low false-trigger rate of 0.02 and missed-detection rate of 0.04.
-
-## Paradigm Shift & Research Impact
-
-Published in **The International Journal of Robotics Research (IJRR 2026)**, the world's premier robotics journal, HEAR introduces the **Vision-Sound-Language-Action (VSLA) continuous physical-time paradigm**. By resolving the fundamental rate mismatch between kilohertz audio dynamics and chunked motor control, HEAR provides embodied foundation models with physical common sense, empowering future generalist robots to listen, reason, and act seamlessly in dynamic human environments.
+Sound has a temporal structure that a single visual observation cannot capture. HEAR assigns explicit responsibilities to remembering, interpreting, predicting and acting. This makes the path from a transient event to a later physical decision visible in the architecture.

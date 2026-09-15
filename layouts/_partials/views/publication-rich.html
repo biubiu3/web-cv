@@ -24,7 +24,7 @@
   {{- $figureCaption = replace $figureCaption "Research overview: " "" -}}
 {{- end -}}
 {{- $representativeLabel := cond $isZh "代表工作" "Representative work" -}}
-{{- $summary := $item.Params.abstract | default $item.Summary -}}
+{{- $summary := $item.Params.summary | default $item.Params.abstract | default $item.Summary -}}
 
 <article class="publication-rich-item{{ if $spotlight }} is-spotlight{{ end }}" aria-labelledby="publication-title-{{ $item.File.UniqueID }}">
   <figure class="publication-rich-figure">

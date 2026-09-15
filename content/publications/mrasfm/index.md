@@ -42,8 +42,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'Research overview: a rigid surround-camera set, road filtering, camera-set BA, and cross-session alignment produce one coherent 3D map.'
-  alt_text: 'White MRASfM scientific diagram showing a rigid six-camera vehicle, road-point filtering, camera-set bundle adjustment, two reconstructed driving sessions, coarse-to-fine association, and one coherent 3D street map.'
+  caption: "Multiple cameras and journeys form a shared map."
+  alt_text: "MRASFM — Multiple cameras and journeys form a shared map."
 links:
   - type: preprint
     provider: arxiv
@@ -99,53 +99,20 @@ A single run rarely covers a complete driving environment. MRASfM uses GNSS to p
 
 ![Independent journeys are associated, transformed, and jointly refined.](multi-scene-aggregation.jpg "Coarse-to-fine aggregation builds a larger reconstruction from separate sessions.")
 
-## Experiments
+## A reconstruction workflow across driving sessions
 
-The real data use six- or seven-camera surround rigs recording $1920\times1080$ video at 30 Hz, with driving speeds from 10 to 60 km/h. Runtime is reported on a 3.4 GHz CPU. Qualitative models show roads, buildings, and street furniture reconstructed across wide fields of view.
+The pipeline begins with image matching inside plausible camera overlaps. Registered views constrain a shared camera-set pose, road filtering removes unreliable structure, and bundle adjustment jointly refines the trajectory and scene. This sequence uses the rig calibration throughout reconstruction.
 
-![A large-scale reconstruction produced from the multi-camera driving rig.](real-reconstruction.jpg "Representative real-scene reconstruction and detail views.")
+For another driving session, spatial association first identifies likely overlap. Visual relocalization then provides correspondences that support a common transform. Joint refinement resolves remaining alignment errors after the scenes have been brought together.
 
-### KITTI sequences 00–10
+![A reconstruction from a surround-camera driving rig.](real-reconstruction.jpg "Roads, buildings and street structure reconstructed from multiple cameras.")
 
-The full study evaluates all 11 KITTI odometry sequences. Selected rows illustrate the accuracy/runtime trade-off against MCSfM:
+## What the evaluation examines
 
-| Sequence | Method | Rotation RMSE $\downarrow$ | Translation RMSE $\downarrow$ | Time $\downarrow$ |
-|---:|---|---:|---:|---:|
-| 00 | MCSfM | **$0.3^\circ$** | 0.5 m | 286 min |
-| 00 | MRASfM | $0.5^\circ$ | **0.3 m** | **192 min** |
-| 01 | MCSfM | $0.4^\circ$ | 1.0 m | 47 min |
-| 01 | MRASfM | **$0.2^\circ$** | **0.6 m** | **34 min** |
-| 08 | MCSfM | $0.4^\circ$ | 1.2 m | 276 min |
-| 08 | MRASfM | **$0.3^\circ$** | **0.5 m** | **188 min** |
+The study uses KITTI, nuScenes and multi-camera driving data to examine trajectory accuracy, reconstruction quality and processing cost. Component ablations test camera-set registration, semantic triangulation and bundle adjustment.
 
-On sequence 00, MCSfM has lower rotation error, while MRASfM improves translation and runtime. Across the evaluation, MRASfM's main benefit is the consistency and efficiency of structured rig optimization.
+## Design insight
 
-### nuScenes Autonomous Driving Benchmark: Rank #1
+A rigid camera rig provides structure that should remain visible to the optimizer. Sharing its pose across views reduces redundant estimation and lets well-observed cameras support views with weak texture. Cross-session aggregation extends this idea to repeated drives: independently collected observations become constraints on a common scene.
 
-Evaluated across full multi-camera driving sequences on the authoritative **nuScenes** public benchmark, MRASfM outperforms all leading deep learning, neural implicit, and classical SLAM baselines to secure **Rank #1 in translation accuracy**:
-
-| Method | System Paradigm | Translation RMSE $\downarrow$ | Relative Margin |
-|---|---|---:|---:|
-| DROID-SLAM | Deep Learning Visual SLAM | 0.282 | +127% error |
-| ORB-SLAM3 | Classical Feature-Based SLAM | 0.199 | +60% error |
-| GLOMAP | Global SfM Benchmark | 0.158 | +27% error |
-| OCCVO | Occupancy Visual Odometry | 0.140 | +13% error |
-| MGSfM | Multi-View Gaussian SfM | 0.134 | +8% error |
-| **MRASfM (Ours)** | **Rigid Multi-Camera Rig SfM** | **0.124** | **Best (Rank #1)** |
-
-### Component Ablation: 45.4× Computation Acceleration
-
-Evaluated on the complex, extended KITTI Sequence 00, ablation experiments quantify the immense power of Camera-Set Bundle Adjustment (CSBA):
-
-| System Configuration | Rotation RMSE | Translation RMSE | Optimization Runtime | Acceleration Factor |
-|---|---:|---:|---:|---:|
-| Without CSBA (Independent Cameras) | $1.8^\circ$ | 2.7 m | 8,720 min (~145 hours) | Baseline (Slowest) |
-| Without Camera-Set Registration | $0.6^\circ$ | 0.4 m | 203 min | 43.0× |
-| Without Semantic Triangulation | $0.6^\circ$ | 0.3 m | 197 min | 44.3× |
-| **Full MRASfM Pipeline** | **$0.5^\circ$** | **0.3 m** | **192 min (~3.2 hours)** | **45.4× Breakthrough Leap!** |
-
-Degrading the optimization into unconstrained independent cameras causes the state parameter space to explode, dragging out computation to an unviable **8,720 minutes (>6 days of continuous processing)** while accumulating massive metric drift. In stark contrast, full MRASfM converges in only **192 minutes (3.2 hours)**—a **massive 45.4× speedup**—while slashing translation error by nearly **90%**!
-
-## Research Impact & Production Deployment
-
-Published at **IEEE ICRA 2026**, MRASfM resolves three pivotal bottlenecks in autonomous driving reconstruction: high-dimensional multi-camera parameter explosion, textureless road surface degradation, and multi-session intersection alignment. Beyond topping the nuScenes international leaderboard, MRASfM directly powers real automotive factory data pipelines (deployed with NETA Auto for 4D auto-annotation), establishing a benchmark that bridges academic novelty and high-throughput industrial scale!
+This is useful for building reconstruction workflows that feed mapping and annotation. The central contribution is a coordinated treatment of camera geometry, unreliable road observations and scene alignment.

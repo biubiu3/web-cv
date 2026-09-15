@@ -13,7 +13,7 @@ sections:
     content:
       title: 'Selected Publications & Research'
       text: |-
-        Spanning agentic lifelong robot learning, multimodal causal manipulation, embodied generative world models, embedded 3D Gaussian Splatting SLAM, and ultra-robust geometric estimation. Highlighting fundamental challenges, breakthrough methodologies, and state-of-the-art experimental results.
+        Robot learning, sound-aware manipulation, visual data generation, mapping, and robust geometric estimation.
     design:
       columns: '1'
       background:
@@ -27,9 +27,9 @@ sections:
           - publications
       sort_by: publication_order
       sort_ascending: true
-      count: 10
+      count: 0
     design:
-      view: publication-rich
+      view: publication-gallery
       columns: 1
       show_read_time: false
       show_date: false

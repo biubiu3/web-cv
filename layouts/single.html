@@ -15,7 +15,7 @@
 <div class="mx-auto flex max-w-screen-xl">
   {{ partial "components/sidebar.html" (dict "context" . "no_sidebar" true) }}
   {{ partial "components/toc.html" . }}
-  <article class="w-full break-words flex min-h-[calc(100vh-var(--navbar-height))] min-w-0 justify-center pb-8 pr-[calc(env(safe-area-inset-right)-1.5rem)]">
+  <article class="{{ if eq .Section "publications" }}publication-article {{ end }}w-full break-words flex min-h-[calc(100vh-var(--navbar-height))] min-w-0 justify-center pb-8 pr-[calc(env(safe-area-inset-right)-1.5rem)]">
     <main class="w-full min-w-0 max-w-6xl px-6 pt-4 md:px-12">
 
       {{ if .Params.show_breadcrumb }}
@@ -146,6 +146,9 @@
 
         <div class="mt-3">
           {{ partial "page_links_div.html" . }}
+          {{ if eq .Section "publications" }}
+          <p class="publication-article-venue">{{ .Params.venue_display | markdownify }}{{ with .Params.publication_status }} · {{ . }}{{ end }}</p>
+          {{ end }}
         </div>
 
         {{/* Awards skim row — visible badges above any featured image */}}
@@ -242,7 +245,7 @@
 
       {{/* EVENT / PUBLICATION METADATA */}}
       {{ $pub := partial "functions/resolve_publication.html" . }}
-      {{ if .Params.abstract | or (eq .Type "publications") | or (eq .Type "events") }}
+      {{ if and (ne .Section "publications") (or .Params.abstract (eq .Type "events")) }}
         <div class="max-w-prose grid grid-cols-1 md:grid-cols-[200px_auto] gap-4 my-6">
 
         {{ if .Params.abstract }}

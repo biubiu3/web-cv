@@ -36,8 +36,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'Research overview: multiple noise seeds follow parallel confidence-refinement paths to diverse minimum sets scored by classical consensus.'
-  alt_text: 'White DiffSAC scientific diagram showing three left-to-right reverse-diffusion confidence paths for one line-fitting task, three candidate hypotheses scored by consensus with h2 selected, and a separate strip of task-specific classical solvers.'
+  caption: "Diffusion refines confidence over candidate observations."
+  alt_text: "DIFFSAC — Diffusion refines confidence over candidate observations."
 hugoblox:
   ids:
     arxiv: 2608.30603v1
@@ -87,63 +87,40 @@ The denoiser is trained with a mean-squared objective toward $c_0$. It has no po
 
 The confidence expresses membership in a *good joint minimum set* under the current generated proposal. Different reverse trajectories can therefore emphasize different mutually compatible subsets.
 
+### What the denoiser learns
+
+Training uses the ground-truth geometric model to identify a target minimum set. Its selected observations receive confidence 1 and the remaining observations receive 0. Gaussian noise corrupts this confidence vector while the observation coordinates remain fixed. The network therefore learns to recover a sampling proposal conditioned on geometry.
+
+Separate fully connected layers embed observation features and noisy confidence into the same feature dimension. An MLP embeds the diffusion timestep. These embeddings are added, processed by normalized Transformer attention, and mapped back to one confidence per observation. A change in input order produces the corresponding change in output order, so the selected geometric set is independent of how observations are listed.
+
 ## Training and inference
 
-Training runs for 100 epochs with Adam at learning rate $10^{-4}$ and cosine scheduling on an RTX 4090. DPM-Solver++ accelerates the reverse process.
+The training objective teaches the model to recover target confidence from controlled corruption. DPM-Solver++ accelerates the reverse process.
 
-At inference, the observations are replicated $\kappa=20$ times. Each copy receives an independent Gaussian $c_T$ and undergoes $T=100$ reverse refinements. The top $\gamma$ observations in each final confidence field form one candidate minimum set, where $\gamma$ is the solver's minimum sample size. The classical solver evaluates all 20 hypotheses and retains the best consensus.
+At inference, copies of the same observations receive independent Gaussian confidence vectors. Each follows a reverse-refinement trajectory. The highest-confidence observations form a minimum set of the size required by the solver; the resulting hypotheses are scored against the complete observation set.
 
-The design uses 20 learned hypotheses, far fewer than the thousands of draws common in uniform RANSAC. Each proposal receives more computation and is correspondingly more informative.
+Computation is allocated to refining a compact batch of proposals. Different noise seeds provide alternative combinations when one otherwise plausible set is poorly conditioned.
 
-## Synthetic line and plane fitting
+## From confidence to geometry
 
-Line fitting uses $N=100$ points and minimum-set size $\gamma=2$, with outlier ratios from 10% to 80%. At the hardest reported setting:
+A final confidence field provides a ranking over the original observations. Selecting the solver's required number of observations forms one minimum set. The solver constructs a geometric hypothesis, and consensus scoring tests that hypothesis against the full observation set. The same procedure can use a pair for a line, a triple for a plane, or correspondences for image geometry.
 
-| 80% outliers | mAA $\uparrow$ | Median error $\downarrow$ |
-|---|---:|---:|
-| RANSAC | 0.30 | $0.31^\circ$ |
-| DiffSAC | **0.43** | **$0.20^\circ$** |
+Independent noise seeds allow several confidence trajectories to be generated in parallel. These trajectories can favor different compatible subsets even though they condition on the same observations. This diversity matters when one plausible set is degenerate or poorly conditioned.
 
-At 50% outliers, RANSAC obtains 0.78 mAA and $0.07^\circ$ median error, while DiffSAC obtains 0.86 and $0.05^\circ$. Reported throughput is about 50 Hz on GPU and 30 Hz on CPU for line fitting.
+![Confidence refinement for a line-fitting proposal.](line-refinement.jpg "The generated confidence changes which observations enter the minimum set.")
 
-![Reverse steps concentrate the proposal on a valid line subset.](line-refinement.jpg "Line confidence evolves from random noise toward a jointly compatible pair.")
+## Why keep the geometric backend?
 
-Plane fitting uses $N=100$ and $\gamma=3$. A model trained at that size is also evaluated on $N=200$ without retraining, exercising the variable-cardinality Transformer design.
+The network's output has a clear responsibility: propose observations worth solving. Geometry remains explicit in the task-specific solver and residual function. After selecting the best hypothesis, a local optimizer can refine it using its supporting observations.
 
-![Plane fitting across outlier levels and observation counts.](plane-results.jpg "The set encoder accepts a larger point set without a positional-grid assumption.")
+This separation also makes failures easier to interpret. A poor result may originate in an unsuitable proposal, a degenerate minimum set, or insufficient support for the fitted model. Each stage exposes a different part of that process.
 
-## Fundamental-matrix estimation
+![Image correspondences selected through diffusion refinement.](fundamental-refinement.jpg "Conditioned confidence proposals feed the classical two-view geometry pipeline.")
 
-The correspondence study follows the RANSAC tutorial protocol. Twelve scenes provide more than one million training image pairs in total; two held-out scenes provide 4,950 pairs each. Each correspondence is represented by 260 dimensions combining coordinates and SIFT descriptors. The geometric backend uses the eight-point solver with a threshold of 4 pixels.
+## Evaluation and design lessons
 
-![Diffusion refinement identifies mutually compatible correspondences.](fundamental-refinement.jpg "Confidence trajectories and epipolar estimates for fundamental-matrix examples.")
+The study covers line and plane fitting, fundamental and essential matrices, and homography estimation. Synthetic correspondences derived from ModelNet40 test sensitivity to outliers. Other experiments vary observation count, refinement budget and local optimization.
 
-| Method | Rot. mAA $\uparrow$ | Trans. mAA $\uparrow$ | Rot. median $\downarrow$ | Trans. median $\downarrow$ | Speed |
-|---|---:|---:|---:|---:|---:|
-| MAGSAC++ | 0.723 | 0.585 | $1.476^\circ$ | $2.632^\circ$ | 53 Hz |
-| DiffSAC | **0.783** | **0.641** | **$0.886^\circ$** | **$1.819^\circ$** | 30 Hz GPU |
+The ablations compare direct confidence prediction with iterative refinement. They also examine the balance between proposal quality and inference cost.
 
-In practical deployment, DiffSAC operates at a **high real-time throughput of 30–50 Hz** while setting new accuracy benchmarks: slashing median rotation error from $1.476^\circ$ down to **$0.886^\circ$ (a 40% error reduction)** and median translation error to **$1.819^\circ$**, decisively outperforming classical SOTA MAGSAC++. This proves that generating a small number of jointly compatible, high-probability minimal subsets dramatically outperforms the legacy brute-force paradigm of evaluating hundreds of thousands of random samples.
-
-## Generalization Across Essential Matrix, Registration & Homography
-
-On five-point Essential matrix estimation, DiffSAC maintains a commanding advantage:
-
-| Method | Rot. mAA | Trans. mAA | Rot. Median Error | Trans. Median Error | Real-Time Speed |
-|---|---:|---:|---:|---:|---:|
-| MAGSAC++ | 0.778 | 0.553 | $1.195^\circ$ | $2.284^\circ$ | — |
-| **DiffSAC (Ours)** | **0.798** | **0.651** | **$0.863^\circ$** | **$1.779^\circ$** | **48 Hz GPU / 22 Hz CPU** |
-
-On ModelNet40 extreme point cloud registration (60% outlier ratio) and KITTI automotive homography estimation, DiffSAC consistently achieves top accuracy and stability, demonstrating broad compatibility across varying sample sizes, input descriptors, and geometric solvers.
-
-## Ablations: Why Diffusion Beats Heuristic Ranking
-
-- **One-Shot Prediction vs. Diffusion Refinement**: On Fundamental matrix estimation, direct one-shot feedforward confidence prediction yields only 0.687/0.393 rotation/translation mAA; DiffSAC's iterative reverse diffusion skyrockets this to **0.783/0.641**, proving that multi-step generative modeling is essential for navigating complex multimodal constraint manifolds.
-- **Orthogonal Synergy with Classical Solvers**: Cascading LO-RANSAC local optimization onto DiffSAC's generative hypotheses pushes performance further to **0.794/0.657**.
-- **Minimal Compute Footprint**: On an RTX 4090, a full 2,000-iteration pipeline executes in just ~33 ms with ~2 GB GPU memory, comfortably satisfying the strict latency demands of real-time robotics and autonomous vehicles.
-
-![Accuracy, iteration budget, and runtime decomposition.](efficiency-results.jpg "Efficiency studies expose the dramatic accuracy leap unlocked by diffusion confidence refinement while maintaining high real-time throughput.")
-
-## Theoretical Innovation & Research Impact
-
-Under review at the **International Journal of Computer Vision (IJCV)**, DiffSAC introduces the first formulation of **robust sample consensus as conditional diffusion generation**. By shifting the paradigm from heuristic scoring and brute-force rejection sampling to learned generative sampling over jointly compatible sub-manifolds, DiffSAC establishes a principled, high-performance foundation for geometric vision in high-noise, extreme-outlier regimes.
+DiffSAC's central idea is to model a distribution over useful observation combinations. It offers a way to allocate computation to a compact set of refined proposals while retaining the geometric checks that make sample consensus interpretable.

@@ -20,7 +20,7 @@ publication_order: 70
 peer_reviewed: true
 open_access: true
 abstract: "MovSAM performs moving-object segmentation from a single image, where temporal motion cues are unavailable. A multimodal large language model reasons about the scene and produces textual object prompts; these are fused with visual representations from SAM and a vision-language model, then refined through an iterative reasoning loop."
-summary: "Pioneering single-image moving-object segmentation framework powered by MLLM Deep Thinking and SAM2 (IROS 2025), outperforming temporal-video SOTA methods with 92.5 J&F without optical flow or adjacent frames, unlocking robust zero-shot open-vocabulary spatial grounding for embodied robotics."
+summary: "Scene reasoning, language prompts and iterative mask feedback connect a single image to moving-object segmentation."
 story_order: 20
 homepage_order: 80
 topic_keywords:
@@ -39,8 +39,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'Research overview: one still image drives scene reasoning, language prompting, multimodal feature aggregation, and a bounded five-round mask-refinement loop.'
-  alt_text: 'White MovSAM scientific diagram showing one urban RGB image without temporal input, scene reasoning and a person-and-bicycle prompt, SAM2 and BEiT-3 feature aggregation, cyclist and pedestrian masks, and a bounded five-round inspection and refinement loop.'
+  caption: "Scene semantics guide object segmentation."
+  alt_text: "MOVSAM — Scene semantics guide object segmentation."
 hugoblox:
   ids:
     doi: 10.1109/IROS60139.2025.11246064
@@ -59,7 +59,7 @@ links:
 | Segmentation | SAM2 features, BEiT-3 vision-language features, and a learned feature aggregator |
 | Refinement | A bounded deep-thinking loop revisits the image and current result, up to five rounds |
 
-Conventional dynamic object segmentation relies strictly on multi-frame temporal video and dense optical flow. Under violent ego-motion, sensor dropouts, transmission jitter, or cold-start initialization, temporal continuity collapses. MovSAM pioneers single-frame moving object segmentation without optical flow or adjacent frames, tapping into vision-language foundation models to infer physical motion affordances and output precise open-vocabulary masks.
+Motion segmentation often uses adjacent frames to measure changes in the scene. When only one image is available, that temporal evidence is missing. MovSAM uses object appearance and scene semantics to infer likely moving entities, then converts the interpretation into pixel masks.
 
 ## Reason first, segment second
 
@@ -79,63 +79,22 @@ Initial reasoning can select the wrong object or miss one. MovSAM feeds the curr
 
 ![Single-image segmentation in real scenes with missing temporal evidence.](real-world.jpg "MovSAM uses scene semantics and appearance to infer likely moving objects from one image.")
 
-## Learning objective and evaluation
+## Learning to connect language and masks
 
-For pixel prediction $p_i$ and label $y_i$, training combines Dice and binary cross-entropy losses:
+The segmentation objective combines a region-overlap loss with pixelwise classification. The language prompt identifies the intended object, while the visual features preserve its boundary and local appearance. The learned aggregator connects these two forms of information.
 
-$$
-\mathcal{L}_{\mathrm{Dice}}
-=1-\frac{2\sum_i p_i y_i}{\sum_i p_i+\sum_i y_i},
-$$
+The feedback loop also operates across these levels. A mask can reveal that a prompt selected the wrong entity or omitted a relevant object. Returning that result to the reasoning model gives the next prompt a concrete visual consequence to inspect.
 
-$$
-\mathcal{L}_{\mathrm{BCE}}
-=-\frac{1}{N}\sum_i\left[y_i\log p_i+(1-y_i)\log(1-p_i)\right],
-\qquad
-\mathcal{L}=\mathcal{L}_{\mathrm{Dice}}+\mathcal{L}_{\mathrm{BCE}}.
-$$
+## What a single image can tell the system
 
-The evaluation follows moving-object segmentation conventions. Region similarity is intersection-over-union,
+A still image can show posture, object identity and scene context that suggest movement. It does not directly measure temporal displacement. MovSAM uses those semantic cues to infer likely moving objects, which makes the distinction between motion evidence and motion interpretation central to the task.
 
-$$
-\mathcal{J}=\frac{|M\cap G|}{|M\cup G|},
-$$
+For a robot receiving an isolated image, this formulation provides an object-level interpretation even when adjacent frames are unavailable. Whether that interpretation is sufficient for a downstream decision depends on the task and the available observations.
 
-and boundary quality is the F-measure $\mathcal{F}=2PR/(P+R)$. Their mean, $\mathcal{J}\&\mathcal{F}$, summarizes mask accuracy and boundary fidelity.
+![Segmentation examples with occlusion and fine boundaries.](occlusion-sequence.jpg "Qualitative examples from the paper illustrate the objects and boundaries being segmented.")
 
-Training uses curated samples from DAVIS 2016, FBMS, and SegTrackV2 for 100 epochs on four RTX 8000 GPUs.
+## Evaluation and design insight
 
-## Benchmark results
+The experiments compare segmentation on DAVIS, FBMS and YouTube Objects. Ablations examine feature aggregation, iterative reasoning and task adaptation.
 
-![Benchmark comparison across DAVIS, FBMS, and YouTube Objects.](benchmark-results.jpg "MovSAM is evaluated against video and single-image alternatives on three moving-object benchmarks.")
-
-| Dataset | Metric | MovSAM | Strongest compared alternative |
-|---|---|---:|---:|
-| DAVIS 2016 | $\mathcal{J}\&\mathcal{F}$ | **92.5** | 86.7 (FlowP/FlowI) |
-| DAVIS 2016 | $\mathcal{J}$ / $\mathcal{F}$ | **90.4 / 94.6** | 87.7 / 85.6 (FlowP/FlowI) |
-| FBMS | $\mathcal{J}$ | **83.9** | 82.8 |
-| YouTube Objects | mean $\mathcal{J}$ | **79.0** | 75.1 |
-
-The DAVIS comparison demonstrates a decisive edge: despite competing against dedicated multi-frame video models that consume temporal sequences, MovSAM's single-image architecture sets a new SOTA (**92.5 vs 86.7**). Across complex topology, heavy occlusions, and slender boundaries, MovSAM consistently preserves crisp, geometrically faithful segmentation masks.
-
-![Examples with occlusion and challenging boundaries.](occlusion-sequence.jpg "Qualitative DAVIS sequences illustrate boundary recovery and partial occlusion cases.")
-
-## What each component contributes
-
-| Variant on DAVIS 2016 | $\mathcal{J}\&\mathcal{F}$ | $\mathcal{J}$ | $\mathcal{F}$ |
-|---|---:|---:|---:|
-| Without feature aggregation | 90.5 | 87.9 | 93.1 |
-| Without deep-thinking refinement | 92.0 | 89.7 | 94.2 |
-| Full MovSAM | **92.5** | **90.4** | **94.6** |
-
-Feature aggregation provides crucial cross-modal alignment, while the deep-thinking refinement loop ensures steady, self-correcting convergence. Comparative experiments further emphasize task adaptability: the off-the-shelf zero-shot LISA baseline achieves only 22.8, fine-tuned LISA reaches 70.1, whereas MovSAM’s unified architecture surges to **92.5 J&F**.
-
-![Language-guided component and adaptation ablations.](language-ablation.jpg "Ablations isolate feature fusion, reasoning refinement, and task-specific adaptation.")
-
-## Core Breakthrough & Robotic Impact
-
-MovSAM disrupts the decades-long reliance of motion segmentation on dense multi-frame optical flow, establishing a critical capability for embodied robot autonomy:
-
-1. **Shattering the Temporal Prerequisite**: In real-world robotic operations where cameras experience aggressive vibrations, packet drops, or cold boots, traditional optical flow fails completely. MovSAM extracts physical commonsense directly from a single still image to anticipate dynamic intent and enforce proactive safety buffers.
-2. **Deep Thinking Introspective Grounding**: Introducing an explicit text-prompted reflective reasoning loop, MovSAM iteratively aligns high-level conceptual understanding with SAM2's fine-grained feature representations, elevating open-vocabulary segmentation from baseline failure (22.8) to near-perfect grounding (92.5).
-3. **Premier Publication & Embodied Foundation**: Published at IROS 2025, MovSAM illustrates how visual-language foundation models serve as a resilient zero-shot perception safeguard for autonomous vehicles, mobile manipulators, and robotic agents operating in unstructured open worlds.
+The architectural idea is an inspectable connection between language and pixels. Reasoning proposes an object interpretation, segmentation turns it into a spatial prediction, and the resulting mask becomes evidence for another reasoning step.

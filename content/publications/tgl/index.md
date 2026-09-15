@@ -38,8 +38,8 @@ tags:
   - Robot Manipulation
 featured: true
 image:
-  caption: 'Research overview: demonstrations become a verified Skill Block; action outcomes feed a Skill Library and Experience Memory for reuse.'
-  alt_text: 'White TGL scientific diagram showing three demonstrations of the same bowl-placement skill, a reusable Skill Block, physical execution and verification, pass and repair branches, a Skill Library, Experience Memory, and a new task invoking the learned capability.'
+  caption: "Experience becomes reusable robot skills."
+  alt_text: "TGL — Experience becomes reusable robot skills."
 links:
   - type: preprint
     provider: arxiv
@@ -113,62 +113,30 @@ where foundation-model weights $\theta$ remain fixed while Skill Library $\mathc
 
 ![Verified skills and structured experience accumulate through deployment.](experience-scaling.png "TGL treats reusable, validated experience as a resource that grows over the robot's lifetime.")
 
-## A scaling-law hypothesis for reusable experience
+## How a local lesson becomes reusable
 
-Let $X>0$ denote effective reusable experience: prior interaction that survived verification and remains retrievable, groundable, and composable in the current scene. The paper proposes the hypothesis
+A useful lesson includes more than the successful motion. The system also needs to know when the skill applies, which objects and relations must be identified, and what physical effect should be checked afterwards. These conditions make a block retrievable and testable in a later scene.
 
-$$
-\begin{aligned}
-\mathcal{E}_{\mathrm{future}}(X)&=\mathcal{E}_{\infty}+A X^{-\alpha},\\
-D_{\mathrm{teach}}(X)&=D_{\infty}+B X^{-\beta},
-\end{aligned}
-$$
+For example, a placement skill must ground the object and support surface before execution. After release, the verifier checks whether the intended placement occurred. If the object moved unexpectedly, the agent can inspect the new state and revise the remaining route. The experience record connects that outcome to the context in which it happened.
 
-with nonnegative floors and positive $A,B,\alpha,\beta$. It predicts that future-task error and the marginal teaching required for a related new task should decrease as reusable experience grows. The controlled studies below evaluate short-horizon mechanisms; long-term scaling remains a research hypothesis.
+## Growth through a library and memory
 
-## Mechanism evaluation
+The Skill Library stores callable behavior; Experience Memory records how attempts unfolded. When facing a related task, the agent can retrieve an existing strategy together with relevant failures and repairs. Reuse therefore depends on the match between past experience and the current scene.
 
-The evaluation separates four mechanisms: demonstration induction, library persistence, skill reuse, and end-to-end execution.
+The paper asks whether accumulating usable experience can reduce future teaching and exploration. This is a research hypothesis about growth over time. The architecture makes the relevant units explicit: verified skills, their applicability conditions, and records that remain useful when retrieved.
 
-### 1. Can demonstrations reveal semantic task stages?
+## What the evaluation examines
 
-Ten visual demonstrations produce 40 predicted/reference stages. Ordered stage role/type accuracy is 1.000. Exact boundary F1 is only 0.100, but it rises to 0.633 with a tolerance of one sampled frame and 0.900 within two sampled frames. Acquisition/release effects are observed correctly in 20/20 cases.
+The studies examine demonstration interpretation, saving and reloading skills, reuse in new states, and execution with different library contents. These tests ask whether a lesson survives beyond the original demonstration and whether added skills change the routes available to the agent.
 
-Semantic ordering and effects are recovered reliably in this sample, while precise temporal boundary placement remains less accurate, as reflected by the strict and tolerant F1 values.
+## Reasoning and continuous control
 
-### 2. Can newly induced blocks be saved and reused?
+The agent operates at meaningful task transitions. Policies, planners and controllers perform continuous robot motion. This division lets semantic decisions use observed outcomes while leaving fast control to robot-native components.
 
-Three teacher trajectories from training states 0–2 produce two reusable blocks. On held-out states 3–5, execution succeeds in 3/3 cases, and after saving/reloading the library it again succeeds in 3/3. On farther states 6–8, execution stops when a required semantic effect is absent.
+![Skill acquisition and familiar execution follow complementary paths.](acquisition-cost.png "The agent acquires and composes skills; robot-native tools execute their physical actions.")
 
-This stop identifies the missing semantic behavior as a capability gap beyond the demonstrated range.
+A verified behavior may later become a candidate for policy training or distillation. That is a further development stage: the current architecture already allows learned executors and geometric tools to coexist within the same skill interface.
 
-### 3. Skill Library Expansion Delivers Dramatic Performance Gains
+![Skills, verification and experience form a reusable learning lifecycle.](learning-ecosystem.png "The architecture connects task reasoning with executable behavior and persistent experience.")
 
-Under rigorous controlled experimental conditions with fixed runtime executors and parameters, expanding the skill library from basic primitives to include composite Skill Blocks yields dramatic capability leaps:
-
-| Skill Library Configuration | Median Attempts | Completed Tasks | Success Rate | 95% Wilson Interval |
-|---|---:|---:|---:|---:|
-| Base Library (6 Blocks) | 2.5 | 0/6 | 0.00 | [0.00, 0.39] |
-| **Expanded Library (8 Blocks)** | **1.5** | **4/6** | **0.67** | **[0.30, 0.90]** |
-
-Adding just two critical composable blocks boosts task success from **0% to 67%** while reducing median search attempts, providing clear empirical validation for our core theoretical premise: structured modular skill blocks transfer zero-shot across tasks, drastically cutting exploration overhead.
-
-### 4. Causal Fault Attribution & Autonomous Self-Repair
-
-When physical execution encounters unexpected environmental perturbations, conventional monolithic end-to-end policies often collapse catastrophically. In contrast, TGL leverages its sub-goal verifiers $v_i$ to perform precise causal fault attribution. The system decouples physical deviations and traces them back to spatial perception, kinematic planning, or gripper grasp slip, instantly triggering local replanning or targeted recovery behaviors $\mathcal{R}_i$, demonstrating exceptional closed-loop fault tolerance.
-
-## Dual-System Architecture: Fast Execution & Agentic Reasoning
-
-The TGL architecture establishes a symbiotic dual-system ecosystem with modern end-to-end policies (e.g., VLAs, World-Action Models):
-- **System 2 (Deliberative Agent)**: Multimodal LLM reasoning orchestrates high-level intent alignment, few-shot induction of new skills, causal verification, and active self-repair;
-- **System 1 (Reactive Policy)**: Once a Skill Block is empirically verified across tasks, it can be compiled or distilled directly into a high-frequency, end-to-end motor policy.
-
-![The acquisition path differs for uncovered behavior and familiar fast execution.](acquisition-cost.png "Agentic acquisition and policy execution operate at complementary timescales.")
-
-![Skill acquisition, verification, memory, and future distillation form one lifecycle.](learning-ecosystem.png "TGL positions policies, planners, perception models, and agent memory as complementary components.")
-
-This modular decoupling completely eliminates the prohibitive **"Retraining Tax"** of monolithic models: grasping networks can be upgraded independently within an isolated block; recovery routines can be attached to specific failure modes; and verification thresholds can be tightened without risking catastrophic forgetting of unrelated skills. Robot growth becomes an ongoing, cumulative asset of tested, addressable physical competencies!
-
-## Conclusion & Research Impact
-
-Under review at **IEEE Transactions on Robotics (T-RO)**, TGL delivers the first lifelong, agentic robot learning architecture that breaks free from continuous end-to-end retraining. By translating sparse human demonstrations into verified closed-loop Skill Blocks coupled with persistent structured memory, TGL provides a rigorous theoretical and empirical blueprint for generalist robots to continuously grow, adapt, and evolve in open, unconstrained physical environments.
+The design lesson is to make acquired behavior an explicit part of the robot's operating system. A new skill can be inspected, revised and recalled together with the evidence that supports its use.

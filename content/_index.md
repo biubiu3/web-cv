@@ -50,47 +50,47 @@ sections:
         - date: '2026'
           display_date: '2026'
           tag: 'Top Journal'
-          text: 'HEAR, our pioneering acoustic-embodied manipulation framework, is officially published in The International Journal of Robotics Research (IJRR)!'
+          text: "HEAR studies sound-aware robotic manipulation and continuous acoustic memory."
           url: 'publications/hear/'
         - date: '2026'
           display_date: '2026'
           tag: 'Latest Breakthrough'
-          text: 'Teach and Grow (TGL) introduces an agent-centered lifelong robot learning architecture that accumulates verified closed-loop capabilities from sparse physical feedback.'
+          text: "Teach and Grow organizes reusable robot skills and experience around an agent."
           url: 'publications/tgl/'
         - date: '2026'
           display_date: '2026'
           tag: 'Accepted'
-          text: 'VCGS-SLAM, an embedded 3D Gaussian Splatting SLAM system, is accepted by the International Journal of Computer Vision (IJCV 2026)!'
+          text: "VCGS-SLAM combines compact Gaussian mapping with camera tracking."
           url: 'publications/vcgs-slam/'
         - date: '2026'
           display_date: '2026'
           tag: 'Top Journal'
-          text: 'MID, a self-supervised multimodal iterative denoising framework, is officially published in IEEE Transactions on Neural Networks and Learning Systems (TNNLS)!'
+          text: "MID studies self-supervised iterative denoising across data modalities."
           url: 'publications/mid/'
         - date: '2026'
           display_date: '2026'
           tag: 'Top Conference'
-          text: 'MRASfM, a multi-camera SfM and large-scale scene aggregation framework, is published at ICRA 2026 (ranking #1 on nuScenes)!'
+          text: "MRASfM connects multi-camera reconstruction with cross-session scene aggregation."
           url: 'publications/mrasfm/'
         - date: '2026'
           display_date: '2026'
           tag: 'Research Highlight'
-          text: 'DiffSAC introduces diffusion-guided sample consensus for robust geometric estimation, slashing median rotation error by 40% at 30-50 Hz.'
+          text: "DiffSAC learns geometric sampling proposals through conditional diffusion."
           url: 'publications/diffsac/'
         - date: '2025'
           display_date: '2025'
           tag: 'Research Highlight'
-          text: 'ERMV introduces an action-conditioned 4D robotic world model (Robotic World Model), acting as a physical simulator that propels real dual-arm manipulation success from 2% to 89% (a 44.5× leap) in unseen cluttered environments.'
+          text: "ERMV edits synchronized robot trajectories while preserving recorded actions."
           url: 'publications/ermv/'
         - date: '2025'
           display_date: '2025'
           tag: 'Top Conference'
-          text: 'MovSAM, deep reasoning for single-image moving object segmentation, is published at IROS 2025 (outperforming temporal video baselines).'
+          text: "MovSAM combines scene reasoning and single-image object segmentation."
           url: 'publications/movsam/'
         - date: '2023'
           display_date: '2023'
           tag: 'Top Conference'
-          text: 'RLSAC, reinforcement learning for sample consensus, was published and presented at ICCV 2023.'
+          text: "RLSAC learns a sampling policy from geometric feedback."
           url: 'publications/rlsac/'
         - date: '2024'
           display_date: '2024'
@@ -110,56 +110,47 @@ sections:
   - block: markdown
     id: research
     content:
-      title: 'Research Vision: Building General-Purpose Physical AI with Lifelong Evolution'
-      subtitle: ''
+      title: 'Learning, perception, and robot action'
       text: |-
-        The extreme complexity of the physical world demands that robots transcend rigid, single-policy models. Robots must become **general-purpose physical agents equipped with cross-modal causal perception, physical reasoning, and the capability to continuously accumulate and reuse skills through real-world experience**.
+        My research asks how robots can turn observations and experience into useful behavior. I study reusable skills, sound-aware manipulation, visual data generation, and geometric perception.
 
-        My research realizes this vision across three interconnected pillars:
+        **Learning from experience.** Teach and Grow organizes demonstrations into skills that can be grounded, executed and checked in a new scene. A library and structured memory preserve behavior and the experience of using it.
 
-        1. **Agent-Centered Lifelong Robot Learning**: Overcoming the prohibitive "retraining tax" of monolithic end-to-end models by introducing verifiable, self-repairing Skill Blocks and structured Experience Memory. Robots acquire closed-loop capabilities from sparse demonstrations, autonomously diagnose and recover from physical failures, and continually grow their skill repertoires without global retraining (e.g., **Teach and Grow (TGL)**).
-        2. **Multimodal Embodied Foundation Models & VLA**: Breaking the visual-only barrier by pioneering the Visual-Sound-Language-Action (VSLA) paradigm. By seamlessly integrating continuous high-frequency acoustics, touch, and proprioception with multimodal foundation models, our systems eliminate the dangerous evidence gaps created by action chunking, maintaining razor-sharp causal situational awareness during dynamic manipulation (e.g., **HEAR**, published in IJRR 2026).
-        3. **High-Precision Spatial Intelligence & 4D Embodied World Engines**: From action-conditioned 4D robotic world models (**ERMV**), embedded 3D Gaussian Splatting SLAM (**VCGS-SLAM**, IJCV 2026), and rigid camera-rig SfM (**MRASfM**, ICRA 2026) to diffusion-guided robust consensus (**DiffSAC**), constructing the metric foundation and infinite high-fidelity physical world simulators essential for physical AI.
+        **Understanding an interaction.** HEAR connects continuous sound with robot decisions. ERMV studies how visual conditions can change while recorded actions remain consistent across cameras.
+
+        **Recovering spatial structure.** My work on robust estimation, denoising, multi-camera reconstruction and compact Gaussian mapping builds geometric representations for robot perception.
     design:
       columns: '1'
   - block: markdown
     id: papers
     content:
-      title: 'Selected Publications: From Spatial Foundations to Generalist Agents'
-      text: |-
-        My publications systematically realize a three-layer technical architecture: rigorous spatial geometry and perception form the bedrock; generative world models and self-supervised representations build the bridge; and multimodal embodied agents drive robots that listen, reason, act, and continuously evolve.
+      title: 'Publications & Research'
+      text: 'Ideas and methods in robot learning, multimodal perception, and geometric vision.'
     design:
       columns: '1'
   - block: collection
     id: selected-publications
     content:
-      title: 'Selected Publications'
-      text: Ten featured works highlighting breakthrough contributions across top robotics, computer vision, and machine learning venues.
       filters:
         folders:
           - publications
-        tags:
-          - Computer Vision
-          - Multimodal Learning
-          - Robot Manipulation
       sort_by: homepage_order
       sort_ascending: true
-      count: 10
+      count: 0
     design:
-      view: article-grid
-      columns: 2
-      fill_image: false
+      view: publication-gallery
+      columns: 1
   - block: research-trajectory
     id: research-trajectory
     content:
       eyebrow: 'Core Technical Blueprint'
       title: 'Three Interconnected Technical Layers'
-      text: 'From high-precision spatial geometry, to multimodal world engines, to generalist lifelong embodied agents.'
+      text: 'Related research on spatial structure, multimodal observations, and reusable robot behavior.'
       stages:
         - index: '01'
           label: 'Bedrock'
           title: 'Spatial Intelligence & Robust Geometry'
-          text: 'Diffusion-guided sample consensus, reinforcement learning, embedded 3D Gaussian SLAM, and multi-camera SfM establish millimeter-accurate scene structure under extreme outliers.'
+          text: 'Robust sampling, multi-camera reconstruction and compact mapping recover useful spatial structure from imperfect observations.'
           papers:
             - label: 'DiffSAC'
               url: 'publications/diffsac/'
@@ -174,7 +165,7 @@ sections:
         - index: '02'
           label: 'Bridge'
           title: 'Multimodal Representations & 4D Data Engines'
-          text: 'Self-supervised iterative denoising and geometrically consistent 4D video editing shatter the real-world data bottleneck for generalist robot policy learning.'
+          text: 'Iterative denoising and synchronized video editing study how to recover and vary the observations used for learning.'
           papers:
             - label: 'MID'
               url: 'publications/mid/'
@@ -183,7 +174,7 @@ sections:
         - index: '03'
           label: 'Frontier'
           title: 'General-Purpose Embodied Agent Systems'
-          text: 'Pioneering continuous audio-visual-action learning and lifelong experience memory to create robots that listen, reason, act, and continuously self-improve.'
+          text: 'Continuous acoustic memory and reusable skills connect observations and past experience to physical decisions.'
           papers:
             - label: 'Teach and Grow'
               url: 'publications/tgl/'
@@ -194,7 +185,7 @@ sections:
     content:
       title: Robots That Listen, Reason, and Act
       text: |-
-        Real-robot evaluations from **HEAR**, our acoustic-embodied manipulation framework published in **IJRR**. Turn on audio to experience how continuous acoustic cues transform robot causal decision-making!
+        HEAR robot demonstrations show how acoustic events influence manipulation. Audio accompanies the task videos.
       project_url: https://hear.irmv.top/
       project_label: Explore HEAR Project & Code
       videos:
@@ -203,9 +194,9 @@ sections:
           description: In a complex multi-stage task, the robot continuously tracks boiling, bubbling, and contact acoustics to trigger timely actions.
           src: https://hear.irmv.top/static/videos/moka_pot_all_web.mp4?v=681a0fb
           poster: moka.webp
-        - title: Millisecond-Level Transient Alarm Interception
+        - title: Responding to a Brief Alarm
           eyebrow: Causal Acoustic Memory
-          description: A fleeting alarm occurring inside the open-loop execution gap is instantly preserved by causal memory, seamlessly overriding the next trajectory!
+          description: Acoustic memory preserves a brief alarm during action execution so it can inform the next decision.
           src: https://hear.irmv.top/static/videos/alarm_all.mp4?v=681a0fb
           poster: alarm.webp
         - title: Active Bottle Shaking & Physical State Inference

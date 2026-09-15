@@ -36,8 +36,8 @@ tags:
   - Denoising
 featured: false
 image:
-  caption: 'Research overview: stage estimation and local residual prediction drive an iterative self-supervised reverse process shared across five modalities.'
-  alt_text: 'White MID scientific diagram showing a noisy sample, controlled extra corruption, stage estimation, local residual prediction, an iterative reverse update, and denoising examples for images, geometry, biosignals, MRI, and proteins.'
+  caption: "Iterative recovery across data modalities."
+  alt_text: "MID — Iterative recovery across data modalities."
 hugoblox:
   ids:
     doi: 10.1109/TNNLS.2026.3683544
@@ -97,59 +97,42 @@ until the estimated stage approaches zero. This makes the number of restoration 
 
 The model receives supervision because the additional corruption process is known: it can regress the synthetic stage and residual even though the original clean sample is unknown. Training combines mean-squared losses for stage and noise prediction; point-classification tasks add a binary cross-entropy term. The total objective is the sum of the active components.
 
-Images and MRI use convolutional networks. Point sets, line segments, one-dimensional signals, and amino-acid representations use Transformer variants, allowing interactions without forcing every modality into an image grid. Across the reported implementations, training uses AdamW with learning rate $10^{-4}$, weight decay 0.01, batch size 8, 150 epochs, and an RTX 8000 GPU.
+Images and MRI use convolutional networks. Point sets, line segments, one-dimensional signals and amino-acid representations use Transformer variants that preserve interactions in their respective data structures.
 
 The shared component across modalities is the *learning dynamics*: estimate location on a corruption path, take a local reverse step, inspect the new state, and repeat. Each modality uses a suitable network architecture.
 
-## Case study 1: natural-image denoising
+## Adapting the process to different data
 
-The image model is trained on resized $256\times256$ ILSVRC 2012 images and evaluated on Kodak with Gaussian and Poisson corruption. Additional protocols use BSD300/BSD400 for training and BSD68 for testing. PSNR and SSIM quantify fidelity, while qualitative examples show texture recovery and edge preservation.
+The same update rule can act on different representations. For an image, spatial neighborhoods carry edges and texture. For a point set, relations between observations describe geometric consistency. For a waveform, temporal structure carries the signal of interest. The encoder must preserve the structure relevant to each case.
 
-![Natural-image restoration under different noise processes.](image-denoising.jpg "MID iteratively removes Gaussian and Poisson corruption without paired clean training targets.")
+This is why MID uses modality-appropriate networks while keeping stage estimation and residual reversal shared at the conceptual level. A sample is encoded, its corruption stage is estimated, one correction is applied, and the updated sample returns to the process.
 
-The paper reports consistent improvement over the compared self-supervised and supervised alternatives. Performance varies with each dataset and noise configuration, so the results are presented per setting.
+![Image restoration through iterative correction.](image-denoising.jpg "An image example illustrates recovery of spatial detail.")
 
-## Case study 2: robust geometric estimation
+## Geometry and temporal signals
 
-For multi-line fitting, scenes contain 1–10 lines, with 12,000 scenes for each line-count setting: 10,000 for training and 2,000 for testing. Every line has 40–100 points, Gaussian perturbation is sampled around 0.007–0.008, and 40–60% of observations are outliers. Accuracy is measured as AUC at $0.5^\circ$. MID improves the reported result by as much as 36.8% across these configurations.
+For geometric observations, the desired structure may be mutually consistent correspondences or points supporting a model. Recovery therefore concerns relationships within the set as well as the appearance of individual observations.
 
-For two-view correspondence denoising, 12 RANSAC-tutorial scenes each contribute 100,000 training pairs and two held-out scenes each provide 4,950 test pairs. Fundamental- and essential-matrix estimation are evaluated using mAA at $10^\circ$; the reported gains reach 53.7%. The framework is also tested on vanishing-point estimation with NYU-VP (1,224 train, 225 test) using LSD line segments and AUC at $5^\circ$, plus cross-dataset evaluation on YUD/YUD+.
+![Geometric observations after iterative denoising.](correspondence-denoising.jpg "The geometric study examines structured observations contaminated by noise and outliers.")
 
-![Iterative denoising separates geometrically coherent correspondences from outliers.](correspondence-denoising.jpg "Robust-estimation examples for correspondence and structured point-set noise.")
+For physiological signals, the model must retain useful waveform structure while removing corruption. Evaluation separates recording conditions to examine whether recovery transfers beyond the examples used during training.
 
-For geometric data, denoising recovers structured signals such as mutually consistent matches from a contaminated set.
+![Physiological-signal restoration examples.](emg-results.jpg "Signal recovery uses a representation suited to temporal data.")
 
-## Case study 3: physiological signals
+## Learning when clean references are difficult to obtain
 
-The biosignal study uses sEMG from NINAPro DB2 and ECG from the PhysioNet Noise Stress Test Database. Subjects, channels, and movements used for testing are separated from training. Training corruption spans SNR from $-15$ to $-5$ dB, while test levels span $-12$ to $-6$ dB. Metrics include SNR improvement, RMSE, average rectified value, and mean frequency.
+The MRI study examines recovery where a perfectly aligned clean acquisition is unavailable. The protein study applies the formulation to sequence representations and evaluates the usefulness of the resulting features for contact prediction.
 
-![sEMG restoration across severe noise levels.](emg-results.jpg "MID is compared with filtering, FCN, and SDEMG alternatives on physiological signals.")
+![MRI restoration examples.](mri-results.jpg "The MRI study examines signal recovery without paired clean acquisitions.")
 
-MID outperforms classical filters, FCN, and SDEMG in the reported comparisons, with $p<0.05$. Holding out subjects, channels, and movements tests generalization across people and recording conditions.
+![Protein representation denoising.](protein-results.jpg "Sequence representations provide another setting for the iterative formulation.")
 
-## Case study 4: MRI without a clean reference
+These cases share a practical motivation: create supervision from a controlled perturbation of available observations. The learning target comes from the additional corruption process, while the network learns an update that can be applied repeatedly.
 
-Experiments use Stanford HARDI ($106\times81\times76\times150$, $b=2000$) and Sherbrooke ($128\times128\times64\times193$, $b=1000$), with slices resized to 256 pixels. MID is compared with DDM2, Noise2Noise, Patch2Self, and Deep Image Prior.
+## Why local steps matter
 
-![Diffusion MRI denoising and structural detail.](mri-results.jpg "MRI examples compare signal recovery without paired clean acquisitions.")
+A single large correction must account for the entire nonlinear corruption path at once. MID instead estimates the current stage and removes a local increment before reassessing the sample. Its ablations examine this division of work and the contribution of iteration.
 
-The paper reports significantly stronger relative SNR/CNR proxy measures ($p<0.05$). These no-reference measures quantify signal quality without comparison to a known clean anatomy.
+![Direct correction and iterative local updates.](iterative-ablation.jpg "The ablation studies the role of stage-aware repetition.")
 
-## Case study 5: protein representations
-
-The final study applies iterative denoising to multiple-sequence-alignment representations from UniClust30 with an MSA Transformer. Long-range contact prediction is measured by Top-$L$ precision. MID improves the reported average by 2.2%, with $p<0.05$.
-
-![Protein contact prediction after representation denoising.](protein-results.jpg "The same reverse-step formulation is applied to amino-acid sequence representations.")
-
-The protein experiment extends the same iterative formulation to biological sequence representations, alongside pixel grids, geometric sets, and waveforms.
-
-## Why iteration matters
-
-A one-shot variant tries to remove the full estimated corruption in a single pass. The ablation shows that this direct jump is less reliable than repeated local updates, particularly for nonlinear or severe noise. Stage prediction is also necessary: without it, the residual network cannot adapt the magnitude of its correction to the current state.
-
-![One-shot removal versus iterative local reversal.](iterative-ablation.jpg "The ablation isolates the benefit of multiple stage-aware reverse steps.")
-
-## Unified Multimodal Self-Supervision & Theoretical Impact
-
-Published in **IEEE TNNLS 2026**, MID establishes a mathematically rigorous, self-supervised iterative dynamical framework that unifies nonlinear inverse problems across five disparate modalities. Operating entirely without expensive or unattainable "clean" ground-truth pairs, MID proves that local first-order trajectory approximation paired with stage-aware residual denoising delivers state-of-the-art restoration across natural images, 3D geometry (up to **53.7% gain** in relative pose estimation), biosignals (sEMG/ECG), clinical imaging (reference-free diffusion MRI), and computational biology (protein long-range contact accuracy). This work establishes a versatile, foundational paradigm for solving real-world noisy inverse problems across machine learning and the physical sciences.
-
+The design offers a common way to organize recovery without requiring a single network architecture for every modality.

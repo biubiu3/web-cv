@@ -43,47 +43,47 @@ sections:
         - date: '2026'
           display_date: '2026'
           tag: 顶刊发表
-          text: 首创听觉具身操作大模型 HEAR 正式发表于机器人学顶级旗舰期刊 The International Journal of Robotics Research (IJRR)！
+          text: "HEAR 研究声音感知机器人操作与连续听觉记忆。"
           url: 'publications/hear/'
         - date: '2026'
           display_date: '2026'
           tag: 最新突破
-          text: 智能体终身机器人学习架构 Teach and Grow (TGL) 提出从稀疏物理示教中持续积累可复用闭环技能的全新范式。
+          text: "Teach and Grow 围绕智能体组织可复用技能与经验。"
           url: 'publications/tgl/'
         - date: '2026'
           display_date: '2026'
           tag: 顶刊接收
-          text: 紧凑型嵌入式 3D 高斯 SLAM 系统 VCGS-SLAM 被计算机视觉顶级期刊 International Journal of Computer Vision (IJCV 2026) 接收！
+          text: "VCGS-SLAM 将紧凑高斯建图与相机跟踪结合起来。"
           url: 'publications/vcgs-slam/'
         - date: '2026'
           display_date: '2026'
           tag: 顶刊发表
-          text: 自监督多模态迭代去噪统一框架 MID 正式发表于 IEEE Transactions on Neural Networks and Learning Systems (TNNLS)！
+          text: "MID 研究跨模态的自监督迭代去噪。"
           url: 'publications/mid/'
         - date: '2026'
           display_date: '2026'
           tag: 顶会发表
-          text: 多相机 SfM 与大尺度场景聚合框架 MRASfM 发表并在机器人顶会 ICRA 2026 宣读（nuScenes 榜单斩获第一）！
+          text: "MRASfM 将多相机重建与跨片段场景聚合连接起来。"
           url: 'publications/mrasfm/'
         - date: '2026'
           display_date: '2026'
           tag: 研究亮点
-          text: 扩散引导采样一致性几何估计 DiffSAC 首创生成式共识估计，30-50 Hz 极速推理削减 40% 旋转误差。
+          text: "DiffSAC 通过条件扩散学习几何采样提议。"
           url: 'publications/diffsac/'
         - date: '2025'
           display_date: '2025'
           tag: 研究亮点
-          text: 4D 动作条件机器人世界模型（Robotic World Model）ERMV 攻克跨视角物理几何与运动一致性，作为物理世界模拟器使双臂实机未见杂乱成功率由 2% 飙升至 89%（44.5 倍跃升）！
+          text: "ERMV 在保留记录动作的同时编辑同步机器人轨迹。"
           url: 'publications/ermv/'
         - date: '2025'
           display_date: '2025'
           tag: 顶会发表
-          text: 深度思考单图像运动分割模型 MovSAM 发表并在机器人顶会 IROS 2025 宣读（超越时序视频基线）。
+          text: "MovSAM 将场景推理与单图像物体分割结合起来。"
           url: 'publications/movsam/'
         - date: '2023'
           display_date: '2023'
           tag: 顶会发表
-          text: 强化学习几何采样一致性 RLSAC 发表并在计算机视觉顶会 ICCV 2023 宣读！
+          text: "RLSAC 从几何反馈中学习采样策略。"
           url: 'publications/rlsac/'
         - date: '2024'
           display_date: '2024'
@@ -103,55 +103,47 @@ sections:
   - block: markdown
     id: research
     content:
-      title: 研究愿景：打造具备物理常识与终身进化的通用机器人系统
+      title: 学习、感知与机器人行动
       text: |-
-        物理世界的极端复杂性要求机器人绝不能停留在单一、静态的固定策略，而必须进化为**具备全模态因果感知、物理常识推理并能在真实交互中终身积累复用技能的高阶通用智能体**。
+        我的研究关注机器人如何将观测与经验转化为可用行为，涉及可复用技能、声音感知操作、视觉数据生成与几何感知。
 
-        我的研究围绕这一宏伟使命，贯通三大相互支撑的核心支柱：
+        **从经验中学习。** Teach and Grow 将示范组织为可以在新场景中落地、执行和检查的技能，通过技能库与结构化记忆保存行为及其使用经验。
 
-        1. **以智能体为中心的持续进化学习（Agentic Robot Learning & Lifelong Autonomy）**：攻克端到端大模型高昂的“重训税”瓶颈，提出可验证、可自愈的模块化技能块（Skill Block）与结构化经验记忆（Experience Memory）。机器人仅需少量示范即可形成闭环技能，并在物理交互中自主诊断、修复并跨任务复用，实现无需全模型重训的终身持续进化（代表作：**Teach and Grow (TGL)**）；
-        2. **全模态具身基础模型（Multimodal Embodied Foundation Models & VLA）**：突破传统视觉独占范式，首创将高频听觉、触觉、本体感觉与多模态大模型深度统一的视觉-声音-语言-动作范式（VSLA），破解动作分块执行导致的关键信息盲区，让机器人在瞬息万变的物理交互中保持敏锐的因果洞察（代表作：**HEAR**，机器人旗舰顶刊 IJRR 2026）；
-        3. **高精度空间智能与 4D 具身世界模型（Spatial Intelligence & 4D Embodied World Models）**：从动作条件 4D 机器人世界模型（**ERMV**）、紧凑型嵌入式 3D 高斯 SLAM（**VCGS-SLAM**，IJCV 2026）、多相机严苛刚体 SfM（**MRASfM**，ICRA 2026，nuScenes 第一）到扩散几何共识估计（**DiffSAC**），为物理 AI 构建高精空间度量基石与取之不尽的高保真物理世界模拟生成引擎。
+        **理解一次交互。** HEAR 将连续声音与机器人决策连接起来；ERMV 研究改变视觉条件时，如何在多个相机中保持记录动作的一致性。
+
+        **恢复空间结构。** 鲁棒估计、去噪、多相机重建与紧凑高斯建图共同构成我在机器人几何感知方向的研究。
     design:
       columns: '1'
   - block: markdown
     id: papers
     content:
-      title: 代表性学术论著：从几何基底到通用智能体
-      text: |-
-        我的学术论著系统性锚定三层演进架构：底层以高精几何与鲁棒感知构筑物理空间基石；中层以自监督与生成式世界模型打通全模态数据桥梁；顶层驱动具备听觉、常识推理、精准操作与终身成长能力的通用机器人系统。
+      title: 论文与研究
+      text: 机器人学习、多模态感知与几何视觉中的问题、思路和方法。
     design:
       columns: '1'
   - block: collection
     id: selected-publications
     content:
-      title: '代表性论文'
-      text: 精选十项代表性工作，展示在机器人学、计算机视觉与多模态智能顶级期刊与会议上的突破性成果。
       filters:
         folders:
           - publications
-        tags:
-          - Computer Vision
-          - Multimodal Learning
-          - Robot Manipulation
       sort_by: homepage_order
       sort_ascending: true
-      count: 10
+      count: 0
     design:
-      view: article-grid
-      columns: 2
-      fill_image: false
+      view: publication-gallery
+      columns: 1
   - block: research-trajectory
     id: research-trajectory
     content:
       eyebrow: 核心技术矩阵
       title: 三层连贯演进的技术架构
-      text: 从高精度空间感知基底，到多模态数据生成引擎，再到终身进化的通用机器人系统。
+      text: 围绕空间结构、多模态观测与可复用机器人行为展开的相关研究。
       stages:
         - index: '01'
           label: 空间基石
           title: 高精度空间几何与鲁棒感知
-          text: 结合扩散模型、强化学习、嵌入式 3D 高斯 SLAM 与多相机 SfM，在极端外点与复杂光照下建立毫米级高精几何基底。
+          text: 通过鲁棒采样、多相机重建与紧凑建图，从不完美观测中恢复有用的空间结构。
           papers:
             - label: 'DiffSAC'
               url: 'publications/diffsac/'
@@ -166,7 +158,7 @@ sections:
         - index: '02'
           label: 模态桥梁
           title: 多模态表征与 4D 具身数据引擎
-          text: 自监督迭代去噪与多视角极线一致性 4D 轨迹生成，彻底破除具身策略泛化中的真实数据匮乏瓶颈。
+          text: 通过迭代去噪与同步视频编辑，研究如何恢复和扩展学习所使用的观测。
           papers:
             - label: 'MID'
               url: 'publications/mid/'
@@ -175,7 +167,7 @@ sections:
         - index: '03'
           label: 智能前沿
           title: 通用多感官具身智能体系统
-          text: 首创连续声音-视觉-动作（VSLA）范式与技能经验记忆架构，赋予机器人感知瞬时物理事件与终身自主成长的能力。
+          text: 通过连续听觉记忆与可复用技能，将当前观测和历史经验连接到物理决策。
           papers:
             - label: 'Teach and Grow'
               url: 'publications/tgl/'
@@ -186,7 +178,7 @@ sections:
     content:
       title: 能够聆听、推理并果断行动的物理智能体
       text: |-
-        以下为发表于国际机器人顶级期刊 **IJRR** 的 **HEAR** 框架在真实物理机械臂上的实机评测。开启声音，感受瞬时声学线索如何颠覆性改变机器人的因果决策！
+        HEAR 机器人演示展示声音事件如何影响操作，任务视频包含同步音频。
       project_url: https://hear.irmv.top/
       project_label: 访问 HEAR 项目主页与开源资源
       videos:
@@ -195,9 +187,9 @@ sections:
           description: 机器人在多阶段连续复杂任务中，实时融合水沸、蒸汽、碰撞等声学动态与视觉流，精准决策每个动作步。
           src: https://hear.irmv.top/static/videos/moka_pot_all_web.mp4?v=681a0fb
           poster: moka.webp
-        - title: 毫秒级瞬时警报拦截
+        - title: 响应短暂警报
           eyebrow: 跨越开环盲区的声学因果记忆
-          description: 即使警报声仅极其短暂地出现在开环动作块的执行间隙，因果音频记忆网络依然瞬间捕获并彻底重塑后续动作！
+          description: 听觉记忆保存动作执行期间出现的短暂警报，为下一次决策提供依据。
           src: https://hear.irmv.top/static/videos/alarm_all.mp4?v=681a0fb
           poster: alarm.webp
         - title: 主动摇瓶与物理状态推理

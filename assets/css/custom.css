@@ -10,6 +10,52 @@
   --chang-glow: rgb(34 211 238 / 18%);
 }
 
+/* Research articles and covers use a consistent scholarly type hierarchy. */
+html[lang][lang] body,
+html[lang][lang] .prose,
+html[lang][lang] h1,
+html[lang][lang] h2,
+html[lang][lang] h3,
+html[lang][lang] h4 {
+  font-family: "Times New Roman", "SimSun", "Songti SC", serif;
+}
+
+.publication-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+}
+.publication-gallery .publication-rich-item {
+  display: flex;
+  flex-direction: column;
+  border-radius: .65rem;
+  box-shadow: none;
+}
+.publication-gallery .publication-rich-figure { border: 0; background: transparent; }
+.publication-gallery .publication-rich-figure > a { padding: 0; min-height: 0; }
+.publication-gallery .publication-rich-figure img {
+  width: 100%; max-height: none; aspect-ratio: 3 / 2;
+  object-fit: contain; border-radius: 0; filter: none;
+}
+.publication-gallery .publication-rich-figure figcaption,
+.publication-gallery .publication-rich-topics { display: none; }
+.publication-gallery .publication-rich-copy { flex: 1; padding: 1.4rem; }
+.publication-gallery .publication-rich-copy h2 { font-size: 1.5rem; line-height: 1.3; }
+.publication-gallery .publication-rich-summary { font-size: 1.05rem; line-height: 1.65; }
+.publication-gallery .publication-rich-authors { line-height: 1.6; }
+.publication-article-venue { margin-top: 1rem; color: #64748b; font-size: .95rem; line-height: 1.6; }
+.dark .publication-article-venue { color: #a8b6c9; }
+.publication-article .prose { font-size: 1.15rem; line-height: 1.8; }
+.publication-article .prose h2 { line-height: 1.35; }
+@media (max-width: 760px) {
+  .publication-gallery { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; }
+  .publication-gallery .publication-rich-copy { padding: 1.1rem; }
+  .publication-gallery .publication-rich-copy h2 { font-size: 1.35rem; }
+}
+
 @font-face {
   font-family: "Chang CJK";
   src: url("../dist/font/NotoSansCJKsc-site-regular.woff2") format("woff2");

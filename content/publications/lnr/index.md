@@ -36,8 +36,8 @@ tags:
   - Multi-Model Fitting
   - Computer Vision
 image:
-  caption: 'LNR research overview: screen candidate minimum sets, then refine and select hypotheses from their neighboring geometric regions.'
-  alt_text: 'White LNR graphical abstract showing noisy points, candidate minimum sets, geometric feature extraction, confidence-based set selection, coarse hypotheses, neighboring regions, refinement and scoring, hypothesis NMS, and final multi-model fit; application panels show lines, vanishing points, two-view planes, and two-view motion.'
+  caption: "Shared observations, overlapping geometric regions."
+  alt_text: "LNR — Shared observations, overlapping geometric regions."
 hugoblox:
   ids:
     arxiv: 2609.15348v1
@@ -59,18 +59,18 @@ links:
 
 Many vision problems require more than one model at once: several lines in a point cloud, multiple vanishing directions in an image, or several planar and motion instances across two views. The difficulty is not only outliers. A point can lie near, or contribute evidence to, more than one model, so greedy “fit one, remove its inliers, repeat” pipelines can lose structure as they proceed.
 
-Learning Neighbor Regions (LNR) keeps the robust-estimation interfaces familiar while changing where learning enters. It does not ask a network to replace a geometric solver. Instead, the network learns which sampled minimum sets deserve computation and which local regions make a proposed hypothesis credible.
+Learning Neighbor Regions (LNR) learns which sampled minimum sets deserve computation and which local regions support a proposed hypothesis. The task-specific geometric solver converts the selected sets into candidate models.
 
 ![LNR turns many noisy candidate sets into a compact set of independently refined hypotheses.](pipeline.png "The paper's LNR pipeline: geometric features, coarse minimum-set screening, region-aware refinement, and hypothesis NMS.")
 
 ## Coarse screening before expensive solving
 
-Given noisy observations $chi={x_i}_{i=1}^N$, LNR first builds a feature for every point that combines local point-wise evidence with global context. The paper uses Fourier feature mapping, shared MLPs, and max pooling to form the geometric representation.
+Given noisy observations $\chi=\{x_i\}_{i=1}^N$, LNR first builds a feature for every point that combines local point-wise evidence with global context. The paper uses Fourier feature mapping, shared MLPs, and max pooling to form the geometric representation.
 
 Random sampling then creates many minimum sets. Rather than solve every one, the coarse-level module scores each set from the features of its constituent points and retains only the most promising sets. The task-specific solver $S$ is applied only after this screen:
 
 $$
-H_{mathrm{coarse}}={S(M_j)mid M_jinmathbb{M}_{mathrm{good}}}.
+H_{\mathrm{coarse}}=\{S(M_j)\mid M_j\in\mathbb{M}_{\mathrm{good}}\}.
 $$
 
 This division matters in a multi-model setting: random sampling still offers broad coverage, while learned selection prevents clearly unproductive sets from consuming the later refinement budget.
@@ -81,14 +81,20 @@ A hypothesis should be judged by more than its parameter vector. For each coarse
 
 The region representation allows one observation to contribute to multiple hypotheses when models overlap. It also avoids back-propagating through the discrete sampler or a task-specific solver: training is driven by data-point features and the outputs of the learned heads. At inference, hypothesis-based non-maximum suppression selects the final compound model and determines how many models remain.
 
-## Four complementary evaluation settings
+## From features to supervised refinement
 
-The experiments span four standard multi-model fitting problems rather than a single synthetic case.
+Each point combines 128 local and 128 global features. The coarse network also receives the original coordinates. A neighborhood uses a task-specific distance: Euclidean distance for lines, directional distance for vanishing points, reprojection error for planes, or a normalized epipolar constraint for motion. Short regions are zero-padded for batching.
+
+Training supervises minimum-set confidence and hypothesis scores with ground-truth model similarity. A Smooth L1 loss trains parameter refinement. At test time, suppression removes geometrically redundant hypotheses.
+
+## Fitting different kinds of structure
+
+The same stages apply to several geometric problems, with the residual and solver adapted to each one.
 
 | Setting | What is fitted | Reported evaluation |
 |---|---|---|
-| Multi-line fitting | Multiple noisy 2D lines | AUC at $0.5^circ$ over 1–10-line scenes |
-| Vanishing points | Multiple image-space line directions | AUC at $5^circ$ and $10^circ$ on NYU-VP, YUD+, and YUD |
+| Multi-line fitting | Multiple noisy 2D lines | AUC at $0.5^\circ$ over 1–10-line scenes |
+| Vanishing points | Multiple image-space line directions | AUC at $5^\circ$ and $10^\circ$ on NYU-VP, YUD+, and YUD |
 | Two-view planes | Several planar correspondence groups | Mean misclassification error on AdelaideRMF |
 | Two-view motion | Multiple motion instances in correspondences | Mean misclassification error on AdelaideRMF |
 

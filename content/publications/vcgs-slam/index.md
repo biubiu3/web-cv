@@ -44,8 +44,8 @@ tags:
   - Computer Vision
 featured: false
 image:
-  caption: 'Research overview: voxel anchors, online masking, residual codebooks, and global geometric refinement turn an RGB-D stream into a compact dense map for embedded deployment.'
-  alt_text: 'White VCGS-SLAM graphical abstract with an RGB-D sequence, voxel-anchored Gaussian map, non-crossing branches for sliding-window masking and residual codebook quantization, a local-to-global bundle-adjustment tracking lane, and compact embedded deployment.'
+  caption: "A compact Gaussian map grows with the robot."
+  alt_text: "VCGS-SLAM — A compact Gaussian map grows with the robot."
 hugoblox:
   ids:
     arxiv: 2403.11247v3
@@ -97,9 +97,9 @@ Opacity, rotation, scale, and color are decoded from the anchor feature together
 
 Offline pruning can inspect a complete training set. An operating SLAM system sees only the past and present, so its pruning mechanism must move with the camera. VCGS-SLAM assigns a learnable mask to Gaussians inside a local window composed of the current frame and overlapping keyframes. Frustum selection restricts optimization to visible primitives, while window resets prevent mask gradients from accumulating until useful geometry disappears.
 
-The binary mask modulates both Gaussian scale and opacity. Pruning decisions therefore reflect primitive volume, visibility, and contribution to recent views. In the reported sequence, the mask yields a **1.97× reduction in Gaussian count** while maintaining reconstruction quality.
+The binary mask modulates both Gaussian scale and opacity. Pruning decisions therefore reflect primitive volume, visibility and contribution to recent views.
 
-![The local mask prunes redundant Gaussians inside the active camera window and resets as the window moves.](sliding-window-mask.jpg "Paper result: sliding-window masking controls online Gaussian growth and reduces the primitive count by 1.97 times in the illustrated sequence.")
+![The local mask prunes redundant Gaussians inside the active camera window and resets as the window moves.](sliding-window-mask.jpg "Sliding-window masking controls online Gaussian growth.")
 
 ## Residual codebooks compress repeated geometry
 
@@ -118,31 +118,24 @@ The map stores anchor attributes as compact indices into shared codebooks. The r
 
 Camera tracking minimizes color and depth reconstruction losses over visible pixels. An ICP term links Gaussian centers to nearby geometry, strengthening spatial alignment when photometric evidence alone is fragile. A sparse global keyframe database then supplies historical rays for joint refinement of the map and camera poses. This local-to-global schedule targets drift on longer trajectories without optimizing every past frame at every step.
 
-## Reconstruction, speed, and memory
+## How the representation and optimizer cooperate
 
-The study evaluates camera tracking, rendering quality, surface reconstruction, runtime, and storage across Replica, ScanNet, and TUM RGB-D. It also integrates the compact representation with existing Gaussian SLAM baselines.
+Compression changes the map that tracking depends on. The system therefore needs to decide where new geometry is required, which existing primitives contribute to recent views, and which attributes can share a compact representation. Voxel growth, local masking and residual quantization address these decisions at different levels.
 
-| Replica configuration | Render FPS $\uparrow$ | Checkpoint memory $\downarrow$ |
-|---|---:|---:|
-| SplaTAM | 175.64 | 273.09 MB |
-| SplaTAM + compact modules | **398.45** | **117.36 MB** |
-| MonoGS | 317.45 | 84.41 MB |
-| MonoGS + compact modules | **447.29** | **73.31 MB** |
-| Gaussian-SLAM | 321.39 | 101.48 MB |
-| Gaussian-SLAM + compact modules | **458.53** | **96.03 MB** |
+Tracking closes the loop. Camera estimates determine visible regions and keyframe overlap; those regions guide map updates. Historical keyframes then constrain joint refinement so that local representation changes remain connected to earlier observations.
 
-Across standard benchmarks, VCGS-SLAM delivers a transformative leap in systems efficiency: achieving an astounding **226% boost in rendering throughput (reaching up to 458 FPS)** while delivering over **2.3× memory compression** without sacrificing photometric or geometric reconstruction fidelity. This enables rich, high-resolution 3DGS metric maps to execute on resource-constrained embedded platforms.
+## Evaluation in reconstructed and recorded scenes
 
-![Replica comparisons show the rendered quality and speed of neural implicit and Gaussian SLAM systems.](replica-rendering.jpg "Paper comparison on Replica: the compact Gaussian system retains sharp reconstruction while increasing rendering throughput.")
+The paper examines tracking, rendered appearance, surface reconstruction and storage on indoor RGB-D benchmarks. It also studies how the compact modules interact with existing Gaussian SLAM systems and demonstrates the system on embedded hardware.
 
-## Real Robot Validation on Embedded Edge Hardware
+![Rendered reconstructions on Replica.](replica-rendering.jpg "The study examines visual reconstruction alongside representation cost.")
 
-To prove real-world robotics viability, the entire pipeline was deployed and evaluated on embedded edge computers (including the NVIDIA Jetson ecosystem). Furthermore, the authors evaluated the system on an instrumented mobile robot equipped with RGB-D vision, industrial IMU, and Livox solid-state LiDAR across diverse, challenging indoor and outdoor campus environments, confirming exceptional tracking stability under abrupt turns, aggressive lighting transitions, and vehicle vibrations.
+![Mobile platforms used to record multisensor sequences.](mobile-platforms.jpg "Robot recordings complement the benchmark sequences.")
 
-![Mobile platforms used to collect multisensor neural-SLAM sequences.](mobile-platforms.jpg "Paper hardware: mobile robots equipped with RGB-D cameras, IMUs, and LiDAR sensors.")
+![Gaussian reconstruction on an embedded platform.](embedded-demo.jpg "The embedded demonstration examines the practical use of a compact map.")
 
-![Real-time Gaussian mapping running on an embedded platform.](embedded-demo.jpg "Paper deployment: a live dense Gaussian reconstruction is rendered from an RGB-D stream on embedded compute.")
 
-## Research Impact & Industrial Applications
 
-Accepted in the **International Journal of Computer Vision (IJCV 2026)**, VCGS-SLAM bridges the long-standing chasm between heavy offline neural rendering and real-time edge robotics. By uniting voxel-anchored structural representations, sliding-window dynamic pruning, and residual vector quantization, VCGS-SLAM provides an industrial-grade foundation for spatial AI, embodied manipulation, and next-generation AR/VR systems requiring ultra-low-latency spatial reasoning.
+## Design insight
+
+Map compactness is part of online estimation. The camera sees only a changing portion of the scene, and the representation must grow without retaining every redundant primitive. VCGS-SLAM connects this local allocation of detail with shared attribute coding and historical geometric refinement.

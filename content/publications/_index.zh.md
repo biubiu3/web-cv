@@ -13,7 +13,7 @@ sections:
     content:
       title: 代表性学术论著
       text: |-
-        涵盖通用机器人自主学习、跨模态因果操作、具身世界模型与 4D 数据引擎、嵌入式 3D 高斯 SLAM 以及极端鲁棒几何估计。深入解读每项工作的核心瓶颈、突破性方法设计与 SOTA 实验战绩。
+        机器人学习、声音感知操作、视觉数据生成、建图与鲁棒几何估计。
     design:
       columns: '1'
       background:
@@ -27,9 +27,9 @@ sections:
           - publications
       sort_by: publication_order
       sort_ascending: true
-      count: 10
+      count: 0
     design:
-      view: publication-rich
+      view: publication-gallery
       columns: 1
       show_read_time: false
       show_date: false
