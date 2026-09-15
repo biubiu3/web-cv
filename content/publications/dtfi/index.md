@@ -47,121 +47,106 @@ image:
   alt_text: "DTFI — Fused observations support continuous vehicle tracking."
 ---
 
-## At a glance
+## Perception that is blind for two metres at a time
 
-| Question | DTFI's approach |
-|---|---|
-| How can appearance strengthen sparse geometry? | Augment each LiDAR point with learned full-resolution image features |
-| How is local misalignment addressed? | Aggregate a 5 × 5 image-feature neighborhood around each projected point |
-| How is detection kept efficient? | Pillar encoding produces a pseudo-image for a 2D CNN detector |
-| How are straight and turning motions tracked? | Combine CV and CTRV models through IMM-UKF and associate boxes with the Hungarian algorithm |
-| Evaluation focus | Vehicle detection, track continuity, and the roles of fusion and filtering |
+The design constraint behind this work is not accuracy. It is latency.
 
-**DTFI** stands for a Detection and Tracking approach with Fusion and IMM-UKF. The paper was published online on 4 April 2023 and appears in the August 2023 issue of *IEEE TETCI*, volume 7, issue 4, pages 1242–1252. Chang Nie is the first author; Hui Zhang is the corresponding author. [Publisher record](https://doi.org/10.1109/TETCI.2023.3259441).
+Most fusion-based 3D detection algorithms run below 15 Hz on a workstation, and a workstation is not what drives a car. An onboard computing centre is slower still, and it is not dedicated to perception: planning, control and the rest of the stack have to run concurrently, which takes a further bite out of the same budget.
 
-## Motivation: perception between successive frames
+Now put a number on what 15 Hz costs. At highway speed the vehicle covers about 1.94 metres between two consecutive frames. For that distance the perception system effectively does not see anything that has just happened, and we call that being time blind. The consequences are not abstract. A system that reacts to where a car was two metres ago is reacting to a situation that no longer exists.
 
-Highway perception needs both the current locations of surrounding vehicles and their motion over time. LiDAR supplies metric geometry, while RGB images add appearance cues when returns are sparse. Fusion has a computational cost, and small calibration errors can attach image features to the wrong point. After detection, a single motion assumption can also struggle when a vehicle starts turning.
+Thirty hertz substantially reduces the blind distance and leaves room for the other modules to run. That target, on affordable hardware rather than a development machine, is what shaped every choice in this paper. It also means we made a deliberate trade: LiDAR-only methods achieve better detection accuracy than fusion methods do, and we did not set out to beat them on that axis. We set out to be competitive while running at a frequency they cannot reach.
 
-DTFI addresses these problems at three stages: local image–point alignment, efficient 3D detection, and adaptive motion estimation. The detector is learned end to end; the complete detection-and-tracking system includes a separate filter-based tracker.
+## What the fusion families cost
 
-The detector must balance the detail gained from image fusion against the cost of processing each frame. DTFI uses local feature aggregation and pillar encoding to keep this spatial stage compact, then lets a separate tracker carry motion information between observations.
+There are three ways to combine an image with a point cloud, and each has a price.
 
-![The overall DTFI pipeline: image and point-cloud fusion, 3D detection, state estimation, and trajectory management.](pipeline.png "Source: Fig. 2. The detector and tracker are connected sequentially.")
+Detecting in 2D and lifting the boxes into the point cloud, the frustum approach, makes the whole system depend on the 2D detector. An error in the image branch propagates into 3D with no way to recover it.
 
-## 1. Full-resolution features and local fusion
+Fusing at the feature or proposal level and training end to end produces strong results, and it loses original information in the process of fusing at the region level. These methods also tend to be complex and to run slowly, which is the specific problem we were trying to solve.
 
-A modified VGG-16 encoder and an FPN-style decoder produce image features at the original image resolution. Upsampling, feature concatenation, and 1 × 1 convolutions preserve spatial detail while controlling channel count. The implementation uses $K=16$ image-feature channels.
+The third family projects the point cloud into an image feature map and augments each point with what it finds there. The architecture stays close to a LiDAR-only detector, which is what we wanted, and the pillar encoder keeps the runtime low. We chose this family for exactly that reason.
 
-![Encoder–decoder with multiscale feature concatenation.](image-features.png "Source: Fig. 4. Full-resolution features retain local image information for point-wise fusion.")
+Within LiDAR-only detection the lineage matters too. Voxel-based 3D convolution was accurate and slow. Sparse convolution improved efficiency without making it fast enough. Pillars, which reduce the problem to 2D convolutions, hit the best tradeoff between accuracy and speed, and we built on that.
 
-Each LiDAR point $(x,y,z,r)$ is projected into the feature map using the sensor calibration. Points outside the camera field of view are discarded. Instead of taking only one projected feature value, a learned 5 × 5 window aggregates the surrounding image features to accommodate local misalignment.
+For tracking, the choice of a classical filter over a learned one was deliberate rather than conservative. Learning-based trackers perform poorly in real time, and neural data association is time-consuming, so the Hungarian algorithm stays. Batch tracking is ruled out for a different reason: it uses all data, and a driving system only ever has history. 2D tracking is ruled out because it cannot tell you an object's position and size in 3D.
 
-A compact explanatory notation for this operation is
+The closest filter-based alternative is a well-known 3D tracker that is simple and efficient and uses a single constant-velocity model. A constant-velocity model has no way to represent a car that is turning, so its state estimate degrades in exactly the situations where prediction matters most. A monocular tracker uses an extended Kalman filter under one camera. An urban JPDA-IMM-UKF system exists and uses traditional clustering for detection, which produces fragmented trajectories and hurts tracking performance downstream.
 
-$$
-\mathbf q_i = [x_i,y_i,z_i,r_i,\mathbf g_i],
-\qquad
-\mathbf g_i=\operatorname{Conv}_{5\times5}(\mathbf F,\pi(\mathbf p_i)),
-$$
+IMM itself is standard in aviation and nearly absent in vehicles, and the reason is instructive. Aircraft maneuver drastically: large speed changes, fast heading changes, so a switching model earns its complexity. Vehicle motion is comparatively mild. And with little prior work in the automotive setting, the parameters that IMM needs are hard to set.
 
-where $\pi$ is the calibrated projection and $\mathbf F$ is the full-resolution feature map. The augmented point has $M=4+K=20$ channels. The window learns local feature correspondence; it does not replace sensor calibration.
+## What makes it hard
 
-## 2. From augmented points to 3D boxes
+Fusing at full image resolution, per point, at thirty hertz, is a budget problem before it is an accuracy problem. The number of image channels you attach to each point is the knob you turn, and we tuned it as a tradeoff rather than maximizing it.
 
-The detector groups points into vertical pillars with one cell along the height axis. Each point receives five additional geometric features: offsets relative to the mean point in its pillar and the pillar's horizontal center. This gives $E=M+5=25$ input features per point.
+Data-layer fusion is also fragile in a specific and quiet way. Because each point is matched to an image location, a calibration error puts the sampled feature at the wrong pixel for every point, and the resulting input looks entirely plausible. There is no error signal. The system does not know it is being fed garbage.
 
-A small PointNet-style encoder expands point features, max pooling aggregates each pillar, and scattering produces a bird's-eye-view pseudo-image. A 2D convolutional backbone and detection head predict oriented boxes
+Choosing a motion model is a lose-lose if you must choose one. Constant velocity is simple and strong for linear motion. Constant turn rate and velocity handles rotation. Either alone is wrong in the other regime. Switching between them is the answer, and switching introduces a set of prior parameters: the state switching matrix, the state covariance, the process and measurement noise covariances. These are conventionally set from experience, and empirical values are not guaranteed to apply to a different scenario. That is a real methodological problem, not a tuning nuisance.
 
-$$
-\mathbf b=(x,y,z,l,w,h,\theta).
-$$
+There is a nonlinearity problem too. Constant-velocity transitions are linear in the state. Constant-turn transitions involve position expressed through velocity and yaw rate multiplied by sine and cosine of the heading, which is not linear, so the filter needs sigma points rather than a plain Kalman update.
 
-![Original detection architecture with fusion, pillar features, a 2D backbone, and box prediction.](detector.png "Source: Fig. 3. Pillars make image-style convolution available for 3D detection.")
+Tracking also has to survive gaps and resist noise at the same time. Occlusion causes detections to drop, and being too permissive about starting new tracks admits detector false positives. The two failure modes pull in opposite directions.
 
-Training combines localization, focal classification, and direction losses:
+And the physics caps detection regardless of architecture. In one of our examples, three very distant cars return only three to five LiDAR points each. Too few points and the detection simply does not fire.
 
-$$
-\mathcal L=\frac{1}{N_{\mathrm{pos}}}
-\left(2\mathcal L_{\mathrm{loc}}+\mathcal L_{\mathrm{cls}}+0.2\mathcal L_{\mathrm{dir}}\right).
-$$
+## Attach a neighbourhood, not a pixel
 
-The localization term uses Smooth L1 on encoded box residuals. The yaw residual uses $\sin(\theta^{gt}-\theta^a)$; a separate direction term resolves the front–back ambiguity. Focal-loss parameters are 0.25 and 2.
+The first half of the idea addresses the fragility of data-layer fusion. Instead of sampling a single projected pixel for each point, we sample a 5×5 window of image features around the projection and attach the whole neighbourhood to the point.
 
-## 3. Motion-adaptive online tracking
+The consequence is that the network learns the matching relationship between the two modalities rather than trusting the calibration exactly. A point whose projection lands a pixel or two off still finds relevant appearance features in its window. This was the single most useful conceptual move in the detection half, and it is what makes the difference between fusion that survives calibration error and fusion that quietly degrades.
 
-The tracker predicts existing trajectories, matches them to current detections, and updates the matched states. It retains unmatched trajectories for a limited number of frames to bridge missed detections, and requires repeated detections before confirming a new trajectory.
+The features come from a full-resolution extractor, which matters for a related reason: the point has to map to a precise image location for the window to mean anything, and a downsampled feature map destroys that precision. The encoder is VGG-based with two modifications. We reduced the channel count to keep optimization manageable, and we cut the network off in the middle so that the feature map does not shrink too far, which would make it useless for generating fusion data. A top-down decoder upsamples and merges with same-resolution encoder maps, with 1×1 convolutions controlling the output dimension.
 
-Two motion models cover complementary behavior:
+![Image features are sampled around the projected location rather than at a single pixel.](image-features.png "A local window learns the correspondence between the two modalities instead of assuming the calibration is exact.")
 
-| Model | State | Role |
-|---|---|---|
-| Constant velocity (CV) | $(x,y,z,v_x,v_y,v_z)$ | Linear motion in 3D |
-| Constant turn rate and velocity (CTRV) | $(x,y,\theta,v,\omega)$ | Planar turning with speed and yaw rate |
+## Collapsing the height axis to get the frame rate
 
-For example, the CTRV transition for nonzero yaw rate is
+The augmented points then go through a pillar encoder. Points are binned onto a bird's-eye-view grid with cell size and a cap on how many points a cell keeps, with random subsampling beyond the cap. The height axis is collapsed to a single cell, which is the trick that turns 3D convolution into 2D convolution and is where the frame rate comes from.
 
-$$
-\begin{aligned}
-x_{t+1}&=x_t+\frac{v_t}{\omega_t}[\sin(\theta_t+\omega_t\Delta t)-\sin\theta_t],\\
-y_{t+1}&=y_t+\frac{v_t}{\omega_t}[\cos\theta_t-\cos(\theta_t+\omega_t\Delta t)],\\
-\theta_{t+1}&=\theta_t+\omega_t\Delta t.
-\end{aligned}
-$$
+Each point carries its geometry and appearance plus five offset features that describe where it sits relative to its cell's mean and its voxel centre. A PointNet layer expands these, max-pooling reduces each cell to one representative, and the cells are scattered back into a pseudo-image. A 2D convolutional backbone and a region proposal head then predict oriented 3D boxes.
 
-UKF handles the nonlinear state transition. IMM mixes model information and updates model probabilities using measurement likelihoods. With previous model weights $\mu_i$, transition probabilities $\pi_{ij}$, and likelihood $\Lambda_j$, the probability update can be written as
+The cost of the pillar representation is that height structure inside a cell is discarded and the detection range is bounded by the camera's field of view, since fusion needs pixels. We accept both as the price of the frequency target.
 
-$$
-\mu_j^+=\frac{\Lambda_j\sum_i\pi_{ij}\mu_i}
-{\sum_k\Lambda_k\sum_i\pi_{ik}\mu_i}.
-$$
+One loss term deserves a note because it looks redundant and is not. The yaw residual is computed as the sine of the difference between predicted and anchor angle, and sine is symmetric. A car facing forward and a car facing backward produce the same residual. Regression alone cannot break the tie, which is why a separate direction classification term exists in the loss.
 
-The Hungarian algorithm associates predicted and detected boxes using 3D IoU. PSO tunes the transition matrix and the filters' state, process-noise, and measurement-noise covariances. The reported transition matrix is
+![Pillars collapse the height axis so a 2D detector can do the work.](detector.png "The fusion-augmented point cloud is encoded as a bird's-eye-view pseudo-image.")
 
-$$
-\Pi=\begin{bmatrix}0.653&0.347\\0.347&0.653\end{bmatrix}.
-$$
+## Two motion models, and a search for the priors
 
-Its diagonal entries favor remaining in the current model. The symmetric matrix alone does not imply that CV is more probable than CTRV; the posterior also depends on observations and previous model probabilities.
+The tracker predicts every existing trajectory, associates predictions to detections by the Hungarian algorithm on 3D overlap, updates matched tracks, and manages births and deaths for everything unmatched.
 
-## How detection and tracking exchange information
+The interesting part is the update. Two models run in parallel, one with a constant-velocity state and one with a constant turn rate and velocity state. Mixing probabilities are computed from the previous model weights and the switching matrix, mixed estimates are formed for each model, each model's sigma-point filter predicts forward, and the two are combined into the IMM prediction. After association, each model is updated for the matched detection and the model probabilities are recomputed from the measurement likelihoods. The pairing is complementary by construction: the constant-velocity model estimates linear motion cheaply and well, and the constant-turn model covers the rotational case it cannot.
 
-A detection describes where a vehicle appears in the current frame. A trajectory carries an estimate forward between observations. The tracker first predicts existing states, then associates those predictions with the new boxes. Matched tracks receive measurement updates; unmatched tracks and detections enter the trajectory-management logic.
+Life-cycle management handles the gap-versus-noise tension with two guardrails. An unmatched trajectory keeps predicting for a bounded number of frames before it is terminated, because an unmatched track usually means occlusion rather than disappearance, and restarting the trajectory later would fragment it. An unmatched detection has to persist for several consecutive frames before a track is born, which filters out occasional false positives. The two rules guard opposite failure modes.
 
-This ordering matters during a turn or a brief missed detection. Motion prediction provides a provisional state, while the next associated observation corrects it. The multiple-model filter updates its preference between straight and turning motion as evidence arrives.
+The priors are where we departed from convention. Rather than setting the switching matrix and the covariances from experience, we treat them as an optimization problem and fit them with particle swarm optimization. The name invites a misreading worth clearing up: particle swarm optimization is a derivative-free search over parameters, it has nothing to do with particle filtering, and no particle filter appears anywhere in this work.
 
-![Vehicle detection examples from the paper.](detection-results.png "Camera projections and point-cloud boxes illustrate the fused detector.")
+Two caveats on that fitting, and we would rather state them than have them discovered. The optimization runs offline and per dataset, so it is not online adaptation; the parameters are fitted to the data they were fitted on. And a symmetric switching matrix does not by itself tell you that vehicle motion in a dataset favors the constant-velocity model, even though it is tempting to read it that way.
 
-## Why use local fusion and multiple motion models?
+![Tracked trajectories persist through frames where the detector reports nothing.](tracking-results.png "Bridging a missed detection is often cheaper than detecting it.")
 
-Local image aggregation addresses uncertainty in assigning image evidence to a LiDAR point. Pillar encoding then organizes the augmented points into a representation that a convolutional detector can process efficiently. The tracking stage addresses a different uncertainty: how the detected vehicle will move between frames.
+## What we take from this
 
-The system consequently combines learned appearance features with explicit geometric projection and state estimation. Each component has an identifiable input and role, which helps isolate whether an error arose in detection, association or motion prediction.
+Latency budgets are a design input, not a measurement you take afterward. Once the real-time threshold is crossed, the remaining budget belongs to accuracy, and the architecture should be organized around that ordering.
 
-![Examples of new, temporarily missing and turning vehicles.](tracking-results.png "The tracking examples show how detection updates interact with maintained trajectories.")
+A local receptive field is a cheap substitute for perfect calibration. When two sensors are aligned imperfectly, learning the correspondence in a neighbourhood beats assuming a pixel.
 
-## Evaluation and design insight
+Reduce the dimensionality of the problem before optimizing the network. Pillarization is the enabling trick, not an afterthought.
 
-The KITTI experiments examine detection, tracking continuity and computational cost. Fusion and filtering ablations study the effect of adding image features, multiple motion models and parameter tuning.
+Hybrid representations outperform pure ones here: learned appearance features, an explicit geometric projection, and an explicit state estimator, each doing what it is good at. The modularity also helps when something goes wrong, because each component has a distinct role and a distinct failure signature.
 
-DTFI illustrates a modular perception pipeline in which complementary sensors improve current observations and temporal models preserve information across frames. Its design connects spatial fusion with explicit trajectory management.
+Complementarity beats tuning. Two models that fail in different regimes are better than one model that is mediocre in both.
+
+And when the priors genuinely cannot be guessed, search for them. The admission that empirical IMM values may not transfer is the most useful methodological statement in the paper.
+
+## What it does not do
+
+The honest summary is that the system is competitive in accuracy rather than leading. It improves substantially on detection speed and remains behind the best LiDAR-only methods on accuracy, which is the trade we chose.
+
+The IMM-UKF has trouble with objects whose motion direction changes little. A filter that switches between hypotheses needs observable maneuver to be worth switching for.
+
+Detection range is bounded by the camera field of view, which is inherent to this fusion design. Sparse distant objects fail, as the three-to-five-point example shows. The tracker is a separate stage from the detector rather than jointly optimized with it, which is the direction we point to for future work, along with improving accuracy without giving up the frame rate.
+
+## Closing
+
+What we built integrates 3D detection and 3D multi-object tracking into a single pipeline measured against the real-time requirements of highway driving: a detector that produces oriented boxes efficiently, and a tracker that follows objects through uncertain motion using association, an interacting multiple model filter, and tuned parameters. The claim is not that it is the most accurate system available. It is that the accuracy is real at a frequency the fusion alternatives cannot reach, and that on a highway, being two metres behind the world is its own kind of inaccuracy.

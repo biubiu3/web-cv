@@ -52,109 +52,96 @@ links:
     url: https://github.com/IRMVLab/HEAR
 ---
 
-## At a glance
+## Robots that cannot hear the physics
 
-| Problem | Short sounds can begin and end while a robot is executing an open-loop action chunk |
-|---|---|
-| Paradigm | Vision–Sound–Language–Action (VSLA) in continuous physical time |
-| Architecture | Historizer → Envisioner → Advancer → Realizer |
-| Data | Sound-augmented robot demonstrations for pretraining |
-| Evaluation | HEAR-Bench: seven sound-causal tasks in simulation plus four real-robot tasks |
+Current vision-language-action models see, understand language, and move. What they do not do is listen. They operate in what amounts to a silent world, even though the robot's own environment is full of sound that encodes physical state the cameras cannot recover: liquid starting to sputter as it boils, the sharp click of a collision, the difference in timbre between a full container and an empty one, the moment a material stops flexing and starts cracking.
 
-A microwave beep, a spoken interruption, or the first bubble of boiling water may last less than one robot action chunk. A vision-language-action policy that observes once, predicts a long action sequence, and looks again only after executing it can miss the event completely. The timing mismatch persists when audio is simply appended to the observation vector; the event must remain causally available after the waveform disappears.
+Contact acoustics are the cheapest tactile sensor available. A microphone is a few dollars, it needs no contact, and it covers the whole workspace at once. The case for using it is not speculative. The problem is that nobody has built a policy that can.
 
-HEAR models sound and action in continuous time and preserves audio events for later decisions.
+## The cue is gone before the policy is asked
 
-## Why chunked control creates an evidence gap
+The difficulty is not a modelling problem, and framing it that way is why earlier approaches have not solved it. It comes from the control architecture that makes large VLA models practical.
 
-Let robot decisions occur at control times $t_k$, while audio arrives continuously at a higher rate. A causal audio window with system delay $\tau_{\mathrm{sys}}$ can be written as
+A large backbone cannot run at control frequency. So the standard design chunks actions: the model produces a short sequence of future commands, the robot executes them open-loop, and only then does the model get queried again. That gap is where the physics happens. A collision, a boil-over, a completed press: these are brief, non-repeatable acoustic events, roughly on the order of a hundred milliseconds, and they routinely fall entirely inside the interval where the policy is not looking. The average chunk at 30 Hz is about a second long.
 
-$$
-\mathcal{A}_k=
-\left[a\!\left(\bar t_k-W,\bar t_k\right)\right],
-\qquad
-\bar t_k=t_k-\tau_{\mathrm{sys}},
-$$
+The consequence is worth stating precisely, because it is not what people usually assume. A late reaction would be a delay. What actually happens is that the evidence is destroyed. The audio arrives, nothing is listening, and by the time the policy is queried again, the window contains only silence. If an event occupies samples that end before the next window opens, the window does not contain a weak version of that event. It contains nothing. We call the interval between decisions the Blind Execution Interval, and the word blind is doing real work.
 
-and the multimodal observation is
+There is a second failure that has nothing to do with timing. Look at a robot that has been waiting beside a running appliance. If the scene is quasi-static, the current image looks the same whether it has been waiting one second or ten. The expert demonstrations differ, because the right next action depends on elapsed time, but the observation does not. A snapshot policy has no way to tell those situations apart, so it either drifts or freezes. This is the aliasing problem that temporal context is supposed to solve, and without audio it is genuinely unobservable.
 
-$$
-o_k=\left(I_k^{1:V},\mathcal{A}_k,\ell,q_k\right),
-$$
+## What earlier attempts leave out
 
-with multi-view RGB images, a language instruction $\ell$, and robot state $q_k$. Suppose the policy predicts a horizon $H$, executes $H_{\mathrm{exec}}$ actions open loop, and observes again after decision interval $\Delta=H_{\mathrm{exec}}$. The effective evidence gap is approximately
+Turning audio into text is the obvious first instinct, and it loses the thing we need. Speech recognition front ends discard non-speech cues and prosody entirely, and they compress timing into discrete tokens. A beep produces nothing at all. More subtly, an affirmative "Yes!" and a doubtful "Yes?" collapse into nearly identical token sequences, so the difference in pragmatic intent disappears while transcription accuracy looks perfect.
 
-$$
-G=\Delta+\tau_{\mathrm{sys}}.
-$$
+Rendering the waveform as an image and treating it as another camera view is the second instinct. It captures amplitude changes, and it obscures spectral structure: frequency contours and timbre, which is where material and contact information live. It is also sensitive to where the event happens to land inside the rendered window, so performance changes for reasons that have nothing to do with the physics.
 
-If a sound begins and ends inside that gap and the next causal window no longer covers it, the raw observation at $t_{k+1}$ contains no trace of the event. A persistent causal memory state $h_k$ carries the event into the next decision.
+A more recent line adds speech to VLA models and preserves prosody and speaker identity. That is real progress, and it targets explicit verbal commands rather than the ambient acoustic physics of manipulation, which is a different problem. The omni-modal systems are closer still, and the reservation is structural: they are built to listen before acting, using sound to establish context or infer intent around an action, rather than as low-level feedback during contact. None of them address the misalignment between transient events and chunked execution, which is the actual bottleneck.
 
-HEAR also distinguishes ordinary geometric success from **timed success**. If $t_{\mathrm{snd}}$ is the event time and $t_{\mathrm{goal}}$ the completion time,
+Audio foundation models such as CLAP and ImageBind were trained on fixed-length clips, offline and independently. Deployed statelessly, they carry no temporal context across clips. Compact audio-native policies run fast and can handle contact, but their scale makes long-horizon, multi-stage behavior brittle. Processing audio natively turns out to be necessary and not sufficient.
 
-$$
-S_{\mathrm{timed}}=\mathbf{1}\!\left[t_{\mathrm{snd}}\le t_{\mathrm{goal}}\le T\right].
-$$
+The shortcut worth naming is faster replanning. Truncate the chunk, query more often, and the blind interval shrinks. We tried the variants. It helps less than it looks like it should, and it pays in motion quality: discontinuous, jerky trajectories that introduce localized action loops. It also cannot fix system latency, which no query rate eliminates. A cue lost to latency is lost regardless of how often you ask.
 
-Completing the physical goal too early can cause failure. For example, the robot may remove an object before the alarm.
+And the benchmarks are no help, because every standard simulator is silent. RLBench and ManiSkill test spatial reasoning and visual control in environments with no acoustic channel at all. Navigation benchmarks that do use sound let the agent move its base to improve its listening geometry, which is not an option for a manipulator that has to keep working while generating its own mechanical noise.
 
-## Four modules with different temporal roles
+## Separate the sensing rate from the decision rate
 
-### 1. Historizer: preserve transient evidence
+Our answer comes from noticing that this is a rate mismatch, not an information deficit. The sound is there. The policy is simply asked too rarely to catch it.
 
-The Historizer consumes causal packets of 640 audio samples, or 40 ms at 16 kHz. A stateful streaming Transformer with four layers, width 256, four attention heads, and 16 memory tokens updates a compact recurrent state. The memory is designed to span the decision gaps in which short events would otherwise vanish.
+So instead of making the policy faster, we stop tying the two rates together. A persistent memory is updated continuously from the audio stream, packet by packet, independently of when the policy is queried. When a decision is finally requested, the memory already contains everything that arrived, including events that happened during blind intervals. The robot is not reacting to the last window. It is reacting to the last second of listening, with the recent history summarized.
 
-![Streaming causal packets update a persistent audio state.](historizer.jpg "The Historizer bridges the rate mismatch between continuous sound and chunked robot decisions.")
+That is the core move, and everything else in the architecture is bookkeeping around it. There is something that remembers, something that interprets, something that predicts what comes next acoustically, and something that acts. We named them accordingly.
 
-This avoids a common temporal-aliasing failure: two current visual observations may appear nearly identical, $o_{t_k}\approx o_{t_{k'}}$, even though one follows a beep and the other does not. The correct actions differ, so the hidden history must disambiguate them.
+Two constraints shaped the design. The first is that the audio path has to be causal in the strict sense: nothing may look at samples that have not arrived, and the tokenizer must produce codes for a segment from that segment alone. The second is that the memory horizon has to be a target, not a hope. It needs to cover the worst-case decision gap plus the measured system latency, otherwise the guarantee is only statistical.
 
-### 2. Envisioner: turn memory into task stage
+## The four modules
 
-The Envisioner performs multimodal reasoning over vision, remembered audio, language, and robot state. A high-level Qwen3-Omni model derives semantic context $z$; a Qwen3-0.6B low-level component maintains a structured stage representation with KV caching and emits a constrained JSON state. The hierarchy separates expensive semantic interpretation from the frequent task-stage updates needed by control.
+**Historizer.** Between two decision boundaries, the robot may receive a long run of consecutive audio packets, each about forty milliseconds. The Historizer consumes them as they arrive and updates a streaming stateful Transformer memory. The memory is read out at decision times and never otherwise. Its entire justification is the evidence-vanishing argument above: a window-only interface cannot represent something that happened just before the window opened. We also tried a causal GRU and exponential moving average pooling over audio features; the streaming attention's extra capacity earned its place. We chose a short window with a persistent summary over a very long window, because long windows mix distinct interaction phases together and make the result sensitive to exactly where the window boundary falls.
 
-![High- and low-level reasoning convert multisensory evidence into a structured stage.](envisioner.jpg "The Envisioner identifies what happened and what the task now requires.")
+**Envisioner.** Interpretation is hierarchical, because the two jobs have very different frequencies. A high-level model reads the multi-view images, the current acoustic window, the instruction, proprioception and the memory, and produces three things: a semantic latent, a key-value cache, and a short structured description of the current task stage, something like `{"stage": "wait", "subgoal": "listen for beep"}`. That stage text comes from the high-level model's own text head. A smaller low-level model then reuses the cache with the current robot state to produce the control feature. The split keeps expensive semantic interpretation out of the fast path. The stage supervision matters more than it might appear: without it, tasks that require a quick behavioral shift suffer, because nothing forces the latent to name the phase it is in, and the phases that matter acoustically are often visually identical.
 
-### 3. Advancer: predict what should be heard next
+**Advancer.** This one predicts the audio that will arrive between the current decision and the next one, as discrete codes from the streaming tokenizer, trained by cross-entropy. It is used only during training and is dropped at deployment, so it costs nothing at inference time. Its purpose is to give the latent a concrete sense of elapsed time and process progression. Pouring, boiling, an alarm, a conversation: each has a different acoustic future, and predicting it forces the shared representation to encode where in the process the robot currently is. Without it, the failures look different from the Historizer's. They happen late. The robot keeps pouring after the sound has already told it to stop. That asymmetry is how we knew the two modules were solving different problems rather than duplicating each other.
 
-The Advancer is a four-layer, width-512, eight-head Transformer trained to predict near-future Mimi audio codes using cross-entropy. It serves as a training objective that encourages the shared representation to encode temporal progress: pouring, boiling, alarms, and spoken exchanges have different acoustic futures even when a still frame looks similar.
+**Realizer.** Actions are generated by conditional flow matching from a Gaussian prior to the action chunk, integrated in a handful of Euler steps, conditioned on the control feature through adaptive normalization. We used flow matching rather than diffusion for the step count. The detail worth dwelling on is why smoothness matters here. Replacing the Realizer with direct regression produces jitter, and jitter injects mechanical self-noise into the microphone signal, which masks the brief cues the rest of the system is trying to hear. A perception failure caused by a control choice. The sharpest version of the claim is that a policy which listens while moving has to move in a way that makes listening possible. Sensing and control are not separable in this setting.
 
-![Future-audio prediction supplies a temporal training signal.](advancer.jpg "The Advancer grounds representation learning in the near-future acoustic dynamics of the task.")
+![Streaming acoustic memory is updated between decisions, not at them.](historizer.jpg "The Historizer keeps cues that arrive inside a blind execution interval.")
 
-### 4. Realizer: generate smooth actions
+![Interpretation is split across two frequencies.](envisioner.jpg "A high-level model produces semantics and task stage; a low-level model produces the control feature.")
 
-The Realizer maps the fused representation to an action trajectory using conditional flow matching. At inference, the reported implementation integrates the learned vector field with eight Euler steps. Its training objective is combined with the audio-prediction and stage-text terms:
+![Predicting the near-future acoustics grounds the shared latent in time.](advancer.jpg "The Advancer is used only during training and is removed at deployment.")
 
-$$
-\mathcal{L}=
-\mathcal{L}_{\mathrm{flow}}
-+0.1\mathcal{L}_{\mathrm{adv}}
-+0.05\mathcal{L}_{\mathrm{text}}.
-$$
+The three objectives are summed with weights that ramp in over the first part of fine-tuning, so the model learns imitation before it is asked to be temporally grounded.
 
-The four modules therefore answer four different questions: what sound must be remembered, what it means now, what temporal process it predicts, and what continuous action should follow.
+## Where the data came from, since it did not exist
 
-## Learning acoustic context from robot activity
+No robot dataset contains synchronized audio. Open X-Embodiment has no microphones at all, real synchronized audio is noisy and hardware-specific and does not scale across labs, and no standard simulator models acoustics.
 
-OpenX-Sound augments robot videos with synthesized task audio for pretraining. This gives the model examples of how manipulation stages relate to sounds. Temporal alignment matters because an otherwise plausible sound can teach the wrong association if it occurs before or after the relevant action.
+We built both pieces. OpenX-Sound retrofits audio onto existing episodes from video, preserving every original signal, and we audited a sample of it by hand for synchronization and semantic relevance. We are explicit that this is a bootstrapping mechanism for representation learning and not a substitute for physical data: synthesized audio can omit subtle contact cues, shift event timing, or hallucinate a sound with no physical source. Every result in the paper fine-tunes an OpenX-Sound checkpoint on real task-specific demonstrations with real audio. The synthesized audio is what makes a pretrained acoustic prior possible, not what makes the behavior work.
 
-The distinction between synthesized audio and recorded microphone data remains important. Pretraining supplies acoustic context; evaluation in separate tasks examines whether that context helps the policy interpret events during execution.
+HEAR-Bench is the other half. Built on a dual-arm simulator, it runs an asynchronous audio thread that injects ambient noise and trigger clips at the exact sample index implied by the control cycle, and it scores success only if the geometric goal is reached after the cue. That timing rule is the whole contribution. Without it, pressing a button the instant the episode starts and pressing it when the alarm actually rings look identical.
 
-![Robot platforms represented in the pretraining resource.](robot-platforms.jpg "Pretraining connects different manipulation activities with acoustic context.")
+## The examples that make the point
 
-## Tasks where sound changes the next action
+An alarm clock with a clearly visible stop button is a deliberately tempting shortcut. A vision-only policy presses it immediately and looks fine under standard goal-reaching metrics. The task is only meaningful if you require that the press happen after the ring.
 
-HEAR-Bench uses several kinds of acoustic evidence. Alarms indicate that an action should begin; speech can confirm or interrupt an operation; process sounds describe the progress of pouring or boiling; contact sounds provide clues about material properties.
+Some tasks require the robot to generate the sound before it can hear anything. In one of our real-robot setups the robot has to tap two visually identical plates to tell them apart, then hold still enough to hear the result. Shaking a bottle is the same idea: the cue exists only because the robot moved, and a weak shake produces a quiet signal.
 
-Event timing varies across episodes. A policy therefore needs to react to what it heard and retain the event long enough to use it. Completing a geometric goal before the relevant sound may be the wrong behavior.
+Pouring into an opaque container is the case where audio is not an enhancement but the only signal. The fill level is invisible, and the decision variable is the rate of change of the pouring sound. Plotted as a waveform, pouring looks like a dense static block of lines, which is a good illustration of why treating the audio as an image does not work.
 
-![An alarm determines when the robot should act.](alarm-clock.jpg "The acoustic event changes the correct task transition.")
+![An opaque container makes the pouring sound the only progress signal.](pour-water.jpg "The decision variable is how the acoustics change, not what the scene looks like.")
 
-![Pouring produces sound that evolves with the physical process.](pour-water.jpg "Continuous process sounds provide evidence for stage changes.")
+Coffee brewing without any sensor or indicator light is the same structure with a sharper ending. Nothing tells the robot the coffee is ready except the shift into sputtering.
 
-## What the evaluation examines
+## What we take from this
 
-The study compares policies in simulation and real-robot tasks, then varies memory and timing components to examine their roles. The central questions are whether short events survive action gaps, whether acoustic context changes the selected stage, and whether the generated action follows the intended timing.
+The claim we would put on a slide is that incorporating audio into a foundation model requires more than appending an input stream. Every previous approach treated it as an extra channel. It is a different cadence, and cadences have to be reconciled architecturally.
 
-## Design insight
+The pattern repeats beyond audio. Any modality that produces brief, non-repeatable events at a rate faster than the policy is queried will hit the same wall, and tactile sensing is the obvious next one. The binding constraint is the rate mismatch, and it is not fixed by making inference faster.
 
-Sound has a temporal structure that a single visual observation cannot capture. HEAR assigns explicit responsibilities to remembering, interpreting, predicting and acting. This makes the path from a transient event to a later physical decision visible in the architecture.
+A few smaller lessons. Naive fixes fail for structural reasons rather than tuning reasons, which is why faster replanning trades stability for reactivity and adds noise instead of solving anything. Auxiliary predictive objectives can supply temporal grounding at no inference cost. Memory should be sized against a required coverage horizon rather than set to "as much as fits." And evaluation design is part of the contribution: a timing-aware success rule is what turns "it looks right" into "it listened."
+
+## What it cannot do yet
+
+One workspace microphone means no source localization and no separation of overlapping events, which is functionally the cocktail party problem. We would want an array, or a base-plus-end-effector pair for beamforming. The system is trained purely by offline imitation, so its robustness is bounded by the diversity of noise and timing variation in the demonstrations; online fine-tuning or reinforcement learning in the deployed room is the obvious remedy. Audio and vision are processed as separate streams and fused at the representation level, and we suspect native audio-visual encoders that associate timbre with contact directly would do better. And unconstrained real-world cooking acoustics remain an open problem, with real deployment markedly harder than simulation.
+
+## The larger frame
+
+The tension we started from, between high-frequency transient sensory events and low-frequency delayed policy updates, is not specific to sound. It will show up for every physical modality that carries information in its timing. HEAR is our attempt to show that the fix is architectural, and to leave behind the pieces, the VSLA formulation, the pretraining corpus and the benchmark, that let other people build on it.

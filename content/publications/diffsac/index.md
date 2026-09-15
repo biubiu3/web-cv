@@ -46,81 +46,80 @@ links:
     url: https://github.com/IRMVLab/DiffSAC
 ---
 
-## At a glance
+## The expensive part is not the sampling
 
-| Question | DiffSAC's answer |
-|---|---|
-| What is generated? | Confidence fields whose top entries form effective geometric minimum sets |
-| Why diffusion? | Iterative conditional refinement can model several jointly valid sets |
-| What remains classical? | The minimal solver, consensus scoring, and optional local optimization |
-| Evaluation scope | Line and plane fitting, fundamental/essential matrices, and homography estimation |
-| Status | Preprint; under review at IJCV |
+Sample consensus is the standard answer to robust estimation, and it has one structural property worth stating before anything else: a candidate set is not just proposed, it is spent. Every minimum set has to be solved into a model and then scored against all the observations before you know whether it was any good. With a few thousand points and a budget of a few thousand iterations, almost all of that work goes into combinations that were never going to produce the right model.
 
-Sample consensus succeeds only when a proposed minimum set is jointly compatible with the target geometry. A point can look individually reliable yet combine badly with other high-ranked points: two nearly coincident line samples are unstable, repeated correspondences may be degenerate for an eight-point solver, and a single deterministic ranking offers little diversity when the top combination fails.
+A minimum set is the smallest group of observations that determines a model. Two points fix a line. Three fix a plane. Eight correspondences fix a fundamental matrix. RANSAC builds each one by drawing from the data uniformly at random, which means the quality of the proposal is left entirely to chance. The paper's complaint about this is not that randomness is slow. It is that randomness is uninformative. Two points that are individually trustworthy may sit almost on top of each other, and the line they define is numerically unstable. Repeated or near-degenerate correspondences can make an eight-point solve meaningless. Uniform sampling has no way to notice any of this, because it never looks at a combination as a combination.
 
-DiffSAC treats sampling as conditional generation. It learns a distribution of confidence fields and refines them through a reverse diffusion process. Multiple noise seeds can then produce a compact, diverse collection of candidate sets.
+## What the alternatives leave unfinished
 
-## Consensus estimation stays modular
+Prior work has tried to make the proposal smarter, and the attempts split into a few recognizable families.
 
-Given observations $\chi$ and a minimum set $\mathcal{M}_j$, a task-specific solver constructs $h_j=S(\mathcal{M}_j)$ and a consensus function evaluates $f(h_j,\chi)$. The final estimate remains
+The ordering family reorders the data before sampling. PROSAC sorts points by a quality score and works down the list, which helps, but the ordering is fixed in advance and says nothing about whether a particular group of points belongs together. NAPSAC constrains sampling to local neighborhoods, which produces better-conditioned sets and risks losing global structure; Progressive NAPSAC's expanding neighborhood works around that limitation without removing the assumption underneath it. The learned-preference family trains a network to predict something per point, either a sampling probability or an inlier score. These approaches refine the randomness rather than removing it: a good per-point score still does not tell you that a specific combination is valid, and the paper's position is that a bad minimum set can survive a very good ranking.
 
-$$
-h_{\mathrm{best}}
-=\arg\max_{j=1,\ldots,J} f\!\left(S(\mathcal{M}_j),\chi\right).
-$$
+The repair family takes the opposite tack. LO-RANSAC, GC-RANSAC and MAGSAC++ all improve a hypothesis after it has been found, whether by refitting on inliers, enforcing spatial coherence, or marginalizing over the threshold. That is genuinely useful and we build on it, but it does nothing about the cost of finding the hypothesis in the first place.
 
-DiffSAC changes the proposal mechanism for $\mathcal{M}_j$ while keeping the underlying line, plane, fundamental-matrix, essential-matrix, and homography solvers unchanged. Local optimization such as LO-RANSAC can therefore be added after sampling.
+Then there is the end-to-end approach. DSAC and its relatives make the selection probabilistic so gradients can flow through the entire pipeline, which is elegant and effective. The reservation we keep coming back to is different: one-shot learned estimators behave like black boxes. You get a model out and no account of how it was reached, which makes them hard to reason about in an engineering setting. Meanwhile the paper notes that applying diffusion models as a core component inside robust estimation frameworks remains largely unexplored, and that gap is where we started.
 
-## Confidence is a property of a set
+## Generate candidate sets instead of guessing them
 
-Let $c_0$ be a target confidence field conditioned on observations $\chi$. During training, a forward diffusion process corrupts it into $c_t$; a Transformer learns the reverse condition
+Our idea is to stop treating sampling as a draw and start treating it as conditional generation. If we could learn the distribution of minimum sets that produce good models, we could sample from that distribution directly, and do it a handful of times rather than a few thousand.
+
+There is a clean analogy in text-to-image generation. A single prompt produces several plausible images, and you look at them and pick the best. We wanted the same behavior for minimum sets: a small number of candidates that are each worth solving, generated from the same observations and differing because they started from different noise. This also explains why diffusion is affordable here. The usual objection to diffusion is the cost of generating high-dimensional objects such as images. What we are generating is one scalar per observation, so the overhead is negligible relative to the cost of the solves it is meant to save.
+
+The decisive design choice is what that scalar means. We redefine confidence as whether an observation belongs to a good minimum set, rather than as a ranking of the observation on its own. That is a set-level property expressed through a per-point field, and reconciling the two is most of the engineering in the paper.
+
+## Confidence, and what it is conditioned on
+
+Let $c_0$ be a target confidence field over the observations $\chi$. Training corrupts it with noise into $c_t$, and a Transformer learns the reverse conditional distribution
 
 $$
 p_\theta(c_{t-1}\mid c_t,\chi).
 $$
 
-The denoiser is trained with a mean-squared objective toward $c_0$. It has no positional encoding, making it permutation invariant and able to accept different numbers of observations. Attention allows every candidate to change its confidence in response to the rest of the set.
+The condition is not decorative. The process is conditioned on the geometry itself, which separates it from ordinary noise generation, where the reverse process depends on the noisy variable alone. We tested how much the condition has to carry. With coordinates only, the model struggles to converge at all. With the descriptors included, it works, and corrupting the descriptors degrades it again. Whatever this model is doing, it is reading genuine geometric and appearance evidence, not memorizing a shape prior.
+
+The supervision comes from the ground-truth model. Given that model, we identify a minimum set consistent with it, assign those observations confidence 1 and the rest 0, and supervise the denoising network to recover that vector with a mean-squared objective toward $c_0$. This is $x_0$-prediction rather than $\epsilon$-prediction, and it means the network is being asked for the confidence field itself, not for the noise that was added to it.
+
+The denoiser is a Transformer with no positional encoding. Point sets have no canonical order, and a network that saw an ordering would learn structure that is not there. Dropping positional information makes the model permutation-invariant and lets it accept a variable number of observations, which matters because N changes across datasets and tasks. Attention is what makes the set-level semantics work at all: every observation can adjust its confidence in response to every other one, which is precisely the operation a joint-compatibility question requires. We compared MLPs and a DGCNN-style backbone against the Transformer, and both did worse.
 
 ![A noisy confidence field is refined into a geometry-conditioned sampling proposal.](confidence-diffusion.jpg "Forward corruption supplies training targets; reverse diffusion generates candidate minimum sets.")
 
 ![The Transformer denoiser jointly reasons over observations and current confidence.](denoiser-network.jpg "No positional encoding is used, preserving permutation invariance.")
 
-The confidence expresses membership in a *good joint minimum set* under the current generated proposal. Different reverse trajectories can therefore emphasize different mutually compatible subsets.
+## Inference: twenty copies, twenty answers
 
-### What the denoiser learns
+At test time the observations are duplicated into a batch, and every copy is initialised with an independent Gaussian confidence vector. All of them are refined in parallel. Each refined field yields one minimum set by taking the top entries for the solver's required size, each set is solved, and the hypotheses are scored by consensus. The best one wins, and we refit the final model on its inliers.
 
-Training uses the ground-truth geometric model to identify a target minimum set. Its selected observations receive confidence 1 and the remaining observations receive 0. Gaussian noise corrupts this confidence vector while the observation coordinates remain fixed. The network therefore learns to recover a sampling proposal conditioned on geometry.
+The duplication is the whole point. One trajectory gives you one answer, and if that answer is degenerate you have gained nothing over RANSAC. Independent initializations let the same observations produce several different combinations, which is the diversity that protects against a single badly-conditioned proposal. It is also where the stochasticity lives. We compared taking the maximum of the confidence field against sampling from it and found the maximum slightly better, because the generated field is already sharp and deterministic. Stochasticity at initialization, determinism at selection, is the split that worked.
 
-Separate fully connected layers embed observation features and noisy confidence into the same feature dimension. An MLP embeds the diffusion timestep. These embeddings are added, processed by normalized Transformer attention, and mapped back to one confidence per observation. A change in input order produces the corresponding change in output order, so the selected geometric set is independent of how observations are listed.
+DPM-Solver++ brings the whole reverse process down to a cost that makes the pipeline practical rather than illustrative. Without a fast sampler, none of this is worth discussing, and that constraint shaped how many steps we could afford.
 
-## Training and inference
+## The ablation that mattered most
 
-The training objective teaches the model to recover target confidence from controlled corruption. DPM-Solver++ accelerates the reverse process.
+The result we would point a skeptical reader to is not diffusion versus some baseline. It is what happens when you train a network to predict the same confidence vector directly, without the iterative refinement, from clean input. It performs far worse and struggles to identify high-quality minimum sets at all.
 
-At inference, copies of the same observations receive independent Gaussian confidence vectors. Each follows a reverse-refinement trajectory. The highest-confidence observations form a minimum set of the size required by the solver; the resulting hypotheses are scored against the complete observation set.
+That comparison is the one that isolates the actual ingredient. The finding is not that neural networks help, since a directly trained network is also a neural network. It is that decomposing a hard prediction into a sequence of easier refinements is what makes the problem tractable. The reverse process behaves like an optimizer that prunes away paths leading to poor sets and settles into a locally good one, and that behavior is doing the work.
 
-Computation is allocated to refining a compact batch of proposals. Different noise seeds provide alternative combinations when one otherwise plausible set is poorly conditioned.
-
-## From confidence to geometry
-
-A final confidence field provides a ranking over the original observations. Selecting the solver's required number of observations forms one minimum set. The solver constructs a geometric hypothesis, and consensus scoring tests that hypothesis against the full observation set. The same procedure can use a pair for a line, a triple for a plane, or correspondences for image geometry.
-
-Independent noise seeds allow several confidence trajectories to be generated in parallel. These trajectories can favor different compatible subsets even though they condition on the same observations. This diversity matters when one plausible set is degenerate or poorly conditioned.
+A second observation from the ablations: because we keep the classical solver and the consensus function, DiffSAC composes with the repair family rather than competing with it. We tested this by feeding our proposals into LO-RANSAC's local refinement and the result improved further. The two are solving different halves of the problem.
 
 ![Confidence refinement for a line-fitting proposal.](line-refinement.jpg "The generated confidence changes which observations enter the minimum set.")
 
-## Why keep the geometric backend?
-
-The network's output has a clear responsibility: propose observations worth solving. Geometry remains explicit in the task-specific solver and residual function. After selecting the best hypothesis, a local optimizer can refine it using its supporting observations.
-
-This separation also makes failures easier to interpret. A poor result may originate in an unsuitable proposal, a degenerate minimum set, or insufficient support for the fitted model. Each stage exposes a different part of that process.
-
 ![Image correspondences selected through diffusion refinement.](fundamental-refinement.jpg "Conditioned confidence proposals feed the classical two-view geometry pipeline.")
 
-## Evaluation and design lessons
+## Scope
 
-The study covers line and plane fitting, fundamental and essential matrices, and homography estimation. Synthetic correspondences derived from ModelNet40 test sensitivity to outliers. Other experiments vary observation count, refinement budget and local optimization.
+The framework is evaluated on line and plane fitting, fundamental and essential matrix estimation, and homography estimation, on both real benchmark data and synthetic correspondences with controlled outlier levels. We also vary the number of observations, the refinement budget, and whether local optimization is applied afterward. The plug-and-play interface is the reason one method can cover all of these: it occupies the minimum-set sampling slot and nothing else, so the solver, the scoring rule and any post-processing stay task-specific.
 
-The ablations compare direct confidence prediction with iterative refinement. They also examine the balance between proposal quality and inference cost.
+## What this does not solve
 
-DiffSAC's central idea is to model a distribution over useful observation combinations. It offers a way to allocate computation to a compact set of refined proposals while retaining the geometric checks that make sample consensus interpretable.
+Two limitations we state in the paper. The first is generality: a separate diffusion model is trained for each distinct geometric estimation task, which is a real restriction and the reason a single model covering all of them is the obvious next step. The second is hardware. The iterative process is computationally demanding, and relying on a GPU limits where the method can run. Lighter samplers are the remedy we propose, and in our own timing the diffusion sampling dominates inference while consensus evaluation is a small fraction. The machinery that saves the solves is also the thing that costs the time.
+
+One thing we did not address, and it is plainly visible in the architecture: the top-k selection is a hard argmax and the consensus score never propagates a gradient. DiffSAC is not end-to-end differentiable, and we did not try to make it so.
+
+## The claim we care about
+
+The conclusion we would defend is that learning belongs on the half of the problem that is hard, and classical verification belongs on the half that is cheap. Generating valid geometric combinations is hard. Checking whether a model fits is easy, well understood, and exactly what we should not be replacing with a network.
+
+That split is also what keeps the method legible. When a result is wrong, there is a proposal to inspect, a solver output to check, and a consensus score to argue about. The discussion in the paper frames this as restoring interpretability to learning-based robust estimation, and that framing is closer to our motivation than any efficiency argument.

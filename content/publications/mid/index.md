@@ -47,92 +47,116 @@ links:
     id: 2511.00997v1
 ---
 
-## At a glance
+## The clean version often does not exist
 
-| Question | MID's answer |
-|---|---|
-| Can denoising be learned without paired clean targets? | Treat each noisy observation as a state on a synthetically extended corruption path |
-| How is nonlinear corruption reversed? | Estimate the current noise stage, then remove one learned local residual repeatedly |
-| Is the architecture modality specific? | CNNs or Transformers implement the same formulation according to the data structure |
-| What is tested? | Natural images, robust geometry, sEMG/ECG, MRI, and protein sequence representations |
+Good data is the precondition for everything downstream, and acquisition noise is nearly universal: sensor limitations, transmission errors, environmental interference, and the stochastic nature of physical measurement itself. The usual response is to denoise first.
 
-Denoising often requires clean training targets, which can be difficult to collect. Repeated MRI scans may be misaligned, and clean biosignals may be unavailable. Geometric point sets also need targets suited to their structure. Nonlinear, heterogeneous noise makes single-step recovery more difficult.
+Two practical facts make that harder than it sounds, and both shaped this paper.
 
-MID restores data through local steps along a corruption trajectory. Training adds controlled noise to observed samples and learns to reverse each increment without clean targets.
+The first is that the noise that actually matters is rarely Gaussian. Poisson noise in low-light imaging, compression artifacts, and what we would call structured noise, such as a set of line segments that do not correspond to any real structure in the scene, all violate the assumptions that classical filters are built on. The second is more fundamental: for many of the domains we care about, the clean target simply does not exist. In clinical imaging and remote sensing there is frequently no noise-free reference to compare against, and no way to acquire one. The MRI experiments in the paper are scored with proxy measures precisely because clean ground truth is unavailable for those datasets.
 
-## A noisy observation is an intermediate state
+So the training signal has to come from somewhere other than a paired clean sample. That constraint is the whole problem.
 
-Let $s=s_0$ be the observed sample. A controllable noising operator creates a sequence
+## Why the existing answers are conditional
+
+Classical model-based denoising, from filtering to transform-domain thresholding to non-local means, is tailored to specific noise models and data types. Its effectiveness falls away as soon as the noise statistics deviate from the assumption it was built on.
+
+Supervised deep denoising sidesteps the modelling assumption but needs large paired datasets of clean and noisy samples, which are costly or infeasible to collect in exactly the domains where denoising matters most.
+
+Self-supervised blind-spot methods were the natural answer, and the criticism we make of them is specific rather than general. They avoid pairing, and they carry hidden modality assumptions. The tricks that make a blind-spot network work, such as masking pixels and predicting them from neighbours, rely on spatial correlation in images. Point clouds are unordered, and amino acid sequences are discrete and unstructured. A method that assumes nothing about the data can travel to those settings. One that quietly assumes spatial smoothness cannot, and the observable symptoms are oversmoothing and loss of fine detail.
+
+Domain-specific specialists have their own conditionalities. Noise2Noise can oversmooth fine anatomical structures. Patch2Self exploits redundancy across volumes but requires training a separate model per volume, which risks spatial inconsistency between them. DDM2 is sensitive to the initial noise level and to modality-specific tuning. In surface electromyography, high-pass filtering removes the ECG interference and removes important low-frequency components of the signal along with it, because the two overlap in frequency; template subtraction assumes a rigid distributional form; and neural approaches can be unstable to train. For protein sequence curation, the standard greedy selection on average Hamming distance rests on a single criterion that does not capture sequence quality more broadly.
+
+We summarize the positioning as a capability matrix rather than a benchmark table. The question is which methods are self-supervised and work on images, signals and point sets at once. Most of the field manages two of the three.
+
+## What makes it hard
+
+The inverse of a nonlinear corruption has no usable closed form. Reversing Poisson noise, compression, or a set-structured nuisance directly is difficult, and our own ablation shows what happens if you try: a single-pass network leaves the data essentially unchanged. Networks struggle to learn a large jump from noisy to clean in one step. That result is not an implementation failure. It is the reason the method is shaped the way it is.
+
+You also do not know how corrupted the input is. Nothing about a noisy sample announces its position on a corruption trajectory, so there is no way to decide how much to remove or how many steps to take.
+
+Self-supervision has to be manufactured rather than found. Without pairs, the only available labels are ones you create yourself, and they have to serve two purposes: how far along the corruption the input sits, and what the next increment looks like.
+
+And sometimes the noise is not a value at all. An incorrect correspondence, an invalid line segment, or a redundant sequence is not a magnitude added to anything. It is a decision about an element. Before any of that can be subtracted, the nuisance has to be recast as a per-element property, which is why those tasks use a binary classification objective rather than a regression on residuals.
+
+Unordered and discrete data break the usual priors outright. A point cloud has no ordering and a multiple sequence alignment is a set of discrete strings, so weight sharing over a spatial grid and convolution are simply unavailable.
+
+There is also a tradeoff baked into the formulation. The first-order approximation underneath our method only holds if the increments are small. Small increments buy linearity, and then cost you a long inference loop.
+
+## Restore by adding noise
+
+The idea we started from is counterintuitive enough to state plainly. To learn how to remove noise, you first add more of it.
+
+A noisy observation is not a degraded version of a clean sample sitting off to one side. It is one state on a corruption trajectory, and you can continue that trajectory yourself. Take the noisy input as the starting point, apply the corruption process again and again, and you now have a labelled ladder: at every rung you know exactly how much noise separates it from the rung below, because you put it there.
+
+The move that makes this usable is a local linearization. Writing the corruption as a general operator and expanding to first order,
 
 $$
-s_t=\psi_{\mathrm{Noising}}(s,\epsilon_t,t),
+s_t \approx s_{t-1} + \Delta s_{t-1}.
 $$
 
-where larger $t$ corresponds to additional corruption. Even if the global trajectory is nonlinear, two neighboring states admit a local first-order approximation,
+The step from one rung to the next is treated as additive, which means its inverse is a subtraction. The residual the noise network is asked to predict is nothing more than the difference between two consecutive states that we generated. This is an approximation, and we say so: it implicitly assumes the Jacobian is close to identity, or that its effect is absorbed into the learned mapping.
 
-$$
-s_t\approx s_{t-1}+\Delta s_{t-1}.
-$$
+Everything else follows from that. The reverse step becomes tractable, and the training signal is free.
 
-The model estimates the current corruption stage and learns to remove one local increment. Controlled additional noise supplies supervision.
+## Two networks, two different questions
 
-Two networks divide those responsibilities:
+The framework asks two separate questions, and keeping them separate is what makes one recipe portable across domains.
 
-- $\Psi$ predicts the current corruption stage $\hat t=\Psi(s_t)$.
-- $\Phi$ predicts the local residual/noise conditioned on the sample and stage.
+The first is: where am I? A step prediction network regresses the input's position on the trajectory, with the step normalized and a mean-squared objective. This is necessary before any amount of subtraction can be chosen, and it is where the method differs most from diffusion. Diffusion trains against a noise prediction derived from a fixed forward schedule. Here the step is estimated from the data itself, without assuming a fixed forward process.
 
-Inference then iterates
+The second question is: what should be removed? The noise prediction network takes the current state and the estimated step and predicts the increment. The two networks are trained jointly, and the decoupling is deliberate: one decides how far to walk back, the other decides what to take off at each step.
 
-$$
-\hat t=\Psi(s_t),
-\qquad
-s_{t-1}=s_t-\Phi(s_t,\hat t),
-$$
+At inference the loop is a few lines. Estimate the current step, then subtract predicted increments until the step count reaches zero. A lightly corrupted input takes fewer steps than a heavily corrupted one, so the iteration count adapts to the data without a schedule.
 
-until the estimated stage approaches zero. This makes the number of restoration steps data dependent: a mildly corrupted sample need not follow the same path as an extreme one.
+The reason for iterating at all, rather than removing everything at once, is that many small corrections preserve detail better than one large one. Oversmoothing is what happens when a single pass has to guess the whole distance.
 
-![CNN and Transformer realizations of the same iterative principle.](network-architectures.jpg "MID changes the encoder to match each modality while preserving stage estimation and residual reversal.")
+![Two networks answer how corrupted the input is and what to subtract next.](network-architectures.jpg "A step predictor and a noise predictor are trained jointly and used in sequence at inference.")
 
-## Self-supervised objectives and architectures
+## Denoising is a way of framing a problem
 
-The model receives supervision because the additional corruption process is known: it can regress the synthetic stage and residual even though the original clean sample is unknown. Training combines mean-squared losses for stage and noise prediction; point-classification tasks add a binary cross-entropy term. The total objective is the sum of the active components.
+The most interesting part of this work, for us, is not the image results. It is what happens when the same formulation is pointed at problems that nobody would call denoising.
 
-Images and MRI use convolutional networks. Point sets, line segments, one-dimensional signals and amino-acid representations use Transformer variants that preserve interactions in their respective data structures.
+Image correspondences become a four-dimensional point cloud, where a match is a point with two image coordinates in each view. Wrong matches are points that do not belong to the structure, and the network learns the broader features of incorrect correspondences rather than relying on a match score alone. Line segments used for vanishing point estimation become an unordered point cloud, and the model is trained by iteratively adding random segments as noise. Multiple sequence alignments are handled by treating redundant sequences with low average Hamming distance as noise. In that last case, the noise consists of real amino acid sequences, which is a fair demonstration that the framework is evaluating data quality rather than a synthetic artifact.
 
-The shared component across modalities is the *learning dynamics*: estimate location on a corruption path, take a local reverse step, inspect the new state, and repeat. Each modality uses a suitable network architecture.
+What this shows is that denoising is a task framing rather than a data type. Once the nuisance is expressed as something removable, outlier rejection in geometric estimation, correspondence pruning, line filtering and sequence subsampling turn out to be the same problem wearing different clothes.
 
-## Adapting the process to different data
+Two design details follow from the same insight. Multiplicative noise can be made additive in the log domain, which the paper notes and uses. And for point-set tasks the noise objective is a per-element binary cross-entropy, not an additional penalty term on top of a regression. The network is not asked how much to subtract from a wrong correspondence. It is asked whether that element should be there at all.
 
-The same update rule can act on different representations. For an image, spatial neighborhoods carry edges and texture. For a point set, relations between observations describe geometric consistency. For a waveform, temporal structure carries the signal of interest. The encoder must preserve the structure relevant to each case.
+![Wrong correspondences become outliers in a four-dimensional point set.](correspondence-denoising.jpg "The same formulation that removes image noise also identifies incorrect matches.")
 
-This is why MID uses modality-appropriate networks while keeping stage estimation and residual reversal shared at the conceptual level. A sample is encoded, its corruption stage is estimated, one correction is applied, and the updated sample returns to the process.
+## How it is built
 
-![Image restoration through iterative correction.](image-denoising.jpg "An image example illustrates recovery of spatial detail.")
+For images and medical volumes, a CNN backbone handles the step predictor with fully connected layers on top, and a CNN encoder-decoder predicts the increments. For point sets and one-dimensional signals, including correspondences, line segments, amino acid sequences and surface EMG, both networks use fully connected layers with a Transformer encoder-decoder. The reason is the one given above: convolutions assume a spatial ordering that unordered sets do not have, so the architecture changes with the data rather than the other way around.
 
-## Geometry and temporal signals
+None of the domains get a bespoke formulation. That was the point of building it this way. One method, applied to image speckle, MRI noise, muscle-signal contamination, geometric outliers, wrong correspondences, invalid line segments, and redundant protein sequences, with only the backbone changing.
 
-For geometric observations, the desired structure may be mutually consistent correspondences or points supporting a model. Recovery therefore concerns relationships within the set as well as the appearance of individual observations.
+![Redundant sequences are treated as noise in an alignment.](protein-results.jpg "The nuisance here consists of real sequences rather than synthetic artifacts.")
 
-![Geometric observations after iterative denoising.](correspondence-denoising.jpg "The geometric study examines structured observations contaminated by noise and outliers.")
+## What we take from this
 
-For physiological signals, the model must retain useful waveform structure while removing corruption. Evaluation separates recording conditions to examine whether recovery transfers beyond the examples used during training.
+Supervision can be manufactured by continuing a corruption you can simulate, rather than by obtaining the clean endpoint. That single substitution is what makes the framework applicable where paired data does not exist.
 
-![Physiological-signal restoration examples.](emg-results.jpg "Signal recovery uses a representation suited to temporal data.")
+Local linearization plus iteration converts an intractable global inverse into a sequence of tractable local ones, and the ablation is the evidence. When the single-pass model fails, the right response is not a larger model. It is decomposition.
 
-## Learning when clean references are difficult to obtain
+Separating where am I from what should be removed is what makes one framework portable. That decoupling, more than any architectural choice, is the reusable part.
 
-The MRI study examines recovery where a perfectly aligned clean acquisition is unavailable. The protein study applies the formulation to sequence representations and evaluates the usefulness of the resulting features for contact prediction.
+Self-supervision strategies carry hidden modality assumptions, and it is worth auditing them. A formulation that asserts nothing about the structure of the data will travel further than one that quietly requires smoothness.
 
-![MRI restoration examples.](mri-results.jpg "The MRI study examines signal recovery without paired clean acquisitions.")
+And iteration is a detail-preservation mechanism, not just an optimization convenience.
 
-![Protein representation denoising.](protein-results.jpg "Sequence representations provide another setting for the iterative formulation.")
+## Where it stops
 
-These cases share a practical motivation: create supervision from a controlled perturbation of available observations. The learning target comes from the additional corruption process, while the network learns an update that can be applied repeatedly.
+Extreme noise is the stated failure mode. When the signal structure is almost entirely obscured, iterative subtraction has too little partial structure to work from, and generative priors are the direction we point to for future work.
 
-## Why local steps matter
+The second cost is time. Iterating is inherently slower than a single-pass denoiser, which is a bottleneck for real-time use. Knowledge distillation and more efficient sampling are the remedies we suggest.
 
-A single large correction must account for the entire nonlinear corruption path at once. MID instead estimates the current stage and removes a local increment before reassessing the sample. Its ablations examine this division of work and the contribution of iteration.
+Two things are visible in the method that we did not fully characterize. The number of corruption steps and the magnitude of each increment are design choices rather than derived quantities, and we did not study the sensitivity to them. Errors in the estimated step also compound across the subtractions that follow, and that propagation deserves more attention than we gave it.
 
-![Direct correction and iterative local updates.](iterative-ablation.jpg "The ablation studies the role of stage-aware repetition.")
+## What kind of model this is
 
-The design offers a common way to organize recovery without requiring a single network architecture for every modality.
+It is worth being explicit about one boundary, because it comes up in every conversation about this work. MID is not a generative model. Diffusion models minimize a noise prediction loss derived from a fixed forward schedule and can sample new data from the learned distribution. MID is an iterative, self-supervised noise subtractor that learns the structure of the noise present in its target domain and removes it. The output is a cleaner version of the input, not a new sample.
+
+That distinction is what keeps the framework honest about what it can promise. It removes what it was trained to recognize. Anything else is a different problem.
+
+![Iterative subtraction recovers structure that a single pass leaves untouched.](image-denoising.jpg "The reverse loop walks a corrupted input back down the trajectory one increment at a time.")
