@@ -31,7 +31,8 @@
     "focus_label": "核心技术主导",
     "outputs_label": "核心成果与实机验证",
     "partners": [
-      "shlab"
+      "shlab",
+      "moying"
     ],
     "program": "国家重点研发计划项目"
   },

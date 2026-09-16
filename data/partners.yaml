@@ -49,3 +49,11 @@ catl:
   project: factory-material-handling
   field: Industrial material handling
   field_zh: 工厂物料搬运
+moying:
+  name: Shenzhen Moying Technology
+  name_zh: 深圳墨影科技有限公司
+  logo: media/partners/moying.svg
+  url: https://moyingrobotics.com/
+  project: robot-chemist
+  field: Robotic chemist collaboration
+  field_zh: 机器人化学家项目合作

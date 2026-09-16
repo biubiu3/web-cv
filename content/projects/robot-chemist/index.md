@@ -31,7 +31,8 @@
     "focus_label": "Technical Leadership",
     "outputs_label": "Key Deliverables & Verification",
     "partners": [
-      "shlab"
+      "shlab",
+      "moying"
     ],
     "program": "National Key R&D Program of China"
   },

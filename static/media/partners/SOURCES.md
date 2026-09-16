@@ -19,3 +19,7 @@ Project relationships come from the existing bilingual project front matter and 
   Asset: https://www.catl.com/template/1/default/_files/svg/logo.svg
 
 The user confirmed on 2026-09-16: robotic chemist—Shanghai AI Lab and a national key R&D project; low-speed autonomous driving—Baidu; factory material handling—CATL. National program involvement is presented separately from collaborator organizations. No project grant identifier or principal-investigator role is inferred.
+
+- Shenzhen Moying Technology Co., Ltd: https://moyingrobotics.com/en/index.html
+  Asset: https://moyingrobotics.com/uploadfiles/cn/logo.svg?bG9nby5zdmc=
+  The user confirmed the robotic chemist project collaboration with Shenzhen Moying Technology on 2026-09-16.
