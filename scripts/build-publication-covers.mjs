@@ -5,17 +5,17 @@ import { fileURLToPath } from 'node:url';
 const root = fileURLToPath(new URL('..', import.meta.url));
 const outputRoot = join(root, 'artifacts', 'publication-covers');
 const covers = [
-  ['hear', 'hear-editorial-20260915.png'],
-  ['tgl', 'tgl-editorial-20260915.png'],
-  ['mrasfm', 'mrasfm-editorial-20260915.png'],
-  ['vcgs-slam', 'vcgs-slam-editorial-20260915.png'],
-  ['mid', 'mid-editorial-20260915.png'],
-  ['diffsac', 'diffsac-editorial-20260915.png'],
-  ['ermv', 'ermv-editorial-20260915.png'],
-  ['movsam', 'movsam-editorial-20260915.png'],
-  ['rlsac', 'rlsac-editorial-20260915.png'],
-  ['dtfi', 'dtfi-editorial-20260915.png'],
-  ['lnr', 'lnr-editorial-20260915.png'],
+  ['hear', 'hear-editorial-20260916.png'],
+  ['tgl', 'tgl-editorial-20260916.png'],
+  ['mrasfm', 'mrasfm-editorial-20260916.png'],
+  ['vcgs-slam', 'vcgs-slam-editorial-20260916.png'],
+  ['mid', 'mid-editorial-20260916.png'],
+  ['diffsac', 'diffsac-editorial-20260916.png'],
+  ['ermv', 'ermv-editorial-20260916.png'],
+  ['movsam', 'movsam-editorial-20260916.png'],
+  ['rlsac', 'rlsac-editorial-20260916.png'],
+  ['dtfi', 'dtfi-editorial-20260916.png'],
+  ['lnr', 'lnr-editorial-20260916.png'],
 ];
 
 mkdirSync(outputRoot, { recursive: true });
