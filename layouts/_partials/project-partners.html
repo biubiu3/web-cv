@@ -11,7 +11,7 @@
     {{- $name := cond $isZh $partner.name_zh $partner.name -}}
     <a class="partner-badge" href="{{ $partner.url }}" target="_blank" rel="noopener noreferrer">
       <span class="partner-logo{{ if $partner.logo_dark }} partner-logo--dark{{ end }}"><img src="{{ $partner.logo | relURL }}" alt="{{ $name }} Logo" width="120" height="40" loading="lazy"></span>
-      <span>{{ $name }}</span>
+      <span class="partner-badge__info"><span>{{ $name }}</span><small>{{ cond $isZh $partner.field_zh $partner.field }}</small></span>
     </a>
   {{- end -}}
   </div>
