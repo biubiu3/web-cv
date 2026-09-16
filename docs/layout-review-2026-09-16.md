@@ -84,3 +84,14 @@ original figures; mobile tables were scrolled fully right and inspected.
 Post-fix viewport captures are in `viewports-fixed/` and `viewports-final/`;
 focused image-opening and table-scroll captures are in `detail-interactions/`.
 The automated audit remains complementary to direct screenshot inspection.
+
+## Live resource follow-up
+
+The final live sweep exposed three heavy robot-chemist GIFs (39,234,823 bytes
+total) that repeatedly missed the image-load deadline. Re-encoded the complete
+5.4s, 8.8s and 10.85s clips to H.264 MP4 (2,675,154 bytes total), retaining
+640×360 display resolution and exact durations. The cards now use small WebP
+posters with controls and `preload="none"`; original GIF sources are preserved.
+Both language pages played all three videos in Chromium; desktop and mobile
+viewport screenshots were opened directly (`artifacts/visual-review/chemist-video/`).
+No original GIF requests were made during those visits.
