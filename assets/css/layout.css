@@ -163,3 +163,9 @@ body { overflow-wrap: break-word; }
 .project-feature-facts dt { color: var(--layout-ink); font-weight: 700; }
 .project-feature-link { color: #175da5; font-weight: 700; }
 .dark .project-feature-link { color: #8ec9ff; }
+
+/* Visual review: readable captions and prose tables, with honest scroll cues. */
+.article-header .article-header-caption { font-size: .9rem; line-height: 1.6; text-align: left; color: var(--layout-muted); }
+.page-body main .prose:has(.project-overview) .paper-table-scroll table { width: 100%; min-width: 36rem; table-layout: fixed; }
+.page-body main .prose .paper-table-hint { font-size: .85rem; line-height: 1.5; color: var(--layout-muted); margin-bottom: -.75rem; }
+.paper-table-hint[hidden] { display: none; }

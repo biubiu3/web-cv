@@ -36,3 +36,16 @@ if (menu && menuButton) {
   });
   syncMenu();
 }
+
+// Show the scroll instruction only when a table actually exceeds its viewport.
+for (const region of document.querySelectorAll('.paper-table-scroll')) {
+  const hint = region.previousElementSibling;
+  if (!hint?.classList.contains('paper-table-hint')) continue;
+  const update = () => { hint.hidden = region.scrollWidth <= region.clientWidth + 1; };
+  if ('ResizeObserver' in window) {
+    const observer = new ResizeObserver(update);
+    observer.observe(region);
+    observer.observe(region.querySelector('table'));
+  }
+  update();
+}

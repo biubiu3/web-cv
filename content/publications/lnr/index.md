@@ -41,10 +41,6 @@ image:
 hugoblox:
   ids:
     arxiv: 2609.15348v1
-links:
-  - type: preprint
-    provider: arxiv
-    id: 2609.15348v1
 ---
 
 ## Two points, and almost always the wrong two

@@ -42,10 +42,6 @@ image:
 hugoblox:
   ids:
     arxiv: 2609.15348v1
-links:
-  - type: preprint
-    provider: arxiv
-    id: 2609.15348v1
 ---
 
 ## 两个点，而且几乎总是错的那两个

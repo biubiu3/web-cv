@@ -37,3 +37,29 @@ a follow-up HTTP request to the Moka video returned 200. External video playback
 is therefore not claimed as verified. Posters and page layout were checked.
 
 See `layout-maintenance.md` for reproducing the audits and maintaining fonts.
+
+## Direct screenshot review follow-up
+
+Opened all 16 live full-page screenshots as segmented contact sheets, covering
+English and Chinese home, publication index, LNR article, and robot-chemist
+project at 1440px and 390px. Evidence: `artifacts/layout-review/live/` and
+`artifacts/visual-review/`. This is visual inspection of those eight routes,
+not a claim that every route in the automated suite was visually inspected.
+
+| Screenshots (each language, each width) | Visual finding and resolution |
+| --- | --- |
+| Home (4) | Readable responsive sections; publication status fix applies here too. |
+| Publication index (4) | Duplicate LNR preprint links had identical URLs; retain one. Under-review class used underscores while CSS expected hyphens; normalize emitted class to restore orange status. |
+| LNR article (4) | Remove duplicate preprint link; increase featured-image caption size and align left. |
+| Robot-chemist project (4) | Prose table extended beyond desktop viewport; wrap three columns within desktop content width. On mobile retain local scrolling with a localized instruction, shown only when overflowing. |
+
+Opened all 12 focused post-fix screenshots in `artifacts/visual-review/fixed/`.
+Confirmed visible status distinction, single preprint link, readable captions,
+complete desktop table columns, and mobile scrolling instructions. Focused
+Playwright assertions also checked table overflow and hint visibility at both
+widths in both languages.
+
+Rebuilt production output. Full automated regression passed 115 cases with
+zero failures (`artifacts/layout-review/visual-followup/audit.json`), and both
+language interaction suites passed (`visual-followup-interactions/`). Translation
+checks still use synthetic bilingual insertion; no installed-extension claim.
