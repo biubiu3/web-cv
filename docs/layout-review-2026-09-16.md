@@ -63,3 +63,24 @@ Rebuilt production output. Full automated regression passed 115 cases with
 zero failures (`artifacts/layout-review/visual-followup/audit.json`), and both
 language interaction suites passed (`visual-followup-interactions/`). Translation
 checks still use synthetic bilingual insertion; no installed-extension claim.
+
+## Viewport-level detail review
+
+After the user's request to prioritize local details, captured and directly
+opened 38 unscaled browser-viewport screenshots (1440×900 and 390×900) in
+`artifacts/visual-review/viewports/`. Each language/width covers identity,
+education, research, news, publication-card text/buttons, project-card text,
+contact section, article caption/body, and method figure; mobile also covers
+the expanded navigation menu.
+
+This exposed further issues hidden by full-page reduction: desktop timeline
+ornaments crossed tag labels, narrow research headings split words and left
+single Chinese characters, and mobile paper figures lacked a usable enlargement
+route. Moved timeline ornaments into a dedicated left gutter, moved the research
+heading above its prose, balanced project/contact headings, and provided localized
+links to original images. Actual popup navigation loaded both language articles'
+original figures; mobile tables were scrolled fully right and inspected.
+
+Post-fix viewport captures are in `viewports-fixed/` and `viewports-final/`;
+focused image-opening and table-scroll captures are in `detail-interactions/`.
+The automated audit remains complementary to direct screenshot inspection.

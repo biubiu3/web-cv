@@ -41,6 +41,7 @@
       {{- end -}}
     </div>
   </div>
+  <a class="paper-image-original" href="{{ if $image }}{{ $image.RelPermalink }}{{ else }}{{ $destination | safeURL }}{{ end }}" target="_blank" rel="noopener">{{ if eq .Page.Lang "zh" }}查看原图 ↗{{ else }}View full-size image ↗{{ end }}</a>
   {{- with $caption }}
     <figcaption>{{ . | markdownify | emojify }}</figcaption>
   {{- end -}}

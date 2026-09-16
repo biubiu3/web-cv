@@ -169,3 +169,13 @@ body { overflow-wrap: break-word; }
 .page-body main .prose:has(.project-overview) .paper-table-scroll table { width: 100%; min-width: 36rem; table-layout: fixed; }
 .page-body main .prose .paper-table-hint { font-size: .85rem; line-height: 1.5; color: var(--layout-muted); margin-bottom: -.75rem; }
 .paper-table-hint[hidden] { display: none; }
+/* Keep timeline ornaments clear of labels at every responsive width. */
+.news-timeline__list::before { left: .3rem; }
+.news-timeline__item { padding-left: 1.35rem; }
+.news-timeline__item::before { left: 0; top: 1rem; }
+#research > .flex > .mb-6, .project-feature-copy h2,
+#contact :is(h1,h2,h3) { text-wrap: balance; }
+
+#research > .flex { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+#research > .flex > .mb-6 { max-width: 100%; font-size: clamp(1.8rem, 3vw, 2.35rem); }
+.page-body main .prose .paper-image-original { display: inline-block; margin-top: .5rem; font-size: .9rem; }
