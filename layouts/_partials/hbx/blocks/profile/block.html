@@ -1,0 +1,38 @@
+{{ $page := .wcPage }}
+{{ $zh := eq site.Language.Lang "zh" }}
+{{ $author := hugo.Data.authors.me }}
+{{ if $zh }}{{ $author = hugo.Data.zh.authors.me }}{{ end }}
+<div class="profile-layout">
+  <header class="profile-identity">
+    {{ with resources.Get "media/authors/me.png" }}
+    {{ $avatar := .Fill "400x400 Center webp" }}
+    <img class="profile-avatar" src="{{ $avatar.RelPermalink }}" width="200" height="200" alt="{{ $author.name.display }}" fetchpriority="high">
+    {{ end }}
+    <h1>{{ $author.name.display }}</h1>
+    <p class="profile-role">{{ $author.role }}</p>
+    <ul class="profile-affiliations">
+      {{ range $author.affiliations }}<li><a href="{{ .url }}">{{ .name }}</a></li>{{ end }}
+    </ul>
+    <nav class="profile-links" aria-label="{{ if $zh }}个人链接{{ else }}Profile links{{ end }}">
+      {{ range $author.links }}<a href="{{ .url }}">{{ .label }}</a>{{ end }}
+    </nav>
+  </header>
+  <div class="profile-body">
+    <section aria-labelledby="profile-about">
+      <h2 id="profile-about">{{ if $zh }}关于我{{ else }}About me{{ end }}</h2>
+      <div class="prose dark:prose-invert">{{ $author.bio | $page.RenderString (dict "display" "block") }}</div>
+    </section>
+    <section aria-labelledby="profile-education">
+      <h2 id="profile-education">{{ if $zh }}教育经历{{ else }}Education{{ end }}</h2>
+      <ol class="profile-education">
+        {{ range $author.education }}
+        <li><h3>{{ .degree }}</h3><p>{{ .institution }}</p><p class="profile-year">{{ .year }}</p></li>
+        {{ end }}
+      </ol>
+    </section>
+    <section aria-labelledby="profile-interests">
+      <h2 id="profile-interests">{{ if $zh }}研究兴趣{{ else }}Research interests{{ end }}</h2>
+      <ul class="profile-interests">{{ range $author.interests }}<li>{{ . }}</li>{{ end }}</ul>
+    </section>
+  </div>
+</div>

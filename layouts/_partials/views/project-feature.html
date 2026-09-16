@@ -26,11 +26,14 @@
     </div>
     <h2 id="project-title-{{ $item.File.UniqueID }}"><a href="{{ $link }}">{{ $item.Title }}</a></h2>
     <p class="project-feature-summary">{{ $item.Params.summary | default $item.Summary | plainify }}</p>
+    <details class="project-feature-disclosure">
+      <summary>{{ if $isZh }}技术职责与成果{{ else }}Technical role &amp; deliverables{{ end }}</summary>
     <dl class="project-feature-facts">
       <div><dt>{{ if $isZh }}全栈系统架构{{ else }}Full-Stack Architecture{{ end }}</dt><dd>{{ index $meta "wider_system" }}</dd></div>
       <div><dt>{{ with index $meta "focus_label" }}{{ . }}{{ else }}{{ if $isZh }}核心技术主导{{ else }}Technical Leadership{{ end }}{{ end }}</dt><dd>{{ index $meta "role" }}</dd></div>
       <div><dt>{{ with index $meta "outputs_label" }}{{ . }}{{ else }}{{ if $isZh }}核心成果与验证{{ else }}Key Deliverables &amp; Verification{{ end }}{{ end }}</dt><dd>{{ index $meta "outputs" }}</dd></div>
     </dl>
+    </details>
     <a class="project-feature-link" href="{{ $link }}">
       {{ if $isZh }}深入了解系统与技术架构{{ else }}Explore Full System &amp; Technical Architecture{{ end }} <span aria-hidden="true">→</span>
     </a>

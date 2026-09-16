@@ -1,0 +1,10 @@
+<div class="max-w-prose print:hidden">
+  {{ partial "tags" . }}
+  {{ partial "components/page_sharer" . }}
+  <nav class="article-return" aria-label="{{ if eq .Lang "zh" }}个人主页{{ else }}Author profile{{ end }}">
+    <a href="{{ "" | relLangURL }}">{{ if eq .Lang "zh" }}聂畅 · 返回个人主页{{ else }}Nie Chang · Back to profile{{ end }} <span aria-hidden="true">→</span></a>
+  </nav>
+  {{ partial "components/next-in-series" . }}
+  {{ partial "page_related" . }}
+  {{ partial "comments" . }}
+</div>

@@ -1,0 +1,10 @@
+{{ $regular := resources.Get "fonts/songti-regular.woff2" | fingerprint "sha256" }}
+{{ $bold := resources.Get "fonts/songti-bold.woff2" | fingerprint "sha256" }}
+<style>
+@font-face { font-family: "Chang Songti"; src: url("{{ $regular.RelPermalink }}") format("woff2"); font-style: normal; font-weight: 400; font-display: swap; }
+@font-face { font-family: "Chang Songti"; src: url("{{ $bold.RelPermalink }}") format("woff2"); font-style: normal; font-weight: 700; font-display: swap; }
+</style>
+{{ $layout := resources.Get "css/layout.css" | minify | fingerprint "sha256" }}
+<link rel="stylesheet" href="{{ $layout.RelPermalink }}" integrity="{{ $layout.Data.Integrity }}" crossorigin="anonymous">
+{{ $script := resources.Get "js/layout.js" | minify | fingerprint "sha256" }}
+<script src="{{ $script.RelPermalink }}" defer></script>

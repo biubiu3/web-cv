@@ -9,7 +9,7 @@ seo:
   title: 'Nie Chang | Physical AI & Embodied Intelligence'
 
 sections:
-  - block: resume-biography-3
+  - block: profile
     id: about
     content:
       # Choose a user profile to display (a folder name within `content/authors/`)
@@ -136,7 +136,9 @@ sections:
           - publications
       sort_by: homepage_order
       sort_ascending: true
-      count: 0
+      count: 6
+      archive:
+        enable: false
     design:
       view: publication-gallery
       columns: 1

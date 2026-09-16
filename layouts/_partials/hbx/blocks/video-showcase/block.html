@@ -20,7 +20,7 @@
       <article class="robot-video-card">
         <div class="robot-video-frame">
           <video
-            {{ if eq $index 0 }}autoplay muted loop preload="metadata"{{ else }}preload="none"{{ end }}
+            preload="none"
             playsinline controls
             {{ with $posterURL }}poster="{{ . }}"{{ end }}
             aria-label="{{ $video.title }}">
