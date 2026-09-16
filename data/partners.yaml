@@ -1,0 +1,51 @@
+neta:
+  name: NETA Auto
+  name_zh: 哪吒汽车
+  logo: media/partners/neta.svg
+  logo_dark: true
+  url: https://hozonauto.com/
+  project: sfm
+  field: 4D vision auto-annotation
+  field_zh: 4D 视觉自动标注
+positec:
+  name: Positec Group · WORX
+  name_zh: 宝时得集团 · WORX
+  logo: media/partners/positec.png
+  logo_dark: true
+  url: https://www.positecgroup.com.cn/
+  project: mower
+  field: Autonomous outdoor robotics
+  field_zh: 户外自主作业机器人
+voyager:
+  name: Voyager Tech
+  name_zh: 寅家科技
+  logo: media/partners/voyager.png
+  url: https://www.voyager-tech.com/
+  project: avp
+  field: Autonomous valet parking
+  field_zh: 自主代客泊车
+shlab:
+  name: Shanghai AI Lab
+  name_zh: 上海人工智能实验室
+  logo: media/partners/shlab.webp
+  logo_dark: true
+  url: https://www.shlab.org.cn/
+  project: robot-chemist
+  field: Robotic chemist · AI for Science
+  field_zh: 机器人化学家 · 科学智能
+baidu:
+  name: Baidu
+  name_zh: 百度
+  logo: media/partners/baidu.png
+  url: https://home.baidu.com/
+  project: lsv
+  field: Low-speed autonomous driving
+  field_zh: 低速无人驾驶
+catl:
+  name: CATL
+  name_zh: 宁德时代（CATL）
+  logo: media/partners/catl.svg
+  url: https://www.catl.com/
+  project: factory-material-handling
+  field: Industrial material handling
+  field_zh: 工厂物料搬运

@@ -30,7 +30,10 @@
     "outputs": "Production-grade high-precision tote perception, synchronized dual-arm unstacking, dynamic heavy-payload transport, and millimeter-level placement in real factories",
     "context": "Addressing flexible manufacturing and autonomous material flow, this system establishes seamless synergy across spatial perception, mobile navigation, and heavy-payload dual-arm manipulation. The robot autonomously performs dense tote unstacking, agile inter-station transit, and adaptive palletizing, establishing a reliable unmanned logistics loop.",
     "focus_label": "Technical Leadership",
-    "outputs_label": "Key Deliverables & Real-World Validation"
+    "outputs_label": "Key Deliverables & Real-World Validation",
+    "partners": [
+      "catl"
+    ]
   },
   "project_videos": [
     {

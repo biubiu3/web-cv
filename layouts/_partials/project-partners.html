@@ -1,0 +1,19 @@
+{{- $isZh := eq .page.Lang "zh" -}}
+{{- with .page.Params.project.program -}}
+<div class="project-program">{{ . }}</div>
+{{- end -}}
+{{- with .page.Params.project.partners -}}
+<div class="project-partners">
+  <span class="project-partners__label">{{ if $isZh }}合作单位{{ else }}In collaboration with{{ end }}</span>
+  <div class="project-partners__items">
+  {{- range . -}}
+    {{- $partner := index hugo.Data.partners . -}}
+    {{- $name := cond $isZh $partner.name_zh $partner.name -}}
+    <a class="partner-badge" href="{{ $partner.url }}" target="_blank" rel="noopener noreferrer">
+      <span class="partner-logo{{ if $partner.logo_dark }} partner-logo--dark{{ end }}"><img src="{{ $partner.logo | relURL }}" alt="{{ $name }} Logo" width="120" height="40" loading="lazy"></span>
+      <span>{{ $name }}</span>
+    </a>
+  {{- end -}}
+  </div>
+</div>
+{{- end -}}

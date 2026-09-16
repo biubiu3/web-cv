@@ -31,7 +31,10 @@
     "outputs": "Two operational autonomous research vehicle platforms; complete custom ROS autonomous driving software stack; 8 real-world closed-loop demonstrations spanning 3D LiDAR SLAM, RTK tracking, vision lane keeping, multi-object detection, AEB, autonomous parking, and connected multi-vehicle platooning",
     "context": "True breakthroughs in autonomous driving cannot happen solely in simulation—they must be forged in the unforgiving physical world. Facing a blank slate in the laboratory, I independently transformed raw chassis into fully instrumented drive-by-wire research testbeds, establishing an open, high-reliability experimental foundation that catalyzed our laboratory's subsequent top-tier academic and industrial breakthroughs.",
     "focus_label": "Technical Leadership",
-    "outputs_label": "Platform Deliverables & 8 Real-Vehicle Demonstrations"
+    "outputs_label": "Platform Deliverables & 8 Real-Vehicle Demonstrations",
+    "partners": [
+      "baidu"
+    ]
   },
   "project_videos": [
     {

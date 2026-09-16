@@ -19,6 +19,7 @@ image:
   caption: 'Autonomous mowing system architecture: onboard multi-modal perception feeds terrain-adaptive modeling and cross-sensor obstacle fusion for agile outdoor navigation.'
   alt_text: 'Technical illustration of a sensor-rich autonomous mower feeding camera and LiDAR observations into terrain perception, obstacle fusion, and planning.'
 project:
+  partners: [positec]
   collaboration: 'Positec Group (WORX) Mass-Production Partnership'
   period: 'Full-Stack Robotics Architecture & Outdoor Field Deployment'
   status: 'Field-Tested & Commercialized'

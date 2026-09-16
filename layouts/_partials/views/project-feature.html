@@ -19,6 +19,7 @@
   </a>
 
   <div class="project-feature-copy">
+    {{ partial "project-partners.html" (dict "page" $item) }}
     <div class="project-feature-kickers">
       <span>{{ index $meta "collaboration" }}</span>
       <span class="is-status">{{ index $meta "status" }}</span>

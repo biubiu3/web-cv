@@ -4,6 +4,7 @@
   <div class="project-overview__lead">
     <span>{{ if $isZh }}核心工程系统{{ else }}Featured Engineering System{{ end }}</span>
     <strong>{{ index $meta "collaboration" }}</strong>
+    {{ partial "project-partners.html" (dict "page" .Page) }}
     <p>{{ index $meta "context" }}</p>
   </div>
   <dl>

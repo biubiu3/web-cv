@@ -29,7 +29,11 @@
     "outputs": "End-to-end real-robot mobile chemistry trials, precision centrifuge loading, few-shot skill learning, and adaptive closed-loop execution",
     "context": "Addressing the critical physical bottleneck of AI for Science, this project creates an autonomous 'Robotic Chemist' capable of multi-station navigation, delicate bimanual manipulation, and adaptive task planning. The platform unifies human demonstrations, high-fidelity simulation, and physical execution to automate complex chemical workflows end-to-end.",
     "focus_label": "Technical Leadership",
-    "outputs_label": "Key Deliverables & Verification"
+    "outputs_label": "Key Deliverables & Verification",
+    "partners": [
+      "shlab"
+    ],
+    "program": "National Key R&D Program of China"
   },
   "project_videos": [
     {

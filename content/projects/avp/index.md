@@ -20,6 +20,7 @@ image:
   caption: 'Full-stack AVP system architecture: surround and ultrasonic perception feed BEV semantic mapping, hierarchical driving/parking planning, and robust chassis execution.'
   alt_text: 'Technical overview of an automated valet parking system, showing four surround camera views and ultrasonic sensing, a central bird-eye semantic parking map, and global driving, local avoidance, parking, and vehicle-control stages.'
 project:
+  partners: [voyager]
   collaboration: 'Voyager Intelligent Systems Mass-Production Partnership'
   period: 'Full-Stack Architecture & Real-Vehicle Fleet Validation'
   status: 'Production-Engineered & Real-Vehicle Deployed'

@@ -19,6 +19,7 @@ image:
   caption: 'Full industrial 4D auto-annotation pipeline: from synchronized multi-sensor vehicle streams to surround semantics, rig-based multi-camera SfM, automated labeling, and multi-run HD maps.'
   alt_text: 'Concept diagram showing synchronized multi-camera streams flowing through surround semantic perception and the core rig SfM engine to generate structured map annotations and multi-run maps.'
 project:
+  partners: [neta]
   collaboration: 'NETA Auto Industrial Mass-Production Collaboration'
   period: 'Core Algorithm Architecture & Industrial System Delivery'
   status: 'Automotive Production Deployment'
