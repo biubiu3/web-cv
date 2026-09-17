@@ -49,3 +49,27 @@ for (const region of document.querySelectorAll('.paper-table-scroll')) {
   }
   update();
 }
+// Keep the local preview available when a remote demonstration cannot play.
+for (const card of document.querySelectorAll('.robot-video-card')) {
+  const button = card.querySelector('.robot-video-preview');
+  const video = card.querySelector('video');
+  const error = card.querySelector('.robot-video-error');
+  if (!button || !video) continue;
+  const recover = () => { video.pause(); video.hidden = true; button.hidden = false; button.disabled = false; button.removeAttribute("aria-busy"); error.hidden = false; };
+  video.addEventListener('error', recover);
+  video.querySelector('source')?.addEventListener('error', recover);
+  button.addEventListener('click', async () => {
+    error.hidden = true;
+    button.disabled = true;
+    button.setAttribute("aria-busy", "true");
+    const timeout = setTimeout(recover, 15000);
+    try {
+      if (video.error || video.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) video.load();
+      await video.play();
+      video.hidden = false;
+      button.hidden = true;
+      video.focus();
+    } catch { recover(); button.focus(); }
+    finally { clearTimeout(timeout); button.disabled = false; button.removeAttribute("aria-busy"); }
+  });
+}

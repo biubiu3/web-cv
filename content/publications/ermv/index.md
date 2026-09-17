@@ -14,7 +14,7 @@ venue_display: "IEEE Transactions on Circuits and Systems for Video Technology (
 publication_status: "Under review"
 publication_status_key: "under_review"
 display_area: "Embodied World Models & Generative Data"
-publication_order: 60
+publication_order: 30
 peer_reviewed: false
 open_access: true
 abstract: "ERMV edits synchronized robot videos around recorded state and action. Sparse temporal context, motion-aware epipolar attention and segment feedback preserve the interaction across visual variations."

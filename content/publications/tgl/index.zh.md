@@ -13,7 +13,7 @@ venue_display: "IEEE Transactions on Robotics（IEEE 机器人学汇刊，T-RO�
 publication_status: "审稿中"
 publication_status_key: "under_review"
 display_area: "通用机器人学习"
-publication_order: 20
+publication_order: 10
 spotlight: true
 peer_reviewed: false
 open_access: true

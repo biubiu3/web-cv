@@ -14,7 +14,7 @@ venue_display: "IEEE Transactions on Neural Networks and Learning Systems (TNNLS
 publication_status: "Published"
 publication_status_key: "published"
 display_area: "Multimodal Self-Supervised Learning"
-publication_order: 40
+publication_order: 70
 peer_reviewed: true
 open_access: true
 abstract: "MID treats a noisy observation as an intermediate state in a nonlinear corruption process and learns to reverse that process using noisy data alone. One network estimates the current corruption stage and another removes the corresponding residual increment; a local first-order approximation supports iterative restoration under nonlinear noise. The formulation is instantiated across vision, biomedical signals, point sets, and biological sequences."

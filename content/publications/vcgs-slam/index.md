@@ -20,7 +20,7 @@ venue_display: "International Journal of Computer Vision (IJCV)"
 publication_status: "Accepted"
 publication_status_key: "accepted"
 display_area: "Dense Visual SLAM"
-publication_order: 35
+publication_order: 40
 peer_reviewed: true
 open_access: true
 abstract: "This work develops a compact 3D Gaussian dense visual SLAM system for embedded deployment. Voxel-anchored Gaussians control map growth, a learnable sliding-window mask removes redundant primitives during online mapping, residual codebook quantization compresses anchor attributes, and local-to-global bundle adjustment with an ICP loss improves camera tracking. Experiments cover Replica, ScanNet, TUM RGB-D, embedded hardware, and a multisensor mobile-robot dataset."

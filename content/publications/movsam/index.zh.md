@@ -16,13 +16,13 @@ venue_display: "IEEE/RSJ International Conference on Intelligent Robots and Syst
 publication_status: "已发表"
 publication_status_key: "published"
 display_area: "机器人感知"
-publication_order: 70
+publication_order: 60
 peer_reviewed: true
 open_access: true
 abstract: "MovSAM 面向缺少时间运动线索的单图像运动物体分割。多模态大模型对场景进行推理并生成文本物体提示；这些提示与 SAM 和视觉语言模型的视觉表征融合，再通过迭代推理逐步修正结果。"
 summary: "通过场景推理、语言提示和掩码反馈，将单张图像中的语义线索用于运动物体分割。"
 story_order: 20
-homepage_order: 80
+homepage_order: 60
 topic_keywords:
   - 多模态大语言模型
   - Segment Anything

@@ -11,13 +11,13 @@ name:
 postnominals: []
 status:
   icon: "🤖"
-role: Ph.D. Candidate @ SJTU | Physical AI, Embodied Foundation Models & Full-Stack Robotics
+role: Final-year Ph.D. Candidate @ SJTU | Physical AI, Embodied Foundation Models & Full-Stack Robotics
 bio: |
-  I am Nie Chang (聂畅), a Ph.D. candidate at the School of Automation and
+  I am Nie Chang (聂畅), a final-year Ph.D. candidate at the School of Automation and
   Intelligent Sensing, Shanghai Jiao Tong University, advised by
   [Prof. Hesheng Wang](https://sais.sjtu.edu.cn/faculty/wanghesheng.html).
   My research bridges **Physical AI, Embodied Foundation Models (VLA), and
-  Autonomous Robotics Systems**—empowering robots to perceive across complex
+  AI Agent Robotics Systems**—empowering robots to perceive across complex
   modalities, reason causally about physical interactions, and continuously
   accumulate reusable skills through real-world experience.
 
@@ -74,20 +74,3 @@ education:
       Expected graduation: December 31, 2026. Advised by Prof. Hesheng Wang.
       Researching Physical AI, embodied intelligence, multimodal learning, and
       agent-centered robot systems.
-  - degree: M.Eng. · Computer Vision & Autonomous Driving
-    institution: Beihang University · Beijing, China
-    year: 2019–2022
-    start: 2019-09-01
-    end: 2022-06-30
-    summary: |
-      Research on deep-learning-based perception for difficult driving
-      conditions, with an emphasis on computer vision and autonomous-driving
-      applications.
-  - degree: B.Eng. · Vehicle Engineering
-    institution: Wuhan University of Technology · Wuhan, China
-    year: 2015–2019
-    start: 2015-09-01
-    end: 2019-06-30
-    summary: |
-      Built a foundation in vehicle engineering, visual perception, and
-      intelligent vehicle systems for autonomous-driving research.

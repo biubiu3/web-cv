@@ -14,14 +14,14 @@ venue_display: "IEEE Transactions on Pattern Analysis and Machine Intelligence�
 publication_status: "审稿中"
 publication_status_key: "under_review"
 display_area: "鲁棒几何估计"
-publication_order: 10
+publication_order: 80
 peer_reviewed: false
 open_access: true
 featured: true
 abstract: "Learning Neighbor Regions（LNR）是一个面向鲁棒多模型拟合的由粗到细框架。它先从数据点导出的几何特征中学习最小集置信度，在求解前筛除大量低质量候选；再为保留的每个假设编码其邻域，以独立完成细化和评分。最后使用基于假设的非极大值抑制输出复合模型，训练过程无需对采样或几何求解器求导。"
 summary: "先过滤低质量最小集，再通过邻域表征细化和选择假设的鲁棒多模型几何拟合框架。"
 story_order: 15
-homepage_order: 20
+homepage_order: 80
 topic_keywords:
   - 鲁棒估计
   - 多模型拟合

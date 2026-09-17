@@ -13,7 +13,7 @@ venue_display: "IEEE Transactions on Robotics (T-RO)"
 publication_status: "Under review"
 publication_status_key: "under_review"
 display_area: "General Robot Learning"
-publication_order: 20
+publication_order: 10
 spotlight: true
 peer_reviewed: false
 open_access: true

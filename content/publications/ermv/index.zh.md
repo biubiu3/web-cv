@@ -14,7 +14,7 @@ venue_display: "IEEE Transactions on Circuits and Systems for Video Technology�
 publication_status: "审稿中"
 publication_status_key: "under_review"
 display_area: "具身世界模型与生成式数据"
-publication_order: 60
+publication_order: 30
 peer_reviewed: false
 open_access: true
 abstract: "ERMV 围绕记录的状态与动作编辑同步机器人视频，通过稀疏时间上下文、运动感知极线注意力和片段反馈，在视觉变化中保持交互一致。"

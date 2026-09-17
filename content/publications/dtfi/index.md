@@ -13,8 +13,8 @@ publication:
 venue_display: "IEEE Transactions on Emerging Topics in Computational Intelligence (TETCI), 7(4): 1242–1252, 2023"
 publication_status: "Published"
 publication_status_key: "published"
-publication_order: 90
-homepage_order: 100
+publication_order: 110
+homepage_order: 110
 story_order: 5
 peer_reviewed: true
 open_access: false

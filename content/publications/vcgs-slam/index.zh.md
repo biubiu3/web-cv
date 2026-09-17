@@ -20,7 +20,7 @@ venue_display: "International Journal of Computer Vision（国际计算机视觉
 publication_status: "已接收"
 publication_status_key: "accepted"
 display_area: "稠密视觉 SLAM"
-publication_order: 35
+publication_order: 40
 peer_reviewed: true
 open_access: true
 abstract: "本工作面向嵌入式部署构建紧凑型三维高斯稠密视觉 SLAM 系统。体素锚点用于控制地图增长，可学习滑动窗口掩码在在线建图过程中移除冗余高斯，残差码本量化压缩锚点属性，结合 ICP 损失的局部到全局束调整则提高相机跟踪精度。实验覆盖 Replica、ScanNet、TUM RGB-D、嵌入式硬件以及多传感器移动机器人数据集。"

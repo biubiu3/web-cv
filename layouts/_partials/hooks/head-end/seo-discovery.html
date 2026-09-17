@@ -15,17 +15,13 @@
 {{- $avatar := resources.Get "media/authors/me.png" }}
 {{- $personName := cond (eq .Lang "zh") "聂畅 (Nie Chang)" "Nie Chang (聂畅)" }}
 {{- $alternateName := cond (eq .Lang "zh") "Nie Chang" "聂畅" }}
-{{- $jobTitle := cond (eq .Lang "zh") "上海交通大学博士候选人 · 具身智能与物理 AI / 全栈自主机器人架构师" "Ph.D. Candidate & Physical AI Lead | Autonomous Robotics & Embodied Foundation Models" }}
-{{- $description := cond (eq .Lang "zh") "聂畅（上海交通大学）专注于物理 AI（Physical AI）、具身基础模型（VLA/VSLA）、智能体机器人系统、3D 高斯 SLAM 与全栈自主机器人系统研发。" "Nie Chang is a Ph.D. candidate at Shanghai Jiao Tong University specializing in Physical AI, Embodied Foundation Models (VLA/VSLA), Agentic Robot Systems, 3D Gaussian Splatting SLAM, and full-stack autonomous robotics." }}
+{{- $jobTitle := cond (eq .Lang "zh") "上海交通大学博士候选人（最后一年） · 具身智能与物理 AI / 全栈自主机器人架构师" "Final-year Ph.D. Candidate & Physical AI Lead | Autonomous Robotics & Embodied Foundation Models" }}
+{{- $description := cond (eq .Lang "zh") "聂畅（上海交通大学）专注于物理 AI（Physical AI）、具身基础模型（VLA/VSLA）、智能体机器人系统、3D 高斯 SLAM 与全栈自主机器人系统研发。" "Nie Chang is a final-year Ph.D. candidate at Shanghai Jiao Tong University specializing in Physical AI, Embodied Foundation Models (VLA/VSLA), Agentic Robot Systems, 3D Gaussian Splatting SLAM, and full-stack autonomous robotics." }}
 {{- $knowsAbout := slice "Physical AI" "Embodied Intelligence" "Embodied World Models" "Robotic World Models" "Vision-Language-Action Models (VLA)" "Vision-Sound-Language-Action (VSLA)" "Agentic Robot Systems" "Lifelong Robot Learning" "3D Gaussian Splatting SLAM" "Multi-Camera Structure-from-Motion" "Autonomous Valet Parking (L4 AVP)" "Sample Consensus Robust Estimation" "Diffusion Models" "Industrial Mobile Manipulation" "Self-Supervised Denoising" "nuScenes Benchmark #1" }}
 {{- $sameAs := slice "https://scholar.google.com/citations?user=Tc2sl7gAAAAJ" "https://github.com/biubiu3" "https://www.linkedin.com/in/chang-nie-819a463b6/" "https://hear.irmv.top/" }}
 {{- $affiliations := slice
   (dict "@type" "CollegeOrUniversity" "name" "Shanghai Jiao Tong University" "url" "https://en.sjtu.edu.cn/")
   (dict "@type" "Organization" "name" "IRMV Lab" "url" "https://irmv.sjtu.edu.cn/")
-}}
-{{- $alumniOf := slice
-  (dict "@type" "CollegeOrUniversity" "name" "Beihang University" "url" "https://www.buaa.edu.cn/")
-  (dict "@type" "CollegeOrUniversity" "name" "Wuhan University of Technology" "url" "https://www.whut.edu.cn/")
 }}
 {{- $person := dict
   "@type" "Person"
@@ -36,7 +32,6 @@
   "jobTitle" $jobTitle
   "description" $description
   "affiliation" $affiliations
-  "alumniOf" $alumniOf
   "sameAs" $sameAs
   "knowsAbout" $knowsAbout
 }}

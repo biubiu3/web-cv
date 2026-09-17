@@ -14,14 +14,14 @@ venue_display: "IEEE Transactions on Pattern Analysis and Machine Intelligence (
 publication_status: "Under review"
 publication_status_key: "under_review"
 display_area: "Robust Geometric Estimation"
-publication_order: 10
+publication_order: 80
 peer_reviewed: false
 open_access: true
 featured: true
 abstract: "Learning Neighbor Regions (LNR) is a coarse-to-fine framework for robust multi-model fitting. It learns from point-derived geometric features to screen randomly sampled minimum sets before solving them, then encodes the neighboring region of each retained hypothesis for independent refinement and scoring. Hypothesis-based non-maximum suppression produces the final compound model without differentiating through sampling or geometric solvers."
 summary: "A learned coarse-to-fine framework that filters bad minimum sets early and reasons over neighboring regions to robustly fit overlapping geometric models."
 story_order: 15
-homepage_order: 20
+homepage_order: 80
 topic_keywords:
   - Robust Estimation
   - Multi-Model Fitting

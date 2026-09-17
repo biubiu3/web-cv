@@ -15,7 +15,7 @@ venue_display: "The International Journal of Robotics Research (IJRR)"
 publication_status: "Published"
 publication_status_key: "published"
 display_area: "Multisensory Robot Manipulation"
-publication_order: 10
+publication_order: 20
 spotlight: true
 peer_reviewed: true
 open_access: true

@@ -19,18 +19,22 @@
       {{ with $poster }}{{ $posterURL = .RelPermalink }}{{ end }}
       <article class="robot-video-card">
         <div class="robot-video-frame">
-          <video
+          <button type="button" class="robot-video-preview" aria-label="{{ if eq $page.Lang "zh" }}播放：{{ else }}Play: {{ end }}{{ $video.title }}"><img src="{{ $posterURL }}" alt="{{ $video.title }}" width="1200" height="332" loading="lazy"><span>{{ if eq $page.Lang "zh" }}▶ 播放视频{{ else }}▶ Play video{{ end }}</span></button>
+          <video hidden
             preload="none"
             playsinline controls
             {{ with $posterURL }}poster="{{ . }}"{{ end }}
             aria-label="{{ $video.title }}">
             <source src="{{ $video.src }}" type="video/mp4">
           </video>
-          {{ with $video.eyebrow }}<span class="robot-video-eyebrow">{{ . }}</span>{{ end }}
+
         </div>
         <div class="robot-video-copy">
+          {{ with $video.eyebrow }}<span class="robot-video-eyebrow">{{ . }}</span>{{ end }}
           <h3>{{ $video.title }}</h3>
           {{ with $video.description }}<p>{{ . }}</p>{{ end }}
+          <p class="robot-video-error" role="status" hidden>{{ if eq $page.Lang "zh" }}视频暂时无法播放，请尝试直接打开。{{ else }}Video could not load. Try opening it directly.{{ end }}</p>
+          <a class="robot-video-direct" href="{{ $video.src }}" target="_blank" rel="noopener">{{ if eq $page.Lang "zh" }}直接打开视频 ↗{{ else }}Open video ↗{{ end }}</a>
         </div>
       </article>
     {{ end }}

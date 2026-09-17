@@ -19,7 +19,7 @@ venue_display: "IEEE International Conference on Robotics and Automation (ICRA 2
 publication_status: "Published"
 publication_status_key: "published"
 display_area: "Robot Perception & Reconstruction"
-publication_order: 30
+publication_order: 50
 peer_reviewed: true
 open_access: true
 abstract: "MRASfM adapts structure-from-motion to multi-camera driving systems by exploiting fixed inter-camera geometry during registration. It removes unreliable road-surface points with a plane model, treats the camera set as a unit during bundle adjustment, and aggregates multiple scenes through coarse-to-fine association and assembly."

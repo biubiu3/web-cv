@@ -25,6 +25,7 @@
       <span>{{ index $meta "period" }}</span>
     </div>
     <h2 id="project-title-{{ $item.File.UniqueID }}"><a href="{{ $link }}">{{ $item.Title }}</a></h2>
+    {{ partial "project-partners-compact.html" (dict "page" $item) }}
     <p class="project-feature-summary">{{ $item.Params.summary | default $item.Summary | plainify }}</p>
     <details class="project-feature-disclosure">
       <summary>{{ if $isZh }}技术职责与成果{{ else }}Technical role &amp; deliverables{{ end }}</summary>

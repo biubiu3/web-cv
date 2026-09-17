@@ -179,3 +179,21 @@ body { overflow-wrap: break-word; }
 #research > .flex { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
 #research > .flex > .mb-6 { max-width: 100%; font-size: clamp(1.8rem, 3vw, 2.35rem); }
 .page-body main .prose .paper-image-original { display: inline-block; margin-top: .5rem; font-size: .9rem; }
+/* Compact, named collaborators stay visible without dominating project cards. */
+.project-collaborators { display: grid; gap: .4rem; }
+.project-collaborators__label { color: var(--layout-muted); font-size: .8rem; }
+.project-collaborators__items { display: flex; flex-wrap: wrap; gap: .5rem 1rem; }
+.project-collaborators__items a { display: inline-flex; align-items: center; gap: .45rem; max-width: 100%; color: var(--layout-ink); font-size: .85rem; line-height: 1.4; }
+.project-collaborators__logo { flex: 0 0 64px; width: 64px; height: 30px; padding: 3px; border-radius: 4px; background: white; }
+.project-collaborators__logo.is-dark { background: #102b40; }
+.project-collaborators__logo img { width: 100%; height: 100%; object-fit: contain; }
+.publication-rich-venue-label { white-space: normal; font-size: .8rem; text-transform: none; letter-spacing: 0; }
+/* Independent preview images remain visible until a video actually plays. */
+.robot-video-frame { background: var(--layout-surface); }
+.robot-video-preview { position: relative; display: block; width: 100%; padding: 0; cursor: pointer; }
+.robot-video-preview img { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 332; object-fit: contain; }
+.robot-video-preview > span { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); border-radius: 2rem; padding: .6rem 1rem; background: #102b40ed; color: white; font-size: 1rem; white-space: nowrap; }
+.robot-video-preview:focus-visible { outline: 3px solid #0891b2; outline-offset: -3px; }
+.robot-video-preview[hidden], .robot-video-frame video[hidden], .robot-video-error[hidden] { display: none; }
+.robot-video-copy .robot-video-eyebrow { padding: 0; margin-bottom: .5rem; background: transparent; color: var(--layout-muted); border: 0; border-radius: 0; font-family: inherit; }
+.robot-video-direct { display: inline-block; margin-top: .65rem; font-size: .9rem; text-decoration: underline; }

@@ -16,13 +16,13 @@ venue_display: "IEEE/RSJ International Conference on Intelligent Robots and Syst
 publication_status: "Published"
 publication_status_key: "published"
 display_area: "Robot Perception"
-publication_order: 70
+publication_order: 60
 peer_reviewed: true
 open_access: true
 abstract: "MovSAM performs moving-object segmentation from a single image, where temporal motion cues are unavailable. A multimodal large language model reasons about the scene and produces textual object prompts; these are fused with visual representations from SAM and a vision-language model, then refined through an iterative reasoning loop."
 summary: "Scene reasoning, language prompts and iterative mask feedback connect a single image to moving-object segmentation."
 story_order: 20
-homepage_order: 80
+homepage_order: 60
 topic_keywords:
   - Multimodal Large Language Models
   - Segment Anything

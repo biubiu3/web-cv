@@ -15,7 +15,7 @@ venue_display: "The International Journal of Robotics Research（国际机器人
 publication_status: "已发表"
 publication_status_key: "published"
 display_area: "多感官机器人操作"
-publication_order: 10
+publication_order: 20
 spotlight: true
 peer_reviewed: true
 open_access: true

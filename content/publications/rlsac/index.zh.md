@@ -19,13 +19,13 @@ venue_display: "IEEE/CVF International Conference on Computer Vision（IEEE/CVF 
 publication_status: "已发表"
 publication_status_key: "published"
 display_area: "鲁棒视觉估计"
-publication_order: 80
+publication_order: 100
 peer_reviewed: true
 open_access: true
 abstract: "RLSAC 将采样一致性鲁棒估计建模为强化学习过程。图神经网络联合编码观测数据与采样历史，提出下一组最小集，并以其下游假设质量作为无监督奖励。学习到的状态转移可以复用于多类鲁棒估计问题。"
 summary: "利用假设残差与采样历史学习最小集选择策略，在直线拟合和双视图几何估计中改进采样一致性。"
 story_order: 10
-homepage_order: 60
+homepage_order: 100
 topic_keywords:
   - 强化学习
   - 鲁棒估计

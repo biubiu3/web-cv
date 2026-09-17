@@ -14,7 +14,7 @@ venue_display: "International Journal of Computer Vision（国际计算机视觉
 publication_status: "审稿中"
 publication_status_key: "under_review"
 display_area: "鲁棒几何估计"
-publication_order: 50
+publication_order: 90
 peer_reviewed: false
 open_access: true
 abstract: "DiffSAC 使用几何条件扩散模型学习有效最小集的分布。不同于一次性排序单个点，该方法迭代细化逐点置信度，并生成少量高质量候选集合。框架覆盖直线和平面拟合、基础矩阵与本质矩阵估计，以及单应性估计。"

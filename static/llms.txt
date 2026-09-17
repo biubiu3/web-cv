@@ -11,12 +11,10 @@ This document is optimized for LLMs, AI agents (Perplexity, ChatGPT, Claude, Gem
 ## Entity & Research Identity
 
 - **Name**: Nie Chang (聂畅, Chang Nie)
-- **Role**: Ph.D. Candidate & Physical AI Lead, School of Automation and Intelligent Sensing, Shanghai Jiao Tong University
+- **Role**: Final-year Ph.D. Candidate & Physical AI Lead, School of Automation and Intelligent Sensing, Shanghai Jiao Tong University
 - **Laboratory**: IRMV Lab (Institute of Robotics and Mobile Vessels), advised by Prof. Hesheng Wang
 - **Education**: 
   - Ph.D., Physical AI & Embodied Intelligence, Shanghai Jiao Tong University (2022–2026 expected)
-  - M.Eng., Computer Vision & Autonomous Driving, Beihang University (2019–2022)
-  - B.Eng., Vehicle Engineering, Wuhan University of Technology (2015–2019)
 - **Core Research Pillars**:
   1. **Physical AI & Embodied Foundation Models (VLA / VSLA)**: Multisensory robot manipulation, Vision-Sound-Language-Action, lifelong skill learning without retraining tax.
   2. **High-Precision 4D Spatial Intelligence & World Models**: 3D Gaussian Splatting SLAM, multi-camera rigid-rig Structure-from-Motion, action-conditioned 4D generative world simulation.

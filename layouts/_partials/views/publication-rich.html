@@ -84,7 +84,7 @@
         {{- end -}}
       </div>
       <div class="publication-rich-venue">
-        <span class="publication-rich-venue-label">{{ if $isZh }}发表{{ else }}Venue{{ end }}</span>
+        <span class="publication-rich-venue-label">{{ if $isZh }}期刊 / 会议{{ else }}Journal / Conference{{ end }}</span>
         <strong class="publication-rich-venue-name">{{ $venue | markdownify }}</strong>
         {{- with $status }}<span class="publication-rich-status is-{{ $statusKey | replaceRE "_" "-" | urlize }}">{{ . }}</span>{{ end -}}
       </div>
