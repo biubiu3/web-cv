@@ -76,11 +76,16 @@ section[id] {
   box-shadow: 0 10px 34px rgb(0 0 0 / 22%);
 }
 
-/* The upstream chooser calculates a negative fixed-position transform. Keep the
-   open menu anchored below the sticky header at every viewport width. */
+/* Anchor the dropdown to its trigger, including inside a centered wide navbar.
+   Override the theme's viewport-based inline transform and inset values. */
+#site-header div:has(> [data-hb-language-chooser]) {
+  position: relative;
+}
+
 #site-header [data-hb-language-chooser] + ul {
-  top: 3.75rem !important;
-  right: 1rem !important;
+  position: absolute;
+  top: calc(100% + .5rem) !important;
+  right: 0 !important;
   bottom: auto !important;
   left: auto !important;
   min-width: 7.25rem !important;

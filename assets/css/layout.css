@@ -23,7 +23,6 @@ body { overflow-wrap: break-word; }
 :where(button, input, select, textarea) { font: inherit; }
 #site-header .navbar { max-width: 90rem; margin-inline: auto; gap: .5rem; }
 #site-header .nav-link { height: auto; white-space: normal; line-height: 1.4; }
-#site-header [data-hb-language-chooser] + ul { top: calc(var(--site-header-height) - .25rem) !important; }
 .hbb-section { padding-block: clamp(2.5rem, 5vw, 4rem); }
 #about { padding: 0; }
 #about > .absolute { opacity: .22; }
