@@ -30,7 +30,7 @@ Profiles and contact:
 
 The research connects multimodal foundation models with physical embodiment, focusing on continuous multisensory policy learning (VSLA), lifelong agentic architectures, and action-conditioned 4D robotic world models. It investigates generative physical world simulation, reusable skills from sparse demonstrations, real-time 3D/4D spatial intelligence, and self-supervised geometric perception.
 
-HEAR, Teach and Grow, and ERMV represent core systems across policy learning, agentic lifelong adaptation, and generative world modeling. HEAR establishes continuous sound-aware manipulation. Teach and Grow organizes skills and episodic memory for perpetual learning. ERMV introduces an action-conditioned 4D multi-view robotic world model delivering consistent physical simulations for VLA training.
+HEAR, Teach and Grow, and ERMV represent core systems across policy learning, agentic lifelong adaptation, and generative world modeling. HEAR establishes continuous sound-aware manipulation. Teach and Grow acquires reusable skills with an AI Agent while keeping pretrained model weights fixed. ERMV introduces an action-conditioned 4D multi-view robotic world model delivering consistent physical simulations for VLA training.
 
 ## Engineering Project Record
 
@@ -105,12 +105,14 @@ HEAR, Teach and Grow, and ERMV represent core systems across policy learning, ag
 
 - **Title**: Teach and Grow: An Agent-Centered Architecture for General Robot Learning
 - **Authors**: Nie Chang; Zhe Liu; Hesheng Wang
-- **Focus**: Lifelong agentic robot learning, verifiable Skill Blocks, episodic memory, causal failure repair
-- **Impact & SOTA**: Breaks the prohibitive retraining tax of monolithic end-to-end models. Translates sparse human demonstrations into reusable Skill Blocks; achieves a **0% to 67% success leap** on complex multi-block causal assembly via closed-loop reflection and tool invocation without catastrophic forgetting.
-- **Abstract**: Teach and Grow (TGL) introduces an agent-centered lifelong robot learning architecture. A multimodal core orchestrates learned neural policies and classical geometric tools, observes physical execution outcomes, diagnoses execution faults, and dynamically synthesizes repairs. Successful trajectories, failure lessons, and repair strategies are stored in structured episodic memory for perpetual skill accumulation.
+- **Focus**: Training-free robot learning, reusable Skill Blocks, Experience Memory, physical feedback
+- **Results (arXiv v2)**: 99.9% mean success on four LIBERO suites, tied for the highest mean among the compared methods; 92.4% across seven LIBERO-Plus perturbation categories, the highest mean in the paper's comparison. A separate two-task fixed-executor pilot improves from 0/6 to 4/6 after adding two Skill Blocks.
+- **Abstract**: Teach-and-Grow Learning (TGL) acquires reusable skills from sparse teaching without gradient updates, fine-tuning, or reinforcement learning. OpenAI GPT-6 Astra reasons over subgoals and physical feedback; Codex connects the agent to robot tools. Verified Skill Blocks and structured Experience Memory persist with fixed pretrained weights. arXiv v2 reports 99.9% mean success on LIBERO and 92.4% on LIBERO-Plus.
 - **URLs**:
   - Page: https://changnie.top/publications/tgl/
-  - Preprint: https://arxiv.org/abs/2608.17209
+  - Preprint: https://arxiv.org/abs/2608.17209v2
+  - Project and videos: https://tgl.changnie.top/
+  - Code: https://github.com/IRMVLab/TGL
 - **BibTeX**:
 ```bibtex
 @article{nie2026tgl,
@@ -118,7 +120,7 @@ HEAR, Teach and Grow, and ERMV represent core systems across policy learning, ag
   author={Nie, Chang and Liu, Zhe and Wang, Hesheng},
   journal={arXiv preprint arXiv:2608.17209},
   year={2026},
-  url={https://arxiv.org/abs/2608.17209}
+  url={https://arxiv.org/abs/2608.17209v2}
 }
 ```
 

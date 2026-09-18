@@ -55,7 +55,7 @@ sections:
         - date: '2026'
           display_date: '2026'
           tag: 'Latest Breakthrough'
-          text: "Teach and Grow organizes reusable robot skills and experience around an agent."
+          text: "Teach and Grow acquires reusable robot skills with an AI Agent while keeping model weights fixed."
           url: 'publications/tgl/'
         - date: '2026'
           display_date: '2026'
@@ -114,7 +114,7 @@ sections:
       text: |-
         My research asks how robots can turn observations and experience into useful behavior. I study reusable skills, sound-aware manipulation, visual data generation, and geometric perception.
 
-        **Learning from experience.** Teach and Grow organizes demonstrations into skills that can be grounded, executed and checked in a new scene. A library and structured memory preserve behavior and the experience of using it.
+        **Learning from experience.** Teach and Grow turns sparse teaching into reusable skills without updating pretrained model weights. An AI Agent grounds and verifies each skill in the current scene; a skill library and structured memory retain behavior and experience for later tasks.
 
         **Understanding an interaction.** HEAR connects continuous sound with robot decisions. ERMV studies how visual conditions can change while recorded actions remain consistent across cameras.
 

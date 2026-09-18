@@ -24,8 +24,8 @@ bio: |
   My work spans the full spectrum from foundational machine learning theory to
   mass-production real-robot deployment:
   - **Embodied AI & Multimodal Agents**: Pioneered continuous audio-visual-action
-    learning (**HEAR**, IJRR 2026), lifelong agentic robot learning with persistent
-    memory (**TGL**), and action-preserving 4D multi-view trajectory editing for
+    learning (**HEAR**, IJRR 2026), training-free agentic robot learning with reusable
+    skills and persistent experience (**TGL**), and action-preserving 4D multi-view trajectory editing for
     robot data (**ERMV**).
   - **High-Precision Visual Geometry & Spatial Intelligence**: Developed
     diffusion-guided robust consensus (**DiffSAC**), embedded 3D Gaussian

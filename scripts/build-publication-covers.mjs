@@ -6,7 +6,7 @@ const root = fileURLToPath(new URL('..', import.meta.url));
 const outputRoot = join(root, 'artifacts', 'publication-covers');
 const covers = [
   ['hear', 'hear-editorial-20260916.png'],
-  ['tgl', 'tgl-refined-20260916.png'],
+  ['tgl', 'tgl-project-v2-20260918.png'],
   ['mrasfm', 'mrasfm-refined-20260916.png'],
   ['vcgs-slam', 'vcgs-slam-refined-20260916.png'],
   ['mid', 'mid-editorial-20260916.png'],

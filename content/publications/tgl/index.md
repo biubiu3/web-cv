@@ -17,11 +17,12 @@ publication_order: 10
 spotlight: true
 peer_reviewed: false
 open_access: true
-abstract: "Teach-and-Grow Learning (TGL) is an agent-centered architecture for acquiring reusable robot capabilities from a small number of successful demonstrations. A multimodal agent builds closed-loop Skill Blocks, grounds and composes them in new scenes, chooses between learned and geometric tools, observes physical outcomes, and revises its route when execution departs from intent. A Skill Library and structured Experience Memory preserve successful behaviors, failures, and repairs for later reuse."
-summary: "An agent-centered robot-learning architecture that turns sparse teaching into reusable Skill Blocks and persistent experience for future tasks."
+abstract: "Teach-and-Grow Learning (TGL) acquires reusable robot skills from sparse teaching without gradient updates, fine-tuning, or reinforcement learning. OpenAI GPT-6 Astra reasons over subgoals and physical feedback, while Codex connects the agent to robot tools. Verified Skill Blocks and structured Experience Memory grow with fixed pretrained weights. The v2 paper reports 99.9% mean success on LIBERO and 92.4% on LIBERO-Plus."
+summary: "Training-free skill acquisition with an AI Agent: fixed model weights, reusable skills, and 99.9% / 92.4% mean success on LIBERO / LIBERO-Plus."
 story_order: 80
 homepage_order: 10
 topic_keywords:
+  - Training-Free Robot Learning
   - Agentic AI
   - Generalist Robots
   - Continual Robot Learning
@@ -38,130 +39,124 @@ tags:
   - Robot Manipulation
 featured: true
 image:
-  caption: "Experience becomes reusable robot skills."
-  alt_text: "TGL — Experience becomes reusable robot skills."
+  caption: "Sparse teaching, fixed weights, reusable skills. Conceptual illustration."
+  alt_text: "A Franka robot reuses a taught skill to place a plush toy into a bowl in a changed scene."
 links:
   - type: preprint
     provider: arxiv
-    id: 2608.17209v1
+    id: 2608.17209v2
+  - type: custom
+    name: Project website
+    url: https://tgl.changnie.top/
+  - type: code
+    url: https://github.com/IRMVLab/TGL
 ---
 
-## The retraining tax
+## Training-free robot learning
 
-Language models inherited a substrate that took humanity centuries to produce: text, code, books, records. Embodied intelligence has no such inheritance, because its evidence does not exist until a robot or a simulator is run. Robot datasets have grown impressively, and the more impressive they get, the clearer it becomes how much infrastructure has to be built before robot data resembles a mature substrate at all.
+A robot encounters a new object or a grasp that no longer works. Adapting a learned policy typically requires more interaction data, another optimization run, and regression checks on earlier tasks. Teach-and-Grow Learning (TGL) asks whether that new capability can instead become an explicit, reusable skill while pretrained model weights stay fixed.
 
-The problem is not only volume. The evidence a robot most needs is the evidence least likely to appear in a clean demonstration set: near collisions, transparent and deformable objects, unstable grasps, partial insertions, moments where two sensors disagree, recoveries after an interrupted sequence, and the chained states that earlier mistakes produce. These are exactly the situations that make a policy fail, and they are the situations a curated dataset quietly filters out.
+TGL uses an AI Agent to turn sparse teaching into closed-loop **Skill Blocks**. The agent grounds them in the current scene, calls robot tools, checks physical outcomes, and retains verified behavior for later tasks. The v2 paper reports **99.9% mean success on LIBERO** and **92.4% on LIBERO-Plus**.
 
-So consider what happens when a deployed robot meets one of them. Maybe the grasp slips on a new kind of packaging. The fix is local. It concerns one object, one material, one scene. But if the policy is a monolithic network, there is no way to make a local fix. You collect more data covering the failure, retrain, and regression-test the whole thing to confirm you did not break something else. A change distributed across parameters is hard to inspect, delimiting is hard, and certifying it locally is impossible.
+[Read arXiv v2](https://arxiv.org/html/2608.17209v2) · [Project website and videos](https://tgl.changnie.top/) · [Code](https://github.com/IRMVLab/TGL)
 
-We call this the retraining tax: the mismatch between a local gap and a global update. Every uncovered object becomes a new version of the entire policy.
+## Why a local failure can require another training cycle
 
-![A local gap forces a global update.](retraining-tax.png "Repairing one failure in a monolithic policy costs new data, a full update, and regression testing.")
+Robot experience has to be collected through physical or simulated interaction. Object pose, camera geometry, clutter, material, and embodiment also interact: covering each factor separately does not cover their combinations. A rare contact condition may need one specific correction, yet incorporating it through shared policy parameters can require a broader update and validation cycle. The paper calls this recurring cost the **retraining tax**.
 
-Three constraints shaped what we did about it. Robot data has to be produced by operating machines, so we cannot simply wait for more. Exploration on real hardware is slow and sometimes unsafe, which rules out learning from scratch by trial. And whatever we build has to preserve the fast, low-latency execution that end-to-end policies are genuinely good at. We have no interest in trading a working controller for a slower one.
+TGL keeps the correction addressable. A new skill has a stated scope, an execution strategy, and an outcome test; a failed attempt can leave a condition or recovery rule that guides the next attempt. Learned policies still provide useful physical priors and can serve as executors within this architecture.
 
-## What the alternatives leave unrepaired
+![Two routes to acquiring an unfamiliar pick-and-place behavior.](fig1-v2.webp "Figure 1. Policy training and agent-guided skill acquisition, illustrated with an unfamiliar plush toy. Conceptual comparison from the project website.")
 
-End-to-end vision-language-action and world-action models are remarkable in coverage and bounded by it. Beyond the validated physical range, web-scale semantics do not supply the geometry, dynamics or contact behavior needed to execute. There is also an architectural limit that matters more for our purposes: the observation interface, the policy invocation, the action decoder, the success check and the fallback are all predetermined. Feedback can change the next action. It cannot change the route.
+## What changes when the weights stay fixed?
 
-Learning by exploration removes the need for demonstrations but moves the cost onto the robot. Agentic exploration can assemble and repair behavior without updating a task-specific policy, and on a physical platform it requires many sequential decisions and can trigger unsafe actions. That is our reason for seeding with teaching rather than starting from nothing.
+**Training-free refers to acquiring the incoming task:** no gradient update, fine-tuning, or reinforcement-learning stage is invoked. The agent and specialist robot models can already be pretrained. Task acquisition changes the Skill Library and Experience Memory.
 
-Behavior cloning and reinforcement learning are defined by their learning object, not by being wrong. Cloning turns demonstrations into supervised action targets. Reinforcement learning uses interaction to change a policy or a value function. Neither makes capability itself the object of learning: a failure becomes distribution mismatch or a reward signal rather than a structured cause, a missing block or a negative condition, and whatever is learned persists distributed in parameters.
+The implementation uses **OpenAI GPT-6 Astra** for multimodal reasoning and **Codex** to connect the agent to robot tools. The agent selects subgoals, requests observations, chooses tools, and revises the remaining route. Perception, grasping, motion planning, servos, and controllers supply metric geometry, contact handling, and continuous control.
 
-Planner and tool-using agents are the important ancestors here, and the difference is one of placement. SayCan, Code as Policies, VoxPoser, ReKep and Inner Monologue all put a model inside a workflow that someone else fixed. Our step is that the agent owns the evolving workflow instead of filling a slot in it.
+This division grew from direct agent control: inspect a scene, call a tool, observe the result, and try again. Such a loop can complete tasks without demonstrations, but repeated exploration consumes interactions and model calls. Teaching gives it a useful starting structure. It is an accelerator, rather than a prerequisite for agent control.
 
-Robot operating layers and skill-memory systems are the family we are closest to, and we should say so plainly. What we could not find is the conjunction: a continuous cycle where few-shot teaching seeds abstraction across demonstrations, the agent executes and revises a closed-loop composition, success and failure change persistent skill state, and mature behavior can be compressed into something fast.
+## Teach, act, verify, grow
 
-## Why this is hard in specific ways
+1. **Teach.** Align demonstrations by the state changes they accomplish. Extract shared subgoals and strategies while keeping the evidence associated with each teaching source.
+2. **Compose and act.** Retrieve suitable Skill Blocks, bind objects and geometry from fresh observations, and execute one meaningful stage.
+3. **Verify.** Compare the observed effect with the intended one. Continue, reobserve, repair the route, request focused teaching, or stop.
+4. **Grow.** Admit validated behavior to the Skill Library and record its conditions, outcome, diagnosis, and repair in Experience Memory. Both stores inform the next task.
 
-Coverage is combinatorial rather than additive. Object identity, pose, clutter, illumination, camera, gripper, material, contact mode, task relation: dense coverage is the product of the regimes along each factor, and even screening every pair of factors is quadratic. Factored scaling curves exist in the first place because exhaustive environmental variation is unaffordable.
+![The full Teach-and-Grow loop, from teaching through execution and verification to persistent skills and experience.](fig2-v2.png "Figure 2. The agent checks each block's physical effect before deciding what comes next. The complete Grow state returns to composition for the next task.")
 
-Precision behaves like a tail that wags the data. As tolerance tightens, the demonstrations required grow sharply, so the last increments of physical precision can cost more than everything before them.
+Successful teaching supplies a strategy; a failure identifies a condition under which that strategy needs attention. As the library grows, teaching can focus on a missing transition or an unfamiliar tool instead of repeating a complete task.
 
-Then there is verification. Confirming that a repair did not break anything else scales with coverage, which means the cost of checking is the cost of the whole system. Adding a sensor or a new body is not impossible, but each one demands aligned interaction, fusion, calibration and broad regression. Alignment across demonstrations is its own problem: two demonstrations of the same task differ in timing and motion, so they have to be aligned by what they accomplish rather than by motor coordinates, and they need not contain the same number of raw segments.
+## A Skill Block keeps the effect, recomputes the motion
 
-Two conceptual traps sit underneath all of this. The first is invariance. A segment that still depends on the original coordinates is an episode, not a reusable behavior, and deciding which parts are invariant and which are instance-specific is the central judgement. The second is fluency. A plan that reads well is not evidence that a grasp succeeded, and we wanted an architecture where it is hard to confuse the two.
+Consider placing a bowl on a plate. Demonstrations may use different approaches and paths, yet share the same effects: acquire the requested bowl, verify that it is held, establish the target relation, and release it. TGL retains this structure and computes the physical realization again for the current scene.
 
-## Changing what the robot can retrieve, not what it knows
+Each block carries seven fields: **subgoal, scope, reusable strategy, grounding function, compatible executors, outcome test, and bounded recovery choices**. The outcome test returns pass, fail, or inconclusive. A block may contain several perception–action iterations; its boundary follows a meaningful state change rather than a fixed duration.
 
-The idea is simple to state. A robot should learn by changing what it can retrieve and execute, not by changing its weights.
+![A Skill Block's seven fields and its observe, ground, execute, and verify loop.](fig3-v2.png "Figure 3. An explicit contract connects a semantic subgoal to current-scene execution and observable evidence.")
 
-That means each acquisition has to produce an explicit object. The object separates semantic structure, which is invariant and reusable, from physical realization, which is recomputed for the current scene. And it carries its own applicability conditions, executors, success test and recovery. That object is what we call a Skill Block.
+Demonstration world coordinates, pixels, old paths, joint trajectories, and low-level action replay are excluded from the reusable strategy. Scope expands only when supporting variation has been validated. The paper's induced acquisition block, for example, remains object-specific rather than becoming a generic can-grasping skill.
 
-![A Skill Block separates reusable strategy from scene-bound execution.](skill-block.png "Subgoal, scope, strategy, grounding, executors, outcome test and recoveries.")
+The **Skill Library** stores executable behavior. **Experience Memory** stores task context, selection conditions, outcomes, diagnoses, and repairs. This separation lets the agent retrieve both a behavior and the evidence needed to judge whether it applies. A stored episode alone does not become a validated skill.
 
-A block is a tuple: a subgoal, a scope, a reusable strategy, a grounding function that turns current observations into scene-bound variables, a set of executors, an outcome test returning pass, fail or inconclusive, and a bounded set of recoveries. Remove the scope and the verifier and a block is a plan nobody can check. Remove grounding and it is a trajectory replayed into a world that has changed.
+## Results in the v2 paper
 
-Granularity is decided by semantic closure and reuse, not by duration or the number of motor commands. Closing a gripper can be a block. So can the sequence of detecting a container, approaching it, closing, lifting, and checking that the object is retained.
+The paper evaluates task success on LIBERO and its perturbed extension, LIBERO-Plus. The following values reproduce TGL's rows in Tables I and II; each mean weights its suites or categories equally.
 
-The parameter update rule is deliberately trivial. The foundation weights do not move. What changes is the library of blocks and the memory, and both change only through admission checks. The policy supplies priors. The library supplies executable behavior. The memory guides the agent but cannot execute anything by itself.
+| LIBERO suite | Success rate |
+| --- | ---: |
+| Spatial | 99.7% |
+| Object | 100.0% |
+| Goal | 100.0% |
+| Long | 99.9% |
+| **Mean** | **99.9%** |
 
-## Two stores, and why they are separate
+TGL ties LaST-R1 for the highest LIBERO mean among the methods compared in Table I.
 
-The Skill Library keeps validated behavior. Experience Memory keeps structured records of what happened: the task, the context, which blocks were used, the outcome, the diagnosis, the repair, and the evidence behind it, stored in a compact form a human can read and correct.
+| LIBERO-Plus perturbation | Success rate |
+| --- | ---: |
+| Camera | 87.3% |
+| Robot initial state | 90.7% |
+| Language | 96.8% |
+| Lighting | 97.3% |
+| Background | 97.4% |
+| Sensor noise | 89.9% |
+| Object layout | 87.2% |
+| **Mean** | **92.4%** |
 
-The split is deliberate. The library remembers how to act. Memory remembers what experience taught. Systems that conflate the two end up remembering a great many episodes without gaining a reusable behavior, or carrying a broad policy without retaining the lesson behind a repair.
+The LIBERO-Plus mean is the highest among the methods in Table II. Camera and sensor-noise results also identify room to improve visual grounding. The full comparison and cited baseline sources are in the [paper's evaluation section](https://arxiv.org/html/2608.17209v2#S5).
 
-![Skills and experience are stored separately and used differently.](learning-ecosystem.png "The library holds executable behavior; memory holds the reasoning behind it.")
+Controlled studies examine the learning operations behind task success:
 
-## From demonstrations to blocks
+**Demonstration decomposition.** Ten visual demonstrations yield 20 confirmed acquisition and release effects, using a deterministic decomposition.
 
-Teaching comes in more forms than the phrase "a few demonstrations" suggests: robot demonstrations, human video, written instructions. We normalize each source while keeping its type, because a video and a joint trajectory carry different kinds of evidence.
+**Persistent task-specific learning.** Three teacher trajectories produce two blocks that solve 3/3 evaluation states and retain 3/3 success after save-and-reload. Outside their learned scope, execution stops at the first unmet effect.
 
-The pipeline then splits trajectories at meaningful state changes, aligns the resulting segments by the effect they achieve rather than by their motor profile, and separates each aligned group into semantic invariants, behavioral invariants, and instance variables. What gets excluded is as important as what gets kept. Demonstration world coordinates, pixel values, the path that was actually taken, the joint trajectory, and a low-level replay of the actions are all discarded. Storing any of them would tie the lesson to its first setting.
+**Feedback-driven execution.** Two representative successful traces show route revision after grasping and a fresh observation after an inconclusive drawer-opening result.
 
-Scope expands only when there is variation to support it. Pose invariance requires repeated success across poses. Object-level abstraction requires multiple instances of the object. Affordance-level reuse requires cross-category success. Generality is earned by evidence, and a pattern seen with one instrument stays narrow.
+**Fixed-executor library pilot.** Expanding the library from six to eight blocks raises success from 0/6 to 4/6 with model weights, runtime, and evaluation budget held fixed.
 
-At task time the agent composes blocks into a route, and the route is a plan for what comes next rather than a script fixed at episode start. The agent may keep it, shorten it, or replace the rest, and it can change its mind whenever the physical state changes meaningfully.
 
-## Who controls what
+The pilot tests local library growth on two tasks. Its sample size and purpose differ from the benchmark tables; detailed protocols, uncertainty estimates, and acquisition costs appear in Appendix I. Demonstration videos are available on the [project website](https://tgl.changnie.top/).
 
-The architecture assigns responsibility asymmetrically, and this is the part we would defend hardest. The agent owns questions that change the route. Robot-native executors own metric motion, contact, and control.
+## Scaling with reusable experience
 
-Keeping that line lets a language-level plan exist without being treated as motor authority. It also localizes improvement. A better grasp detector replaces one component. A new recovery attaches to the effect that failed.
+TGL proposes effective reusable experience as a resource that can grow during deployment. It counts experience that remains validated, retrievable, grounded, and composable. Redundant episodes can add little, while one missing bridge block can enable several new compositions.
 
-A block handoff illustrates the boundary. An acquisition block ends by verifying that the object is retained. The next block only needs the achieved effect, that the target is held. It does not need to know which backend produced it, which is what makes the block portable across a parallel gripper, a suction cup, or a dexterous hand.
+The scaling hypothesis predicts that related future-task error and teaching demand approach their own floors as this resource grows. The curves below are schematic, and the paper presents them as a hypothesis to test.
 
-## Teaching and learning promote each other
+![Schematic future-task error and teaching demand as effective reusable experience grows.](fig4-v2.png "Figure 4. The scaling hypothesis and a proposed path from agentic acquisition to a fast student policy.")
 
-The loop we are describing has a name in the Xue Ji, the classical Chinese text on learning: 教学相长, teaching and learning promote one another. The cycle runs teach, compose, act and check, grow, then teach again from a better position than before.
+A complementary cost analysis asks when adding a skill can remain local. Near-additive growth depends on bounded interfaces, local validation, and retrieval costs that are at most linear. If every addition reopens joint coverage and broad regression, acquisition can become more expensive as capability expands.
 
-The character of the teaching changes as the system matures. Early on you teach whole behaviors, because nothing exists yet. Later you teach against specific gaps: rare failures, new tools, missing transitions. That progression is what the paper's closing line is about. Deployment remains a period of learning. The goal is not to preserve every interaction, but to keep the small part of experience that turns today's unfamiliar task into tomorrow's reusable capability.
+![Conceptual acquisition-cost regimes for globally coupled updates and local Skill Block additions.](fig5-v2.png "Figure 5. Conditional cost regimes and a precision-cost illustration; these are analytic concepts rather than measured benchmark curves.")
 
-## The scaling claim, stated carefully
+## How the architecture fits the robot stack
 
-We propose that two quantities follow power laws toward floors. The first is how much of a task the system can handle as effective experience grows. The second is how much teaching is still needed. Writing $X$ for effective reusable experience, we hypothesize
+Human instruction, robot demonstrations, simulation, and video can supply teaching evidence. Learned policies and specialist tools supply executable behavior. The agent organizes these resources around subgoals and measured outcomes, with skill and experience storage closing the learning loop.
 
-$$
-E_{\mathrm{future}}(X) = E_\infty + A X^{-\alpha},
-\qquad
-D_{\mathrm{teach}}(X) = D_\infty + B X^{-\beta}.
-$$
+![The TGL ecosystem connects teaching sources, models, robot tools, verification, skills, and memory.](fig6-v2.png "Figure 6. The whole-system view. Dashed paths indicate proposed fast-policy distillation and fleet sharing.")
 
-The important word is effective. $X$ is not a count of episodes. It is a score over stored history, fixed in advance and hidden from future task outcomes, weighted by how reliable the evidence behind a lesson is, how much new coverage it adds, whether it can be retrieved when needed, whether its grounding still holds, and whether it composes with blocks already admitted. Two robots can store the same number of episodes yet possess very different amounts of effective experience.
+Repeated reasoning and observation add latency to unfamiliar tasks. The proposed fast-policy extension would train a student on verified trajectories and return uncertain cases to the agent. Such later training is separate from training-free task acquisition. Fleet sharing and cross-embodiment reuse likewise require local grounding and verification; the reported studies use LIBERO simulation on a single embodiment.
 
-On the cost side, the per-block cost decomposes into teaching, grounding, validating and linking. If scope and validation stay local, cumulative cost grows at most linearly in the number of blocks. Block contracts and scopes are what keep the update local.
-
-We are explicit that this is a hypothesis. The claim that more experience should help is not yet a scaling law, and it will not be one without a defined resource, a defined outcome, a stable relationship between them, and a prediction on held-out tasks.
-
-![Effective reusable experience, not episode count, is the proposed resource.](experience-scaling.png "The scaling claim is stated as a testable hypothesis rather than a measured law.")
-
-## Where the architecture is heading
-
-A mature behavior can eventually be compressed into a fast student, whether that is a vision-language-action model, a world-action model, a diffusion policy, or a controller specialized to one block. The student is trained only on verified agentic trajectories and hands control back to the agent when it is uncertain.
-
-The ordering matters. Distillation is the proposed next step for the fast path, and it is not the mechanism by which a task first became available. Compressing behavior before it has been acquired and verified would recreate exactly the problem we started with.
-
-## What the studies do and do not show
-
-We evaluated in the LIBERO simulator on a single embodiment. The visual decomposition study uses a deterministic decomposition, with the multimodal agent as the general formulation. The fixed-executor library study is a compact mechanism study rather than a broad benchmark. The induced acquisition block's scope is object-specific and was not exposed as a generic capability.
-
-The main practical cost today is time. An unfamiliar task may need several rounds of agent reasoning, tool use and observation, and the agentic path is slower than feedforward policy inference. Cross-embodiment reuse is the natural next test and we have not run it. The four levels of retention need to be measured rather than asserted, and fleet-level sharing of blocks is future work.
-
-A failure-localization cohort in the paper shows something we think is more useful than a headline number: the learned route does not close every gap. Motion planning, path consistency and calibration problems, and gripper-closure failures stay outside what this architecture repairs, and knowing which failures are localized and which are not is the beginning of knowing where to invest.
-
-## Why we think the framing survives the next model
-
-The architecture is built to be indifferent to progress in foundation models. A stronger model becomes a better block executor, a better fast path, or a better distilled student. The toolbox may shrink, but the need to organize behavior, interpret outcomes, and retain new competence does not.
-
-The analogy we keep using is the difference between asking a language model for one answer and giving a coding agent a workspace. In robotics the workspace is physical and the artifacts are executable skills and grounded experience. The last line of the paper is the version we would put on a wall: a robot should be able to learn a local lesson locally.
+The practical objective is to make a lesson persist: acquire a behavior, check what it accomplishes, and leave the robot with a skill and experience it can use again.
