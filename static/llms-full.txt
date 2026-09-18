@@ -106,11 +106,11 @@ HEAR, Teach and Grow, and ERMV represent core systems across policy learning, ag
 - **Title**: Teach and Grow: An Agent-Centered Architecture for General Robot Learning
 - **Authors**: Nie Chang; Zhe Liu; Hesheng Wang
 - **Focus**: Training-free robot learning, reusable Skill Blocks, Experience Memory, physical feedback
-- **Results (arXiv v2)**: 99.9% mean success on four LIBERO suites, tied for the highest mean among the compared methods; 92.4% across seven LIBERO-Plus perturbation categories, the highest mean in the paper's comparison. A separate two-task fixed-executor pilot improves from 0/6 to 4/6 after adding two Skill Blocks.
-- **Abstract**: Teach-and-Grow Learning (TGL) acquires reusable skills from sparse teaching without gradient updates, fine-tuning, or reinforcement learning. OpenAI GPT-6 Astra reasons over subgoals and physical feedback; Codex connects the agent to robot tools. Verified Skill Blocks and structured Experience Memory persist with fixed pretrained weights. arXiv v2 reports 99.9% mean success on LIBERO and 92.4% on LIBERO-Plus.
+- **Method**: Sparse teaching, explicit closed-loop Skill Blocks, fixed-weight execution, physical feedback, and persistent skill and experience storage form one learning cycle. Evaluation studies examine acquisition, retention, feedback, and reuse; see the paper for protocols and quantitative results.
+- **Abstract**: Teach-and-Grow Learning (TGL) acquires reusable skills from sparse teaching without gradient updates, fine-tuning, or reinforcement learning. OpenAI GPT-6 Astra reasons over subgoals and physical feedback; Codex connects the agent to robot tools. Verified Skill Blocks and structured Experience Memory persist with fixed pretrained weights.
 - **URLs**:
   - Page: https://changnie.top/publications/tgl/
-  - Preprint: https://arxiv.org/abs/2608.17209v2
+  - Preprint: https://arxiv.org/abs/2608.17209
   - Project and videos: https://tgl.changnie.top/
   - Code: https://github.com/IRMVLab/TGL
 - **BibTeX**:
@@ -120,7 +120,7 @@ HEAR, Teach and Grow, and ERMV represent core systems across policy learning, ag
   author={Nie, Chang and Liu, Zhe and Wang, Hesheng},
   journal={arXiv preprint arXiv:2608.17209},
   year={2026},
-  url={https://arxiv.org/abs/2608.17209v2}
+  url={https://arxiv.org/abs/2608.17209}
 }
 ```
 
