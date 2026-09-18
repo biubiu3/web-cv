@@ -6,7 +6,7 @@
 # Website name (set in params.yaml under hugoblox.branding.name)
 title: 'Nie Chang'
 # Website URL (GitHub Pages project site)
-baseURL: 'https://biubiu3.github.io/web-cv/'
+baseURL: 'https://changnie.top/'
 
 ############################
 ## LANGUAGE

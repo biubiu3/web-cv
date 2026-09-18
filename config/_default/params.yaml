@@ -145,7 +145,7 @@ hugoblox:
       allow:
         - /
       disallow: []
-      note: "Public research profile and publication metadata may be indexed and cited. See /web-cv/llms.txt for a concise, machine-readable guide."
+      note: "Public research profile and publication metadata may be indexed and cited. See /llms.txt for a concise, machine-readable guide."
       contact: "changniep@gmail.com"
 
   # ────────────────────────────────────────────────────────────────────────────

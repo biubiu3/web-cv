@@ -1,6 +1,6 @@
 # Nie Chang: Extended Research Profile
 
-> Detailed public context for understanding and citing the academic work of Nie Chang (聂畅). Canonical human-readable source: https://biubiu3.github.io/web-cv/
+> Detailed public context for understanding and citing the academic work of Nie Chang (聂畅). Canonical human-readable source: https://changnie.top/
 
 ## Identity and Affiliation
 
@@ -16,8 +16,8 @@ Research interests:
 
 Profiles and contact:
 
-- Website: https://biubiu3.github.io/web-cv/
-- Chinese website: https://biubiu3.github.io/web-cv/zh/
+- Website: https://changnie.top/
+- Chinese website: https://changnie.top/zh/
 - Email: changniep@gmail.com
 - Google Scholar: https://scholar.google.com/citations?user=Tc2sl7gAAAAJ
 - LinkedIn: https://www.linkedin.com/in/chang-nie-819a463b6/
@@ -42,9 +42,9 @@ HEAR, Teach and Grow, and ERMV represent core systems across policy learning, ag
 - Inputs and outputs: Six-view surround imagery, localization, semantic masks, and initial calibration were converted into refined vehicle poses and camera extrinsics, sparse scene geometry, and dense ground point clouds for downstream reconstruction.
 - Engineering focus: Semantically masked SuperPoint features, overlap- and time-constrained matching, two-view verification, rig-aware registration and bundle adjustment, ACMP depth with COLMAP fusion, spatial filtering, and multi-run aggregation.
 - Validation: Slashed processing latency by 95%+ (from 30-40 min down to 1-1.5 min), achieved 4.7695% mean dense-depth error against LiDAR reference (well within the 8% OEM threshold), and reduced trajectory angular drift by 3x across all evaluation sequences.
-- Project page: https://biubiu3.github.io/web-cv/projects/sfm/
-- Chinese project page: https://biubiu3.github.io/web-cv/zh/projects/sfm/
-- Related paper: https://biubiu3.github.io/web-cv/publications/mrasfm/
+- Project page: https://changnie.top/projects/sfm/
+- Chinese project page: https://changnie.top/zh/projects/sfm/
+- Related paper: https://changnie.top/publications/mrasfm/
 
 ### Automated Valet Parking: Complete Campus-Scale AVP System
 
@@ -53,8 +53,8 @@ HEAR, Teach and Grow, and ERMV represent core systems across policy learning, ag
 - Leadership and focus: Nie Chang served as project lead and chief architect for system design, module interfaces, milestones, and vehicle integration, with a deep technical focus on planning and control.
 - Planning design: Centerline-guided improved A* and local state sampling handled aisle driving; orientation-aware Hybrid A* initialized a constrained optimal-control problem for executable parking trajectories.
 - Operating modes: Known-map parking, remembered or assigned spaces, unknown-map exploration and mapping, park-in/out, and remote summon to a pickup point.
-- Project page: https://biubiu3.github.io/web-cv/projects/avp/
-- Chinese project page: https://biubiu3.github.io/web-cv/zh/projects/avp/
+- Project page: https://changnie.top/projects/avp/
+- Chinese project page: https://changnie.top/zh/projects/avp/
 
 ### Autonomous Lawn Robot: LiDAR Obstacle Perception and Multi-Sensor Fusion
 
@@ -63,8 +63,8 @@ HEAR, Teach and Grow, and ERMV represent core systems across policy learning, ag
 - Leadership and focus: Nie Chang led the system design, module coordination, and field integration, with deep hands-on work on terrain-aware LiDAR obstacle detection and the multi-sensor obstacle-fusion layer.
 - Point-cloud design: Structured grid/range projection, local terrain reasoning for grass and slopes, 7cm trench hazard detection, efficient clustering, odometry-linked temporal reuse, obstacle tracking, and planning-facing publication.
 - Fusion design: Point-cloud geometry was projected into semantic masks and visual detections, producing geometry-only, class-aware, and vision-estimated obstacle types.
-- Project page: https://biubiu3.github.io/web-cv/projects/mower/
-- Chinese project page: https://biubiu3.github.io/web-cv/zh/projects/mower/
+- Project page: https://changnie.top/projects/mower/
+- Chinese project page: https://changnie.top/zh/projects/mower/
 
 ### Low-Speed Autonomous Research Vehicle
 
@@ -73,8 +73,8 @@ HEAR, Teach and Grow, and ERMV represent core systems across policy learning, ag
 - Hardware: Camera, LiDAR, RTK GNSS, IMU, ultrasonic sensing, industrial computer, HMI, and drive-by-wire/CAN interfaces.
 - Software: Complete ROS-based perception, GPS/map localization, decision and planning, control, and CAN communication.
 - Demonstrations: Eight successful real-vehicle demonstrations covering LiDAR mapping, SLAM and RTK route following, lane keeping, multi-object detection, AEB, automatic parking, and connected ACC.
-- Project page: https://biubiu3.github.io/web-cv/projects/lsv/
-- Chinese project page: https://biubiu3.github.io/web-cv/zh/projects/lsv/
+- Project page: https://changnie.top/projects/lsv/
+- Chinese project page: https://changnie.top/zh/projects/lsv/
 
 ## Publication Record & BibTeX Citations
 
@@ -86,7 +86,7 @@ HEAR, Teach and Grow, and ERMV represent core systems across policy learning, ag
 - **Impact & SOTA**: First continuous Vision-Sound-Language-Action (VSLA) robot manipulation framework. Outperforms π0.5 by **+33%** (0.81 vs 0.61 sim success rate); achieves **96% Real Alarm resistance** against acoustic noise on real dual Franka Panda manipulators.
 - **Abstract**: HEAR establishes the Vision-Sound-Language-Action (VSLA) paradigm for continuous robot control. By fusing causal audio memory with high-frequency audio prediction and flow-matching action generation, HEAR maintains situational awareness across high-speed dynamic manipulation, eliminating the unobserved evidence gaps inherent to action chunking. Evaluated on the standardized HEAR-Bench and pretrained on OpenX-Sound.
 - **URLs**:
-  - Page: https://biubiu3.github.io/web-cv/publications/hear/
+  - Page: https://changnie.top/publications/hear/
   - Project & Demo: https://hear.irmv.top/
   - Code: https://github.com/IRMVLab/HEAR
   - Preprint: https://arxiv.org/abs/2603.16086
@@ -109,7 +109,7 @@ HEAR, Teach and Grow, and ERMV represent core systems across policy learning, ag
 - **Impact & SOTA**: Breaks the prohibitive retraining tax of monolithic end-to-end models. Translates sparse human demonstrations into reusable Skill Blocks; achieves a **0% to 67% success leap** on complex multi-block causal assembly via closed-loop reflection and tool invocation without catastrophic forgetting.
 - **Abstract**: Teach and Grow (TGL) introduces an agent-centered lifelong robot learning architecture. A multimodal core orchestrates learned neural policies and classical geometric tools, observes physical execution outcomes, diagnoses execution faults, and dynamically synthesizes repairs. Successful trajectories, failure lessons, and repair strategies are stored in structured episodic memory for perpetual skill accumulation.
 - **URLs**:
-  - Page: https://biubiu3.github.io/web-cv/publications/tgl/
+  - Page: https://changnie.top/publications/tgl/
   - Preprint: https://arxiv.org/abs/2608.17209
 - **BibTeX**:
 ```bibtex
@@ -130,7 +130,7 @@ HEAR, Teach and Grow, and ERMV represent core systems across policy learning, ag
 - **Impact & SOTA**: First framework to establish an action-conditioned 4D multi-camera world model with rigorous epipolar geometry and kinematic preservation. Enables counterfactual rollout synthesis and physical perturbation generation, unlocking a **44.5x boost** (from 2% to 89% task success) in real dual-arm manipulation within unseen cluttered environments.
 - **Abstract**: ERMV formulates robotic trajectory generation as an action-conditioned 4D multi-view world model. Given multi-view robot observations and joint action sequences, ERMV models the future 4D spatiotemporal world distribution under counterfactual perturbations, physical scene variations, and camera rig kinematics. By integrating sparse spatiotemporal token modeling, motion-aware epipolar attention, and kinematic constraint enforcement, ERMV generates infinite, geometrically consistent multi-view video rollouts to train robust Vision-Language-Action (VLA) foundation models without manual real-world demonstration collection.
 - **URLs**:
-  - Page: https://biubiu3.github.io/web-cv/publications/ermv/
+  - Page: https://changnie.top/publications/ermv/
   - Code: https://github.com/IRMVLab/ERMV
   - Preprint: https://arxiv.org/abs/2507.17462
 - **BibTeX**:
@@ -152,7 +152,7 @@ HEAR, Teach and Grow, and ERMV represent core systems across policy learning, ag
 - **Impact & SOTA**: Voxel-anchored 3D Gaussian SLAM achieving **226% rendering acceleration** (up to **458 FPS**) and **2.3x memory compression**, running seamlessly on edge embedded NVIDIA Jetson platforms.
 - **Abstract**: VCGS-SLAM introduces a compact voxelized 3D Gaussian representation for real-time dense visual SLAM. By combining sliding-window pruning masks and residual vector quantization (RVQ) with hybrid local-to-global bundle adjustment and point-to-plane ICP, it delivers millimeter-accurate metric mapping and high-fidelity rendering on low-power embedded devices.
 - **URLs**:
-  - Page: https://biubiu3.github.io/web-cv/publications/vcgs-slam/
+  - Page: https://changnie.top/publications/vcgs-slam/
   - Code: https://github.com/dtc111111/VCGS-SLAM
   - Preprint: https://arxiv.org/abs/2403.11247
 - **BibTeX**:
@@ -174,7 +174,7 @@ HEAR, Teach and Grow, and ERMV represent core systems across policy learning, ag
 - **Impact & SOTA**: **Ranked #1 on the official nuScenes Multi-Camera SfM Benchmark** (0.124 translation RMSE); accelerates camera-set bundle adjustment by **45.4x** (from 8,720 min down to 192 min).
 - **Abstract**: MRASfM pioneers a rigid-rig multi-camera Structure-from-Motion and scene aggregation architecture for autonomous driving. Leveraging known multi-camera extrinsics, semantic road-plane filtering, camera-set bundle adjustment, and hierarchical coarse-to-fine correspondence matching, it reconstructs millimeter-accurate 4D static backgrounds across extensive multi-run vehicle trajectories.
 - **URLs**:
-  - Page: https://biubiu3.github.io/web-cv/publications/mrasfm/
+  - Page: https://changnie.top/publications/mrasfm/
   - Preprint: https://arxiv.org/abs/2510.15467
 - **BibTeX**:
 ```bibtex
@@ -196,7 +196,7 @@ HEAR, Teach and Grow, and ERMV represent core systems across policy learning, ag
 - **Impact & SOTA**: Self-supervised denoising without clean reference pairs across 5 modalities (RGB images, LiDAR point clouds, EEG bio-signals, DNA sequences, and depth maps), yielding up to **53.7% relative pose gain** in downstream visual odometry.
 - **Abstract**: MID formulates noisy observations as intermediate states of a continuous degradation process and learns an iterative reverse denoising trajectory using uncurated noisy data alone. Validated across diverse robotics and physical sensory modalities.
 - **URLs**:
-  - Page: https://biubiu3.github.io/web-cv/publications/mid/
+  - Page: https://changnie.top/publications/mid/
   - Preprint: https://arxiv.org/abs/2511.00997
 - **BibTeX**:
 ```bibtex
@@ -218,7 +218,7 @@ HEAR, Teach and Grow, and ERMV represent core systems across policy learning, ag
 - **Impact & SOTA**: Achieves **92.5 J&F** on DAVIS 2016 from a **single still image without optical flow or adjacent frames**, decisively beating dedicated multi-frame video models (FlowP/FlowI 86.7).
 - **Abstract**: MovSAM enables zero-shot moving-object segmentation from a single image when temporal motion cues are missing. An MLLM deep-thinking engine inspects scene semantics to deduce dynamic intent and output textual prompts, which are fused with SAM2 and BEiT-3 representations over a bounded iterative refinement loop.
 - **URLs**:
-  - Page: https://biubiu3.github.io/web-cv/publications/movsam/
+  - Page: https://changnie.top/publications/movsam/
   - Code: https://github.com/IRMVLab/MovSAM
   - Preprint: https://arxiv.org/abs/2504.06863
 - **BibTeX**:
@@ -240,7 +240,7 @@ HEAR, Teach and Grow, and ERMV represent core systems across policy learning, ag
 - **Impact & SOTA**: SOTA robust estimation running at **30-50 Hz**, slashing median rotation error by **40%** compared to classical RANSAC/MAGSAC++ under extreme outlier regimes.
 - **Abstract**: DiffSAC reformulates sample consensus as conditional diffusion generation over minimal sets. Rather than relying on heuristic scoring and brute-force rejection, a geometry-conditioned score-based diffusion model directly generates all-inlier candidate hypotheses in a single rapid reverse trajectory.
 - **URLs**:
-  - Page: https://biubiu3.github.io/web-cv/publications/diffsac/
+  - Page: https://changnie.top/publications/diffsac/
   - Code: https://github.com/IRMVLab/DiffSAC
   - Preprint: https://arxiv.org/abs/2608.30603
 - **BibTeX**:
@@ -263,7 +263,7 @@ HEAR, Teach and Grow, and ERMV represent core systems across policy learning, ag
 - **Impact & SOTA**: Pioneered RL-guided sample consensus, overcoming combinatorial sampling explosions under severe outlier contamination with 0 inlier annotations.
 - **Abstract**: RLSAC models sample-consensus robust estimation as an unsupervised Markov decision process. A graph neural network encodes point observations, residuals, and sampling history, learning a state transition policy rewarded solely by downstream geometric solver consensus.
 - **URLs**:
-  - Page: https://biubiu3.github.io/web-cv/publications/rlsac/
+  - Page: https://changnie.top/publications/rlsac/
   - Code: https://github.com/IRMVLab/RLSAC
   - Paper: https://openaccess.thecvf.com/content/ICCV2023/html/Nie_RLSAC_Reinforcement_Learning_Enhanced_Sample_Consensus_for_End-to-End_Robust_Estimation_ICCV_2023_paper.html
 - **BibTeX**:
@@ -286,7 +286,7 @@ HEAR, Teach and Grow, and ERMV represent core systems across policy learning, ag
 - **Impact & SOTA**: 30 Hz real-time multi-sensor highway perception achieving **86.00% Mostly Tracked (MT)** and **sub-1% (0.92%) Mostly Lost (ML)** on the KITTI benchmark.
 - **Abstract**: DTFI integrates deep point-cloud and camera feature fusion with an Interactive Multiple Model Unscented Kalman Filter (IMM-UKF) for real-time 3D object detection and trajectory tracking under high-speed highway driving conditions.
 - **URLs**:
-  - Page: https://biubiu3.github.io/web-cv/publications/dtfi/
+  - Page: https://changnie.top/publications/dtfi/
   - DOI: https://doi.org/10.1109/TETCI.2023.3259441
 - **BibTeX**:
 ```bibtex
@@ -306,44 +306,44 @@ HEAR, Teach and Grow, and ERMV represent core systems across policy learning, ag
 ### 1. Multi-Camera SfM 4D Vision Auto-Annotation (NETA Auto)
 - **Role**: Overall Technical Route Lead & Chief Delivery Engineer
 - **Impact**: Slashed processing latency by **95%+** (from 30-40 min down to 1-1.5 min), achieved **4.77% dense depth accuracy** against LiDAR ground truth (OEM threshold: 8%), and reduced angular drift by 3x across production sequences.
-- **Page**: https://biubiu3.github.io/web-cv/projects/sfm/
+- **Page**: https://changnie.top/projects/sfm/
 
 ### 2. Autonomous Valet Parking (Voyager Tech)
 - **Role**: Project Lead & Chief Software Architect
 - **Impact**: Full-stack L4 autonomous valet parking deployed across campus roads and multi-floor underground garages, connecting surround BEV perception, decimeter fusion localization, and Hybrid A* + IPOPT trajectory optimization.
-- **Page**: https://biubiu3.github.io/web-cv/projects/avp/
+- **Page**: https://changnie.top/projects/avp/
 
 ### 3. Commercial Autonomous Lawn Robot (Positec / WORX)
 - **Role**: System Design Lead & Perception-Fusion Delivery Architect
 - **Impact**: Commercial lawn mower deployed across non-planar outdoor turf, detecting **7cm micro-trench hazards** and integrating factor-graph RTK/LiDAR/IMU fusion.
-- **Page**: https://biubiu3.github.io/web-cv/projects/mower/
+- **Page**: https://changnie.top/projects/mower/
 
 ### 4. Robotic Chemist for AI for Science
 - **Role**: Dual-Arm Manipulation Lead & Sim-to-Real Architect
 - **Impact**: Dual-arm mobile manipulation for chemistry labs, integrating 3D Gaussian Splatting digital twins, millimeter-level labware handling, and centrifuge operations.
-- **Page**: https://biubiu3.github.io/web-cv/projects/robot-chemist/
+- **Page**: https://changnie.top/projects/robot-chemist/
 
 ### 5. Industrial Mobile Material Handling Robot
 - **Role**: Pose Estimation & Dual-Arm Coordination Lead
 - **Impact**: Heavy-payload mobile manipulation achieving sub-centimeter pallet localization, millimeter 6D pose estimation, and vibration-resistant dual-arm de-palletizing.
-- **Page**: https://biubiu3.github.io/web-cv/projects/factory-material-handling/
+- **Page**: https://changnie.top/projects/factory-material-handling/
 
 ### 6. Low-Speed Autonomous Research Vehicle Platform
 - **Role**: Hardware-Software Platform Architect (2019–2022)
 - **Impact**: Ground-up autonomy stack across low-speed passenger vehicles and 4WIS AGVs, with 8 real-vehicle closed-loop demonstrations.
-- **Page**: https://biubiu3.github.io/web-cv/projects/lsv/
+- **Page**: https://changnie.top/projects/lsv/
 
 ---
 
 ## Canonical Sitemap & Site Discovery
 
-- **English Academic Profile**: https://biubiu3.github.io/web-cv/
-- **Chinese Academic Profile (中文主页)**: https://biubiu3.github.io/web-cv/zh/
-- **Publications Index**: https://biubiu3.github.io/web-cv/publications/
-- **Chinese Publications Index**: https://biubiu3.github.io/web-cv/zh/publications/
-- **Projects Index**: https://biubiu3.github.io/web-cv/projects/
-- **Chinese Projects Index**: https://biubiu3.github.io/web-cv/zh/projects/
-- **XML Sitemap**: https://biubiu3.github.io/web-cv/sitemap.xml
-- **Concise LLM Guide**: https://biubiu3.github.io/web-cv/llms.txt
-- **Extended LLM Knowledge Base**: https://biubiu3.github.io/web-cv/llms-full.txt
+- **English Academic Profile**: https://changnie.top/
+- **Chinese Academic Profile (中文主页)**: https://changnie.top/zh/
+- **Publications Index**: https://changnie.top/publications/
+- **Chinese Publications Index**: https://changnie.top/zh/publications/
+- **Projects Index**: https://changnie.top/projects/
+- **Chinese Projects Index**: https://changnie.top/zh/projects/
+- **XML Sitemap**: https://changnie.top/sitemap.xml
+- **Concise LLM Guide**: https://changnie.top/llms.txt
+- **Extended LLM Knowledge Base**: https://changnie.top/llms-full.txt
 
